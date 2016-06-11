@@ -18,9 +18,9 @@ teaser                   : # filename of teaser fallback teaser image placed in 
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
 comments:
-  provider               : # false (default), "disqus", "discourse", "facebook", "google-plus", custom"
+  provider               : "disqus"
   disqus:
-    shortname            : # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
+    shortname            : "usmankhaliq"
   discourse:
     server               : # https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963 , e.g.: meta.discourse.org
   facebook:
@@ -37,7 +37,7 @@ yandex_site_verification :
 
 # Social Sharing
 twitter:
-  username               :usman.khaliq
+  username               : "usman.khaliq"
 facebook:
   username               :
   app_id                 :
@@ -48,7 +48,11 @@ og_image                 : # Open Graph/Twitter default site image
 social:
   type                   : # Person or Organization (defaults to Person)
   name                   : # If the user or organization name differs from the site's name
-  links: # An array of links to social media profiles
+  links:
+    - "https://twitter.com/usman.khaliq"
+    - "https://facebook.com/usman.khaliq.7"
+    - "https://instagram.com/ottoman91"
+    - "https://www.linkedin.com/in/usmankhaliq1"
 
 # Analytics
 analytics:
@@ -67,26 +71,26 @@ author:
   avatar           : "usmanbio.gif"
   bio              : "ICT4D Practitioner."
   location         : "Sierra Leone"
-  email            :
-  uri              :
+  email            : "usman.khaliq91@gmail.com"
+  uri              :  
   bitbucket        :
   codepen          :
   dribbble         :
   flickr           :
   facebook         :
   foursquare       :
-  github           :
+  github           : "ottoman91"
   google_plus      :
   keybase          :
-  instagram        :
+  instagram        : "ottoman91"
   lastfm           :
-  linkedin         :
+  linkedin         : "usmankhaliq1"
   pinterest        :
   soundcloud       :
-  stackoverflow    : # http://stackoverflow.com/users/123456/username
+  stackoverflow    : "http://stackoverflow.com/users/4623619/usman-khaliq"
   steam            :
   tumblr           :
-  twitter          :
+  twitter          : "usman.khaliq"
   vine             :
   weibo            :
   xing             :
@@ -205,4 +209,16 @@ tag_archive:
 compress_html:
   clippings: all
   ignore:
-    envs: development
+    envs: development 
+
+
+defaults:
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      read_time: true 
+      comments: true
+
+
