@@ -70,7 +70,7 @@ author:
   name             : "Usman"
   avatar           : "usmanbio.gif"
   bio              : "ICT4D Practitioner.  
-  
+
                       Data Science Enthusiast."
   location         : "Sierra Leone"
   email            : "usman.khaliq91@gmail.com"
@@ -157,8 +157,7 @@ kramdown:
 permalink: /:categories/:title/
 paginate: 5 # amount of posts to show
 paginate_path: /page:num/
-timezone: # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-
+timezone:  GMT
 
 # Plugins
 gems:
@@ -225,6 +224,22 @@ defaults:
       read_time: true
       comments: true
       share: true
-      related: true
+      related: true 
+
+defaults:
+  # _pages
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single 
+
+defaults:
+  # _foo
+  - scope:
+      path: ""
+      type: foo
+    values:
+      layout: single
 
 
