@@ -69,7 +69,9 @@ google_ad_slot           :
 author:
   name             : "Usman"
   avatar           : "usmanbio.gif"
-  bio              : "ICT4D Practitioner."
+  bio              : "ICT4D Practitioner.  
+  
+                      Data Science Enthusiast."
   location         : "Sierra Leone"
   email            : "usman.khaliq91@gmail.com"
   uri              :  
@@ -218,7 +220,11 @@ defaults:
       path: ""
       type: posts
     values:
-      read_time: true 
+      layout: single
+      author_profile: true
+      read_time: true
       comments: true
+      share: true
+      related: true
 
 
