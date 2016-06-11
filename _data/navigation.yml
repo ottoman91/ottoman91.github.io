@@ -13,4 +13,4 @@ main:
     url: https://mmistakes.github.io/minimal-mistakes/page-archive/
 
   - title: "About"
-    url: https://mmistakes.github.io/minimal-mistakes/collection-archive/
+    url: /about
