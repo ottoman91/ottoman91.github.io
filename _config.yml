@@ -242,8 +242,18 @@ defaults:
     values:
       layout: single 
 
+# Collections
 collections:
-  portfolio:
+  blog:
+    output: true
+    permalink: /:collection/:path/
+  books:
+    output: true
+    permalink: /:collection/:path/
+  photography:
+    output: true
+    permalink: /:collection/:path/
+  coding:
     output: true
     permalink: /:collection/:path/
 

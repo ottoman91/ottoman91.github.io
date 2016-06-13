@@ -1,8 +1,8 @@
 ---
 layout: archive
 author_profile: true 
-permalink: /blog 
-title: "Blog"
+permalink: /book 
+title: "Book Reviews"
 ---
 
 {% include base_path %}
@@ -18,4 +18,3 @@ title: "Blog"
 {% for post in site.books %}
   {% include archive-single.html %}
 {% endfor %}
-

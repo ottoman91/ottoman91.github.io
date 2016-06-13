@@ -1,13 +1,13 @@
 # main links links
 main:
   - title: "Blog"
-    url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
+    url: /blog
 
   - title: "Coding"
     url: https://mmistakes.github.io/minimal-mistakes/
 
   - title: "Books"
-    url: https://mmistakes.github.io/minimal-mistakes/year-archive/
+    url: /book
 
   - title: "Photography"
     url: https://mmistakes.github.io/minimal-mistakes/page-archive/

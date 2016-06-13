@@ -1,6 +1,5 @@
 ---
-layout: single 
-tag: books
+layout: single
 title: Book Review. Poor Economics
 --- 
 
