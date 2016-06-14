@@ -67,7 +67,7 @@ google_ad_slot           :
 
 # Site Author
 author:
-  name             : "Usman"
+  name             : "Usman Khaliq"
   avatar           : "usmanbio.gif"
   bio              : "ICT4D Practitioner.  
 
@@ -246,16 +246,20 @@ defaults:
 collections:
   blog:
     output: true
-    permalink: /:collection/:path/
+    permalink: /:collection/:path/ 
+    share: true
   books:
     output: true
-    permalink: /:collection/:path/
+    permalink: /:collection/:path/ 
+    share: true
   photography:
     output: true
-    permalink: /:collection/:path/
+    permalink: /:collection/:path/ 
+    share: true
   coding:
     output: true
-    permalink: /:collection/:path/
+    permalink: /:collection/:path/ 
+    share: true
 
 
 defaults:

@@ -1,6 +1,9 @@
 ---
-layout: single
-title: Book Review. Dead Aid by Dambisa Moyo
+layout: single 
+share: true 
+author_profile: true 
+comments: true
+title: Dead Aid by Dambisa Moyo
 --- 
 
 

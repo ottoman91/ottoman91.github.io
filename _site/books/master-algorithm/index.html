@@ -1,0 +1,426 @@
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+
+<meta charset="utf-8">
+
+
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>Master Algorithm by Pedro Domingos - Musings</title>
+
+
+
+
+
+
+
+<meta property="og:locale" content="en-US">
+<meta property="og:site_name" content="Musings">
+<meta property="og:title" content="Master Algorithm by Pedro Domingos">
+
+
+
+
+  <meta property="og:description" content="Quite often these days, one gets the picture that the big data/data science/artificial intelligence hype train is exponentially gathering steam. Although, if truth be told, I don’t think grouping all of these seemingly related but still distinct fields in a single chunk and dismissing them as nothing more sophisticated than another version of Gartner’s fabled “hype curve” (or something similar along those lines, I am paraphrasing very generously here so it’s better to Google this one up for specifics) is fair to the immense potential for doing good that all of these fields possess.">
+
+
+
+  <meta name="twitter:site" content="@usman.khaliq">
+  <meta name="twitter:title" content="Master Algorithm by Pedro Domingos">
+  <meta name="twitter:description" content="Quite often these days, one gets the picture that the big data/data science/artificial intelligence hype train is exponentially gathering steam. Although, if truth be told, I don’t think grouping all of these seemingly related but still distinct fields in a single chunk and dismissing them as nothing more sophisticated than another version of Gartner’s fabled “hype curve” (or something similar along those lines, I am paraphrasing very generously here so it’s better to Google this one up for specifics) is fair to the immense potential for doing good that all of these fields possess.">
+  <meta name="twitter:url" content="">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+  
+
+  
+
+
+
+  
+
+  
+
+
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2016-06-13T23:50:37+00:00">
+  
+    <link rel="next" href="/books/nexus/" title="Nexus by Ramiz Naam">
+  
+  
+    <link rel="prev" href="/books/dead-aid/" title="Dead Aid by Dambisa Moyo">
+  
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "person",
+      "name" : "Usman Khaliq",
+      "url" : null,
+      "sameAs" : ["https://twitter.com/usman.khaliq","https://facebook.com/usman.khaliq.7","https://instagram.com/ottoman91","https://www.linkedin.com/in/usmankhaliq1"]
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Musings Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<meta http-equiv="cleartype" content="on">
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <button><div class="navicon"></div></button>
+        <ul class="visible-links">
+          <li class="masthead__menu-item masthead__menu-item--lg"><a href="/">Musings</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/blog">Blog</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="https://mmistakes.github.io/minimal-mistakes/">Coding</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/book">Books</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="https://mmistakes.github.io/minimal-mistakes/page-archive/">Photography</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/about">About</a></li>
+          
+        </ul>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    
+
+
+
+
+
+<div id="main" role="main">
+  
+
+
+  <div class="sidebar sticky">
+  
+
+
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  <div class="author__avatar">
+    
+    	<img src="/images/usmanbio.gif" class="author__avatar" alt="Usman Khaliq">
+    
+  </div>
+
+  <div class="author__content">
+    <h3 class="author__name">Usman Khaliq</h3>
+    <p class="author__bio">ICT4D Practitioner.
+Data Science Enthusiast.</p>
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li><i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> Sierra Leone</li>
+      
+      
+      
+        <li><a href="mailto:usman.khaliq91@gmail.com"><i class="fa fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+      
+      
+      
+        <li><a href="https://twitter.com/usman.khaliq"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+      
+      
+      
+      
+        <li><a href="https://www.linkedin.com/in/usmankhaliq1"><i class="fa fa-fw fa-linkedin-square" aria-hidden="true"></i> LinkedIn</a></li>
+      
+      
+      
+        <li><a href="https://instagram.com/ottoman91"><i class="fa fa-fw fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+      
+      
+      
+      
+        <li><a href="https://github.com/ottoman91"><i class="fa fa-fw fa-github" aria-hidden="true"></i> Github</a></li>
+      
+      
+        <li><a href="https://www.stackoverflow.com/users/http://stackoverflow.com/users/4623619/usman-khaliq"><i class="fa fa-fw fa-stack-overflow" aria-hidden="true"></i> Stackoverflow</a></li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Master Algorithm by Pedro Domingos">
+    <meta itemprop="description" content="Quite often these days, one gets the picture that the big data/data science/artificial intelligence hype train is exponentially gathering steam. Although, if truth be told, I don’t think grouping all of these seemingly related but still distinct fields in a single chunk and dismissing them as nothing more sophisticated than another version of Gartner’s fabled “hype curve” (or something similar along those lines, I am paraphrasing very generously here so it’s better to Google this one up for specifics) is fair to the immense potential for doing good that all of these fields possess.">
+    <meta itemprop="datePublished" content="June 13, 2016">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Master Algorithm by Pedro Domingos
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        <p>Quite often these days, one gets the picture that the big data/data science/artificial intelligence hype train is exponentially gathering steam. Although, if truth be told, I don’t think grouping all of these seemingly related but still distinct fields in a single chunk and dismissing them as nothing more sophisticated than another version of Gartner’s fabled “hype curve” (or something similar along those lines, I am paraphrasing very generously here so it’s better to Google this one up for specifics) is fair to the immense potential for doing good that all of these fields possess.</p>
+
+<p>While hacking away on data science/machine learning projects, it is easy to get overwhelmed by the sheer amount of learning material out there, and get pigeonholed into a specific algorithm or learning technique ( or rather, a lame pun that users of random forest algorithms would roll their eyes at:  missing the forest while searching through the trees) . I had a strong feeling that my own experience in data science and machine learning was not helping me to find implicit connections between the different sub topics and get a thorough, but still meta-abstract (no idea whether this word exists or not, but oh well) grasp on the topics. I was therefore looking for a book which, while not exactly being pop-sci, would give an overview of the different techniques in machine learning, along with a theoretical/ philosophical understanding on the different schools of thoughts, and how these different paradigms interact with one another. Coincidentally, Bill Gates, arguably the nerdiest ex-founder/current thought leader our there, recommended the Master Algorithm by Pedro Domingos as one of the books for getting a better understanding of machine learning.</p>
+
+<p>Domingos runs a fairly popular MOOC about machine learning on Coursera, and is a frequent speaker on the topic in the conferences/speaking circuit . In the Master Algorithm, he takes the reader through the five main schools of thought in machine learning, the philosphical arguments that undermine the thought process in each of these schools, the ideological clashes that the different camps in the field have with each other, cases in which each of these techniques have shown promising results, instances where the results have not been that promising,and finally, ways in which the different schools of thought can be combined to come up with a “master algorithm”, or a learner that can predict the past, present and future of the universe. That is the major theme that runs throughout the book, namely the fact that the ultimate algorithm lies at the intersection of the different ideological camps in machine learning, rather than one camp hoping to take all the spoils home.</p>
+
+<p>According to Domingos, the five main ideological camps in machine learning are as follows:</p>
+
+<h3 id="the-symbolists">The symbolists</h3>
+<p>The symbolists believe that learning is nothing more sophisticated, or rather, as sophisticated as deriving a series of logical rules that follow  one another. In their worldview, learning is the inverse of deduction, i.e. you look at the results, and then infer the logical rules that caused those results. While symbolism holds up strongly to the traditional rigour of logical, philosophical and inductive reasoning, there is an inherent problem that lies while using only symbolism for creating large self prediction systems. In simple use cases, logical reasoning can hold its ground, but in an influx of variables and dependencies, the ground immediately turns to quicksand. Even creating something as simple in today’s world as a voter prediction system that only uses inductive reasoning to predict which of the two evils (i.e Donald or Hillary, and yes, I am still #feelingthebern) a rational voter would go for becomes too complex and cumbersome to be used in real-time by a large number of users. Therefore, a series of general, logical based induction rules is probably not the sole route to be taken to the Grand Algorithm.</p>
+
+<h3 id="the-connectionists">The connectionists</h3>
+<p>The beauty of the human brain and its seemingly effortless functionality has captivated generations of humans. Despite our best efforts, we are still at the very least decades away from unlocking all the mysteries of the brain’s functions. It is therefore not surprising that a large cohort of machine learning scientists are firm proponents of modelling learning algorithms along the lines of how the human brain learns. Neural networks, which are currently one of the most popular machine learning algorithms, are based on the inherent idea of how the human brain works : namely through a dense layer of hidden “neurons” that take input from different sensors/ other neurons, and generate an output that is then read by other neurons that perform the same function. The output is propogated through a series of these “hidden layers” of neurons until the system generates an output. Although the mapping of the brain’s functions has come a long way from the early days when it was believed that the brain generates output only through a series of simple perceptrons, the connectionists cannot lay claim to have uncoded the Master Algorithm yet. Connectionists have had immense success in a lot of instances, yet modelling the human brain completely is a tremendously diffcult task, and just as there are functions of the brain that neuroscientists still have no idea about, often, complex neural networks end up becoming black boxes of their own, with their human trainers unable to decipher what exactly is going on in the “hidden layers” of their machine creations. Thus, quite literally, we often do not know whether our android servants are really dreaming of electric sheep or not.</p>
+
+<h3 id="the-evolutionarists">The evolutionarists</h3>
+<p>It is a well accepted fact that evolution is one of nature’s crowning achievements, a seemingly simple, yet highly effective process which ensures that species adapt over time, pass on the most valuable traits to their offsprings and do not get obliterated by environmental conditions. Proponents of evolutionary methods in machine learning follow the same idea in principle. Rather than mimicking how the human brain functions or mapping down learning through a set of intricate, logical rules, the evolutionarists believe that we need to move a few steps backw in our approach,and address the core issue : how exactly does evolution result in the development of a complex structure like the human brain, which not only has the propensity to nurture itself and learn new things, but also inherits several traits by nature itself (yet another incarnation of the nature vs nurture debate). The algorithm is divided into a set of sub programs, which are allowed to mutate and recombine with other sub programs to see whether with multiple iterations of the program, the results of the prediction improve. Genetic programming is the bread and butter of evolutionarists, and similar to how evolution ensures “survival of the fittest”, a fitness function ensures that subsequent iterations of the algorithm give better predictions. When further mutations of the program do not render better predictions with the fitness function, the program stops mutating.</p>
+
+<p>Genetic programming works surprisingly well, both in priciple as well as in practice with neural networks. The work flow is as follows:</p>
+
+<ol>
+  <li>
+    <p>The fitness function runs through several iterations of the program until a general structure of the program is created.</p>
+  </li>
+  <li>
+    <p>Neural networks are then run on this overall program structure to train this “brain” to learn.</p>
+  </li>
+</ol>
+
+<p>However, the archilles heel of genetic programming is one head of the proverbial complexity monster. While solving dense problems, continuous iterations of the sub-programs can be a time and memory intensive process. Moreover, in the quest of improving its performance in every step of the iteration, the program often gets stuck in a local optima, i.e. it misses the path to the global optima while insisting that its immediate path yields a better result, rather than going through iterations that give lower performance in the short term, but end up giving a substantially better performance in the long term.</p>
+
+<h3 id="the-bayesians">The Bayesians</h3>
+<p>Bayes’ Therom is perhaps the most popular, and at the same time, ridiculously easy to understand concept in statistics, which can be drilled down to the following:</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>P(A</td>
+      <td>B) = P(A) * P(B</td>
+      <td>A) / P(B)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Behind this chain of probabilities is an even simpler heurestic, and one which we often use in our lives without explicitly thinking about it : we assign prior probabilities to events that we think will occur, and as we observe more evidence, our priors either lose their importance or become more important. For instance, let us consider Leicester City’s title win in the English Premier League this season. At the start of the season, the prior probability of Leicester winning the league would have been horrendously low, given their past performance in the league. However, as Leicester continued their dream run throughout the season, the evidence, which in this case was the wins and draws that they achieved  and the losses and draws that their opponents collected, gradually increased the prior probability of Leicester achieving the ultimate underdog dream until the odds of them winning could no longer be ignored.</p>
+
+<p>Bayes’ Theorem might sound too simple to be of much practical use in the seemingly complicated world of training machines to learn on their own, but several algorithms based on it, such as Naive Bayes, markov chains, and hidden markov models have been used in some truly complex problems, such as word predictions and search engine ranking. Nevertheless, the Bayesians also cannot lay claim to the Master Algorithm. Inspite of the simplicity and beauty of Bayes’ Theorem, it often fails spectacularly in instances where it just sees one new example which forces it to radically change its prior probabilities. Spam filters are a good example of when Bayes Theorem often fails.</p>
+
+<h3 id="the-analogisers">The Analogisers</h3>
+<p>The analogisers use what is perhaps the most intuitive way of learning for humans : using analogies and learnings from other fields to make decisions. While this may sound easy for humans, training machines on one set of instructions and then translating that learning into meta-knowledge that can be applied across different domains is a ridiculously tough task. Analogisers use unsupervised learning algorithms such as clustering, k means clustering, principle component analysis and support vector machines to infer patters from information, and then use those patterns to make decisions on new data.</p>
+
+<p>Although the Master Algorithm is a very interesting read, I did feel at times that Domingos perhaps overestimated the power of predictive models in chaotic systems, such as the economy. At more than one instance in the book, he directly referenced Nasim Nicholas Taleb’s idea of “the black swan” (a never-seen-before event that all prediction gurus ignore or miss, often at a great peril to society), and gave vague examples of how machine learning can indeed be used to predict these black swans as well. There are still loads of empty promises being made on just how transparent a crystal ball machine learning and data science are in forseeing human behaviour in different settings. My own understanding is that although machine learning can be immensely effective in predictions in a wide array of fields, ranging from medical diagnostics and predictive policing to measuring the effectiveness of policy initiatives in the development sector (my personal favourite), there is still a long way to go before it can be used to accurately predict systems that are dependent on a large number of irrational beings (aka humans) interacting with each other. Until we reach that point, it is perhaps better to listen to Taleb and the other critics who question the claims currenly made by machine learning. Nevertheless, hype notwithstanding, machine learning and data science shall easily ( hopefully?) remain hot topics for some of the most exciting research and discoveries for the next few decades.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+
+
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2016-06-13T23:50:37+00:00">June 13, 2016</time></p>
+        
+      </footer>
+
+      
+
+<section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=/books/master-algorithm/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=/books/master-algorithm/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://plus.google.com/share?url=/books/master-algorithm/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=/books/master-algorithm/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+      
+
+
+  <nav class="pagination">
+    
+      <a href="/books/dead-aid/" class="pagination--pager" title="Dead Aid by Dambisa Moyo
+">Previous</a>
+    
+    
+      <a href="/books/nexus/" class="pagination--pager" title="Nexus by Ramiz Naam
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      
+
+<div class="page__comments">
+  <h4 class="page__comments-title">Leave a Comment</h4>
+  
+    <section id="disqus_thread"></section>
+  
+</div>
+    
+  </article>
+
+  
+  
+</div>
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        
+
+<div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+      <li><a href="https://twitter.com/usman.khaliq"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+    
+    
+    
+      <li><a href="http://github.com/ottoman91"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    <li><a href="/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2016 Usman Khaliq. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+      </footer>
+    </div>
+
+    <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+  
+  <script type="text/javascript">
+  	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  	var disqus_shortname = 'usmankhaliq';
+
+  	/* * * DON'T EDIT BELOW THIS LINE * * */
+  	(function() {
+  		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  	})();
+
+  	/* * * DON'T EDIT BELOW THIS LINE * * */
+  	(function () {
+  		var s = document.createElement('script'); s.async = true;
+  		s.type = 'text/javascript';
+  		s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  		(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+  	}());
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+
+  </body>
+</html>
+

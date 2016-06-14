@@ -1,6 +1,9 @@
 ---
-layout: single
-title: Book Review. Nexus by Ramiz Naam
+layout: single 
+author_profile: true
+share: true 
+comments: true
+title: Nexus by Ramiz Naam
 --- 
 
 
