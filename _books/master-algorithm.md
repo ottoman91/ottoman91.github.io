@@ -35,7 +35,7 @@ However, the archilles heel of genetic programming is one head of the proverbial
 ### The Bayesians 
 Bayes' Therom is perhaps the most popular, and at the same time, ridiculously easy to understand concept in statistics, which can be drilled down to the following: 
 
-P(A|B) = P(A) * P(B|A) / P(B) 
+> #### P(A|B) = P(A) * P(B|A) / P(B) 
 
 Behind this chain of probabilities is an even simpler heurestic, and one which we often use in our lives without explicitly thinking about it : we assign prior probabilities to events that we think will occur, and as we observe more evidence, our priors either lose their importance or become more important. For instance, let us consider Leicester City's title win in the English Premier League this season. At the start of the season, the prior probability of Leicester winning the league would have been horrendously low, given their past performance in the league. However, as Leicester continued their dream run throughout the season, the evidence, which in this case was the wins and draws that they achieved  and the losses and draws that their opponents collected, gradually increased the prior probability of Leicester achieving the ultimate underdog dream until the odds of them winning could no longer be ignored. 
 
