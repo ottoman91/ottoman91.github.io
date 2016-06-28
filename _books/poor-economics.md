@@ -1,9 +1,13 @@
 ---
-layout: single 
+layout: single
 author_profile: true
 share: true 
 comments: true
-title: Poor Economics by Abhijeet Banerjee
+title: Poor Economics by Abhijeet Banerjee  
+excerpt: Poor Economics by Abhijeet Banerjee 
+header:
+  image: robots.png 
+
 --- 
 
 
