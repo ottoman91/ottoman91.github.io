@@ -3,6 +3,7 @@ layout: single
 author_profile: true
 share: true 
 comments: true
+read_time: true
 title: The Life You Can Save by Peter Singer
 ---  
 

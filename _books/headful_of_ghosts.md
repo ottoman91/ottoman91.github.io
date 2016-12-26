@@ -3,6 +3,7 @@ layout: single
 author_profile: true
 share: true 
 comments: true
+read_time: true
 title: A Head Full of Ghosts by Paul Tremblay
 ---  
 

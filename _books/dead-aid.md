@@ -1,9 +1,10 @@
 ---
-layout: single 
+layout: single
 share: true 
 author_profile: true 
-comments: true
-title: Dead Aid by Dambisa Moyo
+comments: true 
+read_time: true
+title: Dead Aid by Dambisa Moyo 
 --- 
 
 

@@ -1,12 +1,13 @@
 ---
 layout: archive
-author_profile: true
+author_profile: true  
+paginate: 5
 ---
 
 {% include base_path %}
 
-<!-- <h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts }}</h3> -->
-
+<!-- <h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts }}</h3>
+ -->
 <!-- {% for post in paginator.posts %}
   {% include archive-single.html %}
 {% endfor %} 
@@ -30,3 +31,7 @@ author_profile: true
     {% endunless %}
   {% endfor %}
 {% endfor %}
+
+{% include paginator.html %}
+
+

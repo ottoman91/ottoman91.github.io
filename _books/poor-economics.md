@@ -2,7 +2,8 @@
 layout: single
 author_profile: true
 share: true 
-comments: true
+comments: true 
+read_time: true
 title: Poor Economics by Abhijeet Banerjee  
 excerpt: Poor Economics by Abhijeet Banerjee 
 header:
