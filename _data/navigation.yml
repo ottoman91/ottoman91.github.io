@@ -3,17 +3,17 @@ main:
   - title: "Blog"
     url: /blog
 
+  - title: "Financial Inclusion"
+    url: https://mmistakes.github.io/minimal-mistakes/page-archive/  
+
+  - title: "Civic Tech"
+    url: https://mmistakes.github.io/minimal-mistakes/page-archive/
+
   - title: "Code Snippets"
     url: https://mmistakes.github.io/minimal-mistakes/
 
   - title: "Book Reviews"
     url: /book
-
-  - title: "Financial Inclusion"
-    url: https://mmistakes.github.io/minimal-mistakes/page-archive/ 
-
-  - title: "Civic Tech"
-    url: https://mmistakes.github.io/minimal-mistakes/page-archive/
 
   - title: "About"
     url: /about
