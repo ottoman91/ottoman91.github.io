@@ -1,5 +1,4 @@
 ---
----
 layout: single
 share: true 
 author_profile: true 
