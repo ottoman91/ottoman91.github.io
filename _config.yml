@@ -254,7 +254,7 @@ collections:
     output: true
     permalink: /:collection/:path/ 
     share: true
-  coding:
+  code:
     output: true
     permalink: /:collection/:path/ 
     share: true 

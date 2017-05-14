@@ -6,7 +6,6 @@ comments: true
 read_time: true
 title: Removing a Homebrew package and all of its dependencies on macOS
 --- 
-
 Homebrew is an excellent command line package management tool for Mac OSx, and it is rightly proclaimed as “The missing package manager for macOS”, as stated on its official website. However, a few days ago, I came across an urgent task which I had not addressed before, namely, how to cleanly and completely remove a package installed from Homebrew, along with all of its dependencies.
 A quick online search rendered the following approach on Stackoverflow, which included using an external command called brew rmtree, which was to be executed as follows:
 
