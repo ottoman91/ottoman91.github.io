@@ -2,7 +2,7 @@
 layout: archive
 author_profile: true 
 permalink: /civic-tech 
-title: "Insights from Running a Civic Tech Lab in Sierra Leone"
+title: "Insights from Code for Sierra Leone"
 ---
 
 {% include base_path %}
