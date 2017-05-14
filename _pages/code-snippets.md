@@ -2,7 +2,7 @@
 layout: archive
 author_profile: true 
 permalink: /code-snippets 
-title: "Archived Code Examples and Key Learnings"
+title: "Bookmarked coding examples and key learnings"
 ---
 
 {% include base_path %}
