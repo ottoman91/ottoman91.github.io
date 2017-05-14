@@ -7,8 +7,6 @@ read_time: true
 title: Data Visualisation Research — Impact of Democracy on Quality of Life Metrics
 ---  
 
-*This post was originally published on [Medium](https://medium.com/@ottoman91/data-visualisation-research-impact-of-democracy-on-quality-of-life-metrics-e506397a7b8f)*
-
 As a part of the Data Management and Visualisation course on Coursera, I shall be working on the following hypothesis and trying to test it from the GapMinder Dataset:
 
 > What effect does the “level of democracy” in a country have on the “quality of life” of the country’s citizens?
@@ -47,4 +45,5 @@ Based on the literature review as well as my own knowledge in the subject, I wou
 
 Nevertheless, it would be interesting to see how the hypothesis would fare in the face of data from the Gapminder dataset.
 
+*This post was originally published on [Medium](https://medium.com/@ottoman91/data-visualisation-research-impact-of-democracy-on-quality-of-life-metrics-e506397a7b8f)*
 

@@ -19,7 +19,7 @@
 
 
 
-<title>Data Visualisation Research — Impact of Democracy on Quality of Life Metrics - Musings</title>
+<title>Making Data Management Decisions - Musings</title>
 
 
 
@@ -29,21 +29,21 @@
 
 <meta property="og:locale" content="en-US">
 <meta property="og:site_name" content="Musings">
-<meta property="og:title" content="Data Visualisation Research — Impact of Democracy on Quality of Life Metrics">
+<meta property="og:title" content="Making Data Management Decisions">
 
 
-  <link rel="canonical" href="http://ottoman91.github.io/ottoman91/projects/standard-of-living/">
-  <meta property="og:url" content="http://ottoman91.github.io/ottoman91/projects/standard-of-living/">
+  <link rel="canonical" href="http://ottoman91.github.io/ottoman91/projects/datamanagement/">
+  <meta property="og:url" content="http://ottoman91.github.io/ottoman91/projects/datamanagement/">
 
 
 
-  <meta property="og:description" content="As a part of the Data Management and Visualisation course on Coursera, I shall be working on the following hypothesis and trying to test it from the GapMinder Dataset:">
+  <meta property="og:description" content="As part of the Data Management and Visualisation course on Coursera, I am investigating the following hypothesis from the Gapminder dataset">
 
 
 
   <meta name="twitter:site" content="@usman.khaliq">
-  <meta name="twitter:title" content="Data Visualisation Research — Impact of Democracy on Quality of Life Metrics">
-  <meta name="twitter:description" content="As a part of the Data Management and Visualisation course on Coursera, I shall be working on the following hypothesis and trying to test it from the GapMinder Dataset:">
+  <meta name="twitter:title" content="Making Data Management Decisions">
+  <meta name="twitter:description" content="As part of the Data Management and Visualisation course on Coursera, I am investigating the following hypothesis from the Gapminder dataset">
   <meta name="twitter:url" content="">
 
   
@@ -66,8 +66,10 @@
   <meta property="og:type" content="article">
   <meta property="article:published_time" content="2017-05-14T23:51:33+00:00">
   
+    <link rel="next" href="http://ottoman91.github.io/ottoman91/projects/donaldcloud/" title="The Donald Cloud">
   
-    <link rel="prev" href="http://ottoman91.github.io/ottoman91/projects/extrapolatory-analysis-gapminder/" title="Extrapolatory Analysis — Does a “More Democratic” Society lead to an improvement in the “quality of life”?">
+  
+    <link rel="prev" href="http://ottoman91.github.io/ottoman91/projects/crime-rates-seattle-sf/" title="Comparing Crime Rates Between Seattle and San Francisco">
   
 
 
@@ -233,15 +235,15 @@
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Data Visualisation Research — Impact of Democracy on Quality of Life Metrics">
-    <meta itemprop="description" content="As a part of the Data Management and Visualisation course on Coursera, I shall be working on the following hypothesis and trying to test it from the GapMinder Dataset:">
+    <meta itemprop="headline" content="Making Data Management Decisions">
+    <meta itemprop="description" content="As part of the Data Management and Visualisation course on Coursera, I am investigating the following hypothesis from the Gapminder dataset">
     <meta itemprop="datePublished" content="May 14, 2017">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 class="page__title" itemprop="headline">Data Visualisation Research — Impact of Democracy on Quality of Life Metrics
+          <h1 class="page__title" itemprop="headline">Making Data Management Decisions
 </h1>
           
             <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
@@ -256,15 +258,13 @@
       
 
       <section class="page__content" itemprop="text">
-        <p>As a part of the Data Management and Visualisation course on Coursera, I shall be working on the following hypothesis and trying to test it from the GapMinder Dataset:</p>
+        <p>As part of the Data Management and Visualisation course on Coursera, I am investigating the following hypothesis from the <a href="https://www.gapminder.org/">Gapminder</a> dataset</p>
 
 <blockquote>
   <p>What effect does the “level of democracy” in a country have on the “quality of life” of the country’s citizens?</p>
 </blockquote>
 
-<p>In short, I want to test a simple idea related to how effective democracy really is in improving the lives of the citizen’s of a country. A major argument made by proponents of capitalism and Western democracy is that empowering people to make a more informed decision in the running of their country ultimately leads to improvement in all streams of life. While on surface, this argument has a lot of substance, it is important to look beyond the philosophical arguments and measure the metrics.</p>
-
-<p>For this assignment, I shall be testing the Gapminder Dataset. Basically, I would be measuring the correlation between the “polityscore” variable in the dataset against the following variables</p>
+<p>In the previous extrapolatory analysis completed last week, I decided that I would be measuring the correlation between the “polityscore” (a numeric value from -10 to 10 that measures how democratic a country is)variable and the following variables in the dataset</p>
 
 <ul>
   <li>
@@ -277,12 +277,6 @@
     <p>breastcancerper100TH(breast cancer new cases per 10,000)</p>
   </li>
   <li>
-    <p>co2emissions(2006 cumulative co2 emissions)</p>
-  </li>
-  <li>
-    <p>femaleemployrate(2006 female employment rate)</p>
-  </li>
-  <li>
     <p>employrate(2007 total emloyees over 15+)</p>
   </li>
   <li>
@@ -292,24 +286,92 @@
     <p>lifeexpectancy(2011 life expectancy at birth)</p>
   </li>
   <li>
-    <p>suicideper100TH(suicide rate adjusted over 10,000 people)</p>
-  </li>
-  <li>
     <p>urbanrate(Urban population)</p>
   </li>
 </ul>
 
-<p>The polityscore is a measurement form -10 to +10, and is a summary measurement of a country’s democratic nature.</p>
+<p>However, I want to ensure that I am only reading data for countries from the dataset that do not have any missing values. For this, I can the following code snippet, which only subsetted the values from the dataset that were complete for all these variables.</p>
 
-<p>A substantial amount of research work has been done to find the relationship between “democratic” a country is and how well it is progressing. A <a href="http://www.nber.org/papers/w4909.pdf">paper</a>, “Democracy and Growth” by Robert J. Barro of the National Bureau of Economic Research (NBER) analysed that the favourable metrics of growth initially affected by democracy are the rule of law, free markets, small government consumption, and high human capital. However, once these baseline metrics have been achieved and the initial level of real per-capita GDP are held constant, the overall effect of democracy on growth is weakly negative. Thus, this study shows that the overall effect of democracy on growth is weakly non linear, and democracy has a greater effect on growth at the lower metrics, but once a country has achieved relatively modest levels of growth, democracy does not lead to a greater amount of improvement in the standard of living of the country.</p>
+<p>This code also converted the variables to numeric values, since they would be required for calculating the correlation between the variables</p>
 
-<p>Another <a href="http://www.sciencedirect.com/science/article/pii/S0014292100000933">paper</a>, “How Democracy Affects Growth” by Tavares and Wacziarg published in the European Economic Review shows that democracy fosters growth by improving the accumulation of human capital, and , less robustly, by reducing income inequality. The paper again states that once the lives of the poor have been moderately improved, further improvements in how democratic a country is have limited effects on the standard of living in the country.</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>import pandas as pd
+import numpy as np
+data = pd.read_csv(‘gapminder.csv’, low_memory=False)
+#setting variables you will be working with to numeric
+data[‘incomeperperson’] = data[‘incomeperperson’].convert_objects(convert_numeric=True)
+data[‘alcconsumption’] = data[‘alcconsumption’].convert_objects(convert_numeric=True)
+data[‘breastcancerper100th’] = data[‘breastcancerper100th’].convert_objects(convert_numeric=True)
+data[‘employrate’] = data[‘employrate’].convert_objects(convert_numeric=True)
+data[‘hivrate’] = data[‘hivrate’].convert_objects(convert_numeric=True)
+data[‘lifeexpectancy’] = data[‘lifeexpectancy’].convert_objects(convert_numeric=True)
+data[‘urbanrate’] = data[‘urbanrate’].convert_objects(convert_numeric=True) 
+data[‘polityscore’] = data[‘polityscore’].convert_objects(convert_numeric=True)
+#select data subset that does not have any missing polity scores
+subset = data[np.isfinite(data[‘polityscore’])] 
+subset = subset[np.isfinite(subset[‘incomeperperson’])] 
+subset = subset[np.isfinite(subset[‘alcconsumption’])]
+subset = subset[np.isfinite(subset[‘breastcancerper100th’])]
+subset = subset[np.isfinite(subset[‘employrate’])]
+subset = subset[np.isfinite(subset[‘hivrate’])]
+subset = subset[np.isfinite(subset[‘lifeexpectancy’])]
+subset = subset[np.isfinite(subset[‘urbanrate’])]
+</code></pre>
+</div>
 
-<p>Based on the literature review as well as my own knowledge in the subject, I would expect that an improvement in the polityscore of different countries would result in an improvement against all the measurements. However, there would be small clusters of countries where inspite of a low polityscore, some of the metrics, such as life expectancy and the urban population, would be high. A reason for this is that a lot of autocratic countries, especially in the Middle East, are characterised by good healthcare and other basic facilities for their people.</p>
+<p>I shall not be grouping any of the variables, since at this time in my analysis, I do not see the need of doing it.</p>
 
-<p>Nevertheless, it would be interesting to see how the hypothesis would fare in the face of data from the Gapminder dataset.</p>
+<p>I generated a frequency table for the polityscores, using the following code snippet.</p>
 
-<p><em>This post was originally published on <a href="https://medium.com/@ottoman91/data-visualisation-research-impact-of-democracy-on-quality-of-life-metrics-e506397a7b8f">Medium</a></em></p>
+<div class="highlighter-rouge"><pre class="highlight"><code>group = subset.groupby(‘polityscore’).size()
+print group
+</code></pre>
+</div>
+<p>The display was as follows</p>
+
+<figure>
+  <img src="/images/datamanagement.png" alt="this is a placeholder image" />
+</figure>
+
+<p>However, since the other variables are all continuous variables, creating frequency tables for them does not make sense. Rather, their distributions and frequencies can be showcased via histograms.</p>
+
+<p>As an example, the following code snippet displays the histogram for the distribution of income distributions across the dataset.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>subset[‘incomeperperson’].hist(bins=50)
+</code></pre>
+</div>
+
+<p>The following is the histogram for incomeperperson displayed</p>
+
+<figure>
+  <img src="/images/hist1.png" alt="this is a placeholder image" />
+  <figcaption>Histogram for Income per person across the dataset
+</figcaption>
+</figure>
+
+<p>The following code was used to display a histogram for life expectancy rates</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>subset[‘lifeexpectancy’].hist(bins=50)
+</code></pre>
+</div>
+
+<p>A frequency table for the polityscore variable was achieved with the following</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>group = subset.groupby(‘polityscore’).size()
+print group
+</code></pre>
+</div>
+
+<p>The display was as follows</p>
+
+<figure>
+  <img src="/images/hist2.png" alt="this is a placeholder image" />
+  <figcaption>Histogram for Distribution of Life Expectancy
+</figcaption>
+</figure>
+
+<p>As can be seen from the above histogram, the life expectancy varies more across the dataset, which hints at the fact that there are more factors that determine the life expectancy of a country rather than just how “democratic” it is.</p>
+
+<p><em>This post was originally published on <a href="https://medium.com/@ottoman91/making-data-management-decisions-b1459684ae31">Medium</a></em></p>
 
 
         
@@ -334,13 +396,13 @@
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=/projects/standard-of-living/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=/projects/datamanagement/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=/projects/standard-of-living/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=/projects/datamanagement/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://plus.google.com/share?url=/projects/standard-of-living/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+  <a href="https://plus.google.com/share?url=/projects/datamanagement/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=/projects/standard-of-living/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=/projects/datamanagement/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
       
@@ -348,11 +410,12 @@
 
   <nav class="pagination">
     
-      <a href="/projects/extrapolatory-analysis-gapminder/" class="pagination--pager" title="Extrapolatory Analysis — Does a “More Democratic” Society lead to an improvement in the “quality of life”?
+      <a href="/projects/crime-rates-seattle-sf/" class="pagination--pager" title="Comparing Crime Rates Between Seattle and San Francisco
 ">Previous</a>
     
     
-      <a href="#" class="pagination--pager disabled">Next</a>
+      <a href="/projects/donaldcloud/" class="pagination--pager" title="The Donald Cloud
+">Next</a>
     
   </nav>
 

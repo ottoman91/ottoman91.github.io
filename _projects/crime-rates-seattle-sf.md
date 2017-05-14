@@ -7,9 +7,6 @@ read_time: true
 title: Comparing Crime Rates Between Seattle and San Francisco
 ---  
 
-*(This blog post has been written as one of the assignments of the Data Science MOOC being offered on Coursera by the University of Washington).*
-*It was originally published on [Medium](https://medium.com/@ottoman91/comparing-crime-rates-between-seattle-and-san-francisco-1a2cb634d846)*
-
 In this small post, we shall analyse the differences between crime statistics collected from Seattle and San Francisco. In short, we shall observe how the crimes vary across the months of a year in the two cities. We shall also map out the crimes recorded in the cities to identify the areas of the cities with a greater propensity for witnessing crime incidents.
 
 ## Main Conclusions
@@ -82,4 +79,6 @@ map.seattle_city + geom_point(data=seattle_dataset, aes(x=Longitude, y=Latitude)
 map.sanfrancisco_city <- qmap(“sanfrancisco”, zoom = 11, source=”stamen”, maptype=”toner”,darken = c(.3,”#BBBBBB”)) 
 map.sanfrancisco_city + geom_point(data=sanfrancisco_dataset, aes(x=X, y=Y), color=”dark green”, alpha=.03, size=1.1)
 ```
+*(This blog post has been written as one of the assignments of the Data Science MOOC being offered on Coursera by the University of Washington).*
+*It was originally published on [Medium](https://medium.com/@ottoman91/comparing-crime-rates-between-seattle-and-san-francisco-1a2cb634d846)*
 
