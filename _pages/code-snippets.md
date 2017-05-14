@@ -1,7 +1,7 @@
 ---
 layout: archive
 author_profile: true 
-permalink: /code-snippets 
+permalink: /code 
 title: "Bookmarked coding examples and key learnings"
 ---
 
