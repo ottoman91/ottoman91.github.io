@@ -15,6 +15,6 @@ title: "Financial Inclusion Projects from West Africa"
 
 {% include paginator.html %} -->
 
-{% for post in site.civictech %}
+{% for post in site.fintechs %}
   {% include archive-single.html %}
 {% endfor %}

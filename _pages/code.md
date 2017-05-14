@@ -15,6 +15,6 @@ title: "Archived Key Code Snippets and Tutorials"
 
 {% include paginator.html %} -->
 
-{% for post in site.code %}
+{% for post in site.codes %}
   {% include archive-single.html %}
 {% endfor %}

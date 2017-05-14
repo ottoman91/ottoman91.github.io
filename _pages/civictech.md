@@ -15,6 +15,6 @@ title: "Lessons from Code for Sierra Leone"
 
 {% include paginator.html %} -->
 
-{% for post in site.civictech %}
+{% for post in site.civictechs %}
   {% include archive-single.html %}
 {% endfor %}

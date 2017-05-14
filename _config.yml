@@ -69,7 +69,7 @@ google_ad_slot           :
 author:
   name             : "Usman Khaliq"
   avatar           : "usmanbio.gif"
-  bio              : "ICT for Development. Civic tech and financial inclusion practitioner."
+  bio              : "ICT for development, civic tech and financial inclusion practitioner."
   location         : "Sierra Leone"
   email            : "usman.khaliq91@gmail.com"
   uri              :  
@@ -242,7 +242,7 @@ defaults:
 
 # Collections
 collections:
-  blog:
+  blogs:
     output: true
     permalink: /:collection/:path/ 
     share: true
@@ -250,15 +250,15 @@ collections:
     output: true
     permalink: /:collection/:path/ 
     share: true
-  civic-tech:
+  civictechs:
     output: true
     permalink: /:collection/:path/ 
     share: true
-  code:
+  codes:
     output: true
     permalink: /:collection/:path/ 
     share: true 
-  fintech:
+  fintechs:
     output: true
     permalink: /:collection/:path/ 
     share: true
