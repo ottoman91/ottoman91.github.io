@@ -19,7 +19,7 @@
 
 
 
-<title>First Post on Jekyl. Feels cool to be hacking! - Musings</title>
+<title>Lessons from Code for Sierra Leone - Musings</title>
 
 
 
@@ -29,21 +29,19 @@
 
 <meta property="og:locale" content="en-US">
 <meta property="og:site_name" content="Musings">
-<meta property="og:title" content="First Post on Jekyl. Feels cool to be hacking!">
+<meta property="og:title" content="Lessons from Code for Sierra Leone">
 
 
-  <link rel="canonical" href="http://ottoman91.github.io/ottoman91/first-post-jekyl/">
-  <meta property="og:url" content="http://ottoman91.github.io/ottoman91/first-post-jekyl/">
+  <link rel="canonical" href="http://ottoman91.github.io/ottoman91/fintech">
+  <meta property="og:url" content="http://ottoman91.github.io/ottoman91/fintech">
 
 
-
-  <meta property="og:description" content="First post. Let’s see how this goes.">
 
 
 
   <meta name="twitter:site" content="@usman.khaliq">
-  <meta name="twitter:title" content="First Post on Jekyl. Feels cool to be hacking!">
-  <meta name="twitter:description" content="First post. Let’s see how this goes.">
+  <meta name="twitter:title" content="Lessons from Code for Sierra Leone">
+  <meta name="twitter:description" content="Coder,Data Science Enthusiast, ICT4D Practitioner.">
   <meta name="twitter:url" content="">
 
   
@@ -62,13 +60,6 @@
 
 
 
-
-  <meta property="og:type" content="article">
-  <meta property="article:published_time" content="2016-06-11T00:00:00+00:00">
-  
-    <link rel="next" href="http://ottoman91.github.io/ottoman91/book-review-poor-economics/" title="Book Review. Poor Economics">
-  
-  
 
 
 
@@ -158,68 +149,94 @@
 
 
 
-
-
 <div id="main" role="main">
   
 
 
+  <div class="sidebar sticky">
+  
 
-  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="First Post on Jekyl. Feels cool to be hacking!">
-    <meta itemprop="description" content="First post. Let’s see how this goes.">
-    <meta itemprop="datePublished" content="June 11, 2016">
+
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  <div class="author__avatar">
     
+    	<img src="/images/usmanbio.gif" class="author__avatar" alt="Usman Khaliq">
+    
+  </div>
 
-    <div class="page__inner-wrap">
+  <div class="author__content">
+    <h3 class="author__name">Usman Khaliq</h3>
+    <p class="author__bio">ICT for Development. Civic tech and financial inclusion practitioner.</p>
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
       
-        <header>
-          <h1 class="page__title" itemprop="headline">First Post on Jekyl. Feels cool to be hacking!
-</h1>
-          
-        </header>
+        <li><i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> Sierra Leone</li>
       
-
-      <section class="page__content" itemprop="text">
-        <p>First post. Let’s see how this goes.</p>
-
-        
-      </section>
-
-      <footer class="page__meta">
-        
-        
-
-
-
-
-        
-          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2016-06-11T00:00:00+00:00">June 11, 2016</time></p>
-        
-      </footer>
-
       
-
       
-
-
-  <nav class="pagination">
-    
-      <a href="#" class="pagination--pager disabled">Previous</a>
-    
-    
-      <a href="/book-review-poor-economics/" class="pagination--pager" title="Book Review. Poor Economics
-">Next</a>
-    
-  </nav>
-
-    </div>
-
-    
-  </article>
+        <li><a href="mailto:usman.khaliq91@gmail.com"><i class="fa fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+      
+      
+      
+        <li><a href="https://twitter.com/usman.khaliq"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+      
+      
+      
+      
+        <li><a href="https://www.linkedin.com/in/usmankhaliq1"><i class="fa fa-fw fa-linkedin-square" aria-hidden="true"></i> LinkedIn</a></li>
+      
+      
+      
+        <li><a href="https://instagram.com/ottoman91"><i class="fa fa-fw fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+      
+      
+      
+      
+        <li><a href="https://github.com/ottoman91"><i class="fa fa-fw fa-github" aria-hidden="true"></i> Github</a></li>
+      
+      
+        <li><a href="https://www.stackoverflow.com/users/http://stackoverflow.com/users/4623619/usman-khaliq"><i class="fa fa-fw fa-stack-overflow" aria-hidden="true"></i> Stackoverflow</a></li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+</div>
 
   
-  
+  </div>
+
+
+  <div class="archive">
+    
+      <h1 class="page__title">Lessons from Code for Sierra Leone</h1>
+    
+    
+
+<h3 class="archive__subtitle">Recent Posts</h3>
+
+<!--  
+
+
+
+ -->
+
+
+  </div>
 </div>
 
     <div class="page__footer">

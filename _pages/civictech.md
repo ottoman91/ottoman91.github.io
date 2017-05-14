@@ -1,8 +1,8 @@
 ---
 layout: archive
 author_profile: true 
-permalink: /civic-tech 
-title: "Insights from Code for Sierra Leone"
+permalink: /civictech 
+title: "Lessons from Code for Sierra Leone"
 ---
 
 {% include base_path %}
@@ -15,6 +15,6 @@ title: "Insights from Code for Sierra Leone"
 
 {% include paginator.html %} -->
 
-{% for post in site.civic-tech %}
+{% for post in site.civictech %}
   {% include archive-single.html %}
 {% endfor %}

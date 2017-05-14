@@ -2,7 +2,7 @@
 layout: archive
 author_profile: true 
 permalink: /fintech 
-title: "Financial Inclusion Projects in West Africa"
+title: "Financial Inclusion Projects from West Africa"
 ---
 
 {% include base_path %}
@@ -15,6 +15,6 @@ title: "Financial Inclusion Projects in West Africa"
 
 {% include paginator.html %} -->
 
-{% for post in site.fintech %}
+{% for post in site.civictech %}
   {% include archive-single.html %}
 {% endfor %}
