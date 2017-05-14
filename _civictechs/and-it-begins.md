@@ -6,6 +6,7 @@ comments: true
 read_time: true
 title: And It Begins - Sierra Leone's Civic Tech Movement
 --- 
+*This post was original published on the Code for Africa [Medium Publication](https://medium.com/code-for-africa/and-it-begins-sierra-leones-civic-tech-movement-62144377bffb), under a Creative Commons CC-BY-SA 4.0 License*
 
 Cautious excitement and anticipation was in the air this Wednesday at the Sensi Tech Hub in Freetown, Sierra Leone. The 28 odd people gathered at the venue were the finalists from the country’s first ever [d|Bootcamp](http://freetown.dbootcamp.org/) that was held in June, and the event marked the official beginning of the Aftercare program, along with prize distribution for all the finalists.
 The [d|Bootcamp](https://medium.com/code-for-africa/turning-civic-data-into-tools-ordinary-citizens-can-actually-use-a976481ad53d) in June witnessed some tremendous ideas that revolved around civic engagement, open data, and on how to use technology for solving some of the most pressing needs of Sierra Leone. Over the course of the 4-day event, the 8 participating teams went through gruelling sessions of revamping their project ideas, designing basic project wireframes and refining the workflows for the successful execution of their ideas.
@@ -66,5 +67,6 @@ With all the important details done and dusted, the prizes were finally distribu
 
 Finally, wrapping things up and just to give the teams a small taste of the kind of work that is expected from them for the next six month, everyone dived into drafting their project concept notes. These will form the blueprint of the projects for the next six months.
 Kickstarting a civic tech movement in Sierra Leone has been a long time coming. The country’s youth and nascent technology sector is desperate for an opportunity to create their niche in the continent’s greater tech movement. The journey will in no way be an easy one, but all of us are excited and really looking forward to some intense, hands on work in the upcoming months. Keep an eye on this space for more updates on the tech revolution from ‘Mama Salone’ !
+
 
 
