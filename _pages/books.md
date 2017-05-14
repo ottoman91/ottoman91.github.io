@@ -2,7 +2,7 @@
 layout: archive
 author_profile: true 
 permalink: /book 
-title: "My take on books that I have recently devoured"
+title: "Books that I have recently devoured"
 ---
 
 {% include base_path %}
