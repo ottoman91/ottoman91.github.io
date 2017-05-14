@@ -263,6 +263,11 @@ collections:
   fintechs:
     output: true
     permalink: /:collection/:path/ 
+    share: true 
+
+  projects:
+    output: true
+    permalink: /:collection/:path/ 
     share: true
 
 

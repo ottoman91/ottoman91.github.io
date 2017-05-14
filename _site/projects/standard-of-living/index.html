@@ -1,0 +1,442 @@
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+
+<meta charset="utf-8">
+
+
+
+<!-- begin SEO -->
+
+
+
+
+
+
+
+
+
+<title>Data Visualisation Research — Impact of Democracy on Quality of Life Metrics - Musings</title>
+
+
+
+
+
+
+
+<meta property="og:locale" content="en-US">
+<meta property="og:site_name" content="Musings">
+<meta property="og:title" content="Data Visualisation Research — Impact of Democracy on Quality of Life Metrics">
+
+
+  <link rel="canonical" href="http://ottoman91.github.io/ottoman91/projects/standard-of-living/">
+  <meta property="og:url" content="http://ottoman91.github.io/ottoman91/projects/standard-of-living/">
+
+
+
+  <meta property="og:description" content="This post was originally published on Medium">
+
+
+
+  <meta name="twitter:site" content="@usman.khaliq">
+  <meta name="twitter:title" content="Data Visualisation Research — Impact of Democracy on Quality of Life Metrics">
+  <meta name="twitter:description" content="This post was originally published on Medium">
+  <meta name="twitter:url" content="">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+  
+
+  
+
+
+
+  
+
+  
+
+
+
+
+
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="2017-05-14T23:39:54+00:00">
+  
+  
+    <link rel="prev" href="http://ottoman91.github.io/ottoman91/projects/extrapolatory-analysis-gapminder/" title="Extrapolatory Analysis — Does a “More Democratic” Society lead to an improvement in the “quality of life”?">
+  
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "person",
+      "name" : "Usman Khaliq",
+      "url" : "http://ottoman91.github.io/ottoman91",
+      "sameAs" : ["https://twitter.com/usman.khaliq","https://facebook.com/usman.khaliq.7","https://instagram.com/ottoman91","https://www.linkedin.com/in/usmankhaliq1"]
+    }
+  </script>
+
+
+
+
+
+
+<!-- end SEO -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Musings Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<meta http-equiv="cleartype" content="on">
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <button><div class="navicon"></div></button>
+        <ul class="visible-links">
+          <li class="masthead__menu-item masthead__menu-item--lg"><a href="/">Musings</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/fintech">Financial Inclusion</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/civictech">Civic Tech</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/code">Code Snippets</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/book">Book Reviews</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/project">Projects</a></li>
+          
+            
+            <li class="masthead__menu-item"><a href="/about">About</a></li>
+          
+        </ul>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    
+
+
+
+
+
+<div id="main" role="main">
+  
+
+
+  <div class="sidebar sticky">
+  
+
+
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  <div class="author__avatar">
+    
+    	<img src="/images/usmanbio.gif" class="author__avatar" alt="Usman Khaliq">
+    
+  </div>
+
+  <div class="author__content">
+    <h3 class="author__name">Usman Khaliq</h3>
+    <p class="author__bio">ICT for development, civic tech and financial inclusion practitioner.</p>
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li><i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> Sierra Leone</li>
+      
+      
+      
+        <li><a href="mailto:usman.khaliq91@gmail.com"><i class="fa fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+      
+      
+      
+        <li><a href="https://twitter.com/usman.khaliq"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+      
+      
+      
+      
+        <li><a href="https://www.linkedin.com/in/usmankhaliq1"><i class="fa fa-fw fa-linkedin-square" aria-hidden="true"></i> LinkedIn</a></li>
+      
+      
+      
+        <li><a href="https://instagram.com/ottoman91"><i class="fa fa-fw fa-instagram" aria-hidden="true"></i> Instagram</a></li>
+      
+      
+      
+      
+        <li><a href="https://github.com/ottoman91"><i class="fa fa-fw fa-github" aria-hidden="true"></i> Github</a></li>
+      
+      
+        <li><a href="https://www.stackoverflow.com/users/http://stackoverflow.com/users/4623619/usman-khaliq"><i class="fa fa-fw fa-stack-overflow" aria-hidden="true"></i> Stackoverflow</a></li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Data Visualisation Research — Impact of Democracy on Quality of Life Metrics">
+    <meta itemprop="description" content="This post was originally published on Medium">
+    <meta itemprop="datePublished" content="May 14, 2017">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 class="page__title" itemprop="headline">Data Visualisation Research — Impact of Democracy on Quality of Life Metrics
+</h1>
+          
+            <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+  
+	  2 minutes read
+	
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        <p><em>This post was originally published on <a href="https://medium.com/@ottoman91/data-visualisation-research-impact-of-democracy-on-quality-of-life-metrics-e506397a7b8f">Medium</a></em></p>
+
+<p>As a part of the Data Management and Visualisation course on Coursera, I shall be working on the following hypothesis and trying to test it from the GapMinder Dataset:</p>
+
+<blockquote>
+  <p>What effect does the “level of democracy” in a country have on the “quality of life” of the country’s citizens?</p>
+</blockquote>
+
+<p>In short, I want to test a simple idea related to how effective democracy really is in improving the lives of the citizen’s of a country. A major argument made by proponents of capitalism and Western democracy is that empowering people to make a more informed decision in the running of their country ultimately leads to improvement in all streams of life. While on surface, this argument has a lot of substance, it is important to look beyond the philosophical arguments and measure the metrics.</p>
+
+<p>For this assignment, I shall be testing the Gapminder Dataset. Basically, I would be measuring the correlation between the “polityscore” variable in the dataset against the following variables</p>
+
+<ul>
+  <li>
+    <p>incomeperperson(2010 GDP per capita in constant US$ 2000)</p>
+  </li>
+  <li>
+    <p>alconconsumption(2008 alcohol consumption per adult)</p>
+  </li>
+  <li>
+    <p>breastcancerper100TH(breast cancer new cases per 10,000)</p>
+  </li>
+  <li>
+    <p>co2emissions(2006 cumulative co2 emissions)</p>
+  </li>
+  <li>
+    <p>femaleemployrate(2006 female employment rate)</p>
+  </li>
+  <li>
+    <p>employrate(2007 total emloyees over 15+)</p>
+  </li>
+  <li>
+    <p>HIVrate(2009 estimated HIV prevalence)</p>
+  </li>
+  <li>
+    <p>lifeexpectancy(2011 life expectancy at birth)</p>
+  </li>
+  <li>
+    <p>suicideper100TH(suicide rate adjusted over 10,000 people)</p>
+  </li>
+  <li>
+    <p>urbanrate(Urban population)</p>
+  </li>
+</ul>
+
+<p>The polityscore is a measurement form -10 to +10, and is a summary measurement of a country’s democratic nature.</p>
+
+<p>A substantial amount of research work has been done to find the relationship between “democratic” a country is and how well it is progressing. A <a href="http://www.nber.org/papers/w4909.pdf">paper</a>, “Democracy and Growth” by Robert J. Barro of the National Bureau of Economic Research (NBER) analysed that the favourable metrics of growth initially affected by democracy are the rule of law, free markets, small government consumption, and high human capital. However, once these baseline metrics have been achieved and the initial level of real per-capita GDP are held constant, the overall effect of democracy on growth is weakly negative. Thus, this study shows that the overall effect of democracy on growth is weakly non linear, and democracy has a greater effect on growth at the lower metrics, but once a country has achieved relatively modest levels of growth, democracy does not lead to a greater amount of improvement in the standard of living of the country.</p>
+
+<p>Another <a href="http://www.sciencedirect.com/science/article/pii/S0014292100000933">paper</a>, “How Democracy Affects Growth” by Tavares and Wacziarg published in the European Economic Review shows that democracy fosters growth by improving the accumulation of human capital, and , less robustly, by reducing income inequality. The paper again states that once the lives of the poor have been moderately improved, further improvements in how democratic a country is have limited effects on the standard of living in the country.</p>
+
+<p>Based on the literature review as well as my own knowledge in the subject, I would expect that an improvement in the polityscore of different countries would result in an improvement against all the measurements. However, there would be small clusters of countries where inspite of a low polityscore, some of the metrics, such as life expectancy and the urban population, would be high. A reason for this is that a lot of autocratic countries, especially in the Middle East, are characterised by good healthcare and other basic facilities for their people.</p>
+
+<p>Nevertheless, it would be interesting to see how the hypothesis would fare in the face of data from the Gapminder dataset.</p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+
+
+        
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2017-05-14T23:39:54+00:00">May 14, 2017</time></p>
+        
+      </footer>
+
+      
+
+<section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=/projects/standard-of-living/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=/projects/standard-of-living/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://plus.google.com/share?url=/projects/standard-of-living/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=/projects/standard-of-living/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+      
+
+
+  <nav class="pagination">
+    
+      <a href="/projects/extrapolatory-analysis-gapminder/" class="pagination--pager" title="Extrapolatory Analysis — Does a “More Democratic” Society lead to an improvement in the “quality of life”?
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      
+
+<div class="page__comments">
+  <h4 class="page__comments-title">Leave a Comment</h4>
+  
+    <section id="disqus_thread"></section>
+  
+</div>
+    
+  </article>
+
+  
+   
+
+
+</div>
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        
+
+<div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+      <li><a href="https://twitter.com/usman.khaliq"><i class="fa fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+    
+    
+    
+      <li><a href="http://github.com/ottoman91"><i class="fa fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    <li><a href="/feed.xml"><i class="fa fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2017 Usman Khaliq. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+      </footer>
+    </div>
+
+    <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+  
+  <script type="text/javascript">
+  	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  	var disqus_shortname = 'usmankhaliq';
+
+  	/* * * DON'T EDIT BELOW THIS LINE * * */
+  	(function() {
+  		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  	})();
+
+  	/* * * DON'T EDIT BELOW THIS LINE * * */
+  	(function () {
+  		var s = document.createElement('script'); s.async = true;
+  		s.type = 'text/javascript';
+  		s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  		(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+  	}());
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+
+  </body>
+</html>
+

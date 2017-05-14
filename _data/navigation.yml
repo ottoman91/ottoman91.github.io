@@ -1,8 +1,6 @@
 # main links links
 main:
-  - title: "Blog"
-    url: /blog
-
+  
   - title: "Financial Inclusion"
     url: /fintech 
 
@@ -13,7 +11,11 @@ main:
     url: /code
 
   - title: "Book Reviews"
-    url: /book
+    url: /book 
+
+
+  - title: "Projects"
+    url: /project
 
   - title: "About"
     url: /about
