@@ -4,13 +4,13 @@ main:
     url: /blog
 
   - title: "Financial Inclusion"
-    url: https://mmistakes.github.io/minimal-mistakes/page-archive/  
+    url: /fintech 
 
   - title: "Civic Tech"
-    url: https://mmistakes.github.io/minimal-mistakes/page-archive/
+    url: /civic-tech
 
   - title: "Code Snippets"
-    url: https://mmistakes.github.io/minimal-mistakes/
+    url: /code-snippets
 
   - title: "Book Reviews"
     url: /book
