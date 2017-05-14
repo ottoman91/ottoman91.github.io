@@ -15,6 +15,6 @@ title: "Insights from Code for Sierra Leone"
 
 {% include paginator.html %} -->
 
-{% for post in site.civictech %}
+{% for post in site.civic-tech %}
   {% include archive-single.html %}
 {% endfor %}
