@@ -19,7 +19,7 @@
 
 
 
-<title>Removing a Homebrew Package and All of its Dependencies on macOS - Musings</title>
+<title>Data Visualisation Research — Impact of Democracy on Quality of Life Metrics - Musings</title>
 
 
 
@@ -29,21 +29,21 @@
 
 <meta property="og:locale" content="en-US">
 <meta property="og:site_name" content="Musings">
-<meta property="og:title" content="Removing a Homebrew Package and All of its Dependencies on macOS">
+<meta property="og:title" content="Data Visualisation Research — Impact of Democracy on Quality of Life Metrics">
 
 
-  <link rel="canonical" href="http://ottoman91.github.io/ottoman91/codes/removing-homebrew-package/">
-  <meta property="og:url" content="http://ottoman91.github.io/ottoman91/codes/removing-homebrew-package/">
+  <link rel="canonical" href="http://ottoman91.github.io/ottoman91/projects/dataviz/">
+  <meta property="og:url" content="http://ottoman91.github.io/ottoman91/projects/dataviz/">
 
 
 
-  <meta property="og:description" content="Homebrew is an excellent command line package management tool for Mac OSx, and it is rightly proclaimed as “The missing package manager for macOS”, as stated on its official website. However, a few days ago, I came across an urgent task which I had not addressed before, namely, how to cleanly and completely remove a package installed from Homebrew, along with all of its dependencies.A quick online search rendered the following approach on Stackoverflow, which included using an external command called brew rmtree, which was to be executed as follows:">
+  <meta property="og:description" content="As a part of the Data Management and Visualisation course on Coursera, I shall be working on the following hypothesis and trying to test it from the GapMinder Dataset:">
 
 
 
   <meta name="twitter:site" content="@usman.khaliq">
-  <meta name="twitter:title" content="Removing a Homebrew Package and All of its Dependencies on macOS">
-  <meta name="twitter:description" content="Homebrew is an excellent command line package management tool for Mac OSx, and it is rightly proclaimed as “The missing package manager for macOS”, as stated on its official website. However, a few days ago, I came across an urgent task which I had not addressed before, namely, how to cleanly and completely remove a package installed from Homebrew, along with all of its dependencies.A quick online search rendered the following approach on Stackoverflow, which included using an external command called brew rmtree, which was to be executed as follows:">
+  <meta name="twitter:title" content="Data Visualisation Research — Impact of Democracy on Quality of Life Metrics">
+  <meta name="twitter:description" content="As a part of the Data Management and Visualisation course on Coursera, I shall be working on the following hypothesis and trying to test it from the GapMinder Dataset:">
   <meta name="twitter:url" content="">
 
   
@@ -66,6 +66,10 @@
   <meta property="og:type" content="article">
   <meta property="article:published_time" content="2017-05-15T00:12:36+00:00">
   
+    <link rel="next" href="http://ottoman91.github.io/ottoman91/projects/donaldcloud/" title="The Donald Cloud">
+  
+  
+    <link rel="prev" href="http://ottoman91.github.io/ottoman91/projects/datamanagement/" title="Making Data Management Decisions">
   
 
 
@@ -231,22 +235,22 @@
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Removing a Homebrew Package and All of its Dependencies on macOS">
-    <meta itemprop="description" content="Homebrew is an excellent command line package management tool for Mac OSx, and it is rightly proclaimed as “The missing package manager for macOS”, as stated on its official website. However, a few days ago, I came across an urgent task which I had not addressed before, namely, how to cleanly and completely remove a package installed from Homebrew, along with all of its dependencies.A quick online search rendered the following approach on Stackoverflow, which included using an external command called brew rmtree, which was to be executed as follows:">
+    <meta itemprop="headline" content="Data Visualisation Research — Impact of Democracy on Quality of Life Metrics">
+    <meta itemprop="description" content="As a part of the Data Management and Visualisation course on Coursera, I shall be working on the following hypothesis and trying to test it from the GapMinder Dataset:">
     <meta itemprop="datePublished" content="May 15, 2017">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 class="page__title" itemprop="headline">Removing a Homebrew Package and All of its Dependencies on macOS
+          <h1 class="page__title" itemprop="headline">Data Visualisation Research — Impact of Democracy on Quality of Life Metrics
 </h1>
           
             <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
 
 
   
-	  1 minutes read
+	  2 minutes read
 	
 </p>
           
@@ -254,43 +258,60 @@
       
 
       <section class="page__content" itemprop="text">
-        <p>Homebrew is an excellent command line package management tool for Mac OSx, and it is rightly proclaimed as “The missing package manager for macOS”, as stated on its official website. However, a few days ago, I came across an urgent task which I had not addressed before, namely, how to cleanly and completely remove a package installed from Homebrew, along with all of its dependencies.
-A quick online search rendered the following approach on Stackoverflow, which included using an external command called brew rmtree, which was to be executed as follows:</p>
+        <p>As a part of the Data Management and Visualisation course on Coursera, I shall be working on the following hypothesis and trying to test it from the GapMinder Dataset:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>
-brew tap beeftornado/rmtree
-brew rmtree &lt;package&gt;
-</code></pre>
-</div>
+<blockquote>
+  <p>What effect does the “level of democracy” in a country have on the “quality of life” of the country’s citizens?</p>
+</blockquote>
 
-<p>However, for some reason, when I ran this command, brew took an insanely long time to update. I am not quite sure what the error was, but it was most probably due to my crappy internet connection.
-Nevertheless, I came across another method for achieving this task on the same Stackoverflow answer thread. I found this method to be easier and way quicker, although it did take me a while to figure out how to run external brew scripts and the configurations that need to be made to run them. To save others the hassle and time of understanding how the configuration would need to be set up, I am highlighting the steps followed below:</p>
+<p>In short, I want to test a simple idea related to how effective democracy really is in improving the lives of the citizen’s of a country. A major argument made by proponents of capitalism and Western democracy is that empowering people to make a more informed decision in the running of their country ultimately leads to improvement in all streams of life. While on surface, this argument has a lot of substance, it is important to look beyond the philosophical arguments and measure the metrics.</p>
 
-<ol>
+<p>For this assignment, I shall be testing the Gapminder Dataset. Basically, I would be measuring the correlation between the “polityscore” variable in the dataset against the following variables</p>
+
+<ul>
   <li>
-    <p>Download the brew_clean script from <a href="https://gist.github.com/cskeeters/10ff1295bca93808213d">this</a> Github repo</p>
+    <p>incomeperperson(2010 GDP per capita in constant US$ 2000)</p>
   </li>
   <li>
-    <p>Once you have unzipped the downloaded file, copy the brew_clean script to /usr/local/bin. This would ensure that the script is global.</p>
+    <p>alconconsumption(2008 alcohol consumption per adult)</p>
   </li>
-  <li>Make the script executable by running the following command in the /usr/local/bin directory:
-<code class="highlighter-rouge">
-sudo chmod+x brew_clean
-</code></li>
-  <li>Run the following command in your directory of choice to generate a file that contains the list of all brew packages installed on your machine:
-<code class="highlighter-rouge">
-brew leaves &gt; brew_packages
-</code></li>
   <li>
-    <p>Open the brew_packages file using your favourite text editor ( which is nano in my case for such small tasks). In the file, delete the name of the package you want to remove. Save and close the file.</p>
+    <p>breastcancerper100TH(breast cancer new cases per 10,000)</p>
   </li>
-  <li>Run the following command to allow brew_clean to remove the package you deleted from the brew_packages file:
-<code class="highlighter-rouge">
-brew_clean brew_packages
-</code>
-And there you have it. You can verify that the package has indeed been deleted by moving to the /usr/local/Cellar directory. The package that you just deleted would no longer be listed in the directory.
-Hope this helped. Happy coding and creating awesome software solutions for the world!</li>
-</ol>
+  <li>
+    <p>co2emissions(2006 cumulative co2 emissions)</p>
+  </li>
+  <li>
+    <p>femaleemployrate(2006 female employment rate)</p>
+  </li>
+  <li>
+    <p>employrate(2007 total emloyees over 15+)</p>
+  </li>
+  <li>
+    <p>HIVrate(2009 estimated HIV prevalence)</p>
+  </li>
+  <li>
+    <p>lifeexpectancy(2011 life expectancy at birth)</p>
+  </li>
+  <li>
+    <p>suicideper100TH(suicide rate adjusted over 10,000 people)</p>
+  </li>
+  <li>
+    <p>urbanrate(Urban population)</p>
+  </li>
+</ul>
+
+<p>The polityscore is a measurement form -10 to +10, and is a summary measurement of a country’s democratic nature.</p>
+
+<p>A substantial amount of research work has been done to find the relationship between “democratic” a country is and how well it is progressing. A <a href="http://www.nber.org/papers/w4909.pdf">paper</a>, “Democracy and Growth” by Robert J. Barro of the National Bureau of Economic Research (NBER) analysed that the favourable metrics of growth initially affected by democracy are the rule of law, free markets, small government consumption, and high human capital. However, once these baseline metrics have been achieved and the initial level of real per-capita GDP are held constant, the overall effect of democracy on growth is weakly negative. Thus, this study shows that the overall effect of democracy on growth is weakly non linear, and democracy has a greater effect on growth at the lower metrics, but once a country has achieved relatively modest levels of growth, democracy does not lead to a greater amount of improvement in the standard of living of the country.</p>
+
+<p>Another <a href="http://www.sciencedirect.com/science/article/pii/S0014292100000933">paper</a>, “How Democracy Affects Growth” by Tavares and Wacziarg published in the European Economic Review shows that democracy fosters growth by improving the accumulation of human capital, and , less robustly, by reducing income inequality. The paper again states that once the lives of the poor have been moderately improved, further improvements in how democratic a country is have limited effects on the standard of living in the country.</p>
+
+<p>Based on the literature review as well as my own knowledge in the subject, I would expect that an improvement in the polityscore of different countries would result in an improvement against all the measurements. However, there would be small clusters of countries where inspite of a low polityscore, some of the metrics, such as life expectancy and the urban population, would be high. A reason for this is that a lot of autocratic countries, especially in the Middle East, are characterised by good healthcare and other basic facilities for their people.</p>
+
+<p>Nevertheless, it would be interesting to see how the hypothesis would fare in the face of data from the Gapminder dataset.</p>
+
+<p><em>This post was originally published on <a href="https://medium.com/@ottoman91/data-visualisation-research-impact-of-democracy-on-quality-of-life-metrics-e506397a7b8f">Medium</a></em></p>
 
 
         
@@ -315,17 +336,28 @@ Hope this helped. Happy coding and creating awesome software solutions for the w
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=/codes/removing-homebrew-package/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=/projects/dataviz/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=/codes/removing-homebrew-package/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=/projects/dataviz/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://plus.google.com/share?url=/codes/removing-homebrew-package/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+  <a href="https://plus.google.com/share?url=/projects/dataviz/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=/codes/removing-homebrew-package/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=/projects/dataviz/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
       
 
+
+  <nav class="pagination">
+    
+      <a href="/projects/datamanagement/" class="pagination--pager" title="Making Data Management Decisions
+">Previous</a>
+    
+    
+      <a href="/projects/donaldcloud/" class="pagination--pager" title="The Donald Cloud
+">Next</a>
+    
+  </nav>
 
     </div>
 
