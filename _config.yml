@@ -36,7 +36,7 @@ alexa_site_verification  :
 yandex_site_verification : 
 
 # Theme
-minimal_mistakes_skin : "mint"
+minimal_mistakes_skin : "dark"
 
 # Social Sharing
 twitter:
