@@ -7,7 +7,7 @@
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Musings"
+title                    : "Usman Khaliq"
 title_separator          : "-"
 name                     : "Usman Khaliq"
 description              : "Coder,Data Science Enthusiast, ICT4D Practitioner."
@@ -243,7 +243,16 @@ defaults:
       path: ""
       type: foo
     values:
+      layout: single  
+
+defaults:
+  # _foo
+  - scope:
+      path: ""
+      type: splash
+    values:
       layout: single 
+      author_profile: true
 
 # Collections
 collections:
@@ -282,7 +291,7 @@ defaults:
       type: portfolio
     values:
       layout: single
-      author_profile: false
+      author_profile: true
       share: true
 
 

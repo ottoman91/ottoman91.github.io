@@ -1,21 +1,22 @@
 # main links links
 main:
   
-  - title: "Financial Inclusion"
+  - title: "About"
     url: /fintech 
 
-  - title: "Civic Tech"
+  - title: "CV"
     url: /civictech
 
-  - title: "Code Snippets"
+  - title: "Portfolio"
     url: /code
+
+  - title: "Projects"
+    url: /book  
 
   - title: "Book Reviews"
     url: /book 
 
-
-  - title: "Projects"
-    url: /project
-
-  - title: "About"
-    url: /about
+  
+  - title: "Photography"
+    url: /book 
+ 
