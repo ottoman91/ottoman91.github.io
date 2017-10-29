@@ -10,7 +10,8 @@ sidebar:
 author_profile: true
 
 ---
-*Streamlining the delivery of affordable healthcare via an interactive voice response based system in Sierra Leone*
+*Streamlining the delivery of affordable healthcare via an interactive voice response based system in Sierra Leone.*
+
 *This research was conducted while I was working as the Research and Developer lead at [iDT Labs](https://idtlabs.xyz). For further 
 information about this project please email info@idtlabs.xyz*
 
