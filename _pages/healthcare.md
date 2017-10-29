@@ -1,28 +1,24 @@
 ---
-layout: single
-author_profile: true 
-permalink: /healthcare 
-title: "e-Health"  
-gallery:
-  - url: healthcare
-    image_path: teamimage1.jpg
-    alt: "Kol Dokta"
-    title: "Kol Dokta"
-  - url: healthcare
-    image_path: teamimage2.jpg
-    alt: "EPiC"
-    title: "EPiC"
-
+layout: archive
+title: "eHealth"
+permalink: healthcare/
+author_profile: true
 ---
-*Building low cost tech tools to deliver basic healthcare to the population, 
+*Building low cost tech tools to deliver basic healthcare to underserved people, 
 and redesigning the nationwide infectious disease surveillance system 
 during the post Ebola recovery period in Sierra Leone*
 
-<figure class="half">
+<!-- <figure class="half">
   <a href="/healthcare" target="_blank"> 
     <img src="/images/koldokta.png">
   </a>
    <a href="/healthcare" target="_blank">
     <img src="/images/teamimage2.jpg">
    </a>
-</figure> 
+</figure>  -->
+
+<div class="grid__wrapper">
+  {% for post in site.healthcare %}
+    {% include archive-single.html type="grid" %}
+  {% endfor %}
+</div>

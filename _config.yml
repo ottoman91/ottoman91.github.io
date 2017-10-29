@@ -276,11 +276,14 @@ collections:
     output: true
     permalink: /:collection/:path/ 
     share: true 
-
   projects:
     output: true
     permalink: /:collection/:path/ 
-    share: true
+    share: true  
+  healthcare:
+    output: true
+    permalink: /:collection/:path/ 
+    share: true 
 
 
 
