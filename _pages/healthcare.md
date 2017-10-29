@@ -4,6 +4,9 @@ title: "eHealth"
 permalink: healthcare/
 author_profile: true
 ---
+{% include base_path %}
+
+
 *Building low cost tech tools to deliver basic healthcare to underserved people, 
 and redesigning the nationwide infectious disease surveillance system 
 during the post Ebola recovery period in Sierra Leone*
