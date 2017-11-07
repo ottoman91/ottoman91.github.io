@@ -12,7 +12,7 @@ author_profile: true
 
 ---
 
-*Implemented the pilot of an infectious disease surveillance and community 
+*The pilot and proof of concept of an infectious disease surveillance and community 
 response system across all public health units in the district of Port Loko, 
 Sierra Leone. The platform was developed by IBM Research Africa for the USAID 
 [Ebola Grant Challenge](http://www.ebolagrandchallenge.net/innovations-3/)*
@@ -55,7 +55,8 @@ health management records and community feedback.
 
 iDT Labs was contracted by IBM Research Africa to implement a one month proof 
 of concept exercise at the offices of the district health medical team at Port 
-Loko and the Open Government Initiative (OGI) to conduct the following activities:
+Loko and the Open Government Initiative (OGI) to conduct the following 
+activities:
 
 * Map out the technical capacity for all organizations and users in the 
 stakeholder group, including infrastructure (e.g., hardware and connectivity),
