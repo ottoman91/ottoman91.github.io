@@ -41,13 +41,13 @@ The Epidemic Preparedness in Communities (EPiC) platform was built by IBM
 Research Africa to support heath sector stakeholders with data-driven tools for
 aiding evidence-based decision making during the post-Ebola recovery efforts 
 in the healthcare sector in Sierra Leone. By leveraging a data-driven platform 
-that provides strong data analytics and visualisation tools from a single, 
+that provided strong data analytics and visualisation tools from a single, 
 intuitive dashboard, the aim of EPiC was to help the MoHS, along 
 with the other stakeholders and partners to utilise a data-driven process of 
 tracking and preventing the spread of infectious disease in their communities.
 
 This platform would enable health administrators to quickly identify which 
-health facilities and regions require urgent assistance using both formal 
+health facilities and regions required urgent assistance using both formal 
 health management records and community feedback. 
 
 **The Scope of the Pilot**
@@ -55,7 +55,7 @@ health management records and community feedback.
 
 iDT Labs was contracted by IBM Research Africa to implement a one month proof 
 of concept exercise at the offices of the district health medical team at Port 
-Loko and the Open Government Initiative (OGI) to conduct the following 
+Loko and the Open Government Initiative (OGI) at Freetown to conduct the following 
 activities:
 
 * Map out the technical capacity for all organizations and users in the 
@@ -67,7 +67,7 @@ capacity (technical abilities of potential users).
 phase
 
 * Map out the current workflows for the use of data in disease surveillance in 
-Sierra Leone to form baseline for M&E assessment
+Sierra Leone to form baseline for Monitoring & Evaluation (M&E) assessment
 
 **The Methodology**
 {: .text-center}
@@ -96,8 +96,8 @@ following three stages
 **Data Flow of the System**
 {: .text-center}  
 
-The following is the diagrammatic representation of how the existing data 
-flows should be ideally integrated with the disease surveillance and community 
+The following is the diagrammatic representation mapped out on how the existing data 
+flows should ideally integrate with the disease surveillance and community 
 response dashboards of EPiC.
 
 <figure>
@@ -110,7 +110,7 @@ response dashboards of EPiC.
 
 The following were they key insights that were gained from the pilot, which 
 are relevant for any data driven initiative that is aimed at improving the 
-service delivery of a critical public sector in a post conflict economy such
+service delivery of a critical public sector entity in a post conflict economy such
 as that of Sierra Leone. 
 
 1.*Data visualization and intelligence is the end product of a value chain
@@ -127,15 +127,15 @@ is used to generate intelligence and reports by the platform.
 2.*A strong stakeholder engagement strategy is critical for the successful
 adoption of any technological intervention in the public sector* 
 
-For the successful, eventual roll out of any disease surveillance system 
-throughout a country, stakeholder buy-in is of utmost importance. Over the 
-course of the trainings conducted at the DHMT, low priority was afforded to the
-exercise by the top management of the DHMT and GOAL, with individuals dedicated
-to the exercise being low-level employees with limited understanding of the 
-entire value chain of infectious disease surveillance that EPIC aims to support. 
-Given the alarming rate of failed technological interventions in post conflict 
-countries such as Sierra Leone, effective user adoption is by far the biggest 
-risk to the long term survival of the platform.
+For the successful, eventual roll out of any national disease surveillance system 
+, stakeholder buy-in is of utmost importance. Over the course of the trainings 
+conducted at the DHMT, low priority was afforded to the exercise by the top 
+management of the DHMT and GOAL, with individuals dedicated to the exercise 
+being low-level employees with limited understanding of the entire value chain 
+of infectious disease surveillance that EPIC aims to support.Given the alarming
+rate of failed technological interventions in post conflict countries such as 
+Sierra Leone, effective user adoption is by far the biggest risk to the long 
+term survival of the platform.
 
 3.*Downloadable, printable copies of reports is important in a “paper based” 
 low digital literacy context like Sierra Leone*
