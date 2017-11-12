@@ -2,7 +2,7 @@
 layout: archive
 title: "Water and Sanitation"
 permalink: watersanitation/
-author_profile: true
+author_profile: true 
 ---
 {% include base_path %}
 
