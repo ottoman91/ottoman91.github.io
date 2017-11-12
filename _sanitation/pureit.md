@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "PureIt - HCD Based Marketing Plan for a Low Cost Water Purifier"
-excerpt: "A 360 Degree Marketing Plan Unilever's Water Purifier Catered for Low Income Families"
+excerpt: "A 360 Degree Marketing Plan Unilever's Water Purifier Catered for Low Income Families in Pakistan"
 header:
   teaser: pureit_exerpt.png
 sidebar:

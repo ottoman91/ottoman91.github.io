@@ -2,7 +2,7 @@
 layout: single
 title: "IBM EPiC Disease Surveillance System"
 excerpt: "Pilot implementation of an infectious disease and community response
-based system."
+based system in Sierra Leone."
 header:
   teaser: EPIC.png
 sidebar:

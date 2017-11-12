@@ -8,10 +8,10 @@ main:
     url: /civictech
 
   - title: "Portfolio"
-    url: /code
+    url: /
 
-  - title: "Projects"
-    url: /book  
+  - title: "Side Projects"
+    url: /project 
 
   - title: "Book Reviews"
     url: /book 
