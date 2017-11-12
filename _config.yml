@@ -283,6 +283,10 @@ collections:
   healthcare:
     output: true
     permalink: /:collection/:path/ 
+    share: true  
+  sanitation:
+    output: true
+    permalink: /:collection/:path/ 
     share: true 
 
 
