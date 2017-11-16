@@ -2,7 +2,7 @@
 main:
   
   - title: "About"
-    url: /fintech 
+    url: /about
 
   - title: "CV"
     url: /pdfs/CV_Usman_Khaliq.pdf
@@ -16,7 +16,4 @@ main:
   - title: "Book Reviews"
     url: /book 
 
-  
-  - title: "Photography"
-    url: /book 
  
