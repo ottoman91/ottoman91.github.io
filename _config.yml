@@ -272,10 +272,6 @@ collections:
     output: true
     permalink: /:collection/:path/ 
     share: true 
-  fintechs:
-    output: true
-    permalink: /:collection/:path/ 
-    share: true 
   projects:
     output: true
     permalink: /:collection/:path/ 
@@ -289,6 +285,10 @@ collections:
     permalink: /:collection/:path/ 
     share: true  
   opendata:
+    output: true
+    permalink: /:collection/:path/ 
+    share: true 
+  fin:
     output: true
     permalink: /:collection/:path/ 
     share: true 
