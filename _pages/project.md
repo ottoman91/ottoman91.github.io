@@ -7,13 +7,8 @@ title: "My Side Projects"
 
 {% include base_path %}
 
-<h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts }}</h3>
-
-<!-- {% for post in paginator.posts %}
-  {% include archive-single.html %}
-{% endfor %} 
-
-{% include paginator.html %} -->
+The following are a few of the data science/data analytics projects that I have
+worked on in my spare time. 
 
 <div class="grid__wrapper">
   {% for post in site.projects %}
