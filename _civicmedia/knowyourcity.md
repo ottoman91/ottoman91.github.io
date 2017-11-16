@@ -3,7 +3,7 @@ layout: single
 title: "Know Your City"
 excerpt: "A web portal for recording the infrastructure facilities available in the informal settlements in Sierra Leone."
 header:
-  teaser: knowyourcity.png
+  teaser: knowyourcity1.png
 sidebar:
   - title: "Role in This Project"
     text: "Development Research Lead"
