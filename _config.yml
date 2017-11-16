@@ -296,6 +296,10 @@ collections:
     output: true
     permalink: /:collection/:path/ 
     share: true 
+  egov:
+    output: true
+    permalink: /:collection/:path/ 
+    share: true 
 
 
 
