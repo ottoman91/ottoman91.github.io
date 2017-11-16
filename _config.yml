@@ -291,6 +291,10 @@ collections:
   fin:
     output: true
     permalink: /:collection/:path/ 
+    share: true  
+  civicmedia:
+    output: true
+    permalink: /:collection/:path/ 
     share: true 
 
 
