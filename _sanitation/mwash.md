@@ -49,11 +49,69 @@ The following is a screenshot of the prototype
   <figcaption>Front Page of MWASH</figcaption>
 </figure>     
 
-
-**Project Goals Until April 2018**
+**The Design Research Methodology**
 {: .text-center}
 
-* Conducting a full fledged design research to scope out the water and sanitation sector
+* Code for Sierra Leone partnered with The Engine Room to conduct design research to test out the existing prototype 
 
-* Refactor the prototype based on the findings from the design research
+* Employed a user-centered approach with mixed method research
+
+* Focused largely on contextual inquiries and experience mapping for citizens and waterpoint managers. 
+
+<figure>
+  <img src="/images/mwashr_1.jpeg" alt="Project Plan of MWash ">
+  <figcaption>Project Plan of MWash</figcaption>
+</figure>    
+
+<figure>
+  <img src="/images/mwashr_2.jpeg" alt="Design Research Framework ">
+  <figcaption>Design Research Framework</figcaption>
+</figure>   
+
+<figure>
+  <img src="/images/mwashr_3.jpeg" alt="Team Agenda Chart ">
+  <figcaption>Team Agenda Chart</figcaption>
+</figure>    
+
+<figure>
+  <img src="/images/mwashr_4.jpeg" alt="Opportunity Ideating Chart ">
+  <figcaption>Opportunity Ideating Chart</figcaption>
+</figure>   
+
+**Key Findings**
+{: .text-center}
+
+* Several stakeholders are involved in the waster access challenge
+
+<figure>
+  <img src="/images/solution_1.png" alt="Water Access in Sierra Leone">
+  <figcaption>Water Access in Sierra Leone</figcaption>
+</figure>   
+
+* Citizens have improved their own ways to deal with water problems
+
+<figure>
+  <img src="/images/solution_2.png" alt="Water Points for Citizens">
+  <figcaption>Water Points for Citizens</figcaption>
+</figure>   
+
+
+* Lack of support to different water enterprises 
+
+* Water hygiene is important but trails behind basic water needs
+
+**Ideating Future Prospects**
+{: .text-center} 
+
+<figure>
+  <img src="/images/mwash_ideating1.png" alt="Ideating Future Projects">
+  <figcaption>Ideating Future Projects</figcaption>
+</figure>    
+
+<figure>
+  <img src="/images/mwash_ideating2.png" alt="Ideating Future Projects">
+  <figcaption>Ideating Future Projects</figcaption>
+</figure>   
+
+
 
