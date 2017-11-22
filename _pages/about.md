@@ -25,4 +25,4 @@ for Sierra Leone, I actively engage with developer partners, donors, and other
 civic tech organizations in West Africa. I also have experience of conducting
 research in the open data and financial inclusion space in the region.  
 
-[My CV can be accessed from here](/pdfs/CV_Usman_Khaliq.pdf)
+[My CV can be found here](/pdfs/CV_Usman_Khaliq.pdf)
