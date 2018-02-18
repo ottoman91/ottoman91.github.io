@@ -3,6 +3,9 @@ layout: single
 author_profile: true
 share: true 
 comments: true
+excerpt: "A wordcloud based on all the interesting stuff said by Donald Trump during the 2016 Presidential Campaign"
+header:
+  teaser: wordcloud.png
 read_time: true
 title: The Donald Cloud
 ---  

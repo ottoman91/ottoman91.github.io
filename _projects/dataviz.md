@@ -4,6 +4,9 @@ author_profile: true
 share: true 
 comments: true
 read_time: true
+header:
+  teaser: datavizresearch.png
+excerpt: "Measuing the impact that democracy has on the quality of life by analyzing the Gapminder dataset."
 title: Data Visualisation Research — Impact of Democracy on Quality of Life Metrics
 ---  
 

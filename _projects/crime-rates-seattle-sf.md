@@ -2,6 +2,9 @@
 layout: single 
 author_profile: true
 share: true 
+excerpt: "A statistical analysis on the crime stats betweeen San Francisco and Chicago."
+header:
+  teaser: crime-sf-chicago.png
 comments: true
 read_time: true
 title: Comparing Crime Rates Between Seattle and San Francisco

@@ -3,6 +3,9 @@ layout: single
 author_profile: true
 share: true 
 comments: true
+excerpt: "Exploring the relationship between democractic values and quality of life"
+header:
+  teaser: teaser-extrap.png
 read_time: true
 title: Extrapolatory Analysis — Does a “More Democratic” Society lead to an improvement in the “quality of life”?
 ---  

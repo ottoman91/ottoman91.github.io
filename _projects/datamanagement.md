@@ -3,6 +3,10 @@ layout: single
 author_profile: true
 share: true 
 comments: true
+excerpt: "What effect does the “level of democracy” in a country have on the “quality of life” of the country’s citizens?."
+header:
+  teaser: data-management.png
+
 read_time: true
 title: Making Data Management Decisions
 ---  

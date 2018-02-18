@@ -4,6 +4,9 @@ author_profile: true
 share: true 
 comments: true
 read_time: true
+excerpt: "Graphical analysis on the relationship between democractic values and quality of life"
+header:
+  teaser: teaser-extrap.png
 title: Graphical Analysis - Does a “More Democratic” Society lead to an improvement in the “quality of life”?
 
 ---  
