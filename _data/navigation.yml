@@ -8,7 +8,7 @@ main:
     url: /pdfs/CV_Usman_Khaliq.pdf
 
   - title: "Portfolio"
-    url: /
+    url: /portfolio
 
   - title: "Side Projects"
     url: /project 
