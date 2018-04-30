@@ -42,9 +42,7 @@ inancial behavior including savings, investments and credit behavior,
 consumer perception about DFS and insurance solutions.
 
 
-**Current Status of Project**
+**Final Findings of the Research**
 {: .text-center}
 
-The project is currently in the data collection stage. The final findings from
-the survey are expected to be published by Februaru 2018.
-
+[Sierra Leone G2P Project. Results of the Government Employee Financial Lives Survey](pdfs/g2psurvey.pdf)
