@@ -78,40 +78,21 @@ The following is a screenshot of the prototype
   <figcaption>Opportunity Ideating Chart</figcaption>
 </figure>   
 
-**Key Findings**
-{: .text-center}
-
-* Several stakeholders are involved in the waster access challenge
-
-<figure>
-  <img src="/images/solution_1.png" alt="Water Access in Sierra Leone">
-  <figcaption>Water Access in Sierra Leone</figcaption>
-</figure>   
-
-* Citizens have improved their own ways to deal with water problems
-
-<figure>
-  <img src="/images/solution_2.png" alt="Water Points for Citizens">
-  <figcaption>Water Points for Citizens</figcaption>
-</figure>   
-
-
-* Lack of support to different water enterprises 
-
-* Water hygiene is important but trails behind basic water needs
-
-**Ideating Future Prospects**
+**The Design Research Output**
 {: .text-center} 
 
-<figure>
-  <img src="/images/mwash_ideating1.png" alt="Ideating Future Projects">
-  <figcaption>Ideating Future Projects</figcaption>
-</figure>    
+You can read the results of the design sprint conducted by the Engine Room and 
+Code for Sierra Leone below.<br/>
 
-<figure>
-  <img src="/images/mwash_ideating2.png" alt="Ideating Future Projects">
-  <figcaption>Ideating Future Projects</figcaption>
-</figure>   
+[Improving Access to Water Services](https://www.theengineroom.org/wp-content/uploads/2018/04/Improving-Access-to-Water-Services-TER-and-CfSL-2018.pdf) 
+{: .text-center} 
+
+Code for Sierra Leone undertook a further design iteration, with this time the intention being to explore ways
+of integrating mobile money in the water service delivery in Freetown. You can check out our results below.<br/>
+
+[Improving Water Access for Sierra Leoneans](pdfs/mwash_hcd.pdf)
+ {: .text-center} 
+
 
 
 
