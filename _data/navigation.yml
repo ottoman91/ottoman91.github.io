@@ -4,6 +4,9 @@ main:
   - title: "About"
     url: /about
 
+  - title: "Blog"
+    url: /blog 
+
   - title: "CV"
     url: /pdfs/CV_Usman_Khaliq.pdf
 
@@ -14,6 +17,7 @@ main:
     url: /project 
 
   - title: "Book Reviews"
-    url: /book 
+    url: /book  
+
 
  

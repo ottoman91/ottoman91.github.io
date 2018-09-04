@@ -15,7 +15,7 @@ title: "Blog"
 
 {% include paginator.html %} -->
 
-{% for post in site.civic-tech %}
+{% for post in site.posts %}
   {% include archive-single.html %}
 {% endfor %}
 

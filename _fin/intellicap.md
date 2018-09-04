@@ -45,4 +45,4 @@ consumer perception about DFS and insurance solutions.
 **Final Findings of the Research**
 {: .text-center}
 
-[Sierra Leone G2P Project. Results of the Government Employee Financial Lives Survey](pdfs/g2psurvey.pdf)
+[Sierra Leone G2P Project. Results of the Government Employee Financial Lives Survey](/pdfs/UNCDF_report.pdf)
