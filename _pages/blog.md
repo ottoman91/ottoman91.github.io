@@ -1,8 +1,8 @@
 ---
 layout: archive
 author_profile: true 
-permalink: /blog 
-title: "Blog"
+permalink: /designlog 
+title: "Design Log"
 ---
 
 {% include base_path %}

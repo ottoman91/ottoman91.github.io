@@ -4,8 +4,8 @@ main:
   - title: "About"
     url: /about
 
-  - title: "Blog"
-    url: /blog 
+  - title: "Design Log"
+    url: /designlog 
 
   - title: "CV"
     url: /pdfs/CV_Usman_Khaliq.pdf
