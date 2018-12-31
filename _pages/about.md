@@ -7,9 +7,9 @@ permalink: /about
 
 ---
 
-I am currently a Masters Candidate in the [Design Impact](http://designimpact.stanford.edu/) program at Stanford.
-I have a background in computer engineering and have worked in the information, communication and technology
-for development (ICTD) space in Sierra Leone and Liberia on projects in the healthcare, open government and financial
+I'm currently a Masters Candidate in Stanford's [Design](http://designimpact.stanford.edu/) program.
+
+Before this,I worked in the information, communication and technology for development (ICTD) space in Sierra Leone and Liberia on projects in the healthcare, open government and financial
 inclusion sectors. I was also the Country Manager for [Code for Sierra Leone](https://codeforsierraleone.org), a civic tech organization that
 uses open source technology to improve the delivery of services in the public sector.
 
