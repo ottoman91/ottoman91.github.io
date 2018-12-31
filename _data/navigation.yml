@@ -5,19 +5,23 @@ main:
     url: /about
 
   - title: "Design Log"
-    url: /designlog 
+    url: /designlog  
+
+  - title: "Projects"
+    url: /project  
+
+  - title: "Work Portfolio"
+    url: /portfolio 
+
+  - title: "Book Reviews"
+    url: /book 
 
   - title: "CV"
     url: /pdfs/CV_Usman_Khaliq.pdf
 
-  - title: "Portfolio"
-    url: /portfolio
 
-  - title: "Side Projects"
-    url: /project 
 
-  - title: "Book Reviews"
-    url: /book  
+   
 
 
  

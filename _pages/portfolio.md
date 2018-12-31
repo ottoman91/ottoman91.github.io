@@ -51,7 +51,7 @@ feature_row2:
 <h1 align="center">My Portfolio</h1>
 <p align="center">
   My work in the tech for development space in West Africa and Pakistan
-  is based in the following sectors
+  was in the following sectors
 
 </p>
 {% include feature_row %}
