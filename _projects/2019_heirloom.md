@@ -44,5 +44,5 @@ In the immediate future, the heirloom would be used as a jewellery box by my wif
 
 ## The Heirloom
 <figure>
-  <img src="/images/virasat/Hero Shot High Quality.jpg" alt="The Heirloom">
+  <img src="/images/virasat/Hero Shot Image 3.jpg" alt="The Heirloom">
 </figure> 
