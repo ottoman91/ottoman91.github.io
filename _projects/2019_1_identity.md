@@ -2,7 +2,7 @@
 layout: single 
 author_profile: true
 share: true 
-excerpt: "An illustration that explores the complexity inherent in how an individual understands their own identity."
+excerpt: "An illustration that explores the complexity inherent in how an individual understands themselves."
 header:
   teaser: IdentityTeaserShot.jpg
 sidebar:
