@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.1.6">Jekyll</generator><link href="http://ottoman91.github.io/ottoman91/feed.xml" rel="self" type="application/atom+xml" /><link href="http://ottoman91.github.io/ottoman91/" rel="alternate" type="text/html" /><updated>2019-01-07T03:54:34+00:00</updated><id>http://ottoman91.github.io/ottoman91/</id><title>Usman Khaliq</title><subtitle>Coder,Data Science Enthusiast, ICT4D Practitioner.</subtitle><author><name>Usman Khaliq</name><email>usman.khaliq91@gmail.com</email></author><entry><title>Replug</title><link href="http://ottoman91.github.io/ottoman91/the-restart/" rel="alternate" type="text/html" title="Replug" /><published>2018-12-05T00:00:00+00:00</published><updated>2018-12-05T00:00:00+00:00</updated><id>http://ottoman91.github.io/ottoman91/the-restart</id><content type="html" xml:base="http://ottoman91.github.io/ottoman91/the-restart/">&lt;blockquote&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.1.6">Jekyll</generator><link href="http://ottoman91.github.io/ottoman91/feed.xml" rel="self" type="application/atom+xml" /><link href="http://ottoman91.github.io/ottoman91/" rel="alternate" type="text/html" /><updated>2019-01-07T04:11:05+00:00</updated><id>http://ottoman91.github.io/ottoman91/</id><title>Usman Khaliq</title><subtitle>Coder,Data Science Enthusiast, ICT4D Practitioner.</subtitle><author><name>Usman Khaliq</name><email>usman.khaliq91@gmail.com</email></author><entry><title>Replug</title><link href="http://ottoman91.github.io/ottoman91/the-restart/" rel="alternate" type="text/html" title="Replug" /><published>2018-12-05T00:00:00+00:00</published><updated>2018-12-05T00:00:00+00:00</updated><id>http://ottoman91.github.io/ottoman91/the-restart</id><content type="html" xml:base="http://ottoman91.github.io/ottoman91/the-restart/">&lt;blockquote&gt;
   &lt;p&gt;I wrote this post last September as a reflection essay for my Design and Manufacture class
 at Stanford. Reposting this again so that it can serve as a reminder of the things that I 
 want to restart doing.&lt;/p&gt;
@@ -49,4 +49,58 @@ human centered design to build products and services that fulfill critical needs
 the developing world, and am immensely excited at the intellectual rigor that Stanford would 
 provide me to achieve this goal.&lt;/p&gt;</content><author><name>Usman Khaliq</name><email>usman.khaliq91@gmail.com</email></author><summary>I wrote this post last September as a reflection essay for my Design and Manufacture class
 at Stanford. Reposting this again so that it can serve as a reminder of the things that I 
-want to restart doing.</summary></entry></feed>
+want to restart doing.</summary></entry><entry><title>An efficient and quick way for removing a Homebrew package and all of its dependencies on macOS</title><link href="http://ottoman91.github.io/ottoman91/homebrew/" rel="alternate" type="text/html" title="An efficient and quick way for removing a Homebrew package and all of its dependencies on macOS" /><published>2017-01-06T00:00:00+00:00</published><updated>2017-01-06T00:00:00+00:00</updated><id>http://ottoman91.github.io/ottoman91/homebrew</id><content type="html" xml:base="http://ottoman91.github.io/ottoman91/homebrew/">&lt;p&gt;&lt;em&gt;This article was first publised on my &lt;a href=&quot;https://medium.com/@ottoman91/an-efficient-and-quick-way-for-removing-a-homebrew-package-and-all-of-its-dependencies-on-macos-32e9eaaffa2d&quot;&gt;Medium&lt;/a&gt; profile&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Homebrew is an excellent command line package management tool for Mac OSx, 
+and it is rightly proclaimed as “The missing package manager for macOS”, as stated on its official website. 
+However, a few days ago, I came across an urgent task which I had not addressed before, namely, how to 
+cleanly and completely remove a package installed from Homebrew, along with all of its dependencies.&lt;/p&gt;
+
+&lt;p&gt;A quick online search rendered the following approach on &lt;a href=&quot;https://stackoverflow.com/questions/7323261/uninstall-remove-a-homebrew-package-including-all-its-dependencies&quot;&gt;Stackoverflow&lt;/a&gt;, which included using an 
+external command called brew rmtree, which was to be executed as follows:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ brew tap beeftornado/rmtree
+$ brew rmtree &amp;lt;package&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;However, for some reason, when I ran this command, brew took an insanely long 
+time to update. I am not quite sure what the error was, but it was most 
+probably due to my crappy internet connection.&lt;/p&gt;
+
+&lt;p&gt;Nevertheless, I came across another method for achieving this task on the same 
+Stackoverflow answer thread. I found &lt;a href=&quot;https://stackoverflow.com/questions/7323261/uninstall-remove-a-homebrew-package-including-all-its-dependencies/24070232#24070232&quot;&gt;this&lt;/a&gt; method to be easier and way quicker, 
+although it did take me a while to figure out how to run external brew scripts 
+and the configurations that need to be made to run them. To save others the 
+hassle and time of understanding how the configuration would need to be set up, 
+I am highlighting the steps followed below:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Download the brew_clean script from &lt;a href=&quot;https://gist.github.com/cskeeters/10ff1295bca93808213d&quot;&gt;this&lt;/a&gt; Github repo&lt;/li&gt;
+  &lt;li&gt;Once you have unzipped the downloaded file, copy the brew_clean script 
+to /usr/local/bin. This would ensure that the script is global.&lt;/li&gt;
+  &lt;li&gt;Make the script executable by running the following command in the /usr/local/bin directory:
+&lt;code class=&quot;highlighter-rouge&quot;&gt;
+sudo chmod+x brew_clean
+&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Run the following command in your directory of choice to generate a file 
+that contains the list of all brew packages installed on your machine:
+&lt;code class=&quot;highlighter-rouge&quot;&gt;
+brew leaves &amp;gt; brew_packages 
+&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Open the brew_packages file using your favourite text editor 
+( which is nano in my case for such small tasks). In the file, delete the name 
+of the package you want to remove. Save and close the file.&lt;/li&gt;
+  &lt;li&gt;Run the following command to allow brew_clean to remove the package you 
+deleted from the brew_packages file:&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew_clean brew_packages 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;And there you have it. You can verify that the package has indeed been deleted 
+by moving to the /usr/local/Cellar directory. The package that you just deleted 
+would no longer be listed in the directory.&lt;/p&gt;
+
+&lt;p&gt;Hope this helped. Happy coding and creating awesome software solutions for 
+the world!&lt;/p&gt;</content><author><name>Usman Khaliq</name><email>usman.khaliq91@gmail.com</email></author><summary>This article was first publised on my Medium profile</summary></entry></feed>
