@@ -12,10 +12,10 @@ author_profile: true
 
 ---
 
-*The pilot and proof of concept of an infectious disease surveillance and community 
-response system across all public health units in the district of Port Loko, 
-Sierra Leone. The platform was developed by IBM Research Africa for the USAID 
-[Ebola Grant Challenge](http://www.ebolagrandchallenge.net/innovations-3/)*
+*This post outlines the pilot and proof of concept study that was conducted for an infectious disease 
+surveillance and community response system developed for all public health units 
+in the district of Port Loko in Sierra Leone. The platform was developed by 
+IBM Research Africa for the USAID [Ebola Grant Challenge](http://www.ebolagrandchallenge.net/innovations-3/)*
 
 *This project was implemented while I was working as the Research and Developer
  lead at [iDT Labs](https://idtlabs.xyz). For further information about this 
@@ -44,9 +44,9 @@ in the healthcare sector in Sierra Leone. By leveraging a data-driven platform
 that provided strong data analytics and visualisation tools from a single, 
 intuitive dashboard, the aim of EPiC was to help the MoHS, along 
 with the other stakeholders and partners to utilise a data-driven process of 
-tracking and preventing the spread of infectious disease in their communities.
+tracking and preventing the spread of infectious diseases in their communities.
 
-This platform would enable health administrators to quickly identify which 
+The platform aimed at enabling health administrators to quickly identify which 
 health facilities and regions required urgent assistance using both formal 
 health management records and community feedback. 
 
@@ -59,15 +59,15 @@ Loko and the Open Government Initiative (OGI) at Freetown to conduct the followi
 activities:
 
 * Map out the technical capacity for all organizations and users in the 
-stakeholder group, including infrastructure (e.g., hardware and connectivity),
-systems (e.g. current Health Information Systems in place) and human resource 
+stakeholder group, including infrastructure (hardware and connectivity),
+systems (the current health information systems in place) and human resource 
 capacity (technical abilities of potential users).
 
 * Provide training for the initial users of EPiC during the proof of concept 
 phase
 
 * Map out the current workflows for the use of data in disease surveillance in 
-Sierra Leone to form baseline for Monitoring & Evaluation (M&E) assessment
+Sierra Leone to form baseline for the Monitoring & Evaluation (M&E) assessment
 
 **The Methodology**
 {: .text-center}
@@ -83,7 +83,7 @@ The following officers from the DHMT at Port Loko participated in the pilot:
 * Monitoring and evaluation officers
 
 The purpose of the pilot training at the DHMT was to help participants 
-understand the system and how data driven surveillance and interventions can 
+understand the system and how data driven surveillance and interventions could 
 lead to substantial efficiency gains. The training was also divided into 
 three main portions that were designed to transition the users through the 
 following three stages
@@ -96,8 +96,8 @@ following three stages
 **Data Flow of the System**
 {: .text-center}  
 
-The following is the diagrammatic representation mapped out on how the existing data 
-flows should ideally integrate with the disease surveillance and community 
+The following diagrammatic representation mapped out how the existing data 
+flows would ideally integrate with the disease surveillance and community 
 response dashboards of EPiC.
 
 <figure>
@@ -113,32 +113,32 @@ are relevant for any data driven initiative that is aimed at improving the
 service delivery of a critical public sector entity in a post conflict economy such
 as that of Sierra Leone. 
 
-1.*Data visualization and intelligence is the end product of a value chain
+**1.Data visualization and intelligence is the end product of a value chain
 that involves several pre-requisite activities, and any data visualization tool
-should support this entire value chain* 
+should support this entire value chain** 
 
 Although the data intelligence and visualisation functionalities related to 
 disease surveillance would greatly help any under funded national health unit, 
 data visualisation is in fact a minor component in the chain of activities 
-carried out by surveillance officers. The system should provide the users with 
+carried out by surveillance officers. The system should have provided the users with 
 functionalities for directly uploading, verifying and sharing the raw data that
-is used to generate intelligence and reports by the platform. 
+was used by the platform to generate intelligence and reports. 
 
-2.*A strong stakeholder engagement strategy is critical for the successful
-adoption of any technological intervention in the public sector* 
+**2.A strong stakeholder engagement strategy is critical for the successful
+adoption of any technological intervention in the public sector** 
 
 For the successful, eventual roll out of any national disease surveillance system 
 , stakeholder buy-in is of utmost importance. Over the course of the trainings 
 conducted at the DHMT, low priority was afforded to the exercise by the top 
-management of the DHMT and GOAL, with individuals dedicated to the exercise 
+management of the DHMT, with individuals dedicated to the exercise 
 being low-level employees with limited understanding of the entire value chain 
-of infectious disease surveillance that EPIC aims to support.Given the alarming
+of infectious disease surveillance that EPIC aimed to support.Given the alarming
 rate of failed technological interventions in post conflict countries such as 
 Sierra Leone, effective user adoption is by far the biggest risk to the long 
 term survival of the platform.
 
-3.*Downloadable, printable copies of reports is important in a “paper based” 
-low digital literacy context like Sierra Leone*
+**3.Downloadable, printable copies of reports is important in a “paper based” 
+low digital literacy context like Sierra Leone**
 
 Owing to the “paper based” culture that is prevalent across governmental 
 departments in developing countries, any system must allow for easy printing 
