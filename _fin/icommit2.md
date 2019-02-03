@@ -65,9 +65,10 @@ and the penetration of mobile financial services in the rural areas.
 {: .text-center}
 
 iCommit is currently being funded by the United Nations Capital Development
-Fund(UNCDF), and a six month pilot of the initiative is to start from December
-2017. The pilot would comprise of approximate 60 farmers and 60 agriculture
-input sellers.
+Fund(UNCDF) for a country-wide beta run. Before departing from Sierra Leone, I 
+completed the first design sprint for unearthing findings that were then used 
+for structuring the pilot of the platform. The report can be accessed 
+[here](/pdfs/iCommit_Product_Design_Report.pdf){:target="_blank"}
 
 
 
