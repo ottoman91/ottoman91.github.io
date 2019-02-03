@@ -7,10 +7,10 @@ permalink: /about
 
 ---
 
-I'm currently a Masters Candidate in Stanford's [Design](http://designimpact.stanford.edu/) program.
+I'm currently a Masters Candidate in Stanford's [Design](http://designimpact.stanford.edu/){:target="_blank"} program.
 
 Before this,I worked in the information, communication and technology for development (ICTD) space in Sierra Leone and Liberia on projects in the healthcare, open government and financial
-inclusion sectors. I was also the Country Manager for [Code for Sierra Leone](https://codeforsierraleone.org), a civic tech organization that
+inclusion sectors. I was also the Country Manager for [Code for Sierra Leone](https://codeforsierraleone.org){:target="_blank"}, a civic tech organization that
 uses open source technology to improve the delivery of services in the public sector.
 
 I am passionate about using human centered design in tandem with technology to
@@ -18,4 +18,4 @@ create products and services that aim to solve some of the most pressing issues 
 third world. At Stanford, my research focus is on using AI, machine learning and design thinking
 to improve public sector healthcare delivery in developing countries.
 
-[My CV can be found here](/pdfs/CV_Usman_Khaliq.pdf)
+[My CV can be found here](/pdfs/CV_Usman_Khaliq.pdf){:target="_blank"}
