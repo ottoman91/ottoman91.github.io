@@ -1,7 +1,8 @@
 ---
 layout: single
 title: "Kol Dokta"
-excerpt: "Streamlining delivery of affordable healthcare via an interactive voice response based system in Sierra Leone."
+excerpt: "Worked on streamlining delivery of affordable healthcare in Sierra Leone via an 
+interactive voice response based system."
 header:
   teaser: koldokta11.png
 sidebar:
@@ -25,7 +26,7 @@ Sierra Leone has one of the poorest healthcare systems in the world, as highligh
   <figcaption>Healthcare Indicators in Sierra Leone</figcaption>
 </figure> 
 
-However, to date, efforts for improving healthcare have not resulted in 
+However, efforts for improving healthcare have not resulted in 
 a long-term, permanent improvement, with the general global efforts in the field
 primarily focused towards "disease specific funding". 
 
@@ -40,8 +41,8 @@ and in streamlining the delivery of healthcare in the country.
 **A Possible Solution**
 {: .text-center} 
 
-Sierra Leone has a mobile penetration rate of 44%. One possible solution is 
-introducing a nation-wide mobile based healthcare intervention system. 
+Sierra Leone has a mobile penetration rate of 44%. One possible solution for improving
+access to healthcare is of introducing a nation-wide mobile based healthcare intervention system. 
 
 **The Value Proposition**
 {: .text-center}   
@@ -97,8 +98,8 @@ The design research aimed to find insights on the following thematic areas.
 
 Based on the results from the design research, the following two tools were constructed:
 
-* **The Evidence Planning Toolkit**. Highlighting the replacements, enhancements and potential hazards of
-the mobile based healthcare delivery platform. 
+* **The Evidence Planning Toolkit**. Highlighting the replacements, enhancements 
+and potential hazards of the mobile based healthcare delivery platform. 
 
 * **The Business Model Canvas** - Charting out the various facets of the business model for Kol Dokta.
 
@@ -115,7 +116,7 @@ the mobile based healthcare delivery platform.
 **Distribution Channels**
 {: .text-center}   
 
-The following is how the distribution channels of Kol Dokta are envisioned.
+The following is how the distribution channels of Kol Dokta were envisioned.
 
 <figure>
   <img src="/images/koldokta11.png" alt="Distribution Channels of Kol Dokta">
@@ -125,7 +126,7 @@ The following is how the distribution channels of Kol Dokta are envisioned.
 **The Next Steps**
 {: .text-center}    
 
-Currently,a working prototype for Kol Dokta is being developed on the [Asterisk](http://www.asterisk.org/) 
-open source communication framework. The prototype would initially be available
+A working prototype for Kol Dokta was developed on the [Asterisk](http://www.asterisk.org/) 
+open source communication framework. The prototype was initially available
 in Krio, which is the most popular regional language in Sierra Leone for running
-the pilot of the project in Freetown over a period of six months. 
+the pilot of the project in Freetown over a period of six months in 2015.
