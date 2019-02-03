@@ -2,16 +2,16 @@
 main:
   
   - title: "About"
-    url: /about
+    url: /about 
 
-  - title: "Design Log"
-    url: /designlog  
+  - title: "Work Portfolio"
+    url: /portfolio  
 
   - title: "Projects"
     url: /project  
 
-  - title: "Work Portfolio"
-    url: /portfolio 
+  - title: "Design Log"
+    url: /designlog  
 
   - title: "Book Reviews"
     url: /book 
