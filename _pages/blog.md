@@ -9,7 +9,7 @@ title: "Design Log"
 
 <!--<h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts }}</h3>-->
 <p>
-  <i>Musings on design, technology and life learnings in general.</i>
+  <i>Musings on design, technology and life.</i>
 </p>
 <!-- {% for post in paginator.posts %}
   {% include archive-single.html %}
