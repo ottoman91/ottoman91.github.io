@@ -48,10 +48,10 @@ feature_row2:
 <!-- {% include feature_row id="intro" type="center" %}
  --> 
 
-<h1 align="center">My Portfolio</h1>
-<p align="center">
-  My work in the tech for development space in West Africa and Pakistan
-  was in the following sectors
+<h1>Work Portfolio</h1>
+<p>
+  <i>My work in the tech for development space in West Africa and Pakistan
+  was in the following sectors</i>
 
 </p>
 {% include feature_row %}
