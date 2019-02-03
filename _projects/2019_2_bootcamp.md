@@ -35,6 +35,6 @@ The participants were led through the [Wallet Project](https://dschool-old.stanf
 a full cycle design project in which they ideate and make a prototype of a "meaningful" wallet for their partners. 
 
 
-{% include gallery id="gallery1" class="full" caption="Manufacturing Process of the Heirloom." %}
+{% include gallery id="gallery1" class="full" caption="Design Thinking Bootcamp." %}
 
 

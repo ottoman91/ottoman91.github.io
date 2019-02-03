@@ -13,7 +13,7 @@ author_profile: true
 ---
 *Streamlining the delivery of affordable healthcare via an interactive voice response based system in Sierra Leone.*
 
-*This research was conducted while I was working as the Research and Developer lead at [iDT Labs](https://idtlabs.xyz). For further 
+*This research was conducted while I was working as the Research and Developer lead at [iDT Labs](https://idtlabs.xyz){:target="_blank"}. For further 
 information about this project please email info@idtlabs.xyz*
 
 **Background**
@@ -126,7 +126,7 @@ The following is how the distribution channels of Kol Dokta were envisioned.
 **The Next Steps**
 {: .text-center}    
 
-A working prototype for Kol Dokta was developed on the [Asterisk](http://www.asterisk.org/) 
+A working prototype for Kol Dokta was developed on the [Asterisk](http://www.asterisk.org/){:target="_blank"}
 open source communication framework. The prototype was initially available
 in Krio, which is the most popular regional language in Sierra Leone for running
 the pilot of the project in Freetown over a period of six months in 2015.
