@@ -4,7 +4,7 @@ author_profile: true
 share: true 
 excerpt: "A bronze cast heirloom that I made for my wife as part of the Design and Manufacture class at Stanford."
 header:
-  teaser: GlamourShotImage.jpg
+  teaser: Hero Shot.jpg
 sidebar:
   - title: "Processes Used"
     text: "Sand Casting, Woodwork"
