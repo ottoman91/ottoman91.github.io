@@ -15,10 +15,10 @@ author_profile: true
 *This post outlines the pilot and proof of concept study that was conducted for an infectious disease 
 surveillance and community response system developed for all public health units 
 in the district of Port Loko in Sierra Leone. The platform was developed by 
-IBM Research Africa for the USAID [Ebola Grant Challenge](http://www.ebolagrandchallenge.net/innovations-3/)*
+IBM Research Africa for the USAID [Ebola Grant Challenge](http://www.ebolagrandchallenge.net/innovations-3/){:target="_blank"}*
 
 *This project was implemented while I was working as the Research and Developer
- lead at [iDT Labs](https://idtlabs.xyz). For further information about this 
+ lead at [iDT Labs](https://idtlabs.xyz){:target="_blank"}. For further information about this 
  project please email info@idtlabs.xyz*
 
 
