@@ -11,7 +11,7 @@ author_profile: true
 
 ---
 
-*This project was implemented while I was working as the Country Manager at [Code for Sierra Leone](https://codeforsierraleone.org)* 
+*This project was implemented while I was working as the Country Manager at [Code for Sierra Leone](https://codeforsierraleone.org){:target="_blank"}* 
 
 **About the Project**
 {: .text-center}
@@ -34,7 +34,6 @@ so that it can help them in expediting the process.
 **The First Prototype of the Project**
 {: .text-center}
 
-The first prototype of the application can be accessed at [this link](https://knowyourcity-91f64.firebaseapp.com/)
 
 The following screenshots are the first prototypes of the application
 

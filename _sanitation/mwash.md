@@ -11,8 +11,8 @@ author_profile: true
 
 ---
 
-*This project was implemented while I was working as the Country Manager at [Code for Sierra Leone](https://codeforsierraleone.org).* 
-*It is one of the 3 projects across Sub Saharan Africa currently being supported by the [Engine Room](https://www.theengineroom.org/) under its [Matchbox Program](https://www.theengineroom.org/welcoming-our-new-sub-saharan-africa-partners-to-the-matchbox-program/)*
+*This project was implemented while I was working as the Country Manager at [Code for Sierra Leone](https://codeforsierraleone.org){:target="_blank"}.* 
+*It is one of the 3 projects across Sub Saharan Africa currently being supported by the [Engine Room](https://www.theengineroom.org/){:target="_blank"} under its [Matchbox Program](https://www.theengineroom.org/welcoming-our-new-sub-saharan-africa-partners-to-the-matchbox-program/){:target="_blank"}*
 
 **About the Project**
 {: .text-center}
@@ -40,7 +40,7 @@ consumers, the utilities providers and the elected officials.
 **The First Prototype**
 {: .text-center}
 
-The prototype of MWASH can be accessed at [this link](https://mwash.codeforsierraleone.org/)
+The prototype of MWASH can be accessed at [this link](https://mwash.codeforsierraleone.org/){:target="_blank"}
 
 The following is a screenshot of the prototype 
 
@@ -84,13 +84,13 @@ The following is a screenshot of the prototype
 You can read the results of the design sprint conducted by the Engine Room and 
 Code for Sierra Leone below.<br/>
 
-[Improving Access to Water Services](https://www.theengineroom.org/wp-content/uploads/2018/04/Improving-Access-to-Water-Services-TER-and-CfSL-2018.pdf) 
+[Improving Access to Water Services](https://www.theengineroom.org/wp-content/uploads/2018/04/Improving-Access-to-Water-Services-TER-and-CfSL-2018.pdf){:target="_blank"}
 {: .text-center} 
 
 Code for Sierra Leone undertook a further design iteration, with this time the intention being to explore ways
 of integrating mobile money in the water service delivery in Freetown. You can check out our results below.<br/>
 
-[Improving Water Access for Sierra Leoneans](pdfs/mwash_hcd.pdf)
+[Improving Water Access for Sierra Leoneans](/pdfs/Mwash.pdf){:target="_blank"}
  {: .text-center} 
 
 

@@ -13,7 +13,7 @@ author_profile: true
 *A World Bank directed consultancy to diagnose the preparedness of the Government of Liberia to create and 
 run a nationwide open data program*
 
-*This consultancy project was conducted while I was working as the Research and Developer lead at [iDT Labs](https://idtlabs.xyz). 
+*This consultancy project was conducted while I was working as the Research and Developer lead at [iDT Labs](https://idtlabs.xyz){:target="_blank"}. 
 For further information about this project please email info@idtlabs.xyz*
 
 
@@ -39,7 +39,7 @@ country’s employment rate, fiscal situation, and levels of poverty.
 
 The World Bank, in collaboration with the Ministry of Finance and Development
 Planning(MFDP) and the Independent Information Commissioner (IIC), conducted 
-the Open Data Readiness Assessment (ODRA) for GoL. [ODRA](http://opendatatoolkit.worldbank.org/en/odra.html) 
+the Open Data Readiness Assessment (ODRA) for GoL. [ODRA](http://opendatatoolkit.worldbank.org/en/odra.html){:target="_blank"} 
 is a methodological tool developed by the Bank that is used to conduct an 
 action-oriented assessment of the readiness of a government or individual 
 agency to evaluate, design and implement an open data initiative. The tool is 

@@ -13,7 +13,7 @@ author_profile: true
 *This project was completed for the 2014 Unilever Talent Hunt Business 
 Plan Competition.It was the winner in the PureIt brand category and one of the
 six finalist ideas submitted to the senior management team of Unilever Pakistan.
-The project was also featured by [+Acumen](http://www.plusacumen.org/journal/computer-engineers-unlikely-impact-journey-pakistan-sierra-leone)*
+The project was also featured by [Acumen](http://www.plusacumen.org/journal/computer-engineers-unlikely-impact-journey-pakistan-sierra-leone){:target="_blank"}*
 
 
 **The Scope of the Project**
@@ -185,9 +185,9 @@ plans presented to Unilever's senior management team.
 **Additional Links**
 {: .text-center} 
 
-[PureIt Marketing Plan](/pdfs/PureIt_Marketing_Plan.pdf)  
+[PureIt Marketing Plan](/pdfs/PureIt_Marketing_Plan.pdf){:target="_blank"}  
 
-[Unilever Talent Hunt Final Presentation](/pdfs/PureIt_Final_Presentation.pdf)
+[Unilever Talent Hunt Final Presentation](/pdfs/PureIt_Final_Presentation.pdf){:target="_blank"}
 
 
 

@@ -11,7 +11,7 @@ author_profile: true
 
 ---
 
-*This project was implemented while I was working at a consultant with [Intellicap](www.intellecap.com)*
+*This project was implemented while I was working at a consultant with [Intellecap](https://www.intellecap.com/){:target="_blank"}*
 
 
 
@@ -45,4 +45,4 @@ consumer perception about DFS and insurance solutions.
 **Final Findings of the Research**
 {: .text-center}
 
-[Sierra Leone G2P Project. Results of the Government Employee Financial Lives Survey](/pdfs/UNCDF_report.pdf)
+[Sierra Leone G2P Project. Results of the Government Employee Financial Lives Survey](/pdfs/UNCDF_report.pdf){:target="_blank"}

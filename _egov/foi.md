@@ -11,7 +11,7 @@ author_profile: true
 
 ---
 
-*This project was implemented while I was working as the Country Manager at [Code for Sierra Leone](https://codeforsierraleone.org)* 
+*This project was implemented while I was working as the Country Manager at [Code for Sierra Leone](https://codeforsierraleone.org){:target="_blank"}* 
 
 **Background**
 {: .text-center}
@@ -29,7 +29,7 @@ of information (FOI) requests that are being made to different government agenci
 {: .text-center}
 
 The Sierra Leone Freedom of Information Portal would be based on the open source
-[Alavateli](http://alaveteli.org/) platform, built by [mySociety](https://www.mysociety.org/). 
+[Alavateli](http://alaveteli.org/){:target="_blank"} platform, built by [mySociety](https://www.mysociety.org/){:target="_blank"}. 
 
 The Alavateli platform would provide the following features:
 

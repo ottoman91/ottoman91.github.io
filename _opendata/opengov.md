@@ -10,7 +10,7 @@ sidebar:
 author_profile: true
 ---
 
-*This  project was conducted while I was working as the Country Manager at [Code for Sierra Leone](https://codeforsierraleone.org).*
+*This  project was conducted while I was working as the Country Manager at [Code for Sierra Leone](https://codeforsierraleone.org){:target="_blank"}.*
 
 
 **Background**
@@ -35,4 +35,4 @@ Over the course of six months, each Open Government Fellow will be embedded in
 a specific government ministry and work with them to make their activities more
 open to the general public.
 
-Click [this link](https://medium.com/code-for-africa/kickstarting-the-sierra-leone-open-government-fellowship-program-428431e8355d) to read up on the first cohort of the Sierra Leone Open Gov Fellows.
+Click [this link](https://medium.com/code-for-africa/kickstarting-the-sierra-leone-open-government-fellowship-program-428431e8355d){:target="_blank"} to read up on the first cohort of the Sierra Leone Open Gov Fellows.

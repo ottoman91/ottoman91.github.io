@@ -11,8 +11,8 @@ author_profile: true
 
 ---
 
-*This project was implemented while I was working as the Country Manager at [Code for Sierra Leone](https://codeforsierraleone.org)* 
-*The project is one of the 22 projects across Africa selected for funding by the [innovateAFRICA fund](https://medium.com/code-for-africa/22-digital-watchdog-projects-win-1-million-in-funding-and-technology-support-5e0522f34323), which is managed by the Bill and Melinda Gates Foundation and the Omidyar Network*
+*This project was implemented while I was working as the Country Manager at [Code for Sierra Leone](https://codeforsierraleone.org){:target="_blank"}* 
+*The project is one of the 22 projects across Africa selected for funding by the [innovateAFRICA fund](https://medium.com/code-for-africa/22-digital-watchdog-projects-win-1-million-in-funding-and-technology-support-5e0522f34323){:target="_blank"}, which is managed by the Bill and Melinda Gates Foundation and the Omidyar Network*
 
 **About the Project**
 {: .text-center}
