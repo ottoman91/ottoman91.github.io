@@ -46,8 +46,7 @@ mobile money accounts.
 
 iCommit is based on an academic article published by Esther Dufflo, M Kremer 
 and Robinson in the American Economic Review (Duflo et. al 2011). The researchers
-tested the impact of offering small scale maize farmers in Busia district of   
-Western Kenya to buy in advance at harvest time fertilisers for the next growing
+tested the impact of offering small scale maize farmers in Busia district of Western Kenya to buy in advance at harvest time fertilisers for the next growing
 season with free delivery. Forty percent of the farmers who were offered the option
 to buy in advance did. In the same experiment, Duflo compared the impact on fertiliser
 use with another group of maize farmers who were offered to buy fertilisers at 
