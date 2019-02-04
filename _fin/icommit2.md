@@ -51,8 +51,7 @@ Western Kenya to buy in advance at harvest time fertilisers for the next growing
 season with free delivery. Forty percent of the farmers who were offered the option
 to buy in advance did. In the same experiment, Duflo compared the impact on fertiliser
 use with another group of maize farmers who were offered to buy fertilisers at 
-subsidised prices during the growing season. The impact of offering to buy in   
-advance was equivalent to a 50% subsidy on fertiliser price.
+subsidised prices during the growing season. The impact of offering to buy in advance was equivalent to a 50% subsidy on fertiliser price.
 
 **The Value Proposition**
 {: .text-center}
