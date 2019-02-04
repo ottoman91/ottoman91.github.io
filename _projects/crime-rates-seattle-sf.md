@@ -83,5 +83,5 @@ map.sanfrancisco_city <- qmap(“sanfrancisco”, zoom = 11, source=”stamen”
 map.sanfrancisco_city + geom_point(data=sanfrancisco_dataset, aes(x=X, y=Y), color=”dark green”, alpha=.03, size=1.1)
 ```
 *(This blog post has been written as one of the assignments of the Data Science MOOC being offered on Coursera by the University of Washington).*
-*It was originally published on [Medium](https://medium.com/@ottoman91/comparing-crime-rates-between-seattle-and-san-francisco-1a2cb634d846)*
+*It was originally published on [Medium](https://medium.com/@ottoman91/comparing-crime-rates-between-seattle-and-san-francisco-1a2cb634d846){:target="_blank"}*
 

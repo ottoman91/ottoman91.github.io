@@ -112,5 +112,5 @@ The display was as follows
 
 As can be seen from the above histogram, the life expectancy varies more across the dataset, which hints at the fact that there are more factors that determine the life expectancy of a country rather than just how “democratic” it is.
 
-*This post was originally published on [Medium](https://medium.com/@ottoman91/making-data-management-decisions-b1459684ae31)*
+*This post was originally published on [Medium](https://medium.com/@ottoman91/making-data-management-decisions-b1459684ae31){:target="_blank"}*
 

@@ -197,7 +197,7 @@ There is a positive correlation between the life expectancy of a country and its
 
 The rate of urbanisation in a country is strongly positively correlated with how “democratic” it is.
 
-*This post was originally published on [Medium](https://medium.com/@ottoman91/graphical-analysis-does-a-more-democratic-society-lead-to-an-improvement-in-the-quality-of-e2b6c97fcef2)*
+*This post was originally published on [Medium](https://medium.com/@ottoman91/graphical-analysis-does-a-more-democratic-society-lead-to-an-improvement-in-the-quality-of-e2b6c97fcef2){:target="_blank"}*
 
 
 

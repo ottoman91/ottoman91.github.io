@@ -23,4 +23,4 @@ income, which is a good proxy for cost of living.
   <figcaption>Screenshot of the data visualization app</figcaption>
 </figure>     
 
-The app can be accessed at the following [link](http://usmankhaliq.com/Data-Visualization-H1B-Visas-in-USA/)
+The app can be accessed at the following [link](http://usmankhaliq.com/Data-Visualization-H1B-Visas-in-USA/){:target="_blank"}

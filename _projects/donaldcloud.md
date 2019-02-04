@@ -10,7 +10,7 @@ read_time: true
 title: The Donald Cloud
 ---  
 
-Yesterday, I came across this interesting [cloud](https://www.kaggle.com/the1owl/d/kaggle/hillary-clinton-emails/president-2016-nltk) on Kaggle that was created around the silhouette of Hillary Clinton and was based on the database of her emails. Although not a fan of Trump, I decided to utilise the database of the Tweets from the first GOP debate and create a word cloud in the shape of a silhouette of the Donald’s picture.
+Yesterday, I came across this interesting [cloud](https://www.kaggle.com/the1owl/d/kaggle/hillary-clinton-emails/president-2016-nltk){:target="_blank"} on Kaggle that was created around the silhouette of Hillary Clinton and was based on the database of her emails. Although not a fan of Trump, I decided to utilise the database of the Tweets from the first GOP debate and create a word cloud in the shape of a silhouette of the Donald’s picture.
 
 However, there were a few caveats that I ran into. For one, my script is based in R, whereas all of my online search led me only to scripts and libraries in Python for creating a word cloud in the shape of a specific image. Thus, although I have been able to create a wordcloud of tweets during the debate that mentioned Trump and was able to colour-code them according to the sentiment of the tweets, my dream of creating a beautiful (almost as beautiful as his famed border-dividing wall is supposed to be), racist, hate-filled silhouette of that famous(or fake?) orange hair and smug face surrounded by a wordcloud of racist, vile tweets is partly on hold. For the moment, I have to make peace with a big, ugly blob of tweets mentioning Trump. Nevertheless, here is the code for this wordcloud, along with a description of the code.
 
@@ -93,4 +93,4 @@ There, a blob of tweets for a blob of a candidate.
 
 Next assignment: generate a much cooler portrait wordcloud that takes the fight to the 1 percent #feelthebern.
 
-*This post was originally published on [Medium](https://medium.com/@ottoman91/the-donald-cloud-e49e436acb9f)*
+*This post was originally published on [Medium](https://medium.com/@ottoman91/the-donald-cloud-e49e436acb9f){:target="_blank"}*

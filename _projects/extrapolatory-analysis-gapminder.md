@@ -10,7 +10,7 @@ read_time: true
 title: Extrapolatory Analysis — Does a “More Democratic” Society lead to an improvement in the “quality of life”?
 ---  
 
-As part of the Data Management and Visualisation course on Coursera, I am investigating the following hypothesis from the [Gapminder](https://www.gapminder.org/) dataset
+As part of the Data Management and Visualisation course on Coursera, I am investigating the following hypothesis from the [Gapminder](https://www.gapminder.com){:target="_blank"} dataset
 
 > What effect does the “level of democracy” in a country have on the “quality of life” of the country’s citizens?
 
@@ -213,7 +213,7 @@ Based on the analysis, I shall now be considering the following variables in my 
 
 * urbanrate(Urban population)
 
-*This post was originally published on [Medium](https://medium.com/@ottoman91/extrapolatory-analysis-does-a-more-democratic-society-lead-to-an-improvement-in-the-quality-of-d9183d884d77)*
+*This post was originally published on [Medium](https://medium.com/@ottoman91/extrapolatory-analysis-does-a-more-democratic-society-lead-to-an-improvement-in-the-quality-of-d9183d884d77){:target="_blank"}*
 
 
 

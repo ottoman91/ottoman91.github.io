@@ -27,11 +27,11 @@ gallery1:
     alt: "Image 6"
 ---  
 
-I organized and facilitated a [design thinking workshop](http://designimpact.stanford.edu/bootcamp/) for approximately 50 mid-career professionals at the Stanford d school.
+I organized and facilitated a [design thinking workshop](http://designimpact.stanford.edu/bootcamp/){:target="_blank"} for approximately 50 mid-career professionals at the Stanford d school.
 With keynote speeches from David Kelley and Michael Barry, the workshop aimed to give a general introduction on design thinking and to inspire the participants to adopt design thinking 
 in their daily lives. 
 
-The participants were led through the [Wallet Project](https://dschool-old.stanford.edu/groups/designresources/wiki/4dbb2/the_wallet_project.html),
+The participants were led through the [Wallet Project](https://dschool-old.stanford.edu/groups/designresources/wiki/4dbb2/the_wallet_project.html){:target="_blank"},
 a full cycle design project in which they ideate and make a prototype of a "meaningful" wallet for their partners. 
 
 
