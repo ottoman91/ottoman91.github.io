@@ -13,8 +13,11 @@ main:
   - title: "Design Log"
     url: /designlog  
 
+  - title: "Visualizations"
+    url: /viz 
+
   - title: "Book Reviews"
-    url: /book 
+    url: /book  
 
   - title: "CV"
     url: /pdfs/CV_Usman_Khaliq.pdf
