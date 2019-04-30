@@ -1,8 +1,8 @@
 ---
 layout: archive
 author_profile: true
-title: Visualization Projects
-permalink: viz/
+permalink: /visualization
+title: "Visualization Projects"
 ---
 
 {% include base_path %}
@@ -17,7 +17,3 @@ permalink: viz/
   {% endfor %}
 </div>
 
-<p>
-    Currently work in progress. Check out by the end of this month for a 
-    full list of visualizations built by yours truly!
-</p>

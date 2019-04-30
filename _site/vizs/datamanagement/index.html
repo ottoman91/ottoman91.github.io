@@ -19,7 +19,7 @@
 
 
 
-<title>Removing a Homebrew Package and All of its Dependencies on macOS - Usman Khaliq</title>
+<title>Making Data Management Decisions - Usman Khaliq</title>
 
 
 
@@ -29,21 +29,21 @@
 
 <meta property="og:locale" content="en-US">
 <meta property="og:site_name" content="Usman Khaliq">
-<meta property="og:title" content="Removing a Homebrew Package and All of its Dependencies on macOS">
+<meta property="og:title" content="Making Data Management Decisions">
 
 
-  <link rel="canonical" href="http://ottoman91.github.io/ottoman91/codes/removing-homebrew-package/">
-  <meta property="og:url" content="http://ottoman91.github.io/ottoman91/codes/removing-homebrew-package/">
+  <link rel="canonical" href="http://ottoman91.github.io/ottoman91/vizs/datamanagement/">
+  <meta property="og:url" content="http://ottoman91.github.io/ottoman91/vizs/datamanagement/">
 
 
 
-  <meta property="og:description" content="Homebrew is an excellent command line package management tool for Mac OSx, and it is rightly proclaimed as “The missing package manager for macOS”, as stated on its official website. However, a few days ago, I came across an urgent task which I had not addressed before, namely, how to cleanly and completely remove a package installed from Homebrew, along with all of its dependencies.A quick online search rendered the following approach on Stackoverflow, which included using an external command called brew rmtree, which was to be executed as follows:">
+  <meta property="og:description" content="What effect does the “level of democracy” in a country have on the “quality of life” of the country’s citizens?.">
 
 
 
   <meta name="twitter:site" content="@usmankhaliq">
-  <meta name="twitter:title" content="Removing a Homebrew Package and All of its Dependencies on macOS">
-  <meta name="twitter:description" content="Homebrew is an excellent command line package management tool for Mac OSx, and it is rightly proclaimed as “The missing package manager for macOS”, as stated on its official website. However, a few days ago, I came across an urgent task which I had not addressed before, namely, how to cleanly and completely remove a package installed from Homebrew, along with all of its dependencies.A quick online search rendered the following approach on Stackoverflow, which included using an external command called brew rmtree, which was to be executed as follows:">
+  <meta name="twitter:title" content="Making Data Management Decisions">
+  <meta name="twitter:description" content="What effect does the “level of democracy” in a country have on the “quality of life” of the country’s citizens?.">
   <meta name="twitter:url" content="">
 
   
@@ -66,6 +66,10 @@
   <meta property="og:type" content="article">
   <meta property="article:published_time" content="2019-04-30T17:32:28+00:00">
   
+    <link rel="next" href="http://ottoman91.github.io/ottoman91/vizs/dataviz/" title="Data Visualisation Research — Impact of Democracy on Quality of Life Metrics">
+  
+  
+    <link rel="prev" href="http://ottoman91.github.io/ottoman91/vizs/data-viz-h1b/" title="Visualizing H1B Visas in Tech from 2012-2016">
   
 
 
@@ -237,22 +241,22 @@
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Removing a Homebrew Package and All of its Dependencies on macOS">
-    <meta itemprop="description" content="Homebrew is an excellent command line package management tool for Mac OSx, and it is rightly proclaimed as “The missing package manager for macOS”, as stated on its official website. However, a few days ago, I came across an urgent task which I had not addressed before, namely, how to cleanly and completely remove a package installed from Homebrew, along with all of its dependencies.A quick online search rendered the following approach on Stackoverflow, which included using an external command called brew rmtree, which was to be executed as follows:">
+    <meta itemprop="headline" content="Making Data Management Decisions">
+    <meta itemprop="description" content="What effect does the “level of democracy” in a country have on the “quality of life” of the country’s citizens?.">
     <meta itemprop="datePublished" content="April 30, 2019">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 class="page__title" itemprop="headline">Removing a Homebrew Package and All of its Dependencies on macOS
+          <h1 class="page__title" itemprop="headline">Making Data Management Decisions
 </h1>
           
             <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
 
 
   
-	  1 minutes read
+	  2 minutes read
 	
 </p>
           
@@ -260,43 +264,120 @@
       
 
       <section class="page__content" itemprop="text">
-        <p>Homebrew is an excellent command line package management tool for Mac OSx, and it is rightly proclaimed as “The missing package manager for macOS”, as stated on its official website. However, a few days ago, I came across an urgent task which I had not addressed before, namely, how to cleanly and completely remove a package installed from Homebrew, along with all of its dependencies.
-A quick online search rendered the following approach on Stackoverflow, which included using an external command called brew rmtree, which was to be executed as follows:</p>
+        <p>As part of the Data Management and Visualisation course on Coursera, I am investigating the following hypothesis from the <a href="https://www.gapminder.org/">Gapminder</a> dataset</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>
-brew tap beeftornado/rmtree
-brew rmtree &lt;package&gt;
+<blockquote>
+  <p>What effect does the “level of democracy” in a country have on the “quality of life” of the country’s citizens?</p>
+</blockquote>
+
+<p>In the previous extrapolatory analysis completed last week, I decided that I would be measuring the correlation between the “polityscore” (a numeric value from -10 to 10 that measures how democratic a country is)variable and the following variables in the dataset</p>
+
+<ul>
+  <li>
+    <p>incomeperperson(2010 GDP per capita in constant US$ 2000)</p>
+  </li>
+  <li>
+    <p>alconconsumption(2008 alcohol consumption per adult)</p>
+  </li>
+  <li>
+    <p>breastcancerper100TH(breast cancer new cases per 10,000)</p>
+  </li>
+  <li>
+    <p>employrate(2007 total emloyees over 15+)</p>
+  </li>
+  <li>
+    <p>HIVrate(2009 estimated HIV prevalence)</p>
+  </li>
+  <li>
+    <p>lifeexpectancy(2011 life expectancy at birth)</p>
+  </li>
+  <li>
+    <p>urbanrate(Urban population)</p>
+  </li>
+</ul>
+
+<p>However, I want to ensure that I am only reading data for countries from the dataset that do not have any missing values. For this, I can the following code snippet, which only subsetted the values from the dataset that were complete for all these variables.</p>
+
+<p>This code also converted the variables to numeric values, since they would be required for calculating the correlation between the variables</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>import pandas as pd
+import numpy as np
+data = pd.read_csv(‘gapminder.csv’, low_memory=False)
+#setting variables you will be working with to numeric
+data[‘incomeperperson’] = data[‘incomeperperson’].convert_objects(convert_numeric=True)
+data[‘alcconsumption’] = data[‘alcconsumption’].convert_objects(convert_numeric=True)
+data[‘breastcancerper100th’] = data[‘breastcancerper100th’].convert_objects(convert_numeric=True)
+data[‘employrate’] = data[‘employrate’].convert_objects(convert_numeric=True)
+data[‘hivrate’] = data[‘hivrate’].convert_objects(convert_numeric=True)
+data[‘lifeexpectancy’] = data[‘lifeexpectancy’].convert_objects(convert_numeric=True)
+data[‘urbanrate’] = data[‘urbanrate’].convert_objects(convert_numeric=True) 
+data[‘polityscore’] = data[‘polityscore’].convert_objects(convert_numeric=True)
+#select data subset that does not have any missing polity scores
+subset = data[np.isfinite(data[‘polityscore’])] 
+subset = subset[np.isfinite(subset[‘incomeperperson’])] 
+subset = subset[np.isfinite(subset[‘alcconsumption’])]
+subset = subset[np.isfinite(subset[‘breastcancerper100th’])]
+subset = subset[np.isfinite(subset[‘employrate’])]
+subset = subset[np.isfinite(subset[‘hivrate’])]
+subset = subset[np.isfinite(subset[‘lifeexpectancy’])]
+subset = subset[np.isfinite(subset[‘urbanrate’])]
 </code></pre>
 </div>
 
-<p>However, for some reason, when I ran this command, brew took an insanely long time to update. I am not quite sure what the error was, but it was most probably due to my crappy internet connection.
-Nevertheless, I came across another method for achieving this task on the same Stackoverflow answer thread. I found this method to be easier and way quicker, although it did take me a while to figure out how to run external brew scripts and the configurations that need to be made to run them. To save others the hassle and time of understanding how the configuration would need to be set up, I am highlighting the steps followed below:</p>
+<p>I shall not be grouping any of the variables, since at this time in my analysis, I do not see the need of doing it.</p>
 
-<ol>
-  <li>
-    <p>Download the brew_clean script from <a href="https://gist.github.com/cskeeters/10ff1295bca93808213d">this</a> Github repo</p>
-  </li>
-  <li>
-    <p>Once you have unzipped the downloaded file, copy the brew_clean script to /usr/local/bin. This would ensure that the script is global.</p>
-  </li>
-  <li>Make the script executable by running the following command in the /usr/local/bin directory:
-<code class="highlighter-rouge">
-sudo chmod+x brew_clean
-</code></li>
-  <li>Run the following command in your directory of choice to generate a file that contains the list of all brew packages installed on your machine:
-<code class="highlighter-rouge">
-brew leaves &gt; brew_packages
-</code></li>
-  <li>
-    <p>Open the brew_packages file using your favourite text editor ( which is nano in my case for such small tasks). In the file, delete the name of the package you want to remove. Save and close the file.</p>
-  </li>
-  <li>Run the following command to allow brew_clean to remove the package you deleted from the brew_packages file:
-<code class="highlighter-rouge">
-brew_clean brew_packages
-</code>
-And there you have it. You can verify that the package has indeed been deleted by moving to the /usr/local/Cellar directory. The package that you just deleted would no longer be listed in the directory.
-Hope this helped. Happy coding and creating awesome software solutions for the world!</li>
-</ol>
+<p>I generated a frequency table for the polityscores, using the following code snippet.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>group = subset.groupby(‘polityscore’).size()
+print group
+</code></pre>
+</div>
+<p>The display was as follows</p>
+
+<figure>
+  <img src="/images/datamanagement.png" alt="this is a placeholder image" />
+</figure>
+
+<p>However, since the other variables are all continuous variables, creating frequency tables for them does not make sense. Rather, their distributions and frequencies can be showcased via histograms.</p>
+
+<p>As an example, the following code snippet displays the histogram for the distribution of income distributions across the dataset.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>subset[‘incomeperperson’].hist(bins=50)
+</code></pre>
+</div>
+
+<p>The following is the histogram for incomeperperson displayed</p>
+
+<figure>
+  <img src="/images/hist1.png" alt="this is a placeholder image" />
+  <figcaption>Histogram for Income per person across the dataset
+</figcaption>
+</figure>
+
+<p>The following code was used to display a histogram for life expectancy rates</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>subset[‘lifeexpectancy’].hist(bins=50)
+</code></pre>
+</div>
+
+<p>A frequency table for the polityscore variable was achieved with the following</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>group = subset.groupby(‘polityscore’).size()
+print group
+</code></pre>
+</div>
+
+<p>The display was as follows</p>
+
+<figure>
+  <img src="/images/hist2.png" alt="this is a placeholder image" />
+  <figcaption>Histogram for Distribution of Life Expectancy
+</figcaption>
+</figure>
+
+<p>As can be seen from the above histogram, the life expectancy varies more across the dataset, which hints at the fact that there are more factors that determine the life expectancy of a country rather than just how “democratic” it is.</p>
+
+<p><em>This post was originally published on <a href="https://medium.com/@ottoman91/making-data-management-decisions-b1459684ae31" target="_blank">Medium</a></em></p>
 
 
         
@@ -321,17 +402,28 @@ Hope this helped. Happy coding and creating awesome software solutions for the w
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=/codes/removing-homebrew-package/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=/vizs/datamanagement/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=/codes/removing-homebrew-package/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=/vizs/datamanagement/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://plus.google.com/share?url=/codes/removing-homebrew-package/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+  <a href="https://plus.google.com/share?url=/vizs/datamanagement/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=/codes/removing-homebrew-package/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=/vizs/datamanagement/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
       
 
+
+  <nav class="pagination">
+    
+      <a href="/vizs/data-viz-h1b/" class="pagination--pager" title="Visualizing H1B Visas in Tech from 2012-2016
+">Previous</a>
+    
+    
+      <a href="/vizs/dataviz/" class="pagination--pager" title="Data Visualisation Research — Impact of Democracy on Quality of Life Metrics
+">Next</a>
+    
+  </nav>
 
     </div>
 

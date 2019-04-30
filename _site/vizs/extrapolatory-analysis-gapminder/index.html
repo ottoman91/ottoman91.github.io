@@ -19,7 +19,7 @@
 
 
 
-<title>Graphical Analysis - Does a “More Democratic” Society lead to an improvement in the “quality of life”? - Usman Khaliq</title>
+<title>Extrapolatory Analysis — Does a “More Democratic” Society lead to an improvement in the “quality of life”? - Usman Khaliq</title>
 
 
 
@@ -29,21 +29,21 @@
 
 <meta property="og:locale" content="en-US">
 <meta property="og:site_name" content="Usman Khaliq">
-<meta property="og:title" content="Graphical Analysis - Does a “More Democratic” Society lead to an improvement in the “quality of life”?">
+<meta property="og:title" content="Extrapolatory Analysis — Does a “More Democratic” Society lead to an improvement in the “quality of life”?">
 
 
-  <link rel="canonical" href="http://ottoman91.github.io/ottoman91/projects/standard-of-living/">
-  <meta property="og:url" content="http://ottoman91.github.io/ottoman91/projects/standard-of-living/">
+  <link rel="canonical" href="http://ottoman91.github.io/ottoman91/vizs/extrapolatory-analysis-gapminder/">
+  <meta property="og:url" content="http://ottoman91.github.io/ottoman91/vizs/extrapolatory-analysis-gapminder/">
 
 
 
-  <meta property="og:description" content="Graphical analysis on the relationship between democractic values and quality of life">
+  <meta property="og:description" content="Exploring the relationship between democractic values and quality of life">
 
 
 
   <meta name="twitter:site" content="@usmankhaliq">
-  <meta name="twitter:title" content="Graphical Analysis - Does a “More Democratic” Society lead to an improvement in the “quality of life”?">
-  <meta name="twitter:description" content="Graphical analysis on the relationship between democractic values and quality of life">
+  <meta name="twitter:title" content="Extrapolatory Analysis — Does a “More Democratic” Society lead to an improvement in the “quality of life”?">
+  <meta name="twitter:description" content="Exploring the relationship between democractic values and quality of life">
   <meta name="twitter:url" content="">
 
   
@@ -66,8 +66,10 @@
   <meta property="og:type" content="article">
   <meta property="article:published_time" content="2019-04-30T17:32:28+00:00">
   
+    <link rel="next" href="http://ottoman91.github.io/ottoman91/vizs/standard-of-living/" title="Graphical Analysis - Does a “More Democratic” Society lead to an improvement in the “quality of life”?">
   
-    <link rel="prev" href="http://ottoman91.github.io/ottoman91/projects/extrapolatory-analysis-gapminder/" title="Extrapolatory Analysis — Does a “More Democratic” Society lead to an improvement in the “quality of life”?">
+  
+    <link rel="prev" href="http://ottoman91.github.io/ottoman91/vizs/donaldcloud/" title="The Donald Cloud">
   
 
 
@@ -239,22 +241,22 @@
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Graphical Analysis - Does a “More Democratic” Society lead to an improvement in the “quality of life”?">
-    <meta itemprop="description" content="Graphical analysis on the relationship between democractic values and quality of life">
+    <meta itemprop="headline" content="Extrapolatory Analysis — Does a “More Democratic” Society lead to an improvement in the “quality of life”?">
+    <meta itemprop="description" content="Exploring the relationship between democractic values and quality of life">
     <meta itemprop="datePublished" content="April 30, 2019">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 class="page__title" itemprop="headline">Graphical Analysis - Does a “More Democratic” Society lead to an improvement in the “quality of life”?
+          <h1 class="page__title" itemprop="headline">Extrapolatory Analysis — Does a “More Democratic” Society lead to an improvement in the “quality of life”?
 </h1>
           
             <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
 
 
   
-	  4 minutes read
+	  5 minutes read
 	
 </p>
           
@@ -262,7 +264,7 @@
       
 
       <section class="page__content" itemprop="text">
-        <p>As a part of the Data Management and Visualisation course on Coursera, I shall be working on the following hypothesis and trying to test it from the GapMinder Dataset:</p>
+        <p>As part of the Data Management and Visualisation course on Coursera, I am investigating the following hypothesis from the <a href="https://www.gapminder.com" target="_blank">Gapminder</a> dataset</p>
 
 <blockquote>
   <p>What effect does the “level of democracy” in a country have on the “quality of life” of the country’s citizens?</p>
@@ -274,6 +276,200 @@
   <li>
     <p>incomeperperson(2010 GDP per capita in constant US$ 2000)</p>
   </li>
+  <li>
+    <p>alconconsumption(2008 alcohol consumption per adult)</p>
+  </li>
+  <li>
+    <p>breastcancerper100TH(breast cancer new cases per 10,000)</p>
+  </li>
+  <li>
+    <p>co2emissions(2006 cumulative co2 emissions)</p>
+  </li>
+  <li>
+    <p>femaleemployrate(2006 female employment rate)</p>
+  </li>
+  <li>
+    <p>employrate(2007 total emloyees over 15+)</p>
+  </li>
+  <li>
+    <p>HIVrate(2009 estimated HIV prevalence)</p>
+  </li>
+  <li>
+    <p>lifeexpectancy(2011 life expectancy at birth)</p>
+  </li>
+  <li>
+    <p>suicideper100TH(suicide rate adjusted over 10,000 people)</p>
+  </li>
+  <li>
+    <p>urbanrate(Urban population)</p>
+  </li>
+</ul>
+
+<p>I carried out my analysis in Python, using the numpy and the pandas libraries. The entire script can be accessed from here.</p>
+
+<p>The following is a run down of the script, along with an explanation of the insights that I gleamed from it.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>import pandas as pd
+import numpy as np
+data = pd.read_csv(‘gapminder.csv’, low_memory=False)
+print “Number of observations:”
+print (len(data)) 
+print “Number of variables:”
+print (len(data.columns))
+</code></pre>
+</div>
+
+<p>The code snippet above displays the following:</p>
+
+<figure>
+  <img src="/images/extraanalysisimg.png" alt="this is a placeholder image" />
+</figure>
+
+<p>The total number of rows in the dataset are 213, while the total number of variables (columns) are 16.</p>
+
+<p>The next step was to convert all the variables that would be used in the analysis to numeric values. The following code snippet was used for this</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>#setting variables you will be working with to numeric
+data[‘incomeperperson’] = data[‘incomeperperson’].convert_objects(convert_numeric=True)
+data[‘alcconsumption’] = data[‘alcconsumption’].convert_objects(convert_numeric=True)
+data[‘breastcancerper100th’] = data[‘breastcancerper100th’].convert_objects(convert_numeric=True)
+data[‘co2emissions’] = data[‘co2emissions’].convert_objects(convert_numeric=True)
+data[‘femaleemployrate’] = data[‘femaleemployrate’].convert_objects(convert_numeric=True)
+data[‘employrate’] = data[‘employrate’].convert_objects(convert_numeric=True)
+data[‘hivrate’] = data[‘hivrate’].convert_objects(convert_numeric=True)
+data[‘lifeexpectancy’] = data[‘lifeexpectancy’].convert_objects(convert_numeric=True)
+data[‘suicideper100th’] = data[‘suicideper100th’].convert_objects(convert_numeric=True)
+data[‘urbanrate’] = data[‘urbanrate’].convert_objects(convert_numeric=True) 
+data[‘polityscore’] = data[‘polityscore’].convert_objects(convert_numeric=True)
+</code></pre>
+</div>
+
+<p>I also wanted to ensure that only those values were being considered in the analysis which had no missing values for any of the variables that were to be considered. To achieve this, I used the following code snippet:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>#select data subset that does not have any missing polity scores
+subset = data[np.isfinite(data[‘polityscore’])] 
+subset = subset[np.isfinite(subset[‘incomeperperson’])] 
+subset = subset[np.isfinite(subset[‘alcconsumption’])]
+subset = subset[np.isfinite(subset[‘breastcancerper100th’])]
+subset = subset[np.isfinite(subset[‘co2emissions’])]
+subset = subset[np.isfinite(subset[‘femaleemployrate’])]
+subset = subset[np.isfinite(subset[‘employrate’])]
+subset = subset[np.isfinite(subset[‘hivrate’])]
+subset = subset[np.isfinite(subset[‘lifeexpectancy’])]
+subset = subset[np.isfinite(subset[‘suicideper100th’])]
+subset = subset[np.isfinite(subset[‘urbanrate’])]
+</code></pre>
+</div>
+
+<p>A frequency table for the polityscore variable was achieved with the following</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>group = subset.groupby(‘polityscore’).size()
+print group
+</code></pre>
+</div>
+
+<p>The display was as follows</p>
+
+<figure>
+  <img src="/images/freqtable.png" alt="this is a placeholder image" />
+</figure>
+
+<p>However, I decided against creating frequency tables for the other variables that I shall be using in my analysis, since most of them are continuous variables and by merely plotting the frequency tables, no worthwhile analysis could be inferred.</p>
+
+<p>Instead, I decided to plot boxplots for all of the variables in consideration against the polityscores. This would give a good picture of how exactly each variable changed with how “democratic” or “autocratic” a country was.</p>
+
+<p>The following code was used to draw the different boxplots.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>subset.boxplot(column=’incomeperperson’,by=’polityscore’)
+subset.boxplot(column=’alcconsumption’,by=’polityscore’)
+subset.boxplot(column=’breastcancerper100th’,by=’polityscore’)
+subset.boxplot(column=’co2emissions’,by=’polityscore’)
+subset.boxplot(column=’femaleemployrate’,by=’polityscore’)
+subset.boxplot(column=’employrate’,by=’polityscore’)
+subset.boxplot(column=’hivrate’,by=’polityscore’)
+subset.boxplot(column=’lifeexpectancy’,by=’polityscore’)
+subset.boxplot(column=’suicideper100th’,by=’polityscore’)
+subset.boxplot(column=’urbanrate’,by=’polityscore’)
+</code></pre>
+</div>
+
+<p>The following are the boxplots that were generated</p>
+
+<figure>
+  <img src="/images/boxplot1.png" alt="this is a placeholder image" />
+  <figcaption>Boxplot of Average Income per person against polityscore
+</figcaption>
+</figure>
+
+<p>There is a strong positive correlation between how “democratic” an economy is and the average annual income level.</p>
+
+<figure>
+  <img src="/images/boxplot2.png" alt="this is a placeholder image" />
+  <figcaption>Boxplot of Alcohol consumption against polityscore
+</figcaption>
+</figure>
+
+<p>Surprisingly, the amount of alcohol consumption goes up as an economy becomes more ‘democratic’. However, this increase might only be due to a country becoming more “open”. There is not much data to infer whether this increased alcohol consumption actually leads to any detrimental effects in the economy.</p>
+
+<figure>
+  <img src="/images/boxplot3.png" alt="this is a placeholder image" />
+  <figcaption>Boxplot of Rates of Breast Cancer cases per 1000 people against polityscore
+</figcaption>
+</figure>
+
+<p>The rates of breast cancer rise up as the economy becomes more “open”. This is a surprising result, since one would believe that the general level of health and the prevalence of diseases might go down as a country becomes more democratic. However, a possible explanation of this trend might be that a more ‘open’ society leads to more cases of breast cancer being reported, since better healthcare leads to more women being tested for it.</p>
+
+<figure>
+  <img src="/images/boxplot4.png" alt="this is a placeholder image" />
+  <figcaption>Boxplot of CO2 emission against polityscore
+</figcaption>
+</figure>
+
+<p>There is a very slight positive correlation between the polityscore and the levels of CO2 emissions in a country. A possible reason of this might be that increased industrialisation in more “open” societies leads to more level of co2 emissions.</p>
+
+<figure>
+  <img src="/images/boxplot5.png" alt="this is a placeholder image" />
+  <figcaption>Boxplot of female employment against polityscore
+</figcaption>
+</figure>
+
+<p>A correlation cannot be drawn explicitly between the level of “democracy” in a society and the level of female employment. While proponents of democracy argue that democracy and women’s rights go hand-in-hand, it would be wrong to equate the level of female employment in a country to be the only metric for measuring how well the women are generally treated in it. For instance, a reason for the high level of female employment in more ‘autocratic’ countries might be that women often have to work to support their families.</p>
+
+<figure>
+  <img src="/images/boxplot6.png" alt="this is a placeholder image" />
+  <figcaption>Boxplot of HIV rates against polityscore
+</figcaption>
+</figure>
+
+<p>There is a strong negative correlation between the rates of HIV in a country and how “democratic” it is, which points to an improvement in the healthcare of a country as it becomes more ‘democratic’.</p>
+
+<figure>
+  <img src="/images/boxplot7.png" alt="this is a placeholder image" />
+  <figcaption>Boxplot of life expectancy against polityscore
+</figcaption>
+</figure>
+
+<p>There is a positive correlation between the life expectancy of a country and its level of ‘democracy’.</p>
+
+<figure>
+  <img src="/images/boxplot8.png" alt="this is a placeholder image" />
+  <figcaption>Boxplot of suicide rate per 1000 against polityscore
+</figcaption>
+</figure>
+
+<p>Much cannot be deduced about the suicide rate of a country being linked with the level of ‘democracy’ in a country. The rate fluctuates across different democracies, which hints at the fact that there must be other reasons that are related more strongly to the suicide rate of a country.</p>
+
+<figure>
+  <img src="/images/boxplot9.png" alt="this is a placeholder image" />
+  <figcaption>Boxplot of urban rate against polityscore
+</figcaption>
+</figure>
+
+<p>The rate of urbanisation in a country is strongly positively correlated with how “democratic” it is.</p>
+
+<p>Based on the analysis, I shall now be considering the following variables in my analysis:</p>
+
+<ul>
   <li>
     <p>alconconsumption(2008 alcohol consumption per adult)</p>
   </li>
@@ -294,169 +490,7 @@
   </li>
 </ul>
 
-<p>The following code block was used for converting the required variables to the proper format in order to carry out graphical analysis of them.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>import pandas as pd
-import numpy as np
-data = pd.read_csv(‘gapminder.csv’, low_memory=False)
-#setting variables you will be working with to numeric
-data[‘incomeperperson’] = data[‘incomeperperson’].convert_objects(convert_numeric=True)
-data[‘alcconsumption’] = data[‘alcconsumption’].convert_objects(convert_numeric=True)
-data[‘breastcancerper100th’] = data[‘breastcancerper100th’].convert_objects(convert_numeric=True)
-data[‘employrate’] = data[‘employrate’].convert_objects(convert_numeric=True)
-data[‘hivrate’] = data[‘hivrate’].convert_objects(convert_numeric=True)
-data[‘lifeexpectancy’] = data[‘lifeexpectancy’].convert_objects(convert_numeric=True)
-data[‘urbanrate’] = data[‘urbanrate’].convert_objects(convert_numeric=True) 
-data[‘polityscore’] = data[‘polityscore’].convert_objects(convert_numeric=True)
-#select data subset that does not have any missing polity scores
-subset = data[np.isfinite(data[‘polityscore’])] 
-subset = subset[np.isfinite(subset[‘incomeperperson’])] 
-subset = subset[np.isfinite(subset[‘alcconsumption’])]
-subset = subset[np.isfinite(subset[‘breastcancerper100th’])]
-subset = subset[np.isfinite(subset[‘employrate’])]
-subset = subset[np.isfinite(subset[‘hivrate’])]
-subset = subset[np.isfinite(subset[‘lifeexpectancy’])]
-subset = subset[np.isfinite(subset[‘urbanrate’])]
-</code></pre>
-</div>
-
-<p>The following were the histograms generated for each variable in question, along with a brief description of their spread that could be observed.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>subset[‘lifeexpectancy’].hist(bins=50)
-</code></pre>
-</div>
-
-<figure>
-  <img src="/images/hist-graphical-analysis-1.png" alt="this is a placeholder image" />
-</figure>
-
-<p>The above is a histogram of the life expectancy values in the dataset. The values have a positive skew to them, although the values are kind of evenly distributed across the age ranges. The average life expectancy of the dataset hovers around the 70 years mark.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>subset[‘incomeperperson’].hist(bins=50)
-</code></pre>
-</div>
-
-<figure>
-  <img src="/images/hist-graphical-analysis-2.png" alt="this is a placeholder image" />
-</figure>
-
-<p>The values for the income distribution across the dataset are highly negatively skewed. The majority of the people in the dataset have an average income of between $ 0 to $5000.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>subset[‘alcconsumption’].hist(bins=50)
-</code></pre>
-</div>
-<figure>
-  <img src="/images/hist-graphical-analysis-3.png" alt="this is a placeholder image" />
-</figure>
-
-<p>The values of alcohol consumption are again very negatively skewed. A major reason for this might be the fact that in most of the developing countries, the rates of alcohol consumption are not very well recorded. Therefore, even though these countries might be suffering from alcoholism coupled with poor economic conditions, these stats are not necessarily reflected in the data.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>subset[‘breastcancerper100th’].hist(bins=50)
-</code></pre>
-</div>
-
-<figure>
-  <img src="/images/hist-graphical-analysis-4.png" alt="this is a placeholder image" />
-</figure>
-
-<p>Although the rates of breast cancer are also negatively skewed, there is a huge occurrence of 20–40 cases of breast cancer per 10,000 population. Also, in the graph, there can be observed a subset of countries which have very high breast cancer rates, around 80–95 rates per 10,000 people.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>subset[‘employrate’].hist(bins=50)
-</code></pre>
-</div>
-
-<figure>
-  <img src="/images/hist-graphical-analysis-5.png" alt="this is a placeholder image" />
-</figure>
-
-<p>The rate of employment can be said to be somewhat evenly distributed. The median rate of employment is between 55 to 65 .</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>subset[‘hivrate’].hist(bins=50)
-</code></pre>
-</div>
-
-<figure>
-  <img src="/images/hist-graphical-analysis-6.png" alt="this is a placeholder image" />
-</figure>
-
-<p>The rates of HIV are very negatively skewed. However, the distribution of this does not do justice to the fact that a lot of countries, the rate of HIV, although being “low” on an absolute scale, is still problematic high and needs to be fixed.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>subset[‘urbanrate’].hist(bins=50)
-</code></pre>
-</div>
-<figure>
-  <img src="/images/hist-graphical-analysis-7.png" alt="this is a placeholder image" />
-</figure>
-
-<p>The data for the urban rates in the countries is very evenly distributed, with a slight positive skew. The average urban rate lies somewhere between 50–70 people per 1000 in the dataset.</p>
-
-<p>Now, for the more interesting analysis.</p>
-
-<p>I decided to plot boxplots for all of the predictor variables against the the polityscores. This would give a good picture of how exactly each variable changed with how “democratic” or “autocratic” a country was.</p>
-
-<p>The following code was used to draw the different boxplots.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>subset.boxplot(column=’incomeperperson’,by=’polityscore’)
-subset.boxplot(column=’alcconsumption’,by=’polityscore’)
-subset.boxplot(column=’breastcancerper100th’,by=’polityscore’)
-subset.boxplot(column=’employrate’,by=’polityscore’)
-subset.boxplot(column=’hivrate’,by=’polityscore’)
-subset.boxplot(column=’lifeexpectancy’,by=’polityscore’)
-subset.boxplot(column=’urbanrate’,by=’polityscore’)
-</code></pre>
-</div>
-
-<p>The following are the boxplots that were generated</p>
-
-<figure>
-  <img src="/images/boxplot-graphical-analysis-1.png" alt="this is a placeholder image" />
-  <figcaption>Boxplot of Average Income per person against polityscore
-</figcaption>
-</figure>
-
-<p>There is a strong positive correlation between how “democratic” an economy is and the average annual income level.</p>
-
-<figure>
-  <img src="/images/boxplot-graphical-analysis-2.png" alt="this is a placeholder image" />
-  <figcaption>Boxplot of Alcohol consumption against polityscore
-</figcaption>
-</figure>
-
-<p>Surprisingly, the amount of alcohol consumption goes up as an economy becomes more ‘democratic’. However, this increase might only be due to a country becoming more “open”. There is not much data to infer whether this increased alcohol consumption actually leads to any detrimental effects in the economy.</p>
-
-<figure>
-  <img src="/images/boxplot-graphical-analysis-3.png" alt="this is a placeholder image" />
-  <figcaption>Boxplot of Rates of Breast Cancer cases per 1000 people against polityscore
-</figcaption>
-</figure>
-
-<p>The rates of breast cancer rise up as the economy becomes more “open”. This is a surprising result, since one would believe that the general level of health and the prevalence of diseases might go down as a country becomes more democratic. However, a possible explanation of this trend might be that a more ‘open’ society leads to more cases of breast cancer being reported, since better healthcare leads to more women being tested for it.</p>
-
-<figure>
-  <img src="/images/boxplot-graphical-analysis-4.png" alt="this is a placeholder image" />
-  <figcaption>Boxplot of HIV rates against polityscore
-</figcaption>
-</figure>
-
-<p>There is a strong negative correlation between the rates of HIV in a country and how “democratic” it is, which points to an improvement in the healthcare of a country as it becomes more ‘democratic’.</p>
-
-<figure>
-  <img src="/images/boxplot-graphical-analysis-5.png" alt="this is a placeholder image" />
-  <figcaption>Boxplot of life expectancy against polityscore
-</figcaption>
-</figure>
-
-<p>There is a positive correlation between the life expectancy of a country and its level of ‘democracy’.</p>
-
-<figure>
-  <img src="/images/boxplot-graphical-analysis-6.png" alt="this is a placeholder image" />
-  <figcaption>Boxplot of urban rate against polityscore
-</figcaption>
-</figure>
-
-<p>The rate of urbanisation in a country is strongly positively correlated with how “democratic” it is.</p>
-
-<p><em>This post was originally published on <a href="https://medium.com/@ottoman91/graphical-analysis-does-a-more-democratic-society-lead-to-an-improvement-in-the-quality-of-e2b6c97fcef2" target="_blank">Medium</a></em></p>
+<p><em>This post was originally published on <a href="https://medium.com/@ottoman91/extrapolatory-analysis-does-a-more-democratic-society-lead-to-an-improvement-in-the-quality-of-d9183d884d77" target="_blank">Medium</a></em></p>
 
 
         
@@ -481,13 +515,13 @@ subset.boxplot(column=’urbanrate’,by=’polityscore’)
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=/projects/standard-of-living/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=/vizs/extrapolatory-analysis-gapminder/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=/projects/standard-of-living/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=/vizs/extrapolatory-analysis-gapminder/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://plus.google.com/share?url=/projects/standard-of-living/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+  <a href="https://plus.google.com/share?url=/vizs/extrapolatory-analysis-gapminder/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=/projects/standard-of-living/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=/vizs/extrapolatory-analysis-gapminder/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
       
@@ -495,11 +529,12 @@ subset.boxplot(column=’urbanrate’,by=’polityscore’)
 
   <nav class="pagination">
     
-      <a href="/projects/extrapolatory-analysis-gapminder/" class="pagination--pager" title="Extrapolatory Analysis — Does a “More Democratic” Society lead to an improvement in the “quality of life”?
+      <a href="/vizs/donaldcloud/" class="pagination--pager" title="The Donald Cloud
 ">Previous</a>
     
     
-      <a href="#" class="pagination--pager disabled">Next</a>
+      <a href="/vizs/standard-of-living/" class="pagination--pager" title="Graphical Analysis - Does a “More Democratic” Society lead to an improvement in the “quality of life”?
+">Next</a>
     
   </nav>
 

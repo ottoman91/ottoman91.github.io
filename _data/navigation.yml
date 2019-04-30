@@ -14,7 +14,7 @@ main:
     url: /designlog  
 
   - title: "Visualizations"
-    url: /viz 
+    url: /visualization
 
   - title: "Book Reviews"
     url: /book  

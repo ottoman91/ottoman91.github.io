@@ -275,6 +275,10 @@ collections:
   projects:
     output: true
     permalink: /:collection/:path/ 
+    share: true   
+  vizs:
+    output: true
+    permalink: /:collection/:path/ 
     share: true  
   healthcare:
     output: true
