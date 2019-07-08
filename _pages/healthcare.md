@@ -1,6 +1,6 @@
 ---
 layout: archive
-title: "eHealth"
+title: "Healthcare"
 permalink: healthcare/
 author_profile: true
 ---

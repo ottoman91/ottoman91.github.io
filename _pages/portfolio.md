@@ -6,8 +6,8 @@ intro:
   - excerpt: '**My Work In The Technology For Development Space In West Africa**'
 feature_row:
   - image_path: Healthcare.jpg
-    alt: "eHealth"
-    title: "eHealth"
+    alt: "Healthcare"
+    title: "Healthcare"
     url: /healthcare
     btn_label: "Read More"
     btn_class: "btn--info"
