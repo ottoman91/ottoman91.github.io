@@ -8,7 +8,7 @@ title: "Design Projects"
 {% include base_path %}
 
 <p>
-  <i>A collection of projects related to design, data visualization and prototyping</i>
+  <i>A collection of projects related to design, user research and prototyping</i>
 </p>
 
 <div class="grid__wrapper">
