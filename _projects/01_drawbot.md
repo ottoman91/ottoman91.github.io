@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "Drawbot"
-excerpt: "Turning bad sketches into (almost) drop-dead masterpieces"
+excerpt: "A Deep Learning algorithm that turns bad sketches into (almost) drop-dead masterpieces"
 header:
   teaser: drawbot/drawbot_teaser.png
 sidebar:
