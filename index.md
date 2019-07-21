@@ -16,7 +16,7 @@ uses open source technology to improve the delivery of services in the public se
 
 I am passionate about using human centered design in tandem with technology to
 create products and services that aim to solve some of the most pressing issues in the
-third world. At Stanford, my research focus is on using AI, machine learning and design thinking for social impact.
+third world. At Stanford, my research focus is on using AI, machine learning and design thinking in the healthcare space.
 
 [Find my CV here](/pdfs/CV_Usman_Khaliq.pdf){:target="_blank"}
 

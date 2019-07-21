@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "Dormio"
-excerpt: "A smart product which passively induces sleep and nudges users to form better sleep habits"
+excerpt: "A smart watch which passively induces sleep and nudges users to form better sleep habits"
 header:
   teaser: dormio/dormio_teaser_2.png
 sidebar:
