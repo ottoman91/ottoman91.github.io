@@ -6,9 +6,9 @@ title: About Me!
 
 {% include base_path %}
 
-I'm a Masters Candidate in Stanford's [Design](http://designimpact.stanford.edu/){:target="_blank"} program. 
+I'm a Masters Candidate in Stanford's [Design](http://designimpact.stanford.edu/){:target="_blank"} program.
 
-This summer, I'm interning as a User Researcher at [Verily Life Sciences](https://verily.com/){:target="_blank"} on a solution that aims to help healthcare providers to more efficiently identify, diagnose, treat and manage individuals with sleep apnea.
+This past summer, I interned as a User Researcher at [Verily Life Sciences](https://verily.com/){:target="_blank"} on building a care pathway  efficiently identify, diagnose, treat and manage individuals with sleep apnea.
 
 Before this,I worked in the information, communication and technology for development (ICTD) space in West Africa, particularly in Sierra Leone and Liberia on projects in the **healthcare**, **open government** and **financial
 inclusion** sectors. I was also the Country Manager for [Code for Sierra Leone](https://codeforsierraleone.org){:target="_blank"}, a civic tech organization that
