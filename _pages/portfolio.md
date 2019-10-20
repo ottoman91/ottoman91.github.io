@@ -1,8 +1,8 @@
 ---
 layout: single
-author_profile: true 
-permalink: /portfolio 
-intro: 
+author_profile: true
+permalink: /portfolio
+intro:
   - excerpt: '**My Work In The Technology For Development Space In West Africa**'
 feature_row:
   - image_path: Healthcare.jpg
@@ -41,17 +41,17 @@ feature_row2:
     url: /egov
     btn_label: "Read More"
     btn_class: "btn--info"
---- 
+---
 
 {% include base_path %}
 
 <!-- {% include feature_row id="intro" type="center" %}
- --> 
+ -->
 
 <h1>Work Portfolio</h1>
 <p>
-  <i>My work in the tech for development space in West Africa and Pakistan
-  was in the following sectors</i>
+  <i>My work in the United States, West Africa and Pakistan
+  has been in the following sectors:</i>
 
 </p>
 {% include feature_row %}

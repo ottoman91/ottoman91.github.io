@@ -7,12 +7,10 @@ author_profile: true
 {% include base_path %}
 
 
-*Built low cost tech tools to deliver basic healthcare to underserved people, 
-and redesigned the nationwide infectious disease surveillance system 
-during the post Ebola recovery period in Sierra Leone*
+*Designed a care pathway for sleep apnea patients, improved operation efficiency at the Stanford Children's Hospital,redesigned Sierra Leone's nationwide post-Ebola infectious disease surveillance system, and built low cost tech tools to deliver basic healthcare to underserved people*
 
 <!-- <figure class="half">
-  <a href="/healthcare" target="_blank"> 
+  <a href="/healthcare" target="_blank">
     <img src="/images/koldokta.png">
   </a>
    <a href="/healthcare" target="_blank">

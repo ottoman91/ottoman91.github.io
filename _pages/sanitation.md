@@ -2,13 +2,13 @@
 layout: archive
 title: "Water and Sanitation"
 permalink: watersanitation/
-author_profile: true 
+author_profile: true
 ---
 {% include base_path %}
 
 
-*Designed and implemented human centered design based services for enhancing
-access to water and sanitation services in Pakistan and Sierra Leone*
+*Designed and implemented services for enhancing
+access to water and sanitation in Pakistan and Sierra Leone*
 
 
 <div class="grid__wrapper">
