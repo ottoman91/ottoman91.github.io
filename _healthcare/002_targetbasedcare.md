@@ -1,9 +1,9 @@
 ---
 layout: single
-title: "Target Based Care at Stanford Children's Hospital"
+title: "Stanford Hospital"
 excerpt: "Developed a clustering algorithm to define patient cohorts based on EHR and Registry data."
 header:
-  teaser: tbc1.png
+  teaser: stanford_logo.jpg
 sidebar:
   - title: "Team Members"
     text: "Frank Voris,Isabelle Rao,Evgeny Moshkovich, Usman Khaliq"

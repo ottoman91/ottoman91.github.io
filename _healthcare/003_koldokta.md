@@ -1,10 +1,10 @@
 ---
 layout: single
 title: "Kol Dokta"
-excerpt: "Streamlining delivery of affordable healthcare in Sierra Leone via an
-interactive voice response based system."
+excerpt: "Streamlined delivery of affordable healthcare in Sierra Leone via an
+interactive voice response system."
 header:
-  teaser: koldokta11.png
+  teaser: idt_labs_logo.png
 sidebar:
   - title: "Role in This Project"
     text: "Lead Human Centered Designer"

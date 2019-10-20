@@ -1,10 +1,10 @@
 ---
 layout: single
-title: "IBM Disease Surveillance System"
+title: "IBM Research Africa"
 excerpt: "Pilot implementation of an infectious disease and community response
 based system in Sierra Leone."
 header:
-  teaser: EPIC.png
+  teaser: ibm_logo.jpg
 sidebar:
   - title: "Role in This Project"
     text: "Pilot Implementor, Ethnographic Researcher"
