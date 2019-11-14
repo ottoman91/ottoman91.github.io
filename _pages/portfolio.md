@@ -5,37 +5,37 @@ permalink: /portfolio
 intro:
   - excerpt: '**My Work In The Technology For Development Space In West Africa**'
 feature_row:
-  - image_path: Healthcare.jpg
+  - image_path: healthcare.png
     alt: "Healthcare"
     title: "Healthcare"
     url: /healthcare
     btn_label: "Read More"
     btn_class: "btn--info"
-  - image_path: FInancial_inclusion.jpg
+  - image_path: fin_inclusion_1.png
     alt: "Financial Inclusion"
     title: "Financial Inclusion"
     url: /fin
     btn_label: "Read More"
     btn_class: "btn--info"
-  - image_path: civic_media.jpg
+  - image_path: civic_media_2.png
     title: "Civic Media"
     url: /civicmedia
     btn_label: "Read More"
     btn_class: "btn--info"
 feature_row2:
-  - image_path: Open_data.jpg
+  - image_path: open_data.png
     alt: "Open Data"
     title: "Open Data"
     url: /opendata
     btn_label: "Read More"
     btn_class: "btn--info"
-  - image_path: Water_and_sanitation.jpg
+  - image_path: water_sanitation.png
     alt: "Water and Sanitation"
     title: "Water & Sanitation"
     url: /watersanitation
     btn_label: "Read More"
     btn_class: "btn--info"
-  - image_path: E-government.jpg
+  - image_path: e-gov.png
     alt: "E Government"
     title: "E Government"
     url: /egov
