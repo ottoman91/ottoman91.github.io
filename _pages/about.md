@@ -1,10 +1,8 @@
 ---
 layout: single
-author_profile: true
 title: About Me!
 permalink: /about
-
-
+author_profile: true
 ---
 
 I'm currently a Masters Candidate in Stanford's [Design](http://designimpact.stanford.edu/){:target="_blank"} program.
@@ -19,3 +17,29 @@ third world. At Stanford, my research focus is on using AI, machine learning and
 to improve public sector healthcare delivery in developing countries.
 
 [My CV can be found here](/pdfs/CV_Usman_Khaliq.pdf){:target="_blank"}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
