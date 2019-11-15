@@ -7,12 +7,12 @@ author_profile: true
 {% include base_path %}
 
 
-*Built citizen engagement tools that empower the civic society 
-to  track the performance of parliamentarians and for 
-reporting civic issues to their representatives*
+*While serving as the Country Lead of Code for Sierra Leone, I built citizen engagement tools
+that aimed to empowered civic society by providing platforms for people to
+report civic issues to their elected representatives*
 
 <!-- <figure class="half">
-  <a href="/healthcare" target="_blank"> 
+  <a href="/healthcare" target="_blank">
     <img src="/images/koldokta.png">
   </a>
    <a href="/healthcare" target="_blank">

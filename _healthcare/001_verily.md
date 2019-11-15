@@ -25,9 +25,15 @@ Over the course of the internship, I achieved the following:
 
 ## My Design Research Process
 
+
 ### Usability Sessions
 
 I created a discussion guide which had the following structure:
+
+<figure>
+  <img src="/images/Verily Study Overview.png" alt="Overview of My Design Research Process">
+  <figcaption>Overview of My Design Research Process</figcaption>
+</figure>
 
 * **Introductory questions**. These were meant to establish a rapport with the user and set a good starting point to ask more detailed questions about their experience with sleep apnea, e.g.
 *How are you?*
@@ -49,18 +55,15 @@ Each task had a set of goals for the user to achieve, which the interiewer would
 
 After reviewing the raw notes from the usability sessions, I analysed the findings as follows:
 
-* **Objectives of the Usability Testing** I listed down the main objectives of the testing in order of decreasing importance. This was a good way for me to focus on inferring the important insights from the usability sessions.
+<figure>
+  <img src="/images/Verily Analysis Plan.png" alt="Overview of My Analysis Plan">
+  <figcaption>Overview of My Analysis Plan</figcaption>
+</figure>
 
-* **Feedback from the Tasks** For every task that the users performed, list the relevant quotes or observations. Use these to color code how well the users achieved the intended goals of each task. This metric was then used to determine whether the prototype was successful in meeting different user needs.
+### The Outcome
+The user research that I conducted over the course of my internship informed several
+key changes that were made to the product.These changes were well received by the users during our
+user studies, and they will hopefully help in engaging the product users.
 
-* **High Level FIndings** Summarizing any high level findings that I observed from the sessions
-
-* **Major Takeaways** A list of any major user insights that the team should be focusing on for their next design sprints
-
-* **Nuggets** List any unique observations from the users which the product team should be aware about.
-
-* **Improvements in UX** List any immediate improvements that could be made to improve the prototype's user experience.
-
-* **Future Research Questions** Identify other important research questions which could be explored in the future to make the product more user-centric.
 
 
