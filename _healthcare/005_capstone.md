@@ -4,7 +4,7 @@ title: "Disease Management for Pediatric Patients"
 excerpt: "Using human-centered design to improve disease management for
 pediatric patients at the Stanford Children's Hospital."
 header:
-  teaser: verily-logo.png
+  teaser: capstone_pic.png
 sidebar:
   - title: "Team Members"
     text: "Gaurab Saha,Sohini Guin, Usman Khaliq"
