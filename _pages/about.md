@@ -5,7 +5,7 @@ permalink: /about
 author_profile: true
 ---
 
-I'm a Masters Candidate in Stanford's [Design](http://designimpact.stanford.edu/){:target="_blank"} program, with a focus on using human-centered design principles to create healthcare products and services. I'm currently researching in the [Human Computer Interaction(HCI)](https://hci.stanford.edu/){:target="_blank"} group under [James Landay](https://www.landay.org/){:target="_blank"} on building physical and digital adaptations to enhance sustainability and well-being, and also on developing technology for modelling and predicting individualized pain patterns in everyday life.
+I'm a Masters Candidate in Stanford's [Design](http://designimpact.stanford.edu/){:target="_blank"} program, with a focus on using data science and human-centered design principles to improve healthcare products and services. I'm currently researching in the [Human Computer Interaction(HCI)](https://hci.stanford.edu/){:target="_blank"} group under [James Landay](https://www.landay.org/){:target="_blank"} on building physical and digital adaptations that enhance sustainability and human well-being.
 
 This past summer, I interned as a User Researcher at [Verily Life Sciences](https://verily.com/){:target="_blank"} on building a care pathway to efficiently identify, diagnose, treat and manage individuals with sleep apnea.
 
