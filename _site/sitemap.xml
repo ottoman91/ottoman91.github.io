@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://ottoman91.github.io/ottoman91/gcp_colab_r/</loc>
+<lastmod>2020-06-21T00:00:00+00:00</lastmod>
+</url>
+<url>
 <loc>http://ottoman91.github.io/ottoman91/transience-of-life/</loc>
 <lastmod>2019-03-10T00:00:00+00:00</lastmod>
 </url>
@@ -95,7 +99,7 @@
 <loc>http://ottoman91.github.io/ottoman91/civictechs/digital-innovation-is-difficult/</loc>
 </url>
 <url>
-<loc>http://ottoman91.github.io/ottoman91/codes/removing-homebrew-package/</loc>
+<loc>http://ottoman91.github.io/ottoman91/codes/2020-06-21-removing-homebrew-package/</loc>
 </url>
 <url>
 <loc>http://ottoman91.github.io/ottoman91/egov/foi/</loc>

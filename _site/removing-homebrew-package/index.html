@@ -19,7 +19,7 @@
 
 
 
-<title>Drawbot - Usman Khaliq</title>
+<title>Removing a Homebrew Package and All of its Dependencies on macOS - Usman Khaliq</title>
 
 
 
@@ -29,21 +29,21 @@
 
 <meta property="og:locale" content="en-US">
 <meta property="og:site_name" content="Usman Khaliq">
-<meta property="og:title" content="Drawbot">
+<meta property="og:title" content="Removing a Homebrew Package and All of its Dependencies on macOS">
 
 
-  <link rel="canonical" href="http://ottoman91.github.io/ottoman91/projects/01_drawbot/">
-  <meta property="og:url" content="http://ottoman91.github.io/ottoman91/projects/01_drawbot/">
+  <link rel="canonical" href="http://ottoman91.github.io/ottoman91/removing-homebrew-package/">
+  <meta property="og:url" content="http://ottoman91.github.io/ottoman91/removing-homebrew-package/">
 
 
 
-  <meta property="og:description" content="A Deep Learning algorithm that turns bad sketches into (almost) drop-dead masterpieces">
+  <meta property="og:description" content="Homebrew is an excellent command line package management tool for Mac OSx, and it is rightly proclaimed as “The missing package manager for macOS”, as stated on its official website. However, a few days ago, I came across an urgent task which I had not addressed before, namely, how to cleanly and completely remove a package installed from Homebrew, along with all of its dependencies.A quick online search rendered the following approach on Stackoverflow, which included using an external command called brew rmtree, which was to be executed as follows:">
 
 
 
   <meta name="twitter:site" content="@usmankhaliq">
-  <meta name="twitter:title" content="Drawbot">
-  <meta name="twitter:description" content="A Deep Learning algorithm that turns bad sketches into (almost) drop-dead masterpieces">
+  <meta name="twitter:title" content="Removing a Homebrew Package and All of its Dependencies on macOS">
+  <meta name="twitter:description" content="Homebrew is an excellent command line package management tool for Mac OSx, and it is rightly proclaimed as “The missing package manager for macOS”, as stated on its official website. However, a few days ago, I came across an urgent task which I had not addressed before, namely, how to cleanly and completely remove a package installed from Homebrew, along with all of its dependencies.A quick online search rendered the following approach on Stackoverflow, which included using an external command called brew rmtree, which was to be executed as follows:">
   <meta name="twitter:url" content="">
 
   
@@ -64,12 +64,10 @@
 
 
   <meta property="og:type" content="article">
-  <meta property="article:published_time" content="2020-06-21T07:46:09+00:00">
-  
-    <link rel="next" href="http://ottoman91.github.io/ottoman91/projects/2019_00001_targetbasedcare/" title="Automating Target Based Care at the Lucille Packard Children&#39;s Hospital">
+  <meta property="article:published_time" content="2020-06-21T00:00:00+00:00">
   
   
-    <link rel="prev" href="http://ottoman91.github.io/ottoman91/projects/001dormio/" title="Dormio">
+    <link rel="prev" href="http://ottoman91.github.io/ottoman91/transience-of-life/" title="The transience of life">
   
 
 
@@ -237,34 +235,26 @@
 </div>
 
   
-    
-      
-      <h3>Team Members</h3>
-      <p>Jimmie Harris,Tayo Falase, Usman Khaliq</p>
-
-    
-    
-  
   </div>
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Drawbot">
-    <meta itemprop="description" content="A Deep Learning algorithm that turns bad sketches into (almost) drop-dead masterpieces">
+    <meta itemprop="headline" content="Removing a Homebrew Package and All of its Dependencies on macOS">
+    <meta itemprop="description" content="Homebrew is an excellent command line package management tool for Mac OSx, and it is rightly proclaimed as “The missing package manager for macOS”, as stated on its official website. However, a few days ago, I came across an urgent task which I had not addressed before, namely, how to cleanly and completely remove a package installed from Homebrew, along with all of its dependencies.A quick online search rendered the following approach on Stackoverflow, which included using an external command called brew rmtree, which was to be executed as follows:">
     <meta itemprop="datePublished" content="June 21, 2020">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 class="page__title" itemprop="headline">Drawbot
+          <h1 class="page__title" itemprop="headline">Removing a Homebrew Package and All of its Dependencies on macOS
 </h1>
           
             <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
 
 
   
-	  less than 1 minute read
+	  1 minutes read
 	
 </p>
           
@@ -272,35 +262,44 @@
       
 
       <section class="page__content" itemprop="text">
-        <blockquote>
-  <p>How might we design and develop a deep learning application that takes as its input a rough(or badly) made sketch and transforms it into a drop-dead masterpiece?</p>
-</blockquote>
+        <p>Homebrew is an excellent command line package management tool for Mac OSx, and it is rightly proclaimed as “The missing package manager for macOS”, as stated on its official website. However, a few days ago, I came across an urgent task which I had not addressed before, namely, how to cleanly and completely remove a package installed from Homebrew, along with all of its dependencies.
+A quick online search rendered the following approach on Stackoverflow, which included using an external command called brew rmtree, which was to be executed as follows:</p>
 
-<h2 id="background">Background</h2>
+<div class="highlighter-rouge"><pre class="highlight"><code>
+brew tap beeftornado/rmtree
+brew rmtree &lt;package&gt;
+</code></pre>
+</div>
 
-<p>I worked on this project as part of the Deep Learning course taught at Stanford by Andrew Ng.
-In our team, as designers, two of us have often struggled to bring our ideas
-to life in an aesthetically pleasing manner, while all three of us would dearly 
-love to have a tool that makes it easy for us to churn out beautiful sketches.</p>
+<p>However, for some reason, when I ran this command, brew took an insanely long time to update. I am not quite sure what the error was, but it was most probably due to my crappy internet connection.
+Nevertheless, I came across another method for achieving this task on the same Stackoverflow answer thread. I found this method to be easier and way quicker, although it did take me a while to figure out how to run external brew scripts and the configurations that need to be made to run them. To save others the hassle and time of understanding how the configuration would need to be set up, I am highlighting the steps followed below:</p>
 
-<p>The input to our algorithm is a bad sketch of a face. We then use a MUNIT network 
-to output a much cleaner and aesthetically accurate image of a face. We found 
-that while the model was able to learn large parameters (face shape and size), 
-it was unable to learn finer details (nose shape, smiling/frowning). 
-We believe that with better data, this model could be used to create more accurate
-sketches.</p>
+<ol>
+  <li>
+    <p>Download the brew_clean script from <a href="https://gist.github.com/cskeeters/10ff1295bca93808213d">this</a> Github repo</p>
+  </li>
+  <li>
+    <p>Once you have unzipped the downloaded file, copy the brew_clean script to /usr/local/bin. This would ensure that the script is global.</p>
+  </li>
+  <li>Make the script executable by running the following command in the /usr/local/bin directory:
+<code class="highlighter-rouge">
+sudo chmod+x brew_clean
+</code></li>
+  <li>Run the following command in your directory of choice to generate a file that contains the list of all brew packages installed on your machine:
+<code class="highlighter-rouge">
+brew leaves &gt; brew_packages
+</code></li>
+  <li>
+    <p>Open the brew_packages file using your favourite text editor ( which is nano in my case for such small tasks). In the file, delete the name of the package you want to remove. Save and close the file.</p>
+  </li>
+  <li>Run the following command to allow brew_clean to remove the package you deleted from the brew_packages file:
+<code class="highlighter-rouge">
+brew_clean brew_packages
+</code>
+And there you have it. You can verify that the package has indeed been deleted by moving to the /usr/local/Cellar directory. The package that you just deleted would no longer be listed in the directory.
+Hope this helped. Happy coding and creating awesome software solutions for the world!</li>
+</ol>
 
-<h2 id="project-poster">Project Poster</h2>
-
-<figure>
-<a href="/pdfs/DrawBot_Poster.pdf" target="_blank">
-  <img src="/images/drawbot/drawbot_poster.jpg" alt="this is a placeholder image" />
-</a>
-</figure>
-
-<h2 id="project-report">Project Report</h2>
-
-<p><a href="/pdfs/draw_bot_report.pdf" target="_blank">Click here</a> to access the full report for the project</p>
 
         
       </section>
@@ -313,23 +312,36 @@ sketches.</p>
 
 
         
-          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-06-21T07:46:09+00:00">June 21, 2020</time></p>
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-06-21T00:00:00+00:00">June 21, 2020</time></p>
         
       </footer>
 
       
+
+<section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=/removing-homebrew-package/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=/removing-homebrew-package/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://plus.google.com/share?url=/removing-homebrew-package/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=/removing-homebrew-package/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
 
       
 
 
   <nav class="pagination">
     
-      <a href="/projects/001dormio/" class="pagination--pager" title="Dormio
+      <a href="/transience-of-life/" class="pagination--pager" title="The transience of life
 ">Previous</a>
     
     
-      <a href="/projects/2019_00001_targetbasedcare/" class="pagination--pager" title="Automating Target Based Care at the Lucille Packard Children’s Hospital
-">Next</a>
+      <a href="#" class="pagination--pager disabled">Next</a>
     
   </nav>
 

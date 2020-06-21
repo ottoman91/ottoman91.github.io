@@ -19,7 +19,7 @@
 
 
 
-<title>Sierra Leone Government to Payments Financial Lives Survey  - Usman Khaliq</title>
+<title>Accessing Google Cloud Platform Buckets From a Co-Lab Notebook Running R - Usman Khaliq</title>
 
 
 
@@ -29,21 +29,21 @@
 
 <meta property="og:locale" content="en-US">
 <meta property="og:site_name" content="Usman Khaliq">
-<meta property="og:title" content="Sierra Leone Government to Payments Financial Lives Survey">
+<meta property="og:title" content="Accessing Google Cloud Platform Buckets From a Co-Lab Notebook Running R">
 
 
-  <link rel="canonical" href="http://ottoman91.github.io/ottoman91/fin/intellicap/">
-  <meta property="og:url" content="http://ottoman91.github.io/ottoman91/fin/intellicap/">
+  <link rel="canonical" href="http://ottoman91.github.io/ottoman91/codes/gcp_colab_r/">
+  <meta property="og:url" content="http://ottoman91.github.io/ottoman91/codes/gcp_colab_r/">
 
 
 
-  <meta property="og:description" content="A survey to understand how Sierra Leoneans engaged with financial products and services.">
+  <meta property="og:description" content="Last week, I set up a Google Co-lab notebook running on R (my preferred language for data exploration and early stages EDA). I wanted to access some buckets from a Google Cloud Platform(GCP) project that was being hosted on my company’s GCP platform. I used the googleCloudStorageR library written by Mark Edmondson.">
 
 
 
   <meta name="twitter:site" content="@usmankhaliq">
-  <meta name="twitter:title" content="Sierra Leone Government to Payments Financial Lives Survey">
-  <meta name="twitter:description" content="A survey to understand how Sierra Leoneans engaged with financial products and services.">
+  <meta name="twitter:title" content="Accessing Google Cloud Platform Buckets From a Co-Lab Notebook Running R">
+  <meta name="twitter:description" content="Last week, I set up a Google Co-lab notebook running on R (my preferred language for data exploration and early stages EDA). I wanted to access some buckets from a Google Cloud Platform(GCP) project that was being hosted on my company’s GCP platform. I used the googleCloudStorageR library written by Mark Edmondson.">
   <meta name="twitter:url" content="">
 
   
@@ -64,10 +64,10 @@
 
 
   <meta property="og:type" content="article">
-  <meta property="article:published_time" content="2020-06-21T07:46:09+00:00">
+  <meta property="article:published_time" content="2020-06-21T07:45:32+00:00">
   
   
-    <link rel="prev" href="http://ottoman91.github.io/ottoman91/fin/icommit2/" title="miKashBoks">
+    <link rel="prev" href="http://ottoman91.github.io/ottoman91/codes/2020-06-21-removing-homebrew-package/" title="Removing a Homebrew Package and All of its Dependencies on macOS">
   
 
 
@@ -235,62 +235,56 @@
 </div>
 
   
-    
-      
-      <h3>Role in This Project</h3>
-      <p>Researcher</p>
-
-    
-    
-  
   </div>
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Sierra Leone Government to Payments Financial Lives Survey">
-    <meta itemprop="description" content="A survey to understand how Sierra Leoneans engaged with financial products and services.">
+    <meta itemprop="headline" content="Accessing Google Cloud Platform Buckets From a Co-Lab Notebook Running R">
+    <meta itemprop="description" content="Last week, I set up a Google Co-lab notebook running on R (my preferred language for data exploration and early stages EDA). I wanted to access some buckets from a Google Cloud Platform(GCP) project that was being hosted on my company’s GCP platform. I used the googleCloudStorageR library written by Mark Edmondson.">
     <meta itemprop="datePublished" content="June 21, 2020">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 class="page__title" itemprop="headline">Sierra Leone Government to Payments Financial Lives Survey
+          <h1 class="page__title" itemprop="headline">Accessing Google Cloud Platform Buckets From a Co-Lab Notebook Running R
 </h1>
+          
+            <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
+
+
+  
+	  1 minute read
+	
+</p>
           
         </header>
       
 
       <section class="page__content" itemprop="text">
-        <p><em>This project was implemented while I was working at a consultant with <a href="https://www.intellecap.com/" target="_blank">Intellecap</a></em></p>
+        <p>Last week, I set up a Google Co-lab notebook running on R (my preferred language for data exploration and early stages EDA). I wanted to access some buckets from a Google Cloud Platform(GCP) project that was being hosted on my company’s GCP platform. I used the <code class="highlighter-rouge">googleCloudStorageR</code> library written by <a href="https://code.markedmondson.me/">Mark Edmondson</a>.</p>
 
-<p class="text-center"><strong>Background Information</strong></p>
+<p>In the documentation for the package, they specified downloading a service account JSON file from a GCP project, which would then be referenced by the library for connecting to the GCP project and accessing the buckets. However, since I wanted this notebook to be easily shared by other people across my organization, I did not want to access a JSON file that had the access keys for the API and which would need to be saved along with the Co-lab notebook. Instead, I wanted to connect and authenticate with the GCP project interactively and in real-time from the Co-lab notebook, which would allow anyone with the correct credentials for my organization’s GCP project to run the notebook on their own.</p>
 
-<p>UNCDF is partnering the Bank of Sierra Leone and the Office of the Accountant 
-General at the Ministry of Finance for the planning and implementation of the 
-National Strategy for Financial Inclusion 2017 – 2020 under Digital Financial 
-Services (DFS). The Strategy identifies an opportunity to leverage the volume 
-of government salary payments to build a business case for DFS, thereby 
-expanding access points and ultimately the availability of a wide range of 
-financial services to underserved communities</p>
+<p>This seemingly simple workaround took longer than I had thought it would. With ample help from Marc, I was able to solve this issue using the code snippet below:</p>
 
-<p class="text-center"><strong>The Scope</strong></p>
-
-<p>Of the total 80,000 government employees who receive their salaries in their 
-bank accounts, at least 50% recipients are based in rural and hard to reach 
-areas where there is limited or no banking infrastructure. These recipients 
-have to travel long distances to district capitals, to check if their salaries 
-have been deposited and most of them withdraw their salary in full to avoid 
-having to undertake the ordeal of visiting the bank multiple times. The 
-assignment is to collect data on the financial lives of government employees, 
-particularly those based in rural areas. The survey will focus on information 
-related to their socio-economic profile, financial assets and services, f
-inancial behavior including savings, investments and credit behavior, 
-consumer perception about DFS and insurance solutions.</p>
-
-<p class="text-center"><strong>Final Findings of the Research</strong></p>
-
-<p><a href="/pdfs/UNCDF_report.pdf" target="_blank">Sierra Leone G2P Project. Results of the Government Employee Financial Lives Survey</a></p>
+<div class="highlighter-rouge"><pre class="highlight"><code>install.packages("httr")
+install.packages("R.utils")
+install.packages("googleCloudStorageR")
+if (file.exists("/usr/local/lib/python3.6/dist-packages/google/colab/_ipython.py")) {
+  library(R.utils)
+  library(httr)
+  reassignInPackage("is_interactive", pkgName = "httr", function() return(TRUE))
+}
+options(
+  rlang_interactive = TRUE,
+  gargle_oauth_email = "email_address",
+  gargle_oauth_cache = TRUE
+)
+tt &lt;- gargle::token_fetch(scopes = "https://www.googleapis.com/auth/cloud-platform")
+googleAuthR::gar_auth(token = tt)
+</code></pre>
+</div>
 
         
       </section>
@@ -303,18 +297,32 @@ consumer perception about DFS and insurance solutions.</p>
 
 
         
-          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-06-21T07:46:09+00:00">June 21, 2020</time></p>
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-06-21T07:45:32+00:00">June 21, 2020</time></p>
         
       </footer>
 
       
+
+<section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=/codes/gcp_colab_r/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=/codes/gcp_colab_r/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://plus.google.com/share?url=/codes/gcp_colab_r/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=/codes/gcp_colab_r/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
 
       
 
 
   <nav class="pagination">
     
-      <a href="/fin/icommit2/" class="pagination--pager" title="miKashBoks
+      <a href="/codes/2020-06-21-removing-homebrew-package/" class="pagination--pager" title="Removing a Homebrew Package and All of its Dependencies on macOS
 ">Previous</a>
     
     
@@ -324,6 +332,15 @@ consumer perception about DFS and insurance solutions.</p>
 
     </div>
 
+    
+      
+
+<div class="page__comments">
+  <h4 class="page__comments-title">Leave a Comment</h4>
+  
+    <section id="disqus_thread"></section>
+  
+</div>
     
   </article>
 
@@ -375,6 +392,33 @@ consumer perception about DFS and insurance solutions.</p>
   ga('create', 'UA-114314619-1', 'auto');
   ga('send', 'pageview');
 </script>
+
+
+
+
+
+
+  
+  <script type="text/javascript">
+  	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  	var disqus_shortname = 'usmankhaliq';
+
+  	/* * * DON'T EDIT BELOW THIS LINE * * */
+  	(function() {
+  		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  	})();
+
+  	/* * * DON'T EDIT BELOW THIS LINE * * */
+  	(function () {
+  		var s = document.createElement('script'); s.async = true;
+  		s.type = 'text/javascript';
+  		s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  		(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+  	}());
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
 
 
