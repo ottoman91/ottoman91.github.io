@@ -33,7 +33,7 @@ comments:
 google_site_verification :
 bing_site_verification   :
 alexa_site_verification  :
-yandex_site_verification : 
+yandex_site_verification :
 
 # Theme
 minimal_mistakes_skin : "dark"
@@ -72,10 +72,10 @@ google_ad_slot           :
 author:
   name             : "Usman Khaliq"
   avatar           : "usmanbio.gif"
-  bio              : "ICT for development practitioner. Masters Candidate of Design Impact at Stanford"
-  location         : "Stanford, California"
+  bio              : "Data Scientist at Overjet, works in R(tidyverse) and Python"
+  location         :
   email            : "usman.khaliq91@gmail.com"
-  uri              :  
+  uri              :
   bitbucket        :
   codepen          :
   dribbble         :
@@ -89,7 +89,7 @@ author:
   lastfm           :
   linkedin         : "usmankhaliq1"
   pinterest        :
-  soundcloud       : 
+  soundcloud       :
   stackoverflow    : "4623619/usman-khaliq"
   steam            :
   tumblr           :
@@ -213,7 +213,7 @@ tag_archive:
 compress_html:
   clippings: all
   ignore:
-    envs: development 
+    envs: development
 
 
 defaults:
@@ -227,7 +227,7 @@ defaults:
       read_time: true
       comments: true
       share: true
-      related: true 
+      related: true
 
 defaults:
   # _pages
@@ -235,7 +235,7 @@ defaults:
       path: ""
       type: pages
     values:
-      layout: single 
+      layout: single
 
 defaults:
   # _foo
@@ -243,7 +243,7 @@ defaults:
       path: ""
       type: foo
     values:
-      layout: single  
+      layout: single
 
 defaults:
   # _foo
@@ -251,59 +251,59 @@ defaults:
       path: ""
       type: splash
     values:
-      layout: single 
+      layout: single
       author_profile: true
 
 # Collections
 collections:
   blogs:
     output: true
-    permalink: /:collection/:path/ 
+    permalink: /:collection/:path/
     share: true
   books:
     output: true
-    permalink: /:collection/:path/ 
+    permalink: /:collection/:path/
     share: true
   civictechs:
     output: true
-    permalink: /:collection/:path/ 
+    permalink: /:collection/:path/
     share: true
   codes:
     output: true
-    permalink: /:collection/:path/ 
-    share: true 
+    permalink: /:collection/:path/
+    share: true
   projects:
     output: true
-    permalink: /:collection/:path/ 
-    share: true   
+    permalink: /:collection/:path/
+    share: true
   vizs:
     output: true
-    permalink: /:collection/:path/ 
-    share: true  
+    permalink: /:collection/:path/
+    share: true
   healthcare:
     output: true
-    permalink: /:collection/:path/ 
-    share: true  
+    permalink: /:collection/:path/
+    share: true
   sanitation:
     output: true
-    permalink: /:collection/:path/ 
-    share: true  
+    permalink: /:collection/:path/
+    share: true
   opendata:
     output: true
-    permalink: /:collection/:path/ 
-    share: true 
+    permalink: /:collection/:path/
+    share: true
   fin:
     output: true
-    permalink: /:collection/:path/ 
-    share: true  
+    permalink: /:collection/:path/
+    share: true
   civicmedia:
     output: true
-    permalink: /:collection/:path/ 
-    share: true 
+    permalink: /:collection/:path/
+    share: true
   egov:
     output: true
-    permalink: /:collection/:path/ 
-    share: true 
+    permalink: /:collection/:path/
+    share: true
 
 
 
