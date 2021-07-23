@@ -5,7 +5,7 @@ share: true
 comments: true
 read_time: true
 title: The Bitcoin Standard
-excerpt: Notes
+excerpt: HODL
 
 ---
 
