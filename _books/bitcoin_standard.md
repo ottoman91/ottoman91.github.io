@@ -20,7 +20,7 @@ Also on how beads were used as store of value in west Africa and it was exploite
 
 Decline of Roman Empire was also due to devaluation of currency - led to rise in feudal lords and serfdoms.
 Islamic dinar
-Countries such as India and China that conveyed to gold back later suffered
+Countries such as India and China that conveyed to gold back later suffered.
 
 
 Time preference - how much individuals value immediate gratification vs investing in future. Animals have very high time preference, Individiauls with low time preference have more propensity to invest.
