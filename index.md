@@ -1,7 +1,7 @@
 ---
 layout: single
 author_profile: true
-title: About Me!
+title: Hello!
 ---
 
 {% include base_path %}
