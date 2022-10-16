@@ -7,7 +7,7 @@ author_profile: true
 
 {% include base_path %}
 
-I'm a data scientist at [Coinbase](https://www.coinbase.com/){:target="_blank"}, where I will be working on the company's mission of increasing economic freedom in the world.
+I'm a data scientist at [Coinbase](https://www.coinbase.com/){:target="_blank"}, where I am contributing towards our mission of increasing economic freedom in the world.
 My interests lie in using data science and human-centered design to create equitable outcomes.
 
 I graduated from the [Design Impact](http://designimpact.stanford.edu/) program at Stanford, where I was mentored by [David Kelley](https://www.ideo.com/people/david-kelley) on improving the transition of care process for pediatric patients at the Stanford Children's Hospital. You can read more about my thesis [here](http://www.thekiteproject.info/).
