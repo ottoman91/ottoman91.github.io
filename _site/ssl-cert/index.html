@@ -19,7 +19,7 @@
 
 
 
-<title>Drawbot - Usman Khaliq</title>
+<title>Enforcing HTTPS on GitHub Pages Served via an External Domain Name - Usman Khaliq</title>
 
 
 
@@ -29,21 +29,21 @@
 
 <meta property="og:locale" content="en-US">
 <meta property="og:site_name" content="Usman Khaliq">
-<meta property="og:title" content="Drawbot">
+<meta property="og:title" content="Enforcing HTTPS on GitHub Pages Served via an External Domain Name">
 
 
-  <link rel="canonical" href="http://ottoman91.github.io/ottoman91/projects/01_drawbot/">
-  <meta property="og:url" content="http://ottoman91.github.io/ottoman91/projects/01_drawbot/">
+  <link rel="canonical" href="http://ottoman91.github.io/ottoman91/ssl-cert/">
+  <meta property="og:url" content="http://ottoman91.github.io/ottoman91/ssl-cert/">
 
 
 
-  <meta property="og:description" content="A Deep Learning algorithm that turns bad sketches into (almost) drop-dead masterpieces">
+  <meta property="og:description" content="It took me an embarassingly/surprisingly long time to realise that the HTTPs certification on this blog had failed, and the page was not opening with an https connection. The culprit for this breakage was this change that GitHub made in 2018(I’m not sure that the SSL certificate for this website had been broken since then…), when they changed the suggested IP addresses to put on the A records for domains that used GitHub Pages. What should’ve been a relatively (at least in theory) easy change to make, turned out to be anything but. It also was yet another example on how poorly designed web applications(which in this case, is the JustHost admin portal) are in general, and how it is almost a borderline miracle that so much software with real world usage has been built over the years.">
 
 
 
   <meta name="twitter:site" content="@usmankhaliq">
-  <meta name="twitter:title" content="Drawbot">
-  <meta name="twitter:description" content="A Deep Learning algorithm that turns bad sketches into (almost) drop-dead masterpieces">
+  <meta name="twitter:title" content="Enforcing HTTPS on GitHub Pages Served via an External Domain Name">
+  <meta name="twitter:description" content="It took me an embarassingly/surprisingly long time to realise that the HTTPs certification on this blog had failed, and the page was not opening with an https connection. The culprit for this breakage was this change that GitHub made in 2018(I’m not sure that the SSL certificate for this website had been broken since then…), when they changed the suggested IP addresses to put on the A records for domains that used GitHub Pages. What should’ve been a relatively (at least in theory) easy change to make, turned out to be anything but. It also was yet another example on how poorly designed web applications(which in this case, is the JustHost admin portal) are in general, and how it is almost a borderline miracle that so much software with real world usage has been built over the years.">
   <meta name="twitter:url" content="">
 
   
@@ -64,12 +64,10 @@
 
 
   <meta property="og:type" content="article">
-  <meta property="article:published_time" content="2023-11-01T04:36:03+00:00">
-  
-    <link rel="next" href="http://ottoman91.github.io/ottoman91/projects/2019_00001_targetbasedcare/" title="Automating Target Based Care at the Lucille Packard Children&#39;s Hospital">
+  <meta property="article:published_time" content="2023-11-01T00:00:00+00:00">
   
   
-    <link rel="prev" href="http://ottoman91.github.io/ottoman91/projects/001dormio/" title="Dormio">
+    <link rel="prev" href="http://ottoman91.github.io/ottoman91/replug/" title="We Made it, Mon">
   
 
 
@@ -233,34 +231,26 @@
 </div>
 
   
-    
-      
-      <h3>Team Members</h3>
-      <p>Jimmie Harris,Tayo Falase, Usman Khaliq</p>
-
-    
-    
-  
   </div>
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Drawbot">
-    <meta itemprop="description" content="A Deep Learning algorithm that turns bad sketches into (almost) drop-dead masterpieces">
+    <meta itemprop="headline" content="Enforcing HTTPS on GitHub Pages Served via an External Domain Name">
+    <meta itemprop="description" content="It took me an embarassingly/surprisingly long time to realise that the HTTPs certification on this blog had failed, and the page was not opening with an https connection. The culprit for this breakage was this change that GitHub made in 2018(I’m not sure that the SSL certificate for this website had been broken since then…), when they changed the suggested IP addresses to put on the A records for domains that used GitHub Pages. What should’ve been a relatively (at least in theory) easy change to make, turned out to be anything but. It also was yet another example on how poorly designed web applications(which in this case, is the JustHost admin portal) are in general, and how it is almost a borderline miracle that so much software with real world usage has been built over the years.">
     <meta itemprop="datePublished" content="November 01, 2023">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 class="page__title" itemprop="headline">Drawbot
+          <h1 class="page__title" itemprop="headline">Enforcing HTTPS on GitHub Pages Served via an External Domain Name
 </h1>
           
             <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
 
 
   
-	  less than 1 minute read
+	  1 minute read
 	
 </p>
           
@@ -268,35 +258,25 @@
       
 
       <section class="page__content" itemprop="text">
-        <blockquote>
-  <p>How might we design and develop a deep learning application that takes as its input a rough(or badly) made sketch and transforms it into a drop-dead masterpiece?</p>
-</blockquote>
+        <p>It took me an embarassingly/surprisingly long time to realise that the HTTPs certification on this blog had failed, and the page was not opening with an https connection. The culprit for this breakage was <a href="https://gist.github.com/oldmud0/1a60cab1bcbddee9daa1c0b95823c27e" target="_blank">this</a> change that GitHub made in 2018(I’m not sure that the SSL certificate for this website had been broken since then…), when they changed the suggested IP addresses to put on the A records for domains that used GitHub Pages. What should’ve been a relatively (at least in theory) easy change to make, turned out to be anything but. It also was yet another example on how poorly designed web applications(which in this case, is the JustHost admin portal) are in general, and how it is almost a borderline miracle that so much software with real world usage has been built over the years.</p>
 
-<h2 id="background">Background</h2>
+<p>To save myself(and any potential readers who are frantically searching for similar issues) from the hassle of re-tracing the steps that I used for fixing this error, here is what I did.</p>
 
-<p>I worked on this project as part of the Deep Learning course taught at Stanford by Andrew Ng.
-In our team, as designers, two of us have often struggled to bring our ideas
-to life in an aesthetically pleasing manner, while all three of us would dearly 
-love to have a tool that makes it easy for us to churn out beautiful sketches.</p>
+<ol>
+  <li>
+    <p>Navigate to the admin panel of your domain host, and change the A records to the new ones mentioned in <a href="https://gist.github.com/oldmud0/1a60cab1bcbddee9daa1c0b95823c27e" target="_blank">this</a> post. It takes upto 24 hours for the records to be percolated across the different CDNs. You can use <a href="https://www.whatsmydns.net/" target="_blank">this</a> website to check whether the A records for your domain have been updated before proceeding to step 2.</p>
+  </li>
+  <li>
+    <p>Refer to <a href="https://medium.com/@rebeccavarley/how-to-fix-bluehost-ssl-certificate-temporarily-unavailable-error-67053286a313" target="_blank">this</a> excellent blog post written by Rebecca Varley on how to navigate to the CPanel of your domain host, and to refresh the SSL certificate of your site.</p>
+  </li>
+  <li>
+    <p>In the root of your project’s GitHub repository , check that there is a CNAME file with the name of your domain, preceded by <code class="highlighter-rouge">www</code>(this was a critical mistake in my case. I’m not sure when were the settings changed to make it mandatory for the domain name to be pcededed by <code class="highlighter-rouge">www</code>).</p>
+  </li>
+</ol>
 
-<p>The input to our algorithm is a bad sketch of a face. We then use a MUNIT network 
-to output a much cleaner and aesthetically accurate image of a face. We found 
-that while the model was able to learn large parameters (face shape and size), 
-it was unable to learn finer details (nose shape, smiling/frowning). 
-We believe that with better data, this model could be used to create more accurate
-sketches.</p>
+<p>4.Follow the steps in the comment by <a href="https://stackoverflow.com/users/1974961/hugolpz" target="_blank">Hugolpz</a> in <a href="https://stackoverflow.com/questions/54059217/how-to-fix-domain-does-not-resolve-to-the-github-pages-server-error-in-github" target="_blank">this</a> Stackoverflow thread.</p>
 
-<h2 id="project-poster">Project Poster</h2>
-
-<figure>
-<a href="/pdfs/DrawBot_Poster.pdf" target="_blank">
-  <img src="/images/drawbot/drawbot_poster.jpg" alt="this is a placeholder image" />
-</a>
-</figure>
-
-<h2 id="project-report">Project Report</h2>
-
-<p><a href="/pdfs/draw_bot_report.pdf" target="_blank">Click here</a> to access the full report for the project</p>
+<p>And that should do the trick.</p>
 
         
       </section>
@@ -309,23 +289,36 @@ sketches.</p>
 
 
         
-          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2023-11-01T04:36:03+00:00">November 01, 2023</time></p>
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2023-11-01T00:00:00+00:00">November 01, 2023</time></p>
         
       </footer>
 
       
+
+<section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=/ssl-cert/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=/ssl-cert/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://plus.google.com/share?url=/ssl-cert/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=/ssl-cert/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
 
       
 
 
   <nav class="pagination">
     
-      <a href="/projects/001dormio/" class="pagination--pager" title="Dormio
+      <a href="/replug/" class="pagination--pager" title="We Made it, Mon
 ">Previous</a>
     
     
-      <a href="/projects/2019_00001_targetbasedcare/" class="pagination--pager" title="Automating Target Based Care at the Lucille Packard Children’s Hospital
-">Next</a>
+      <a href="#" class="pagination--pager disabled">Next</a>
     
   </nav>
 
