@@ -19,6 +19,9 @@ main:
   - title: "Book Reviews"
     url: /book
 
+  - title: "Coding Scratch Pad"
+    url: /coding
+
   - title: "CV"
     url: /pdfs/CV_Usman_Khaliq.pdf
 
