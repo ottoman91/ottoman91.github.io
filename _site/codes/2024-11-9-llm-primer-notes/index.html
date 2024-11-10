@@ -19,7 +19,7 @@
 
 
 
-<title>Date Night - Usman Khaliq</title>
+<title>Notes on Intro to Large Language Models Video - Andrej Karpathy - Usman Khaliq</title>
 
 
 
@@ -29,21 +29,21 @@
 
 <meta property="og:locale" content="en-US">
 <meta property="og:site_name" content="Usman Khaliq">
-<meta property="og:title" content="Date Night">
+<meta property="og:title" content="Notes on Intro to Large Language Models Video - Andrej Karpathy">
 
 
-  <link rel="canonical" href="http://ottoman91.github.io/ottoman91/projects/2019_2_stayingsane/">
-  <meta property="og:url" content="http://ottoman91.github.io/ottoman91/projects/2019_2_stayingsane/">
+  <link rel="canonical" href="http://ottoman91.github.io/ottoman91/codes/2024-11-9-llm-primer-notes/">
+  <meta property="og:url" content="http://ottoman91.github.io/ottoman91/codes/2024-11-9-llm-primer-notes/">
 
 
 
-  <meta property="og:description" content="A prototype for a service that helps grad students with children to reclaim their mental health.">
+  <meta property="og:description" content="Here are my notes from Andrej Karpathy’s excellent Intro to Large Language Models video.">
 
 
 
   <meta name="twitter:site" content="@usmankhaliq">
-  <meta name="twitter:title" content="Date Night">
-  <meta name="twitter:description" content="A prototype for a service that helps grad students with children to reclaim their mental health.">
+  <meta name="twitter:title" content="Notes on Intro to Large Language Models Video - Andrej Karpathy">
+  <meta name="twitter:description" content="Here are my notes from Andrej Karpathy’s excellent Intro to Large Language Models video.">
   <meta name="twitter:url" content="">
 
   
@@ -64,12 +64,10 @@
 
 
   <meta property="og:type" content="article">
-  <meta property="article:published_time" content="2024-11-10T03:59:18+00:00">
-  
-    <link rel="next" href="http://ottoman91.github.io/ottoman91/projects/2019_heirloom/" title="Virasat - An Heirloom">
+  <meta property="article:published_time" content="2024-11-09T00:00:00+00:00">
   
   
-    <link rel="prev" href="http://ottoman91.github.io/ottoman91/projects/2019_2_bootcamp/" title="Design Thinking Bootcamp">
+    <link rel="prev" href="http://ottoman91.github.io/ottoman91/codes/2020-06-21-removing-homebrew-package/" title="Removing a Homebrew Package and All of its Dependencies on macOS">
   
 
 
@@ -236,97 +234,95 @@
 </div>
 
   
-    
-      
-      <h3>Research Techniques and Frameworks Used</h3>
-      <p>Powers of Ten, 2x2s,Converging &amp; Diverging</p>
-
-    
-    
-  
   </div>
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Date Night">
-    <meta itemprop="description" content="A prototype for a service that helps grad students with children to reclaim their mental health.">
-    <meta itemprop="datePublished" content="November 10, 2024">
+    <meta itemprop="headline" content="Notes on Intro to Large Language Models Video - Andrej Karpathy">
+    <meta itemprop="description" content="Here are my notes from Andrej Karpathy’s excellent Intro to Large Language Models video.">
+    <meta itemprop="datePublished" content="November 09, 2024">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 class="page__title" itemprop="headline">Date Night
+          <h1 class="page__title" itemprop="headline">Notes on Intro to Large Language Models Video - Andrej Karpathy
 </h1>
-          
-            <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
-
-
-  
-	  2 minutes read
-	
-</p>
           
         </header>
       
 
       <section class="page__content" itemprop="text">
-        <p>As part of the Graduate Design Research Techniques class at Stanford, my team and I were given the 
-following prompt to prototype a new service for grad students:</p>
+        <p>Here are my notes from Andrej Karpathy’s excellent <a href="https://www.youtube.com/watch?v=zjkBMFhNj_g">Intro to Large Language Models</a> video.</p>
 
-<blockquote>
-  <p>Staying Sane at Stanford</p>
-</blockquote>
+<ul>
+  <li>
+    <p>An open weights model is one that has all of the parameters released to the public.</p>
+  </li>
+  <li>
+    <p>At its core, an LLM has just two files:</p>
 
-<h2 id="the-user-research-phase">The User Research Phase</h2>
+    <ul>
+      <li>The parameter files (each parameter is stored with 2 bytes(its stored as a float 16)</li>
+      <li>The code file that runs the parameters</li>
+    </ul>
+  </li>
+  <li>Not a lot is necessary to run the model.</li>
+  <li>
+    <p>The magic and computational lift is in the parameters and how do we obtain them</p>
+  </li>
+  <li>
+    <p>How do we train the model - its more involved and complicated.</p>
+  </li>
+  <li>
+    <p>Think of it as taking a chunk of the internet and compressing it via GPU clusters. parameters can be thought of a zip file of the internet. but this isnt exactly a zip file because it is a lossy compression.</p>
+  </li>
+  <li>
+    <p>What is the neural network doing ? just trying to predict the next word sequence.</p>
+  </li>
+  <li>
+    <p>Next word prediction is actually really powerful because it is forcing the neural network to learn a lot about the world. all of this knowledge is being compressed in the weights of the parameters.</p>
+  </li>
+  <li>The network “dreams” internet pages</li>
+</ul>
 
-<p>After developing an interview guide, we conducted deep-dive interviews with several grad students at Stanford.
-By grounding our observations from an empathy lens, we aimed to get a deep insight into the lives of these
-grad students in order to unearth non-obvious insights about issues that might be affecting their mental health.</p>
+<p><strong>How do they work?</strong></p>
 
-<p>From our research, we decided to narrow down our focus on grad students who lived on campus with their children, since 
-we realized that this group was surprisingly missing from the major campus wide mental health programs that were currently
-in place.</p>
+<ul>
+  <li>pre training stage is when we train the model on all internet data.</li>
+  <li>we know the architecture and the mathematical operation.</li>
+  <li>We know how to iteratively adjust the parameters to improve the next word predictioon, but we dont know how exactly all of these parameters interact wit each other.</li>
+  <li>They build and maintain some kind of knowledge store, but it seems to be one dimensional. e.g chatgpt knows who tom cruise’s mother is, but if you ask him who is her son, it doesnt know.</li>
+  <li>Think of them as empirical artifacts.</li>
+  <li>The above step, where we train the internet of documents, is the first step.</li>
+  <li>The next step is training the assistant. (fine tuning). we want to give questions and get answers.</li>
+  <li>We swap the internet oof documents dataset and replace that with responses that we have collected from people.
+    <ul>
+      <li>in this stage, we prefer quality over quantity.</li>
+    </ul>
+  </li>
+  <li>Somehow, the model in the fine tuning stage is able to tap into the knowledge that it got fro the pre training stage. we dont know how exactly this happens.</li>
+  <li>Third step - comparison. instead of the humans generating responses, they look at all of the responses generated by the GPT and chose the ones that are closest to the actual answers.</li>
+</ul>
 
-<p>Over the course of a few weeks,we shadowed a couple of students who had children on campus. At the end of the
-observation phase, our team would synthesise their findings by using the 2x2s framework. With the aid of several 
-design thinking frameworks, such as the Powers of Ten and the Converging and Diverging framework, we 
-unearthed the following non-trivial insight.</p>
+<p><strong>LLM Scaling Laws</strong></p>
 
-<blockquote>
-  <p>Grad students with children often needed space (both physical as well as mental) to re-connect with
-their partners.</p>
-</blockquote>
+<ul>
+  <li>Performnace of LLMs is a smoothed, well defined function based on:
+    <ul>
+      <li>N - the number of parameters in the network</li>
+      <li>D - the amount of text that the model is trained on</li>
+    </ul>
+  </li>
+</ul>
 
-<p>We also realized that most activities on campus were not designed with keeping the needs of students with children in mind.
-For instance,  events were usually organized during evenings or late at night, when these parents would be busy
-with putting their children to sleep. Also, parents would often rely on requesting their friends to babysit their
-children in case they needed to spend time with their partners. However, due to the informal nature of this
-arrangement, parents would also feel embarassed for regularly asking their friends for this favour.</p>
+<p>next iterations to model:</p>
 
-<figure>
-  <img src="/images/staying_sane/brainstorm1.png" alt="this is a placeholder image" />
-</figure>
-
-<figure>
-  <img src="/images/staying_sane/brainstorm2.png" alt="this is a placeholder image" />
-</figure>
-
-<h2 id="the-service-idea-and-prototype">The Service Idea and Prototype</h2>
-
-<p>Based on our findings, we came up with “Date Night”, a service that would allow
-graduate students with children to hire the services of a campus wide babysitting
-network in order to attend social events on campus. Date Night would be integrated
-as a paid service across all campus-wide social activities. For a nominal monthly
-fee, parents could sign up to attend several social events, while Stanford students 
-would volunteer to babysit their children.</p>
-
-<p>We prototyped this service with a few Stanford students who had children, by 
-babysitting their children while the parents went to watch a movie. The response
-from the parents was very positive. To help graduate students with children to manage
-their mental health, we believe that such a service could easily be adopted 
-across universities.</p>
-
+<ul>
+  <li>multi modality</li>
+  <li>speech to text</li>
+  <li>system 2 thinking</li>
+</ul>
 
         
       </section>
@@ -339,7 +335,7 @@ across universities.</p>
 
 
         
-          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2024-11-10T03:59:18+00:00">November 10, 2024</time></p>
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2024-11-09T00:00:00+00:00">November 09, 2024</time></p>
         
       </footer>
 
@@ -350,13 +346,13 @@ across universities.</p>
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=/projects/2019_2_stayingsane/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=/codes/2024-11-9-llm-primer-notes/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=/projects/2019_2_stayingsane/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=/codes/2024-11-9-llm-primer-notes/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://plus.google.com/share?url=/projects/2019_2_stayingsane/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+  <a href="https://plus.google.com/share?url=/codes/2024-11-9-llm-primer-notes/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=/projects/2019_2_stayingsane/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=/codes/2024-11-9-llm-primer-notes/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
       
@@ -364,12 +360,11 @@ across universities.</p>
 
   <nav class="pagination">
     
-      <a href="/projects/2019_2_bootcamp/" class="pagination--pager" title="Design Thinking Bootcamp
+      <a href="/codes/2020-06-21-removing-homebrew-package/" class="pagination--pager" title="Removing a Homebrew Package and All of its Dependencies on macOS
 ">Previous</a>
     
     
-      <a href="/projects/2019_heirloom/" class="pagination--pager" title="Virasat - An Heirloom
-">Next</a>
+      <a href="#" class="pagination--pager disabled">Next</a>
     
   </nav>
 

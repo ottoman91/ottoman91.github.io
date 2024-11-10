@@ -3,7 +3,6 @@ layout: single
 author_profile: true
 share: true
 comments: true
-read_time: true
 title: Removing a Homebrew Package and All of its Dependencies on macOS
 ---
 

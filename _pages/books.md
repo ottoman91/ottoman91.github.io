@@ -11,7 +11,7 @@ title: "Book Reviews"
 </i></p>
 <div class="grid__wrapper">
   {% for post in site.books %}
-    {% include archive-single.html type="grid" %}
+    {% include archive-single.html %}
   {% endfor %}
 </div>
 
