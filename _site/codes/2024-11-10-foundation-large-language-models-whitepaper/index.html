@@ -19,7 +19,7 @@
 
 
 
-<title>The Bitcoin Standard - Usman Khaliq</title>
+<title>Notes on Foundational Large Language Models &amp; Text Generation - Usman Khaliq</title>
 
 
 
@@ -29,21 +29,21 @@
 
 <meta property="og:locale" content="en-US">
 <meta property="og:site_name" content="Usman Khaliq">
-<meta property="og:title" content="The Bitcoin Standard">
+<meta property="og:title" content="Notes on Foundational Large Language Models &amp; Text Generation">
 
 
-  <link rel="canonical" href="http://ottoman91.github.io/ottoman91/books/bitcoin_standard/">
-  <meta property="og:url" content="http://ottoman91.github.io/ottoman91/books/bitcoin_standard/">
+  <link rel="canonical" href="http://ottoman91.github.io/ottoman91/codes/2024-11-10-foundation-large-language-models-whitepaper/">
+  <meta property="og:url" content="http://ottoman91.github.io/ottoman91/codes/2024-11-10-foundation-large-language-models-whitepaper/">
 
 
 
-  <meta property="og:description" content="HODL">
+  <meta property="og:description" content="Notes from Google’s Foundational Large Language Models &amp; Text Generation white paper(part of the Kaggle/Google Deep Dive on LLM Course)">
 
 
 
   <meta name="twitter:site" content="@usmankhaliq">
-  <meta name="twitter:title" content="The Bitcoin Standard">
-  <meta name="twitter:description" content="HODL">
+  <meta name="twitter:title" content="Notes on Foundational Large Language Models &amp; Text Generation">
+  <meta name="twitter:description" content="Notes from Google’s Foundational Large Language Models &amp; Text Generation white paper(part of the Kaggle/Google Deep Dive on LLM Course)">
   <meta name="twitter:url" content="">
 
   
@@ -64,12 +64,10 @@
 
 
   <meta property="og:type" content="article">
-  <meta property="article:published_time" content="2024-11-11T03:48:46+00:00">
-  
-    <link rel="next" href="http://ottoman91.github.io/ottoman91/books/dead-aid/" title="Dead Aid by Dambisa Moyo">
+  <meta property="article:published_time" content="2024-11-10T00:00:00+00:00">
   
   
-    <link rel="prev" href="http://ottoman91.github.io/ottoman91/books/batman_year_one/" title="Batman Year One">
+    <link rel="prev" href="http://ottoman91.github.io/ottoman91/codes/2024-11-9-llm-primer-notes/" title="Notes on Intro to Large Language Models Video - Andrej Karpathy">
   
 
 
@@ -240,91 +238,81 @@
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="The Bitcoin Standard">
-    <meta itemprop="description" content="HODL">
-    <meta itemprop="datePublished" content="November 11, 2024">
+    <meta itemprop="headline" content="Notes on Foundational Large Language Models &amp; Text Generation">
+    <meta itemprop="description" content="Notes from Google’s Foundational Large Language Models &amp; Text Generation white paper(part of the Kaggle/Google Deep Dive on LLM Course)">
+    <meta itemprop="datePublished" content="November 10, 2024">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 class="page__title" itemprop="headline">The Bitcoin Standard
+          <h1 class="page__title" itemprop="headline">Notes on Foundational Large Language Models &amp; Text Generation
 </h1>
-          
-            <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
-
-
-  
-	  4 minutes read
-	
-</p>
           
         </header>
       
 
       <section class="page__content" itemprop="text">
-        <p><em>These are some of my notes/musing that I scribbled down during the midst of the BTC craze of 2020/2021. Suffice to say, I am a BTC HODLER and believe in some of the ideological reasons for holding some stake in the cryptocurrency. At some point in the future, I might write a proper review of the Bitcoin Standard.</em></p>
+        <p>Notes from Google’s <a href="https://www.kaggle.com/whitepaper-foundational-llm-and-text-generation">Foundational Large Language Models &amp; Text Generation</a> white paper(part of the Kaggle/Google Deep Dive on LLM Course)</p>
 
-<p>Easy money trap - if you increase monetary demand for a commodity( as medium of exchange or store of value) that also has a market demand, then the increase price causes supply to increase, eventually reducing prices and wealth transferrin from investors to producers of that commodity.</p>
+<p>Fine tuning methods:</p>
 
-<p>The stock to float ratio is critical for determining whether a commodity is a good store of value for wealth.</p>
+<ol>
+  <li>Supervised Fine Tuning
+    <ul>
+      <li>Give a LLM a crash course specifically designed for a task. e.g. a whiz of summarizing research papers, train it on research papers and summaries of papers.</li>
+    </ul>
+  </li>
+  <li>Reinforcement learning from human feedback(RHLF)
+    <ul>
+      <li>We use human feedback to train a reward model ( a judge that tells whether a response from LLM is good or bad)</li>
+    </ul>
+  </li>
+  <li>Parameter efficient fine tuning(PEFT)
+    <ul>
+      <li>Tackles a real world problem - instead of retraining whole model, we can only retrain special modules of the LLM.</li>
+    </ul>
+  </li>
+</ol>
 
-<p>The rai stones on yap island in Micronesia - good example for rise of bitcoins .
-Also on how beads were used as store of value in west Africa and it was exploited by colonizers/</p>
+<p>How do we talk to the LLM? We use prompt engineering(give our LLM a clear recipe)</p>
 
-<p>Decline of Roman Empire was also due to devaluation of currency - led to rise in feudal lords and serfdoms.
-Islamic dinar
-Countries such as India and China that conveyed to gold back later suffered.</p>
+<ul>
+  <li>The way that we phrase our prompts can make a world of difference.</li>
+  <li>Zero shot prompting - we give it a task and tell it to give a response</li>
+  <li>Few shot prompting - Give it a few examples</li>
+  <li>Chain of thought prompting - Tell it step by step to do the task.</li>
+</ul>
 
-<p>Time preference - how much individuals value immediate gratification vs investing in future. Animals have very high time preference, Individiauls with low time preference have more propensity to invest.
-The Stanford marshmallow experiment.
-Accumulating capital shouldn’t be the goal, but effective accumulation of capital allows society to progress and after meeting base needs, allows humans to explore more complex questions
-Lot of factors affect time preference, one of the biggest ones is whether money is sound or unsound, and whether it loses its value over time. Government issued money also leads to artificially low interest rates, which end up influencing societies to consume and spend more instead of i vestminh and saving , which also has long term consequences</p>
+<p>Sampling techniques control how the LLM picks up the enxt word/its style.</p>
 
-<p>The diatribe on modern art being funded by government money and not by low time preference money and how that’s affecting the quality of art was a bit too much lol.  The link between zero to 1 and all technological advancements being made in the 19th century - very exaggerated.</p>
+<p>Techniques:</p>
 
-<p>The use of knowledge in society b Hayek - economic problem is not just allocation of resources, but allocation of resources in the face of incomplete knowledge .price is the information that allows people to effectively allocate resources. It also allows people to specialize in their own industry/vertical leading to reduction in prices.</p>
+<ul>
+  <li>greedy search</li>
+  <li>random sampling - throwing some unpredictibility</li>
+  <li>temperature sampling - balance between predictabiity and creativity</li>
+</ul>
 
-<p>Socialism’s problem isn’t the incentive problem(govts can force people to work), but it’s more about how do govts decide what goods and services to prioritize, and how might entrepreneurship rise</p>
+<p><strong>Inference optimization techniques - how to make inference better.</strong></p>
 
-<p>Capital markets in modern govts and how they operate - as interest rises, lending reduces leading to a reduction in money supply</p>
+<ul>
+  <li>quantization - streamling hte models internal calculations(use lower precision numbers/using “shorthands”)</li>
+  <li>distillation - train a smaller,faster “student” model that mimics the “teacher” model</li>
+  <li>output preserving methods - guarantees that the models’ performance remains unchanged.</li>
+  <li>prefix caching - imp for chat bots, cases where it needs to save previous answers.</li>
+  <li>speculative decoding - have a team of assistants working in parallel</li>
+</ul>
 
-<p>In a capital market, opportunity cost of capital is foregone consumption, and opportunity cost of consumption is foregone capital investment. As people demand more investments,. Interest rate rises. As interest rate drops, it incentivized people to engage their savings in capital to produce more goods.</p>
+<p><strong>Most exciting applications:</strong></p>
 
-<p>When central banks lower interest rates and increase money supply, they increase amoun of loan able funds available instead of incentivizing people to save more.
-Malinvestments - causing recession</p>
-
-<p>Impossible trinity - no central bank can achieve all of fixed exchange rate, free flowing capital and independent monetary policy</p>
-
-<p>Switch from liberalism to liberality after First World War - govts role to allow individuals to indulge but protect them from consequences</p>
-
-<p>When deriding the cost of Bitcoin mining, an analogy can be made to Friedman and Keynes opposition to the resources gone into gold mining. However, the opportunity cost of money that is easy to print is far greater, since it diverts resources from productinh goods services that are actually off value</p>
-
-<p>Banks role in sound and unsound money. In sound money, bank will always only face solvency issue and no liquidity crisis, but in unsound money, bank can be solvent but still cafe liquidity crisis.
-Fractional reserve marchingaturity mismatching</p>
-
-<p>Difficult adjustment mechanism in Bitcoin makes the computations more difficult, thereby makin it more difficult to produce more bitcoins as price increases</p>
-
-<p>Mises’ theory of regression states that a monetary good starts as a market good and then becomes a medium of exchange - happened with bitcoins too</p>
-
-<p>Julian Simon- “hysteria” around world runnin out of resources etc</p>
-
-<p>Michael kremer - technology is non excludable and non rival.</p>
-
-<p>Bitcoin would be used as a settlement for digital currencies - allow financial institutions to back their assets in Bitcoin tokens that can be verified and prevent fractional reserve banking - would also allow people to circumvent the high transaction costs of Bitcoin while transferring transactions etc
-Most transactions are not recorded on -chain.</p>
-
-<p>Bitcoins uses :
-* store of value
-* Individual sovereignity -
-* Stttlememt of international transactions
-* Unit of account</p>
-
-<p>Dismissed off all other altcoins as malinvestments.</p>
-
-<p>Blockchain tech can’t help the intermediates that it replaces.</p>
-
-<p>DAOs implementation on ethereum, the hack and how ethereum was able to reverse.also smart contracts benefit people with know how about smart contracts</p>
+<ol>
+  <li>code generation</li>
+  <li>machine translation</li>
+  <li>creative content generation</li>
+  <li>reasoning about abstract math problems.</li>
+  <li>translating languages</li>
+</ol>
 
         
       </section>
@@ -337,7 +325,7 @@ Most transactions are not recorded on -chain.</p>
 
 
         
-          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2024-11-11T03:48:46+00:00">November 11, 2024</time></p>
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2024-11-10T00:00:00+00:00">November 10, 2024</time></p>
         
       </footer>
 
@@ -348,13 +336,13 @@ Most transactions are not recorded on -chain.</p>
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=/books/bitcoin_standard/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=/codes/2024-11-10-foundation-large-language-models-whitepaper/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=/books/bitcoin_standard/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=/codes/2024-11-10-foundation-large-language-models-whitepaper/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://plus.google.com/share?url=/books/bitcoin_standard/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+  <a href="https://plus.google.com/share?url=/codes/2024-11-10-foundation-large-language-models-whitepaper/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=/books/bitcoin_standard/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=/codes/2024-11-10-foundation-large-language-models-whitepaper/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
       
@@ -362,12 +350,11 @@ Most transactions are not recorded on -chain.</p>
 
   <nav class="pagination">
     
-      <a href="/books/batman_year_one/" class="pagination--pager" title="Batman Year One
+      <a href="/codes/2024-11-9-llm-primer-notes/" class="pagination--pager" title="Notes on Intro to Large Language Models Video - Andrej Karpathy
 ">Previous</a>
     
     
-      <a href="/books/dead-aid/" class="pagination--pager" title="Dead Aid by Dambisa Moyo
-">Next</a>
+      <a href="#" class="pagination--pager disabled">Next</a>
     
   </nav>
 
