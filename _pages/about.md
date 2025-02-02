@@ -7,7 +7,7 @@ author_profile: true
 
 {% include base_path %}
 
-I'm a Senior Business Data Analyst at [Intuit](https://www.intuit.com/){:target="_blank"}.My interests lie in using data science and human-centered design to create equitable outcomes.
+I'm a Senior Data Scientist at [Intuit](https://www.intuit.com/){:target="_blank"}.My interests lie in using data science and human-centered design to create equitable outcomes.
 
 I graduated from the [Design Impact](http://designimpact.stanford.edu/) program at Stanford, where I was mentored by [David Kelley](https://www.ideo.com/people/david-kelley) on improving the transition of care process for pediatric patients at the Stanford Children's Hospital. You can read more about my thesis [here](http://www.thekiteproject.info/).
 
