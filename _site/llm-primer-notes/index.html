@@ -19,7 +19,7 @@
 
 
 
-<title>Virasat - An Heirloom - Usman Khaliq</title>
+<title>Notes on Intro to Large Language Models Video - Andrej Karpathy - Usman Khaliq</title>
 
 
 
@@ -29,21 +29,21 @@
 
 <meta property="og:locale" content="en-US">
 <meta property="og:site_name" content="Usman Khaliq">
-<meta property="og:title" content="Virasat - An Heirloom">
+<meta property="og:title" content="Notes on Intro to Large Language Models Video - Andrej Karpathy">
 
 
-  <link rel="canonical" href="http://ottoman91.github.io/ottoman91/projects/2019_heirloom/">
-  <meta property="og:url" content="http://ottoman91.github.io/ottoman91/projects/2019_heirloom/">
+  <link rel="canonical" href="http://ottoman91.github.io/ottoman91/llm-primer-notes/">
+  <meta property="og:url" content="http://ottoman91.github.io/ottoman91/llm-primer-notes/">
 
 
 
-  <meta property="og:description" content="A bronze cast heirloom that I made for my wife as part of the Design and Manufacture class at Stanford.">
+  <meta property="og:description" content="Here are my notes from Andrej Karpathy’s excellent Intro to Large Language Models video.">
 
 
 
   <meta name="twitter:site" content="@usmankhaliq">
-  <meta name="twitter:title" content="Virasat - An Heirloom">
-  <meta name="twitter:description" content="A bronze cast heirloom that I made for my wife as part of the Design and Manufacture class at Stanford.">
+  <meta name="twitter:title" content="Notes on Intro to Large Language Models Video - Andrej Karpathy">
+  <meta name="twitter:description" content="Here are my notes from Andrej Karpathy’s excellent Intro to Large Language Models video.">
   <meta name="twitter:url" content="">
 
   
@@ -64,10 +64,12 @@
 
 
   <meta property="og:type" content="article">
-  <meta property="article:published_time" content="2025-08-15T04:19:03+00:00">
+  <meta property="article:published_time" content="2024-11-09T00:00:00+00:00">
+  
+    <link rel="next" href="http://ottoman91.github.io/ottoman91/foundation-large-language-models-whitepaper/" title="Notes on Foundational Large Language Models &amp; Text Generation">
   
   
-    <link rel="prev" href="http://ottoman91.github.io/ottoman91/projects/2019_2_stayingsane/" title="Date Night">
+    <link rel="prev" href="http://ottoman91.github.io/ottoman91/ssl-cert/" title="Enforcing HTTPS on GitHub Pages Served via an External Domain Name">
   
 
 
@@ -228,96 +230,95 @@
 </div>
 
   
-    
-      
-      <h3>Processes Used</h3>
-      <p>Sand Casting, Woodwork</p>
-
-    
-    
-  
   </div>
 
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Virasat - An Heirloom">
-    <meta itemprop="description" content="A bronze cast heirloom that I made for my wife as part of the Design and Manufacture class at Stanford.">
-    <meta itemprop="datePublished" content="August 15, 2025">
+    <meta itemprop="headline" content="Notes on Intro to Large Language Models Video - Andrej Karpathy">
+    <meta itemprop="description" content="Here are my notes from Andrej Karpathy’s excellent Intro to Large Language Models video.">
+    <meta itemprop="datePublished" content="November 09, 2024">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 class="page__title" itemprop="headline">Virasat - An Heirloom
+          <h1 class="page__title" itemprop="headline">Notes on Intro to Large Language Models Video - Andrej Karpathy
 </h1>
-          
-            <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> 
-
-
-  
-	  less than 1 minute read
-	
-</p>
           
         </header>
       
 
       <section class="page__content" itemprop="text">
-        <p>As part of my Design and Manufacture class at Stanford, I decided to create an heirloom for my wife and I,something which we would be able to hopefully pass onto our future generations.</p>
+        <p>Here are my notes from Andrej Karpathy’s excellent <a href="https://www.youtube.com/watch?v=zjkBMFhNj_g">Intro to Large Language Models</a> video.</p>
 
-<p>Living abroad since the past several years, both of us do not have a lot of memoribilia from back home. With Virasat, I wanted to create something simple and elegant that would be a reflection of our identity.
-In the immediate future, the heirloom would be used as a jewellery box by my wife ( hopefully!)</p>
+<ul>
+  <li>
+    <p>An open weights model is one that has all of the parameters released to the public.</p>
+  </li>
+  <li>
+    <p>At its core, an LLM has just two files:</p>
 
-<h2 id="ideation-process">Ideation Process</h2>
+    <ul>
+      <li>The parameter files (each parameter is stored with 2 bytes(its stored as a float 16)</li>
+      <li>The code file that runs the parameters</li>
+    </ul>
+  </li>
+  <li>Not a lot is necessary to run the model.</li>
+  <li>
+    <p>The magic and computational lift is in the parameters and how do we obtain them</p>
+  </li>
+  <li>
+    <p>How do we train the model - its more involved and complicated.</p>
+  </li>
+  <li>
+    <p>Think of it as taking a chunk of the internet and compressing it via GPU clusters. parameters can be thought of a zip file of the internet. but this isnt exactly a zip file because it is a lossy compression.</p>
+  </li>
+  <li>
+    <p>What is the neural network doing ? just trying to predict the next word sequence.</p>
+  </li>
+  <li>
+    <p>Next word prediction is actually really powerful because it is forcing the neural network to learn a lot about the world. all of this knowledge is being compressed in the weights of the parameters.</p>
+  </li>
+  <li>The network “dreams” internet pages</li>
+</ul>
 
-<figure class="third full">
-  
-    
-      <img src="/images//virasat/image1.jpg" alt="Image 1" />
-    
-  
-    
-      <img src="/images//virasat/image2.jpg" alt="Image 2" />
-    
-  
-    
-      <img src="/images//virasat/image3.jpg" alt="Image 3" />
-    
-  
-    
-      <img src="/images//virasat/image4.jpg" alt="Image 4" />
-    
-  
-    
-      <img src="/images//virasat/image4b.jpg" alt="Image 4b" />
-    
-  
-    
-      <img src="/images//virasat/image5.jpg" alt="Image 5" />
-    
-  
-    
-      <img src="/images//virasat/Image6.jpg" alt="Image 6" />
-    
-  
-    
-      <img src="/images//virasat/image7.jpg" alt="Image 7" />
-    
-  
-    
-      <img src="/images//virasat/image8.jpg" alt="Image 8" />
-    
-  
-  
-    <figcaption>Manufacturing Process of the Heirloom.
-</figcaption>
-  
-</figure>
+<p><strong>How do they work?</strong></p>
 
-<h2 id="the-heirloom">The Heirloom</h2>
-<figure>
-  <img src="/images/virasat/Hero Shot Image 3.jpg" alt="The Heirloom" />
-</figure>
+<ul>
+  <li>pre training stage is when we train the model on all internet data.</li>
+  <li>we know the architecture and the mathematical operation.</li>
+  <li>We know how to iteratively adjust the parameters to improve the next word predictioon, but we dont know how exactly all of these parameters interact wit each other.</li>
+  <li>They build and maintain some kind of knowledge store, but it seems to be one dimensional. e.g chatgpt knows who tom cruise’s mother is, but if you ask him who is her son, it doesnt know.</li>
+  <li>Think of them as empirical artifacts.</li>
+  <li>The above step, where we train the internet of documents, is the first step.</li>
+  <li>The next step is training the assistant. (fine tuning). we want to give questions and get answers.</li>
+  <li>We swap the internet oof documents dataset and replace that with responses that we have collected from people.
+    <ul>
+      <li>in this stage, we prefer quality over quantity.</li>
+    </ul>
+  </li>
+  <li>Somehow, the model in the fine tuning stage is able to tap into the knowledge that it got fro the pre training stage. we dont know how exactly this happens.</li>
+  <li>Third step - comparison. instead of the humans generating responses, they look at all of the responses generated by the GPT and chose the ones that are closest to the actual answers.</li>
+</ul>
+
+<p><strong>LLM Scaling Laws</strong></p>
+
+<ul>
+  <li>Performnace of LLMs is a smoothed, well defined function based on:
+    <ul>
+      <li>N - the number of parameters in the network</li>
+      <li>D - the amount of text that the model is trained on</li>
+    </ul>
+  </li>
+</ul>
+
+<p>next iterations to model:</p>
+
+<ul>
+  <li>multi modality</li>
+  <li>speech to text</li>
+  <li>system 2 thinking</li>
+</ul>
 
         
       </section>
@@ -330,7 +331,7 @@ In the immediate future, the heirloom would be used as a jewellery box by my wif
 
 
         
-          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2025-08-15T04:19:03+00:00">August 15, 2025</time></p>
+          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> Updated:</strong> <time datetime="2024-11-09T00:00:00+00:00">November 09, 2024</time></p>
         
       </footer>
 
@@ -341,13 +342,13 @@ In the immediate future, the heirloom would be used as a jewellery box by my wif
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=/projects/2019_heirloom/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=/llm-primer-notes/" class="btn btn--twitter" title="Share on Twitter"><i class="fa fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=/projects/2019_heirloom/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=/llm-primer-notes/" class="btn btn--facebook" title="Share on Facebook"><i class="fa fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://plus.google.com/share?url=/projects/2019_heirloom/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+  <a href="https://plus.google.com/share?url=/llm-primer-notes/" class="btn btn--google-plus" title="Share on Google Plus"><i class="fa fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=/projects/2019_heirloom/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=/llm-primer-notes/" class="btn btn--linkedin" title="Share on LinkedIn"><i class="fa fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
       
@@ -355,11 +356,12 @@ In the immediate future, the heirloom would be used as a jewellery box by my wif
 
   <nav class="pagination">
     
-      <a href="/projects/2019_2_stayingsane/" class="pagination--pager" title="Date Night
+      <a href="/ssl-cert/" class="pagination--pager" title="Enforcing HTTPS on GitHub Pages Served via an External Domain Name
 ">Previous</a>
     
     
-      <a href="#" class="pagination--pager disabled">Next</a>
+      <a href="/foundation-large-language-models-whitepaper/" class="pagination--pager" title="Notes on Foundational Large Language Models &amp; Text Generation
+">Next</a>
     
   </nav>
 

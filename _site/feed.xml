@@ -1,4 +1,132 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.1.6">Jekyll</generator><link href="http://ottoman91.github.io/ottoman91/feed.xml" rel="self" type="application/atom+xml" /><link href="http://ottoman91.github.io/ottoman91/" rel="alternate" type="text/html" /><updated>2025-03-26T03:20:04+00:00</updated><id>http://ottoman91.github.io/ottoman91/</id><title>Usman Khaliq</title><subtitle>Coder,Data Science Enthusiast, ICT4D Practitioner.</subtitle><author><name>Usman Khaliq</name><email>usman.khaliq91@gmail.com</email></author><entry><title>Enforcing HTTPS on GitHub Pages Served via an External Domain Name</title><link href="http://ottoman91.github.io/ottoman91/ssl-cert/" rel="alternate" type="text/html" title="Enforcing HTTPS on GitHub Pages Served via an External Domain Name" /><published>2023-11-01T00:00:00+00:00</published><updated>2023-11-01T00:00:00+00:00</updated><id>http://ottoman91.github.io/ottoman91/ssl-cert</id><content type="html" xml:base="http://ottoman91.github.io/ottoman91/ssl-cert/">&lt;p&gt;It took me an embarassingly/surprisingly long time to realise that the HTTPs certification on this blog had failed, and the page was not opening with an https connection. The culprit for this breakage was &lt;a href=&quot;https://gist.github.com/oldmud0/1a60cab1bcbddee9daa1c0b95823c27e&quot; target=&quot;_blank&quot;&gt;this&lt;/a&gt; change that GitHub made in 2018(I’m not sure that the SSL certificate for this website had been broken since then…), when they changed the suggested IP addresses to put on the A records for domains that used GitHub Pages. What should’ve been a relatively (at least in theory) easy change to make, turned out to be anything but. It also was yet another example on how poorly designed web applications(which in this case, is the JustHost admin portal) are in general, and how it is almost a borderline miracle that so much software with real world usage has been built over the years.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.1.6">Jekyll</generator><link href="http://ottoman91.github.io/ottoman91/feed.xml" rel="self" type="application/atom+xml" /><link href="http://ottoman91.github.io/ottoman91/" rel="alternate" type="text/html" /><updated>2025-08-15T04:19:03+00:00</updated><id>http://ottoman91.github.io/ottoman91/</id><title>Usman Khaliq</title><subtitle>Coder,Data Science Enthusiast, ICT4D Practitioner.</subtitle><author><name>Usman Khaliq</name><email>usman.khaliq91@gmail.com</email></author><entry><title>Notes on Foundational Large Language Models &amp;amp; Text Generation</title><link href="http://ottoman91.github.io/ottoman91/foundation-large-language-models-whitepaper/" rel="alternate" type="text/html" title="Notes on Foundational Large Language Models &amp; Text Generation" /><published>2024-11-10T00:00:00+00:00</published><updated>2024-11-10T00:00:00+00:00</updated><id>http://ottoman91.github.io/ottoman91/foundation-large-language-models-whitepaper</id><content type="html" xml:base="http://ottoman91.github.io/ottoman91/foundation-large-language-models-whitepaper/">&lt;p&gt;Notes from Google’s &lt;a href=&quot;https://www.kaggle.com/whitepaper-foundational-llm-and-text-generation&quot;&gt;Foundational Large Language Models &amp;amp; Text Generation&lt;/a&gt; white paper(part of the Kaggle/Google Deep Dive on LLM Course)&lt;/p&gt;
+
+&lt;p&gt;Fine tuning methods:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Supervised Fine Tuning
+    &lt;ul&gt;
+      &lt;li&gt;Give a LLM a crash course specifically designed for a task. e.g. a whiz of summarizing research papers, train it on research papers and summaries of papers.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Reinforcement learning from human feedback(RHLF)
+    &lt;ul&gt;
+      &lt;li&gt;We use human feedback to train a reward model ( a judge that tells whether a response from LLM is good or bad)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Parameter efficient fine tuning(PEFT)
+    &lt;ul&gt;
+      &lt;li&gt;Tackles a real world problem - instead of retraining whole model, we can only retrain special modules of the LLM.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;How do we talk to the LLM? We use prompt engineering(give our LLM a clear recipe)&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The way that we phrase our prompts can make a world of difference.&lt;/li&gt;
+  &lt;li&gt;Zero shot prompting - we give it a task and tell it to give a response&lt;/li&gt;
+  &lt;li&gt;Few shot prompting - Give it a few examples&lt;/li&gt;
+  &lt;li&gt;Chain of thought prompting - Tell it step by step to do the task.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Sampling techniques control how the LLM picks up the enxt word/its style.&lt;/p&gt;
+
+&lt;p&gt;Techniques:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;greedy search&lt;/li&gt;
+  &lt;li&gt;random sampling - throwing some unpredictibility&lt;/li&gt;
+  &lt;li&gt;temperature sampling - balance between predictabiity and creativity&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Inference optimization techniques - how to make inference better.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;quantization - streamling hte models internal calculations(use lower precision numbers/using “shorthands”)&lt;/li&gt;
+  &lt;li&gt;distillation - train a smaller,faster “student” model that mimics the “teacher” model&lt;/li&gt;
+  &lt;li&gt;output preserving methods - guarantees that the models’ performance remains unchanged.&lt;/li&gt;
+  &lt;li&gt;prefix caching - imp for chat bots, cases where it needs to save previous answers.&lt;/li&gt;
+  &lt;li&gt;speculative decoding - have a team of assistants working in parallel&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Most exciting applications:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;code generation&lt;/li&gt;
+  &lt;li&gt;machine translation&lt;/li&gt;
+  &lt;li&gt;creative content generation&lt;/li&gt;
+  &lt;li&gt;reasoning about abstract math problems.&lt;/li&gt;
+  &lt;li&gt;translating languages&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>Usman Khaliq</name><email>usman.khaliq91@gmail.com</email></author><summary>Notes from Google’s Foundational Large Language Models &amp;amp; Text Generation white paper(part of the Kaggle/Google Deep Dive on LLM Course)</summary></entry><entry><title>Notes on Intro to Large Language Models Video - Andrej Karpathy</title><link href="http://ottoman91.github.io/ottoman91/llm-primer-notes/" rel="alternate" type="text/html" title="Notes on Intro to Large Language Models Video - Andrej Karpathy" /><published>2024-11-09T00:00:00+00:00</published><updated>2024-11-09T00:00:00+00:00</updated><id>http://ottoman91.github.io/ottoman91/llm-primer-notes</id><content type="html" xml:base="http://ottoman91.github.io/ottoman91/llm-primer-notes/">&lt;p&gt;Here are my notes from Andrej Karpathy’s excellent &lt;a href=&quot;https://www.youtube.com/watch?v=zjkBMFhNj_g&quot;&gt;Intro to Large Language Models&lt;/a&gt; video.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;An open weights model is one that has all of the parameters released to the public.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;At its core, an LLM has just two files:&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;The parameter files (each parameter is stored with 2 bytes(its stored as a float 16)&lt;/li&gt;
+      &lt;li&gt;The code file that runs the parameters&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Not a lot is necessary to run the model.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The magic and computational lift is in the parameters and how do we obtain them&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;How do we train the model - its more involved and complicated.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Think of it as taking a chunk of the internet and compressing it via GPU clusters. parameters can be thought of a zip file of the internet. but this isnt exactly a zip file because it is a lossy compression.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;What is the neural network doing ? just trying to predict the next word sequence.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Next word prediction is actually really powerful because it is forcing the neural network to learn a lot about the world. all of this knowledge is being compressed in the weights of the parameters.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;The network “dreams” internet pages&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;How do they work?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;pre training stage is when we train the model on all internet data.&lt;/li&gt;
+  &lt;li&gt;we know the architecture and the mathematical operation.&lt;/li&gt;
+  &lt;li&gt;We know how to iteratively adjust the parameters to improve the next word predictioon, but we dont know how exactly all of these parameters interact wit each other.&lt;/li&gt;
+  &lt;li&gt;They build and maintain some kind of knowledge store, but it seems to be one dimensional. e.g chatgpt knows who tom cruise’s mother is, but if you ask him who is her son, it doesnt know.&lt;/li&gt;
+  &lt;li&gt;Think of them as empirical artifacts.&lt;/li&gt;
+  &lt;li&gt;The above step, where we train the internet of documents, is the first step.&lt;/li&gt;
+  &lt;li&gt;The next step is training the assistant. (fine tuning). we want to give questions and get answers.&lt;/li&gt;
+  &lt;li&gt;We swap the internet oof documents dataset and replace that with responses that we have collected from people.
+    &lt;ul&gt;
+      &lt;li&gt;in this stage, we prefer quality over quantity.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Somehow, the model in the fine tuning stage is able to tap into the knowledge that it got fro the pre training stage. we dont know how exactly this happens.&lt;/li&gt;
+  &lt;li&gt;Third step - comparison. instead of the humans generating responses, they look at all of the responses generated by the GPT and chose the ones that are closest to the actual answers.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;LLM Scaling Laws&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Performnace of LLMs is a smoothed, well defined function based on:
+    &lt;ul&gt;
+      &lt;li&gt;N - the number of parameters in the network&lt;/li&gt;
+      &lt;li&gt;D - the amount of text that the model is trained on&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;next iterations to model:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;multi modality&lt;/li&gt;
+  &lt;li&gt;speech to text&lt;/li&gt;
+  &lt;li&gt;system 2 thinking&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Usman Khaliq</name><email>usman.khaliq91@gmail.com</email></author><summary>Here are my notes from Andrej Karpathy’s excellent Intro to Large Language Models video.</summary></entry><entry><title>Enforcing HTTPS on GitHub Pages Served via an External Domain Name</title><link href="http://ottoman91.github.io/ottoman91/ssl-cert/" rel="alternate" type="text/html" title="Enforcing HTTPS on GitHub Pages Served via an External Domain Name" /><published>2023-11-01T00:00:00+00:00</published><updated>2023-11-01T00:00:00+00:00</updated><id>http://ottoman91.github.io/ottoman91/ssl-cert</id><content type="html" xml:base="http://ottoman91.github.io/ottoman91/ssl-cert/">&lt;p&gt;It took me an embarassingly/surprisingly long time to realise that the HTTPs certification on this blog had failed, and the page was not opening with an https connection. The culprit for this breakage was &lt;a href=&quot;https://gist.github.com/oldmud0/1a60cab1bcbddee9daa1c0b95823c27e&quot; target=&quot;_blank&quot;&gt;this&lt;/a&gt; change that GitHub made in 2018(I’m not sure that the SSL certificate for this website had been broken since then…), when they changed the suggested IP addresses to put on the A records for domains that used GitHub Pages. What should’ve been a relatively (at least in theory) easy change to make, turned out to be anything but. It also was yet another example on how poorly designed web applications(which in this case, is the JustHost admin portal) are in general, and how it is almost a borderline miracle that so much software with real world usage has been built over the years.&lt;/p&gt;
 
 &lt;p&gt;To save myself(and any potential readers who are frantically searching for similar issues) from the hassle of re-tracing the steps that I used for fixing this error, here is what I did.&lt;/p&gt;
 
@@ -35,7 +163,44 @@ Dont do this to yourself. Things will get better, everything will work out fine,
 dramatically lost over the past few months, and get back to things. Stop overthinking, stop being so hard on yourself.
 Go to sleep now. Wake up in a few hours time, study for your exams, reclaim that relentless spark back. The unread emails
 and the evernote notes are waiting for you.&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>Usman Khaliq</name><email>usman.khaliq91@gmail.com</email></author><summary>While cleaning up my email folder today, I came across this email that I had sent to myself on the 15th of Jan, 2015. It’s always a bittersweet experience to revisit your notes from yonder years, and to reflect on how far you have travelled since then. I slightly chuckle to myself thinking about what was really bothering me when I wrote this, but trying not to be too self-deprecating.</summary></entry><entry><title>Accessing Google Cloud Platform Buckets From a Co-Lab Notebook Running R</title><link href="http://ottoman91.github.io/ottoman91/gcp_colab_r/" rel="alternate" type="text/html" title="Accessing Google Cloud Platform Buckets From a Co-Lab Notebook Running R" /><published>2020-06-21T00:00:00+00:00</published><updated>2020-06-21T00:00:00+00:00</updated><id>http://ottoman91.github.io/ottoman91/gcp_colab_r</id><content type="html" xml:base="http://ottoman91.github.io/ottoman91/gcp_colab_r/">&lt;p&gt;Last week, I set up a Google Co-lab notebook running on R (my preferred language for data exploration and early stages EDA). I wanted to access some buckets from a Google Cloud Platform(GCP) project that was being hosted on my company’s GCP platform. I used the &lt;code class=&quot;highlighter-rouge&quot;&gt;googleCloudStorageR&lt;/code&gt; library written by &lt;a href=&quot;https://code.markedmondson.me/&quot;&gt;Mark Edmondson&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>Usman Khaliq</name><email>usman.khaliq91@gmail.com</email></author><summary>While cleaning up my email folder today, I came across this email that I had sent to myself on the 15th of Jan, 2015. It’s always a bittersweet experience to revisit your notes from yonder years, and to reflect on how far you have travelled since then. I slightly chuckle to myself thinking about what was really bothering me when I wrote this, but trying not to be too self-deprecating.</summary></entry><entry><title>Removing a Homebrew Package and All of its Dependencies on macOS</title><link href="http://ottoman91.github.io/ottoman91/removing-homebrew-package/" rel="alternate" type="text/html" title="Removing a Homebrew Package and All of its Dependencies on macOS" /><published>2020-06-21T00:00:00+00:00</published><updated>2020-06-21T00:00:00+00:00</updated><id>http://ottoman91.github.io/ottoman91/removing-homebrew-package</id><content type="html" xml:base="http://ottoman91.github.io/ottoman91/removing-homebrew-package/">&lt;p&gt;Homebrew is an excellent command line package management tool for Mac OSx, and it is rightly proclaimed as “The missing package manager for macOS”, as stated on its official website. However, a few days ago, I came across an urgent task which I had not addressed before, namely, how to cleanly and completely remove a package installed from Homebrew, along with all of its dependencies.
+A quick online search rendered the following approach on Stackoverflow, which included using an external command called brew rmtree, which was to be executed as follows:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+brew tap beeftornado/rmtree
+brew rmtree &amp;lt;package&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;However, for some reason, when I ran this command, brew took an insanely long time to update. I am not quite sure what the error was, but it was most probably due to my crappy internet connection.
+Nevertheless, I came across another method for achieving this task on the same Stackoverflow answer thread. I found this method to be easier and way quicker, although it did take me a while to figure out how to run external brew scripts and the configurations that need to be made to run them. To save others the hassle and time of understanding how the configuration would need to be set up, I am highlighting the steps followed below:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Download the brew_clean script from &lt;a href=&quot;https://gist.github.com/cskeeters/10ff1295bca93808213d&quot;&gt;this&lt;/a&gt; Github repo&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Once you have unzipped the downloaded file, copy the brew_clean script to /usr/local/bin. This would ensure that the script is global.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Make the script executable by running the following command in the /usr/local/bin directory:
+&lt;code class=&quot;highlighter-rouge&quot;&gt;
+sudo chmod+x brew_clean
+&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Run the following command in your directory of choice to generate a file that contains the list of all brew packages installed on your machine:
+&lt;code class=&quot;highlighter-rouge&quot;&gt;
+brew leaves &amp;gt; brew_packages
+&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Open the brew_packages file using your favourite text editor ( which is nano in my case for such small tasks). In the file, delete the name of the package you want to remove. Save and close the file.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Run the following command to allow brew_clean to remove the package you deleted from the brew_packages file:
+&lt;code class=&quot;highlighter-rouge&quot;&gt;
+brew_clean brew_packages
+&lt;/code&gt;
+And there you have it. You can verify that the package has indeed been deleted by moving to the /usr/local/Cellar directory. The package that you just deleted would no longer be listed in the directory.
+Hope this helped. Happy coding and creating awesome software solutions for the world!&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>Usman Khaliq</name><email>usman.khaliq91@gmail.com</email></author><summary>Homebrew is an excellent command line package management tool for Mac OSx, and it is rightly proclaimed as “The missing package manager for macOS”, as stated on its official website. However, a few days ago, I came across an urgent task which I had not addressed before, namely, how to cleanly and completely remove a package installed from Homebrew, along with all of its dependencies.
+A quick online search rendered the following approach on Stackoverflow, which included using an external command called brew rmtree, which was to be executed as follows:</summary></entry><entry><title>Accessing Google Cloud Platform Buckets From a Co-Lab Notebook Running R</title><link href="http://ottoman91.github.io/ottoman91/gcp_colab_r/" rel="alternate" type="text/html" title="Accessing Google Cloud Platform Buckets From a Co-Lab Notebook Running R" /><published>2020-06-21T00:00:00+00:00</published><updated>2020-06-21T00:00:00+00:00</updated><id>http://ottoman91.github.io/ottoman91/gcp_colab_r</id><content type="html" xml:base="http://ottoman91.github.io/ottoman91/gcp_colab_r/">&lt;p&gt;Last week, I set up a Google Co-lab notebook running on R (my preferred language for data exploration and early stages EDA). I wanted to access some buckets from a Google Cloud Platform(GCP) project that was being hosted on my company’s GCP platform. I used the &lt;code class=&quot;highlighter-rouge&quot;&gt;googleCloudStorageR&lt;/code&gt; library written by &lt;a href=&quot;https://code.markedmondson.me/&quot;&gt;Mark Edmondson&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;In the documentation for the package, they specified downloading a service account JSON file from a GCP project, which would then be referenced by the library for connecting to the GCP project and accessing the buckets. However, since I wanted this notebook to be easily shared by other people across my organization, I did not want to access a JSON file that had the access keys for the API and which would need to be saved along with the Co-lab notebook. Instead, I wanted to connect and authenticate with the GCP project interactively and in real-time from the Co-lab notebook, which would allow anyone with the correct credentials for my organization’s GCP project to run the notebook on their own.&lt;/p&gt;
 

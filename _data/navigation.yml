@@ -13,14 +13,11 @@ main:
   - title: "Blog"
     url: /designlog
 
-  - title: "Visualizations"
-    url: /visualization
-
-  - title: "Book Reviews"
+  - title: "Book/Paper Reviews"
     url: /book
 
-  - title: "Coding Scratch Pad"
-    url: /coding
+#  - title: "Coding Scratch Pad"
+#    url: /coding
 
   - title: "CV"
     url: /pdfs/CV_Usman_Khaliq.pdf
