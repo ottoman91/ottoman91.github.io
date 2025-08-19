@@ -13,7 +13,7 @@ main:
   - title: "Blog"
     url: /designlog
 
-  - title: "Book/Paper Reviews"
+  - title: "Reading Notes"
     url: /book
 
 #  - title: "Coding Scratch Pad"
