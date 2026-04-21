@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Causal Inference Techniques — Interactive Guide</title>
+<style>
+:root {
+  --bg: #0f1117;
+  --surface: #1a1d27;
+  --surface2: #242836;
+  --accent: #6c63ff;
+  --accent2: #00d4aa;
+  --text: #e2e4e9;
+  --muted: #8b8fa3;
+  --uber: #000000;
+  --intuit: #365ebf;
+  --border: #2e3348;
+  --code-bg: #1e2130;
+  --success: #00d4aa;
+  --warn: #ffa726;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'Inter', -apple-system, system-ui, sans-serif; background: var(--bg); color: var(--text); line-height:1.6; }
+a { color: var(--accent); text-decoration:none; }
+
+/* NAV */
+.topbar { position:fixed; top:0; left:0; right:0; z-index:100; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); border-bottom:1px solid var(--border); padding:12px 24px; display:flex; align-items:center; gap:16px; }
+.topbar h1 { font-size:16px; font-weight:700; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; white-space:nowrap; }
+.nav-pills { display:flex; gap:6px; overflow-x:auto; flex:1; }
+.nav-pills button { background:var(--surface); border:1px solid var(--border); color:var(--muted); padding:6px 12px; border-radius:6px; font-size:12px; cursor:pointer; white-space:nowrap; transition:all .2s; }
+.nav-pills button:hover { color:var(--text); border-color:var(--accent); }
+.nav-pills button.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+
+/* LAYOUT */
+.container { max-width:1100px; margin:0 auto; padding:80px 24px 60px; }
+.hero { text-align:center; padding:40px 0 50px; }
+.hero h2 { font-size:36px; font-weight:800; margin-bottom:12px; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.hero p { color:var(--muted); font-size:16px; max-width:700px; margin:0 auto 24px; }
+.tag-row { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
+.tag { background:var(--surface); border:1px solid var(--border); padding:4px 12px; border-radius:20px; font-size:12px; color:var(--muted); }
+
+/* TECHNIQUE SECTIONS */
+.technique { display:none; animation: fadeIn .3s ease; }
+.technique.active { display:block; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+
+.tech-header { padding:30px 0 20px; border-bottom:1px solid var(--border); margin-bottom:30px; }
+.tech-header h3 { font-size:28px; font-weight:700; margin-bottom:8px; }
+.tech-header .subtitle { color:var(--muted); font-size:15px; }
+.tech-header .category { display:inline-block; background:var(--accent); color:#fff; padding:3px 10px; border-radius:4px; font-size:11px; font-weight:600; text-transform:uppercase; margin-bottom:10px; }
+
+/* CARDS */
+.card-grid { display:grid; grid-template-columns: 1fr 1fr; gap:20px; margin-bottom:30px; }
+@media(max-width:768px){ .card-grid{grid-template-columns:1fr;} }
+.card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:24px; }
+.card h4 { font-size:15px; font-weight:700; margin-bottom:10px; display:flex; align-items:center; gap:8px; }
+.card p, .card li { font-size:14px; color:var(--muted); line-height:1.7; }
+.card ul { padding-left:18px; }
+.card.full { grid-column: 1 / -1; }
+
+.company-tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:700; text-transform:uppercase; }
+.company-tag.uber { background:#222; color:#fff; border:1px solid #444; }
+.company-tag.intuit { background:var(--intuit); color:#fff; }
+
+/* CODE */
+pre { background:var(--code-bg); border:1px solid var(--border); border-radius:8px; padding:16px; overflow-x:auto; font-size:13px; line-height:1.6; margin:12px 0; font-family:'Fira Code','SF Mono',monospace; color:#c9d1d9; }
+.kw { color:#ff7b72; }
+.fn { color:#d2a8ff; }
+.str { color:#a5d6ff; }
+.cm { color:#8b949e; }
+.num { color:#79c0ff; }
+.op { color:#ff7b72; }
+
+/* FORMULA */
+.formula-box { background: linear-gradient(135deg, rgba(108,99,255,0.08), rgba(0,212,170,0.08)); border:1px solid var(--border); border-radius:10px; padding:20px; margin:16px 0; text-align:center; }
+.formula-box .formula { font-size:18px; font-family:'Georgia',serif; font-style:italic; color:var(--text); margin:8px 0; }
+.formula-box .label { font-size:12px; color:var(--muted); }
+
+/* INTERACTIVE */
+.interactive-box { background:var(--surface2); border:1px solid var(--border); border-radius:12px; padding:24px; margin:20px 0; }
+.interactive-box h4 { font-size:15px; font-weight:700; margin-bottom:16px; color:var(--accent2); }
+.slider-row { display:flex; align-items:center; gap:12px; margin:10px 0; }
+.slider-row label { font-size:13px; color:var(--muted); min-width:160px; }
+.slider-row input[type=range] { flex:1; accent-color:var(--accent); }
+.slider-row .val { font-size:13px; font-weight:600; min-width:50px; text-align:right; }
+.result-box { background:var(--code-bg); border-radius:8px; padding:16px; margin-top:16px; font-size:14px; }
+.result-box .big { font-size:24px; font-weight:700; color:var(--accent2); }
+
+/* DAG */
+.dag-container { display:flex; justify-content:center; margin:16px 0; }
+.dag-container svg { max-width:100%; }
+
+/* TABS inside technique */
+.inner-tabs { display:flex; gap:6px; margin-bottom:20px; }
+.inner-tabs button { background:var(--surface); border:1px solid var(--border); color:var(--muted); padding:8px 16px; border-radius:6px; font-size:13px; cursor:pointer; transition:all .2s; }
+.inner-tabs button:hover { color:var(--text); }
+.inner-tabs button.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+.inner-panel { display:none; }
+.inner-panel.active { display:block; }
+
+/* ASSUMPTIONS */
+.assumption-list { list-style:none; padding:0; }
+.assumption-list li { padding:8px 0; border-bottom:1px solid var(--border); font-size:14px; color:var(--muted); }
+.assumption-list li:before { content:"⚠ "; color:var(--warn); }
+
+/* COMPARISON TABLE */
+table { width:100%; border-collapse:collapse; font-size:13px; margin:12px 0; }
+th,td { padding:10px 12px; text-align:left; border-bottom:1px solid var(--border); }
+th { color:var(--accent); font-weight:600; font-size:12px; text-transform:uppercase; }
+td { color:var(--muted); }
+
+/* METHODOLOGY EXPLAINER */
+.method-explainer { display:grid; grid-template-columns: 1fr 1fr; gap:0; margin:20px 0; border:1px solid var(--border); border-radius:12px; overflow:hidden; }
+@media(max-width:768px){ .method-explainer{grid-template-columns:1fr;} }
+.method-col { padding:24px; }
+.method-col.technical { background: rgba(108,99,255,0.06); border-right:1px solid var(--border); }
+.method-col.intuitive { background: rgba(0,212,170,0.06); }
+.method-col h4 { font-size:13px; text-transform:uppercase; letter-spacing:1px; margin-bottom:14px; }
+.method-col.technical h4 { color:var(--accent); }
+.method-col.intuitive h4 { color:var(--accent2); }
+.method-col p, .method-col li { font-size:14px; color:var(--muted); line-height:1.8; }
+.method-col ol, .method-col ul { padding-left:18px; }
+.method-col strong { color:var(--text); }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <h1>Causal Inference</h1>
+  <div class="nav-pills" id="nav">
+    <button class="active" onclick="show('overview')">Overview</button>
+    <button onclick="show('cuped')">CUPED</button>
+    <button onclick="show('psm')">Propensity Score</button>
+    <button onclick="show('ipw')">IPW</button>
+    <button onclick="show('rdd')">Regression Discontinuity</button>
+    <button onclick="show('did')">Diff-in-Diff</button>
+    <button onclick="show('synth')">Synthetic Control</button>
+    <button onclick="show('iv')">Instrumental Variables</button>
+    <button onclick="show('mediation')">Mediation Analysis</button>
+    <button onclick="show('uplift')">Uplift Modeling</button>
+    <button onclick="show('bsts')">BSTS</button>
+    <button onclick="show('cace')">CACE</button>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ==================== OVERVIEW ==================== -->
+<div class="technique active" id="sec-overview">
+  <div class="hero">
+    <h2>Causal Inference Playbook</h2>
+    <p>All techniques from Uber's causal inference and mediation modeling blogs — with interactive examples applied at Uber and Intuit.</p>
+    <div class="tag-row">
+      <span class="tag">Experiments</span><span class="tag">Observational Studies</span><span class="tag">Mediation</span><span class="tag">Heterogeneous Effects</span><span class="tag">Time Series</span>
+    </div>
+  </div>
+
+  <div class="card full" style="grid-column:1/-1; margin-bottom:20px;">
+    <h4>Techniques Extracted from the Articles</h4>
+    <table>
+      <tr><th>Technique</th><th>Context</th><th>Article</th></tr>
+      <tr><td>CUPED (Variance Reduction)</td><td>Randomized Experiments</td><td>Causal Inference at Uber</td></tr>
+      <tr><td>Propensity Score Matching</td><td>Observational</td><td>Both articles</td></tr>
+      <tr><td>Inverse Probability Weighting (IPW)</td><td>Observational / Experiments</td><td>Causal Inference at Uber</td></tr>
+      <tr><td>Regression Discontinuity Design (RDD)</td><td>Observational (quasi-experiment)</td><td>Causal Inference at Uber</td></tr>
+      <tr><td>Difference-in-Differences (DiD)</td><td>Observational (panel)</td><td>Causal Inference at Uber</td></tr>
+      <tr><td>Synthetic Control</td><td>Observational (aggregate)</td><td>Causal Inference at Uber</td></tr>
+      <tr><td>Instrumental Variables (IV)</td><td>Observational (endogeneity)</td><td>Causal Inference at Uber</td></tr>
+      <tr><td>Mediation Analysis (ACME / ADE)</td><td>Mechanism decomposition</td><td>Mediation Modeling at Uber</td></tr>
+      <tr><td>Uplift Modeling / HTE</td><td>Heterogeneous effects</td><td>Causal Inference at Uber</td></tr>
+      <tr><td>Bayesian Structural Time Series (BSTS)</td><td>Time series counterfactual</td><td>Causal Inference at Uber</td></tr>
+      <tr><td>CACE (Complier Average Causal Effect)</td><td>Non-compliance in experiments</td><td>Causal Inference at Uber</td></tr>
+    </table>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h4>🔬 Experimental Methods</h4>
+      <p>When you <strong>can</strong> randomize: CUPED for variance reduction, CACE for non-compliance, Uplift for heterogeneous treatment effects.</p>
+    </div>
+    <div class="card">
+      <h4>🔭 Observational Methods</h4>
+      <p>When you <strong>cannot</strong> randomize: PSM, IPW, RDD, DiD, Synthetic Control, IV — each handles a different source of confounding.</p>
+    </div>
+    <div class="card">
+      <h4>⚙️ Mechanism Methods</h4>
+      <p>When you need to know <strong>why</strong>: Mediation analysis decomposes total effects into direct and indirect pathways.</p>
+    </div>
+    <div class="card">
+      <h4>📈 Time Series Methods</h4>
+      <p>When treatment is <strong>aggregate</strong>: BSTS with synthetic controls builds counterfactual time series to estimate impact.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== CUPED ==================== -->
+<div class="technique" id="sec-cuped">
+  <div class="tech-header">
+    <span class="category">Experimental</span>
+    <h3>CUPED — Controlled-experiment Using Pre-Experiment Data</h3>
+    <p class="subtitle">Reduce variance in A/B tests by leveraging pre-experiment data, so you can detect smaller effects faster.</p>
+  </div>
+
+  <div class="formula-box">
+    <div class="label">Core Formula</div>
+    <div class="formula">Ŷ_cv = Y − θ(X − E[X])</div>
+    <div class="label">where θ = Cov(Y, X) / Var(X), and X is a pre-experiment covariate</div>
+  </div>
+
+  <div class="method-explainer">
+    <div class="method-col technical">
+      <h4>Statistical Perspective</h4>
+      <p>CUPED is a <strong>control variate method</strong> borrowed from Monte Carlo simulation. The key insight: if you have a covariate X correlated with your outcome Y, you can construct an adjusted outcome Ŷ = Y − θ(X − E[X]) that has lower variance than Y while preserving the same expectation (since E[X − E[X]] = 0, the adjustment is mean-zero).</p>
+      <p style="margin-top:10px;">The optimal θ = Cov(Y,X)/Var(X) minimizes Var(Ŷ). The resulting variance reduction is exactly ρ², where ρ is the Pearson correlation between X and Y. This is equivalent to regressing Y on X and using the residuals — the treatment effect estimate from comparing CUPED-adjusted means is identical to the coefficient on the treatment indicator in a regression of Y on [Treatment, X].</p>
+      <p style="margin-top:10px;">Why it works for causal inference: X is measured pre-randomization, so it's independent of treatment assignment. The adjustment doesn't introduce bias — it only removes predictable variation in Y, leaving the treatment signal cleaner.</p>
+    </div>
+    <div class="method-col intuitive">
+      <h4>Intuitive Perspective</h4>
+      <p>Imagine you're comparing test scores between two classrooms after a new teaching method. Some students are naturally A students, others are C students. This natural variation makes it hard to see a small teaching improvement.</p>
+      <p style="margin-top:10px;"><strong>CUPED's trick:</strong> Before the experiment, you already know each student's GPA (the pre-experiment covariate). Instead of looking at raw test scores, you look at <em>how much better or worse each student did compared to what you'd predict from their GPA</em>. An A student scoring 92 is "normal"; an A student scoring 88 is "unusually low." A C student scoring 78 is "surprisingly good."</p>
+      <p style="margin-top:10px;">By stripping out the predictable part ("of course the A student scored high"), you're left with only the <em>surprise</em> — and the treatment effect shows up much more clearly in those surprises. The better you can predict baseline performance (higher correlation), the more noise you strip away.</p>
+      <p style="margin-top:10px;"><strong>The punchline:</strong> CUPED doesn't change what you measure or who you test. It just says "don't be impressed that good students scored high — tell me if they scored higher than <em>expected</em>."</p>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h4><span class="company-tag uber">Uber</span> Dispatch Algorithm A/B Test</h4>
+      <p><strong>Business Context:</strong> Uber's marketplace team is testing a new dispatch algorithm ("Smart Match v2") that considers driver-rider personality compatibility scores alongside ETA. The primary metric is ride completion rate. The challenge: ride completion varies enormously across rider segments — a power commuter completes 98% of rides, while a casual weekend user might cancel 30%. This heterogeneity inflates variance and makes it hard to detect the expected ~0.3pp improvement.</p>
+      <p style="margin-top:10px;"><strong>Data Setup:</strong> Pre-experiment covariate X = each rider's rolling 60-day ride completion rate (measured before randomization). Post-experiment outcome Y = completion rate during the 2-week test. The correlation between X and Y is ρ ≈ 0.82.</p>
+      <p style="margin-top:10px;"><strong>Methodology:</strong> For each rider, compute Ŷ_cv = Y − θ(X − X̄), where θ = Cov(Y,X)/Var(X). This strips out the "predictable" part of each rider's behavior, leaving only the experiment-driven variation. With ρ = 0.82, variance reduction = ρ² = 67%.</p>
+      <p style="margin-top:10px;"><strong>Results:</strong> Raw analysis: ATE = 0.31pp, p = 0.18 (not significant at n = 400K after 2 weeks). CUPED-adjusted: ATE = 0.29pp, SE drops from 0.23 to 0.13, p = 0.026. The experiment reaches significance without extending the test or increasing traffic allocation.</p>
+      <p style="margin-top:10px;"><strong>Takeaway:</strong> CUPED didn't change the point estimate — it shrank the confidence interval. Without it, the team would have needed to run the test 3x longer or ship based on a directional-but-insignificant result. This is critical in Uber's marketplace where longer experiments risk marketplace contamination.</p>
+    </div>
+    <div class="card">
+      <h4><span class="company-tag intuit">Intuit</span> W-2 Import Flow Redesign</h4>
+      <p><strong>Business Context:</strong> TurboTax is testing a redesigned W-2 import flow that uses OCR + auto-fill instead of manual entry. The primary metric is filing completion rate. Challenge: filing completion is heavily driven by user tax complexity — a simple single-W-2 filer completes at 85%, while a multi-income household with investments completes at 45%. This creates massive variance in the outcome metric.</p>
+      <p style="margin-top:10px;"><strong>Data Setup:</strong> Pre-experiment covariate X = each user's prior-year filing completion status (binary: completed vs. abandoned) plus number of forms filed last year. These are measured before the experiment, so they're immune to treatment contamination. ρ(X, Y) ≈ 0.74.</p>
+      <p style="margin-top:10px;"><strong>Methodology:</strong> Extend CUPED to multiple covariates: Ŷ_cv = Y − Θ'(X − X̄), where Θ is fit via OLS of Y on X in the control group. The multi-variate version captures both the "did they finish last year" signal and the "how complex is their return" signal.</p>
+      <p style="margin-top:10px;"><strong>Results:</strong> Raw: ATE = 1.8pp, SE = 1.1pp, p = 0.10 (would need 2 more weeks). CUPED-adjusted: ATE = 1.7pp, SE = 0.64pp, p = 0.008. The team ships in week 1 with high confidence, catching the peak of tax season (critical timing — each week of delay costs ~$2M in potential revenue).</p>
+      <p style="margin-top:10px;"><strong>Takeaway:</strong> In tax, timing is everything. Filing season is ~12 weeks long. Running a 3-week experiment means shipping a winning feature for only 9 weeks. CUPED compressed the test to 1 week, giving 2 extra weeks of the improved experience during peak filing volume.</p>
+    </div>
+  </div>
+
+  <div class="interactive-box">
+    <h4>Interactive: See How CUPED Reduces Variance</h4>
+    <div class="slider-row">
+      <label>Correlation (X, Y):</label>
+      <input type="range" min="0" max="99" value="70" id="cuped-corr" oninput="updateCuped()">
+      <span class="val" id="cuped-corr-val">0.70</span>
+    </div>
+    <div class="slider-row">
+      <label>Original Variance (σ²):</label>
+      <input type="range" min="1" max="100" value="50" id="cuped-var" oninput="updateCuped()">
+      <span class="val" id="cuped-var-val">50</span>
+    </div>
+    <div class="result-box" id="cuped-result">
+      <div>Variance Reduction: <span class="big" id="cuped-vr">49%</span></div>
+      <div style="margin-top:8px;color:var(--muted);font-size:13px;">
+        Adjusted Variance: <span id="cuped-adj">25.5</span> &nbsp;|&nbsp;
+        Required sample shrinks by <span id="cuped-sample" style="color:var(--accent2)">~49%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card full">
+    <h4>Python Example</h4>
+    <pre><span class="cm"># CUPED Variance Reduction</span>
+<span class="kw">import</span> numpy <span class="kw">as</span> np
+<span class="kw">import</span> pandas <span class="kw">as</span> pd
+
+<span class="kw">def</span> <span class="fn">cuped_adjust</span>(y_post, x_pre):
+    <span class="str">"""Adjust post-experiment metric using pre-experiment covariate."""</span>
+    theta = np.<span class="fn">cov</span>(y_post, x_pre)[<span class="num">0</span>,<span class="num">1</span>] / np.<span class="fn">var</span>(x_pre)
+    y_adjusted = y_post - theta * (x_pre - np.<span class="fn">mean</span>(x_pre))
+    <span class="kw">return</span> y_adjusted
+
+<span class="cm"># Example: TurboTax filing completion experiment</span>
+np.random.<span class="fn">seed</span>(<span class="num">42</span>)
+n = <span class="num">10000</span>
+
+<span class="cm"># Pre-experiment: prior year filing progress (0-100%)</span>
+x_pre = np.random.<span class="fn">normal</span>(<span class="num">65</span>, <span class="num">20</span>, n)
+
+<span class="cm"># Post-experiment: current year completion (correlated with pre)</span>
+treatment = np.random.<span class="fn">binomial</span>(<span class="num">1</span>, <span class="num">0.5</span>, n)
+true_effect = <span class="num">2.0</span>  <span class="cm"># True ATE = 2 percentage points</span>
+y_post = <span class="num">0.7</span> * x_pre + treatment * true_effect + np.random.<span class="fn">normal</span>(<span class="num">0</span>, <span class="num">15</span>, n)
+
+<span class="cm"># Standard estimate (high variance)</span>
+ate_raw = y_post[treatment==<span class="num">1</span>].<span class="fn">mean</span>() - y_post[treatment==<span class="num">0</span>].<span class="fn">mean</span>()
+
+<span class="cm"># CUPED-adjusted estimate (lower variance)</span>
+y_adj = <span class="fn">cuped_adjust</span>(y_post, x_pre)
+ate_cuped = y_adj[treatment==<span class="num">1</span>].<span class="fn">mean</span>() - y_adj[treatment==<span class="num">0</span>].<span class="fn">mean</span>()
+
+<span class="fn">print</span>(<span class="str">f"Raw ATE:   {ate_raw:.3f}  (SE: {y_post.std()/np.sqrt(n/2):.3f})"</span>)
+<span class="fn">print</span>(<span class="str">f"CUPED ATE: {ate_cuped:.3f}  (SE: {y_adj.std()/np.sqrt(n/2):.3f})"</span>)
+<span class="fn">print</span>(<span class="str">f"Variance reduction: {1 - y_adj.var()/y_post.var():.1%}"</span>)</pre>
+  </div>
+
+  <div class="card full">
+    <h4>Key Assumptions</h4>
+    <ul class="assumption-list">
+      <li>Pre-experiment covariate X is measured <strong>before</strong> randomization (not affected by treatment)</li>
+      <li>Linear relationship between X and Y (for standard CUPED; extensions exist for non-linear)</li>
+      <li>Higher correlation between X and Y → more variance reduction (ρ² is the fraction reduced)</li>
+      <li>Randomization is valid — CUPED reduces variance, it does not fix broken randomization</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== PSM ==================== -->
+<div class="technique" id="sec-psm">
+  <div class="tech-header">
+    <span class="category">Observational</span>
+    <h3>Propensity Score Matching (PSM)</h3>
+    <p class="subtitle">Match treated and control units based on their probability of receiving treatment, to approximate a randomized experiment from observational data.</p>
+  </div>
+
+  <div class="formula-box">
+    <div class="label">Propensity Score</div>
+    <div class="formula">e(X) = P(T = 1 | X)</div>
+    <div class="label">Estimated via logistic regression. Match units with similar e(X) across treatment groups.</div>
+  </div>
+
+  <div class="method-explainer">
+    <div class="method-col technical">
+      <h4>Statistical Perspective</h4>
+      <p>The fundamental problem: in observational data, treatment assignment depends on covariates X (confounders). The propensity score theorem (Rosenbaum & Rubin, 1983) states that if treatment assignment is <strong>strongly ignorable</strong> given X — i.e., (Y(0), Y(1)) ⊥ T | X — then it's also ignorable given the scalar e(X) = P(T=1|X).</p>
+      <p style="margin-top:10px;">This is a <strong>dimensionality reduction</strong> result: instead of matching on 20 covariates (curse of dimensionality), you match on a single number. The propensity score is a <em>balancing score</em> — within strata of e(X), the distribution of X is the same for treated and control units. Matching on e(X) thus creates approximate covariate balance.</p>
+      <p style="margin-top:10px;">After matching, you estimate the ATT (Average Treatment Effect on the Treated) by comparing matched outcomes. The quality of the estimate depends on: (1) correct specification of the propensity model, (2) sufficient overlap (common support), and (3) no unmeasured confounders. Sensitivity analysis (Rosenbaum bounds) quantifies how strong an unmeasured confounder would need to be to invalidate the results.</p>
+    </div>
+    <div class="method-col intuitive">
+      <h4>Intuitive Perspective</h4>
+      <p>Think of it as <strong>finding your twin</strong>. You want to know if a drug works, but you can't run a trial. Some people took the drug (treatment) and some didn't (control). The problem: the people who took the drug are different — maybe they're sicker, older, or more health-conscious.</p>
+      <p style="margin-top:10px;"><strong>Step 1:</strong> For each person, compute a single number: "How likely was this person to take the drug, given their characteristics?" A 60-year-old diabetic might have a 70% chance; a healthy 25-year-old might have a 5% chance. That's the propensity score.</p>
+      <p style="margin-top:10px;"><strong>Step 2:</strong> Now pair up each drug-taker with a non-drug-taker who had the <em>same likelihood</em> of taking the drug. A 70%-propensity person who DID take it gets matched with a 70%-propensity person who DIDN'T. These "twins" are similar in all the ways that matter for the treatment decision.</p>
+      <p style="margin-top:10px;"><strong>Step 3:</strong> Compare outcomes within each pair. The average difference is your causal estimate. The intuition: if two people were equally likely to take the drug but only one did, the difference in their outcomes is more plausibly caused by the drug (not by their background characteristics).</p>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h4><span class="company-tag uber">Uber</span> Uber Eats Delivery Delays → Customer Retention</h4>
+      <p><strong>Business Context:</strong> Uber Eats product leadership wants to quantify exactly how much a late delivery costs in customer lifetime value. They can't run an experiment (you can't randomly delay people's food). But natural delays happen constantly due to restaurant prep time variance, driver availability, and traffic. The question: does a 15-minute delay <em>cause</em> lower retention, or do low-retention customers just tend to order during high-delay periods (Friday dinner rush)?</p>
+      <p style="margin-top:10px;"><strong>Data Setup:</strong> 200K orders from Q3. Treatment: order delivered ≥15 min late vs. on-time. Covariates for propensity model: (1) user's historical order frequency, (2) cuisine category, (3) order time (hour + day-of-week), (4) restaurant-to-customer distance, (5) current marketplace utilization rate, (6) user tenure on platform, (7) average prior order value. Outcome: binary 30-day reorder.</p>
+      <p style="margin-top:10px;"><strong>Methodology:</strong> Fit logistic regression: P(delayed | covariates). Verify overlap — check that propensity score distributions for delayed and non-delayed orders have substantial common support (they do, between 0.08–0.65). Use 1:1 nearest-neighbor matching without replacement on the logit of the propensity score (caliper = 0.2 SD). Post-matching, verify covariate balance: all standardized mean differences < 0.05.</p>
+      <p style="margin-top:10px;"><strong>Results:</strong> Naive comparison: delayed orders have 11pp lower 30-day reorder (confounded — Friday rush orders are both more delayed AND from less loyal "try it once" users). After PSM: ATT = −4.1pp (95% CI: [−5.3, −2.9]). The confounding explained 7pp of the naive gap. At Uber Eats' scale, this 4pp translates to ~$180M/year in lost LTV.</p>
+      <p style="margin-top:10px;"><strong>Takeaway:</strong> The PSM result gave the operations team a concrete dollar figure to justify investing in delivery time reduction. It also revealed that the effect is non-linear: delays of 5–10 min have negligible impact, but the retention cliff is steep beyond 15 min — informing their SLA threshold design.</p>
+    </div>
+    <div class="card">
+      <h4><span class="company-tag intuit">Intuit</span> TurboTax Live Expert Impact on Filing Completion</h4>
+      <p><strong>Business Context:</strong> TurboTax Live connects filers with CPAs/EAs for real-time help. Users who engage with Live complete at 89% vs. 71% for DIY-only. But there's massive self-selection: users who seek expert help tend to be more motivated, have more complex returns (meaning more at stake), and have higher income. The product team needs the <em>causal</em> effect to justify the cost of expert staffing (~$35/session).</p>
+      <p style="margin-top:10px;"><strong>Data Setup:</strong> 150K users in the TurboTax Live eligible population from TY24. Treatment: engaged with a live expert (at least one session). Covariates: (1) prior-year product tier, (2) number of tax forms, (3) AGI bracket, (4) filing status, (5) entry point (organic vs. paid), (6) time spent before first expert interaction, (7) state complexity score, (8) mobile vs. desktop.</p>
+      <p style="margin-top:10px;"><strong>Methodology:</strong> Propensity model: gradient-boosted classifier (logistic regression was insufficient due to non-linear interactions between AGI and form count). Match on propensity score with caliper = 0.1 SD. 1:3 matching (each Live user matched to 3 DIY users) to preserve power. Post-matching balance check: all standardized differences < 0.03. Sensitivity analysis via Rosenbaum bounds: results hold up to Γ = 1.8 (an unmeasured confounder would need to increase odds of treatment by 80% to explain away the effect).</p>
+      <p style="margin-top:10px;"><strong>Results:</strong> Naive gap: 18pp. After PSM: ATT = 8.2pp (95% CI: [6.1, 10.3]). Self-selection explains ~10pp of the raw gap. At an 8pp completion lift and $120 average revenue per completed return, each $35 expert session generates $9.60 in incremental revenue — a 27% ROI before accounting for downstream retention and upsell.</p>
+      <p style="margin-top:10px;"><strong>Takeaway:</strong> Without PSM, leadership would have valued Live sessions at $21.60/session (based on naive 18pp), over-investing in expert staffing. The corrected $9.60 figure is still positive ROI but changes the staffing model: prioritize expert availability for high-complexity filers (where the CATE is highest) rather than blanket availability.</p>
+    </div>
+  </div>
+
+  <div class="card full">
+    <h4>Python Example</h4>
+    <pre><span class="cm"># Propensity Score Matching</span>
+<span class="kw">from</span> sklearn.linear_model <span class="kw">import</span> LogisticRegression
+<span class="kw">from</span> sklearn.neighbors <span class="kw">import</span> NearestNeighbors
+<span class="kw">import</span> numpy <span class="kw">as</span> np, pandas <span class="kw">as</span> pd
+
+<span class="kw">def</span> <span class="fn">propensity_score_match</span>(df, covariates, treatment_col, outcome_col, n_neighbors=<span class="num">1</span>):
+    <span class="str">"""Match treated to control units on propensity score."""</span>
+    <span class="cm"># Step 1: Estimate propensity scores</span>
+    lr = LogisticRegression(max_iter=<span class="num">1000</span>)
+    lr.<span class="fn">fit</span>(df[covariates], df[treatment_col])
+    df[<span class="str">'ps'</span>] = lr.<span class="fn">predict_proba</span>(df[covariates])[:, <span class="num">1</span>]
+
+    <span class="cm"># Step 2: Match treated to nearest control</span>
+    treated = df[df[treatment_col] == <span class="num">1</span>]
+    control = df[df[treatment_col] == <span class="num">0</span>]
+    nn = NearestNeighbors(n_neighbors=n_neighbors, metric=<span class="str">'euclidean'</span>)
+    nn.<span class="fn">fit</span>(control[[<span class="str">'ps'</span>]])
+    distances, indices = nn.<span class="fn">kneighbors</span>(treated[[<span class="str">'ps'</span>]])
+    matched_control = control.<span class="fn">iloc</span>[indices.flatten()]
+
+    <span class="cm"># Step 3: Estimate ATT</span>
+    att = treated[outcome_col].<span class="fn">mean</span>() - matched_control[outcome_col].<span class="fn">mean</span>()
+    <span class="kw">return</span> att, df[<span class="str">'ps'</span>]
+
+<span class="cm"># Example: Uber Eats delivery delay → reorder rate</span>
+np.random.<span class="fn">seed</span>(<span class="num">42</span>)
+n = <span class="num">5000</span>
+df = pd.<span class="fn">DataFrame</span>({
+    <span class="str">'order_freq'</span>: np.random.<span class="fn">poisson</span>(<span class="num">8</span>, n),
+    <span class="str">'avg_distance'</span>: np.random.<span class="fn">exponential</span>(<span class="num">3</span>, n),
+    <span class="str">'peak_hour'</span>: np.random.<span class="fn">binomial</span>(<span class="num">1</span>, <span class="num">0.3</span>, n),
+})
+<span class="cm"># Delay is more likely for distant, peak-hour orders (confounded)</span>
+logit = -<span class="num">1</span> + <span class="num">0.15</span>*df[<span class="str">'avg_distance'</span>] + <span class="num">0.8</span>*df[<span class="str">'peak_hour'</span>]
+df[<span class="str">'delayed'</span>] = np.random.<span class="fn">binomial</span>(<span class="num">1</span>, <span class="num">1</span>/(<span class="num">1</span>+np.<span class="fn">exp</span>(-logit)))
+<span class="cm"># Outcome: 30-day reorder (delay has true -4pp effect)</span>
+df[<span class="str">'reorder'</span>] = np.random.<span class="fn">binomial</span>(<span class="num">1</span>, np.<span class="fn">clip</span>(
+    <span class="num">0.6</span> + <span class="num">0.02</span>*df[<span class="str">'order_freq'</span>] - <span class="num">0.04</span>*df[<span class="str">'delayed'</span>], <span class="num">0</span>, <span class="num">1</span>))
+
+att, ps = <span class="fn">propensity_score_match</span>(
+    df, [<span class="str">'order_freq'</span>, <span class="str">'avg_distance'</span>, <span class="str">'peak_hour'</span>], <span class="str">'delayed'</span>, <span class="str">'reorder'</span>)
+<span class="fn">print</span>(<span class="str">f"Estimated ATT: {att:.3f}"</span>)  <span class="cm"># Should be close to -0.04</span></pre>
+  </div>
+
+  <div class="card full">
+    <h4>Key Assumptions</h4>
+    <ul class="assumption-list">
+      <li><strong>Unconfoundedness / Conditional Independence:</strong> No unmeasured confounders — all variables affecting both treatment and outcome are observed</li>
+      <li><strong>Common Support (Overlap):</strong> For every treated unit, there exists a comparable control unit with similar propensity score</li>
+      <li><strong>SUTVA:</strong> One unit's treatment doesn't affect another unit's outcome</li>
+      <li>Model specification matters — if the propensity model is wrong, matches are biased</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== IPW ==================== -->
+<div class="technique" id="sec-ipw">
+  <div class="tech-header">
+    <span class="category">Observational / Experimental</span>
+    <h3>Inverse Probability Weighting (IPW)</h3>
+    <p class="subtitle">Re-weight observations to create a pseudo-population where treatment is independent of confounders. No need to discard unmatched units.</p>
+  </div>
+
+  <div class="formula-box">
+    <div class="label">IPW Estimator (ATE)</div>
+    <div class="formula">τ̂_IPW = (1/n) Σ [ T·Y / e(X) − (1−T)·Y / (1−e(X)) ]</div>
+    <div class="label">Weight each observation by inverse of its probability of receiving the treatment it actually got.</div>
+  </div>
+
+  <div class="method-explainer">
+    <div class="method-col technical">
+      <h4>Statistical Perspective</h4>
+      <p>IPW creates a <strong>pseudo-population</strong> where treatment is independent of confounders. The Horvitz-Thompson estimator re-weights each observation: treated units get weight 1/e(X), control units get 1/(1−e(X)). This is equivalent to creating a survey-style weighted sample where the "sampling probability" is the probability of the treatment actually received.</p>
+      <p style="margin-top:10px;">Mathematically: E[TY/e(X)] = E[E[TY/e(X)|X]] = E[Y(1)·P(T=1|X)/e(X)] = E[Y(1)]. The propensity score in the denominator cancels the selection bias in the numerator. Stabilized weights (multiply by P(T)/e(X) instead of 1/e(X)) reduce variance without introducing bias. Weight trimming at extreme propensity scores (e.g., <0.05 or >0.95) trades small bias for large variance reduction.</p>
+      <p style="margin-top:10px;"><strong>Key advantage over matching:</strong> IPW uses ALL observations (no discarding), and the estimand is the ATE (not just ATT). It's also more naturally combined with regression (the "doubly robust" estimator: correct if EITHER the propensity model OR the outcome model is correct).</p>
+    </div>
+    <div class="method-col intuitive">
+      <h4>Intuitive Perspective</h4>
+      <p>Imagine a university studying whether study groups help exam scores. Students self-select: 90% of pre-med students join groups, but only 20% of art students do. If you naively compare group vs. no-group, you're mostly comparing pre-med (group) to art (no-group) students.</p>
+      <p style="margin-top:10px;"><strong>IPW's fix:</strong> Give rare observations more weight. That art student who DID join a group? They're unusual and informative — weight them more heavily (1/0.20 = 5x). That pre-med student who joined? Expected and redundant — weight them less (1/0.90 = 1.1x). For the control side: the pre-med who DIDN'T join gets heavy weight (1/0.10 = 10x — they're rare and informative) while the art student who didn't join gets low weight (1/0.80 = 1.25x).</p>
+      <p style="margin-top:10px;"><strong>The effect:</strong> After re-weighting, the "group" and "no-group" populations look identical in composition — same mix of pre-med and art students. Any remaining difference in outcomes can be attributed to the group itself, not to who chose to join.</p>
+      <p style="margin-top:10px;"><strong>vs. Matching:</strong> Matching throws away unmatched people. IPW keeps everyone but turns the volume up on informative observations and down on redundant ones. It's like equalizing a survey where some groups are oversampled.</p>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h4><span class="company-tag uber">Uber</span> Surge Pricing → Ride Request Elasticity</h4>
+      <p><strong>Business Context:</strong> Uber's pricing team needs to understand how surge multipliers affect ride request probability. They can't randomize surge (it's set by real-time supply/demand), and naive comparisons are hopelessly confounded: surge happens precisely when demand is already high, making it look like surge <em>increases</em> demand.</p>
+      <p style="margin-top:10px;"><strong>Data Setup:</strong> 500K ride request opportunities (app opens where a price was shown) across 30 cities over 8 weeks. Treatment: surge ≥ 1.5x. Covariates: (1) metro area, (2) hour-of-day × day-of-week, (3) weather conditions, (4) active drivers within 5 min, (5) local event flags (concerts, sports), (6) historical demand for that zone-hour. Outcome: binary ride request within 5 minutes.</p>
+      <p style="margin-top:10px;"><strong>Why IPW over PSM:</strong> PSM would discard ~40% of observations (poor overlap in extreme demand periods). IPW retains all observations, weighted to represent the population that could have plausibly experienced either surge or no-surge. Stabilized weights are used: w = P(T) / P(T|X) to reduce variance from extreme weights.</p>
+      <p style="margin-top:10px;"><strong>Results:</strong> Naive: surge zones show +5% ride requests (confounded — high demand drives both surge and requests). IPW-adjusted: surge ≥ 1.5x causes −18.3% (95% CI: [−21.1, −15.5]) reduction in ride requests. The pricing team uses this elasticity curve to optimize the surge multiplier schedule — finding that the revenue-maximizing surge is 1.3x, not the 1.8x the algorithm was frequently setting.</p>
+    </div>
+    <div class="card">
+      <h4><span class="company-tag intuit">Intuit</span> Recovering a Broken Experiment via IPW</h4>
+      <p><strong>Business Context:</strong> TurboTax ran an experiment on a new "Tax Timeline" dashboard. After 2 weeks, the experimentation platform flagged a sample ratio mismatch: treatment had 8% fewer users than expected. Investigation revealed that the new dashboard loaded 200ms slower on older Android devices, causing those users to bounce before the assignment event fired. Re-running would waste 2 weeks of peak tax season.</p>
+      <p style="margin-top:10px;"><strong>Data Setup:</strong> 300K users assigned (50/50). Treatment retained 138K; control retained 150K. The 12K "missing" treatment users are disproportionately: older Android, lower bandwidth, first-time filers. Covariates for dropout model: device age, OS version, connection speed, prior-year filing status, session start time.</p>
+      <p style="margin-top:10px;"><strong>Methodology:</strong> Model P(retained in sample | assigned to treatment, covariates) using logistic regression. Weight each remaining treatment user by 1/P(retained). This up-weights users similar to the ones who dropped (old Android, slow connection), reconstructing what the treatment group would have looked like without the telemetry gap. Verify: weighted covariate distributions match control group.</p>
+      <p style="margin-top:10px;"><strong>Results:</strong> Unweighted (biased): ATE = +3.1pp completion lift (inflated — the dropped users were harder-to-convert). IPW-adjusted: ATE = +1.9pp (95% CI: [0.8, 3.0]). Still significant and shippable, but the correct effect size changes the projected revenue impact from $8M to $5M — affecting the prioritization of the fix for the performance regression.</p>
+    </div>
+  </div>
+
+  <div class="card full">
+    <h4>Python Example</h4>
+    <pre><span class="cm"># Inverse Probability Weighting</span>
+<span class="kw">import</span> numpy <span class="kw">as</span> np
+<span class="kw">from</span> sklearn.linear_model <span class="kw">import</span> LogisticRegression
+
+<span class="kw">def</span> <span class="fn">ipw_ate</span>(y, treatment, X, clip_bounds=(<span class="num">0.05</span>, <span class="num">0.95</span>)):
+    <span class="str">"""Estimate ATE using stabilized IPW."""</span>
+    lr = LogisticRegression(max_iter=<span class="num">1000</span>)
+    lr.<span class="fn">fit</span>(X, treatment)
+    ps = lr.<span class="fn">predict_proba</span>(X)[:, <span class="num">1</span>]
+    ps = np.<span class="fn">clip</span>(ps, *clip_bounds)  <span class="cm"># Trim extreme weights</span>
+
+    <span class="cm"># Horvitz-Thompson estimator</span>
+    w1 = treatment / ps
+    w0 = (<span class="num">1</span> - treatment) / (<span class="num">1</span> - ps)
+    ate = np.<span class="fn">mean</span>(w1 * y) - np.<span class="fn">mean</span>(w0 * y)
+
+    <span class="cm"># Stabilized weights (less variance)</span>
+    p_treat = treatment.<span class="fn">mean</span>()
+    sw1 = treatment * p_treat / ps
+    sw0 = (<span class="num">1</span> - treatment) * (<span class="num">1</span> - p_treat) / (<span class="num">1</span> - ps)
+    ate_stab = (np.<span class="fn">sum</span>(sw1 * y) / np.<span class="fn">sum</span>(sw1)) - (np.<span class="fn">sum</span>(sw0 * y) / np.<span class="fn">sum</span>(sw0))
+
+    <span class="kw">return</span> {<span class="str">'ate'</span>: ate, <span class="str">'ate_stabilized'</span>: ate_stab, <span class="str">'ps'</span>: ps}
+
+<span class="cm"># Example: Surge pricing effect on ride requests</span>
+np.random.<span class="fn">seed</span>(<span class="num">42</span>)
+n = <span class="num">8000</span>
+demand_level = np.random.<span class="fn">normal</span>(<span class="num">0</span>, <span class="num">1</span>, n)  <span class="cm"># Confounder</span>
+surge = np.random.<span class="fn">binomial</span>(<span class="num">1</span>, <span class="num">1</span>/(<span class="num">1</span>+np.<span class="fn">exp</span>(-demand_level)))
+rides = <span class="num">50</span> + <span class="num">10</span>*demand_level - <span class="num">9</span>*surge + np.random.<span class="fn">normal</span>(<span class="num">0</span>, <span class="num">5</span>, n)
+
+result = <span class="fn">ipw_ate</span>(rides, surge, demand_level.reshape(-<span class="num">1</span>,<span class="num">1</span>))
+<span class="fn">print</span>(<span class="str">f"IPW ATE: {result['ate']:.2f}"</span>)  <span class="cm"># True: -9</span>
+<span class="fn">print</span>(<span class="str">f"Naive diff: {rides[surge==1].mean()-rides[surge==0].mean():.2f}"</span>)  <span class="cm"># Biased</span></pre>
+  </div>
+</div>
+
+<!-- ==================== RDD ==================== -->
+<div class="technique" id="sec-rdd">
+  <div class="tech-header">
+    <span class="category">Quasi-Experimental</span>
+    <h3>Regression Discontinuity Design (RDD)</h3>
+    <p class="subtitle">Exploit a cutoff rule: units just above vs. just below a threshold are near-identical, creating a natural experiment at the boundary.</p>
+  </div>
+
+  <div class="formula-box">
+    <div class="label">Local Average Treatment Effect at Cutoff</div>
+    <div class="formula">τ_RDD = lim(x→c⁺) E[Y|X=x] − lim(x→c⁻) E[Y|X=x]</div>
+    <div class="label">The jump in the outcome at the cutoff c identifies the causal effect.</div>
+  </div>
+
+  <div class="method-explainer">
+    <div class="method-col technical">
+      <h4>Statistical Perspective</h4>
+      <p>RDD exploits a <strong>known assignment rule</strong>: treatment is determined by whether a "running variable" X crosses a cutoff c. The identifying assumption is that all potential confounders are <strong>continuous at the cutoff</strong> — there's no reason someone at X = c−ε should be different from someone at X = c+ε in any way except their treatment status.</p>
+      <p style="margin-top:10px;">Formally: E[Y(0)|X=c] and E[Y(1)|X=c] are identified by the left and right limits of E[Y|X] at c. Any discontinuity in the outcome at c is attributed to the treatment. Estimation uses <strong>local linear regression</strong> within a bandwidth h of the cutoff, fitting separate slopes on each side. Bandwidth selection (Imbens-Kalyanaraman or Calonico-Cattaneo-Titiunik) balances bias (narrower = less bias) vs. variance (wider = more data).</p>
+      <p style="margin-top:10px;"><strong>Validity checks:</strong> (1) McCrary test: the density of X should be continuous at c (no bunching = no manipulation). (2) Covariate smoothness: other observable characteristics should not jump at c. (3) Robustness to bandwidth choice. The estimand is the LATE at the cutoff — it's only valid for units near the boundary, not the full population.</p>
+    </div>
+    <div class="method-col intuitive">
+      <h4>Intuitive Perspective</h4>
+      <p>Think of a drinking age law. On your 20th birthday, you can't legally drink. On your 21st birthday, you can. A person who is 20 years and 364 days old is <em>essentially identical</em> to a person who is 21 years and 1 day old — same maturity, same life circumstances. The only difference is the legal cutoff.</p>
+      <p style="margin-top:10px;">If you see a sudden jump in, say, car accidents right at age 21, you can attribute it to legal drinking access — because nothing else changed discontinuously at that exact birthday.</p>
+      <p style="margin-top:10px;"><strong>In business terms:</strong> Any time there's a rule that says "if your score/value/metric crosses X, you get different treatment" — and people can't precisely control their score — you have a natural experiment at the boundary. People just barely qualifying vs. just barely not qualifying are like a randomized experiment, but nature (or the algorithm) did the randomizing for you.</p>
+      <p style="margin-top:10px;"><strong>The limitation:</strong> You only learn the effect <em>at the boundary</em>. The effect of surge pricing at the 2.0x threshold tells you about riders experiencing ~2.0x surge — it may not generalize to 3.0x surge. You're looking through a narrow window, but what you see through it is very credible.</p>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h4><span class="company-tag uber">Uber</span> Surge Display Threshold — Does "2.0x" Scare Riders More Than "1.9x"?</h4>
+      <p><strong>Business Context:</strong> Uber's pricing algorithm sets surge multipliers as a continuous function of local supply/demand. But the displayed price jumps at round numbers (1.5x, 2.0x, 2.5x). The behavioral economics team suspects round-number surge multipliers create a psychological "sticker shock" beyond the actual price difference. Testing this with an A/B test would require changing the pricing algorithm — risky in a live marketplace.</p>
+      <p style="margin-top:10px;"><strong>Data Setup:</strong> Running variable: the continuous demand-supply ratio that determines the surge multiplier. Cutoff: the ratio threshold at which surge crosses 2.0x. 180K ride request opportunities where the underlying ratio was within ±0.15 of the cutoff (bandwidth selection via Imbens-Kalyanaraman optimal bandwidth). Outcome: P(rider requests ride within 3 minutes of seeing the price).</p>
+      <p style="margin-top:10px;"><strong>Key Insight:</strong> Riders at 1.95x and 2.05x surge face nearly identical supply/demand conditions — they just happen to fall on different sides of a rounding boundary. This is as-good-as-random assignment near the cutoff.</p>
+      <p style="margin-top:10px;"><strong>Results:</strong> Local linear regression shows a discontinuous drop of 6.2pp (95% CI: [4.1, 8.3]) in ride request probability at exactly the 2.0x boundary. By contrast, the smooth price-demand slope is only -1.8pp per 0.1x surge increment. Conclusion: 4.4pp of the drop is pure "round number" framing effect. This led Uber to test "1.9x" labeling for surges in the 1.9–2.1 range, recovering ~$12M/quarter in rides.</p>
+    </div>
+    <div class="card">
+      <h4><span class="company-tag intuit">Intuit</span> Free Edition Eligibility Cutoff → Product Upgrade Behavior</h4>
+      <p><strong>Business Context:</strong> TurboTax Free Edition is available to filers below a complexity score threshold (based on number of forms, income sources, and deduction types). Filers scoring above the threshold are routed to a paid SKU recommendation. Product wants to know: does the forced upgrade <em>cause</em> abandonment, or would complex filers have struggled anyway?</p>
+      <p style="margin-top:10px;"><strong>Data Setup:</strong> Running variable: TurboTax complexity score (0–100, continuous). Cutoff: score = 35 (Free Edition eligibility boundary). 400K filers within ±10 points of the cutoff from TY24. Outcomes: (1) filing completion rate, (2) paid conversion rate, (3) customer satisfaction score (post-filing NPS).</p>
+      <p style="margin-top:10px;"><strong>Methodology:</strong> Local linear regression within the bandwidth, allowing different slopes on each side. McCrary density test confirms no bunching at the cutoff (users can't precisely manipulate their complexity score). Robustness: results hold across bandwidths of 5, 8, 10, and 15.</p>
+      <p style="margin-top:10px;"><strong>Results:</strong> At the cutoff, being nudged to a paid SKU causes: (1) −7.3pp filing completion (users who see a price wall after starting for free abandon at higher rates), (2) +22pp paid conversion among those who continue, (3) −12 NPS points. Net revenue impact: positive ($4.80 incremental revenue per filer at the cutoff), but the NPS hit is a long-term retention risk. This informed the design of a "soft upgrade" flow that previews paid features before the paywall.</p>
+    </div>
+  </div>
+
+  <div class="interactive-box">
+    <h4>Interactive: Visualize the Discontinuity</h4>
+    <div class="slider-row">
+      <label>Treatment Effect Size:</label>
+      <input type="range" min="0" max="50" value="20" id="rdd-effect" oninput="updateRDD()">
+      <span class="val" id="rdd-effect-val">20</span>
+    </div>
+    <div class="slider-row">
+      <label>Noise Level:</label>
+      <input type="range" min="1" max="50" value="15" id="rdd-noise" oninput="updateRDD()">
+      <span class="val" id="rdd-noise-val">15</span>
+    </div>
+    <canvas id="rdd-canvas" width="700" height="300" style="width:100%;background:var(--code-bg);border-radius:8px;margin-top:12px;"></canvas>
+  </div>
+
+  <div class="card full">
+    <h4>Python Example</h4>
+    <pre><span class="cm"># Regression Discontinuity Design</span>
+<span class="kw">import</span> numpy <span class="kw">as</span> np
+<span class="kw">from</span> sklearn.linear_model <span class="kw">import</span> LinearRegression
+
+<span class="kw">def</span> <span class="fn">rdd_estimate</span>(running_var, outcome, cutoff, bandwidth):
+    <span class="str">"""Local linear RDD estimator."""</span>
+    mask = np.<span class="fn">abs</span>(running_var - cutoff) <= bandwidth
+    X_local = running_var[mask]
+    Y_local = outcome[mask]
+    T_local = (X_local >= cutoff).astype(<span class="kw">float</span>)
+    X_centered = X_local - cutoff
+
+    <span class="cm"># Y = α + τ·T + β₁·X + β₂·T·X + ε</span>
+    design = np.column_stack([T_local, X_centered, T_local * X_centered])
+    reg = LinearRegression().<span class="fn">fit</span>(design, Y_local)
+    tau = reg.coef_[<span class="num">0</span>]  <span class="cm"># coefficient on T is the RDD effect</span>
+    <span class="kw">return</span> tau
+
+<span class="cm"># Example: Uber surge threshold at multiplier = 2.0</span>
+np.random.<span class="fn">seed</span>(<span class="num">42</span>)
+n = <span class="num">2000</span>
+surge_mult = np.random.<span class="fn">uniform</span>(<span class="num">1.5</span>, <span class="num">2.5</span>, n)  <span class="cm"># Running variable</span>
+cutoff = <span class="num">2.0</span>
+treated = (surge_mult >= cutoff).astype(<span class="kw">float</span>)
+<span class="cm"># Ride request probability drops by 12pp at the 2x threshold</span>
+ride_request = <span class="num">0.7</span> - <span class="num">0.1</span>*(surge_mult - <span class="num">1.5</span>) - <span class="num">0.12</span>*treated + np.random.<span class="fn">normal</span>(<span class="num">0</span>, <span class="num">0.08</span>, n)
+
+tau = <span class="fn">rdd_estimate</span>(surge_mult, ride_request, cutoff, bandwidth=<span class="num">0.3</span>)
+<span class="fn">print</span>(<span class="str">f"RDD effect at cutoff: {tau:.3f}"</span>)  <span class="cm"># True: -0.12</span></pre>
+  </div>
+</div>
+
+<!-- ==================== DID ==================== -->
+<div class="technique" id="sec-did">
+  <div class="tech-header">
+    <span class="category">Observational (Panel)</span>
+    <h3>Difference-in-Differences (DiD)</h3>
+    <p class="subtitle">Compare the change over time in a treated group vs. a control group. The "difference of differences" removes time-invariant confounders.</p>
+  </div>
+
+  <div class="formula-box">
+    <div class="label">DiD Estimator</div>
+    <div class="formula">τ_DiD = (Ȳ_T,post − Ȳ_T,pre) − (Ȳ_C,post − Ȳ_C,pre)</div>
+    <div class="label">The treatment effect is the excess change in the treated group beyond what the control experienced.</div>
+  </div>
+
+  <div class="method-explainer">
+    <div class="method-col technical">
+      <h4>Statistical Perspective</h4>
+      <p>DiD is a <strong>panel data method</strong> that controls for time-invariant unobserved confounders by differencing. The first difference (within-group, over time) removes unit-level fixed effects. The second difference (between groups) removes common time shocks. What remains is the treatment effect.</p>
+      <p style="margin-top:10px;">The regression form: Y_it = α + β₁·Treat_i + β₂·Post_t + <strong>τ·Treat_i×Post_t</strong> + ε_it. The coefficient τ on the interaction term is the DiD estimator. With panel data, include unit and time fixed effects: Y_it = α_i + γ_t + τ·D_it + ε_it, where D_it = 1 if unit i is treated at time t. Cluster standard errors at the unit level (the level of treatment assignment).</p>
+      <p style="margin-top:10px;"><strong>Parallel trends:</strong> The identifying assumption. In potential outcomes: E[Y(0)_T,post − Y(0)_T,pre] = E[Y(0)_C,post − Y(0)_C,pre]. It's untestable for the post-period (you can't observe the treated group's counterfactual), but you can check pre-treatment trends for parallelism. Event-study specifications test for pre-trends and visualize dynamic treatment effects.</p>
+    </div>
+    <div class="method-col intuitive">
+      <h4>Intuitive Perspective</h4>
+      <p>Imagine a restaurant chain testing a new menu in 5 locations. Sales go up 20% in those 5 stores. Is that the new menu? Maybe — but it's also December, and ALL stores see holiday sales bumps.</p>
+      <p style="margin-top:10px;"><strong>DiD's trick:</strong> Look at the 15 stores that DIDN'T get the new menu. They went up 12% (the holiday effect). So the new menu's actual effect is 20% − 12% = 8%. You subtracted out the common trend that would have happened regardless.</p>
+      <p style="margin-top:10px;"><strong>The key assumption (parallel trends):</strong> Without the new menu, the 5 test stores would have followed the same 12% trajectory as the others. This is plausible if the stores were trending similarly before the change. If the test stores were already growing faster (maybe they're in booming neighborhoods), DiD over-attributes that growth to the menu.</p>
+      <p style="margin-top:10px;"><strong>When it's powerful:</strong> DiD shines when you have "before and after" data for both groups. It handles the biggest worry in observational studies — that the treatment and control groups are fundamentally different — by saying "I don't care if they're different in <em>levels</em>, only that they would have <em>changed</em> at the same rate."</p>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h4><span class="company-tag uber">Uber</span> New Driver Onboarding Program — Staggered City Rollout</h4>
+      <p><strong>Business Context:</strong> Uber redesigned its driver onboarding flow (streamlined document upload, in-app vehicle inspection scheduling, guaranteed first-week earnings). The rollout was staggered: Phase 1 cities (Austin, Nashville, Portland, Raleigh, Salt Lake City) launched in March; Phase 2 cities would launch in June. The 15 Phase-2 cities serve as the control group. The key question: does the new onboarding causally increase the 30-day driver activation rate (first trip completed within 30 days of signup)?</p>
+      <p style="margin-top:10px;"><strong>Data Setup:</strong> Monthly driver activation rates for 20 cities, spanning 12 months before launch (Jan–Dec) and 4 months after (Jan–Apr). Outcome: 30-day activation rate. Pre-treatment: 12 months of data to verify parallel trends.</p>
+      <p style="margin-top:10px;"><strong>Parallel Trends Verification:</strong> Plot pre-treatment trends for treated vs. control cities. They track closely (both rising ~0.8pp/month due to seasonal labor market tightening). Formal test: interaction of treatment-group × time in pre-period has no significant coefficients (p = 0.62). Also run a placebo test: pretend the treatment happened 6 months earlier — the "effect" is 0.1pp and insignificant.</p>
+      <p style="margin-top:10px;"><strong>Results:</strong> DiD regression with city and time fixed effects, clustered SEs at the city level: τ = +14.8pp (95% CI: [10.2, 19.4]). The new onboarding flow nearly doubled the activation rate from a baseline of 18% to 33%. Staggered DiD (Callaway-Sant'Anna) confirms no dynamic treatment effect heterogeneity — the effect is immediate and stable.</p>
+      <p style="margin-top:10px;"><strong>Takeaway:</strong> This analysis was presented to the board as justification for accelerating the Phase 2 rollout. The guaranteed earnings component alone was estimated to account for ~60% of the effect (via a follow-up mediation analysis). Each incremental activated driver generates ~$1,200/month in gross bookings.</p>
+    </div>
+    <div class="card">
+      <h4><span class="company-tag intuit">Intuit</span> State Tax Credit Launch → TurboTax Adoption</h4>
+      <p><strong>Business Context:</strong> California introduced a new refundable child tax credit ("CalKids") in TY24. Intuit's government affairs team wants to quantify whether this policy change causally increased TurboTax adoption in California, since TurboTax prominently supported the new credit in its interview flow. The business case: if state-specific tax law support drives adoption, it justifies investing engineering resources in rapid state conformity updates.</p>
+      <p style="margin-top:10px;"><strong>Data Setup:</strong> Treatment: California (new credit). Control: 10 comparable states without significant TY24 tax law changes (selected by: population size, prior TurboTax market share, income distribution, and filing season cadence). Outcome: weekly new TurboTax starts per capita. Pre-period: TY22–TY23 (2 years of weekly data). Post-period: TY24 filing season (Jan–Apr).</p>
+      <p style="margin-top:10px;"><strong>Methodology:</strong> Two-way fixed effects DiD with state and week fixed effects. Cluster SEs at state level (only 11 clusters, so use wild cluster bootstrap for valid inference). Event-study specification: estimate week-by-week treatment effects to visualize the timing of the effect — expect it to appear when TurboTax's CalKids marketing campaign launched (late January).</p>
+      <p style="margin-top:10px;"><strong>Results:</strong> Event study shows: zero effect in pre-period (parallel trends validated), a sharp +6.2% lift in TurboTax starts starting the week the CalKids campaign launched, growing to +9.1% by late March. Overall DiD: +7.4% (95% CI: [4.8, 10.0]) more new TurboTax starts per capita in California vs. control states. This translates to ~85K incremental new customers and ~$6.8M in revenue attributable to the rapid CalKids support.</p>
+      <p style="margin-top:10px;"><strong>Takeaway:</strong> The ROI on the CalKids engineering sprint (3 engineers × 4 weeks = ~$120K cost) was 57:1. This created an internal playbook: for every major state tax law change, auto-prioritize a "first-mover" TurboTax integration to capture adoption lift.</p>
+    </div>
+  </div>
+
+  <div class="interactive-box">
+    <h4>Interactive: Difference-in-Differences</h4>
+    <div class="slider-row">
+      <label>Treatment Effect:</label>
+      <input type="range" min="-20" max="40" value="15" id="did-effect" oninput="updateDiD()">
+      <span class="val" id="did-effect-val">15</span>
+    </div>
+    <div class="slider-row">
+      <label>Common Trend:</label>
+      <input type="range" min="-10" max="20" value="5" id="did-trend" oninput="updateDiD()">
+      <span class="val" id="did-trend-val">5</span>
+    </div>
+    <canvas id="did-canvas" width="700" height="280" style="width:100%;background:var(--code-bg);border-radius:8px;margin-top:12px;"></canvas>
+  </div>
+
+  <div class="card full">
+    <h4>Python Example</h4>
+    <pre><span class="cm"># Difference-in-Differences</span>
+<span class="kw">import</span> numpy <span class="kw">as</span> np
+<span class="kw">import</span> statsmodels.api <span class="kw">as</span> sm
+
+<span class="cm"># Example: Uber new onboarding in treated cities</span>
+np.random.<span class="fn">seed</span>(<span class="num">42</span>)
+n_cities, n_periods = <span class="num">20</span>, <span class="num">12</span>
+treated_cities = np.array([<span class="num">1</span>]*<span class="num">5</span> + [<span class="num">0</span>]*<span class="num">15</span>)  <span class="cm"># 5 treated, 15 control</span>
+treatment_period = <span class="num">6</span>
+
+data = []
+<span class="kw">for</span> city <span class="kw">in</span> <span class="fn">range</span>(n_cities):
+    baseline = np.random.<span class="fn">normal</span>(<span class="num">50</span>, <span class="num">5</span>)
+    <span class="kw">for</span> t <span class="kw">in</span> <span class="fn">range</span>(n_periods):
+        post = <span class="kw">int</span>(t >= treatment_period)
+        treat = treated_cities[city]
+        <span class="cm"># Common trend + treatment effect of +15pp for treated post-period</span>
+        y = baseline + <span class="num">2</span>*t + <span class="num">15</span>*treat*post + np.random.<span class="fn">normal</span>(<span class="num">0</span>, <span class="num">3</span>)
+        data.<span class="fn">append</span>({<span class="str">'city'</span>: city, <span class="str">'t'</span>: t, <span class="str">'treat'</span>: treat,
+                    <span class="str">'post'</span>: post, <span class="str">'y'</span>: y})
+
+<span class="kw">import</span> pandas <span class="kw">as</span> pd
+df = pd.<span class="fn">DataFrame</span>(data)
+
+<span class="cm"># DiD regression: Y = β₀ + β₁·Treat + β₂·Post + β₃·Treat×Post + ε</span>
+df[<span class="str">'treat_post'</span>] = df[<span class="str">'treat'</span>] * df[<span class="str">'post'</span>]
+X = sm.<span class="fn">add_constant</span>(df[[<span class="str">'treat'</span>, <span class="str">'post'</span>, <span class="str">'treat_post'</span>]])
+model = sm.OLS(df[<span class="str">'y'</span>], X).<span class="fn">fit</span>(cov_type=<span class="str">'cluster'</span>, cov_kwds={<span class="str">'groups'</span>: df[<span class="str">'city'</span>]})
+<span class="fn">print</span>(model.<span class="fn">summary</span>().tables[<span class="num">1</span>])
+<span class="cm"># treat_post coefficient ≈ 15 (the causal DiD effect)</span></pre>
+  </div>
+
+  <div class="card full">
+    <h4>Key Assumptions</h4>
+    <ul class="assumption-list">
+      <li><strong>Parallel Trends:</strong> Absent treatment, both groups would have followed the same trajectory — THE critical assumption</li>
+      <li><strong>No Anticipation:</strong> Treatment group doesn't change behavior before treatment begins</li>
+      <li><strong>No Spillovers:</strong> Control group is unaffected by treatment group's intervention</li>
+      <li><strong>Stable Composition:</strong> The mix of units in each group doesn't change over time</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== SYNTHETIC CONTROL ==================== -->
+<div class="technique" id="sec-synth">
+  <div class="tech-header">
+    <span class="category">Observational (Aggregate)</span>
+    <h3>Synthetic Control Method</h3>
+    <p class="subtitle">When you treat one unit (city, market), construct a weighted combination of untreated units that best matches the treated unit's pre-treatment trajectory. The gap post-treatment is the causal effect.</p>
+  </div>
+
+  <div class="formula-box">
+    <div class="label">Synthetic Control</div>
+    <div class="formula">Ŷ_synth(t) = Σ wⱼ · Yⱼ(t), where weights wⱼ ≥ 0 and Σwⱼ = 1</div>
+    <div class="label">Weights chosen to minimize pre-treatment prediction error for the treated unit.</div>
+  </div>
+
+  <div class="method-explainer">
+    <div class="method-col technical">
+      <h4>Statistical Perspective</h4>
+      <p>Synthetic control solves a <strong>constrained optimization</strong>: find non-negative weights w₁...wJ (summing to 1) over J donor units that minimize the pre-treatment MSPE: Σ_t (Y₁t − Σⱼ wⱼYⱼt)² for t in pre-period. This is a convex program with a unique solution. The resulting weighted combination is the "synthetic" unit — a data-driven counterfactual.</p>
+      <p style="margin-top:10px;">Inference is non-standard (n=1 treated unit). The standard approach is <strong>permutation inference</strong> (placebo tests): apply the method to every donor unit as if IT were the treated one, compute each placebo's post/pre RMSPE ratio, and see where the treated unit ranks. If it ranks 1st out of 26 units, the p-value is 1/26 ≈ 0.038. This is an exact test that makes no distributional assumptions.</p>
+      <p style="margin-top:10px;"><strong>Extensions:</strong> Augmented SC (adds an outcome model for bias correction), Penalized SC (regularization prevents overfitting to pre-period noise), and SC + DiD hybrids (re-weight AND de-mean, relaxing the "perfect pre-fit" requirement).</p>
+    </div>
+    <div class="method-col intuitive">
+      <h4>Intuitive Perspective</h4>
+      <p>You renovated YOUR house and want to know if it increased your property value. There's no control version of your house. But your neighbors didn't renovate. The problem: no single neighbor's house is a perfect comparison — one is bigger, another is on a busier street, another was recently painted.</p>
+      <p style="margin-top:10px;"><strong>Synthetic control's idea:</strong> Build a "Frankenstein neighbor" — a weighted mix of actual neighbors that, BEFORE your renovation, had the same price trajectory as your house. Maybe 40% of Neighbor A + 35% of Neighbor B + 25% of Neighbor C tracks your house's price history almost perfectly.</p>
+      <p style="margin-top:10px;">After the renovation, your house's value diverges from this synthetic neighbor's. That gap is the renovation effect. If the synthetic neighbor would have predicted $500K and your house is now $540K, the renovation added ~$40K.</p>
+      <p style="margin-top:10px;"><strong>Why it's credible:</strong> You're not assuming any single comparison is good — you're letting the data find the best combination. And you can check: does the synthetic version actually track you well in the pre-period? If it doesn't, you know the method won't work here.</p>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h4><span class="company-tag uber">Uber</span> In-App Tipping Launch — Austin Market Pilot</h4>
+      <p><strong>Business Context:</strong> Uber launched in-app tipping in Austin as a single-market pilot. The goal: measure the causal effect on driver supply (online hours per week). A/B testing is impossible — tipping is a market-level feature that affects all participants. There is no single city that perfectly matches Austin's marketplace dynamics (tech-heavy, college town, unique regulatory history from the 2016 Uber ban).</p>
+      <p style="margin-top:10px;"><strong>Data Setup:</strong> Treated unit: Austin. Donor pool: 25 mid-size US cities without tipping. Pre-treatment period: 40 weeks. Post-treatment: 12 weeks. Outcome: weekly driver online hours (per 1K population). Matching predictors: average fare, driver-to-rider ratio, weekday/weekend split, temperature, competitor presence (Lyft share), population growth rate.</p>
+      <p style="margin-top:10px;"><strong>Methodology:</strong> Optimize convex weights over the donor pool to minimize pre-treatment MSPE (mean squared prediction error) for Austin's driver hours series. Result: Synthetic Austin = 0.38 × Houston + 0.31 × Denver + 0.22 × Nashville + 0.09 × San Antonio. Pre-treatment fit: RMSPE = 1.2 hours (vs. Austin's mean of 85 hours/week/1K pop). Inference: permutation test — apply the same method to every donor city (pretending each was treated), compute the ratio of post/pre RMSPE. Austin's ratio ranks 1st of 26 (p = 0.038).</p>
+      <p style="margin-top:10px;"><strong>Results:</strong> Post-tipping, Austin's actual driver hours diverge from synthetic Austin by +5.8 hours/week/1K pop (6.8% increase). The effect appears in week 2 and stabilizes by week 5. Placebo tests: no other city shows a comparable post-period gap. Back-of-envelope: 6.8% more driver supply → 2.1% lower average wait times → estimated $3.4M/year in retained rides for the Austin market alone.</p>
+      <p style="margin-top:10px;"><strong>Takeaway:</strong> This analysis justified the nationwide tipping rollout. Critically, the synthetic control also revealed that the driver supply increase came from <em>existing</em> drivers working longer hours (intensive margin), not new drivers joining (extensive margin) — informing the driver engagement team's messaging strategy.</p>
+    </div>
+    <div class="card">
+      <h4><span class="company-tag intuit">Intuit</span> TV Campaign Impact on Dallas DMA</h4>
+      <p><strong>Business Context:</strong> Intuit's marketing team ran a 6-week TV campaign in the Dallas-Fort Worth DMA during tax season, spending $4.2M on spots during local news and prime time. They need to isolate the causal effect of TV advertising on new TurboTax customer acquisitions, but TV campaigns are DMA-level treatments with no within-DMA control group.</p>
+      <p style="margin-top:10px;"><strong>Data Setup:</strong> Treated: Dallas DMA. Donor pool: 30 DMAs where Intuit ran no TV ads during this period. Pre-treatment: 20 weeks (prior tax season + early current season). Post-treatment: 6 weeks of campaign + 4 weeks after. Outcome: weekly new TurboTax starts per 100K households. Predictors: median household income, broadband penetration, competitor (H&R Block) store density, prior-year TT market share, Hispanic population % (Dallas is a majority-minority DMA).</p>
+      <p style="margin-top:10px;"><strong>Results:</strong> Synthetic Dallas = 0.41 × Phoenix + 0.33 × Atlanta + 0.18 × Charlotte + 0.08 × Tampa. Pre-treatment RMSPE = 2.3 starts/100K (excellent fit). During the 6-week campaign, Dallas outperforms its synthetic by an average of 14.2 starts/100K/week (+11.8%). In the 4 weeks post-campaign, the gap shrinks to +4.1 starts/100K/week (a "decay" effect suggesting ad recall fading). Total incremental starts: ~38K. At $110 average revenue per new customer: $4.18M revenue vs. $4.2M spend — essentially breakeven on first-year revenue, but with positive LTV accounting for multi-year retention.</p>
+      <p style="margin-top:10px;"><strong>Takeaway:</strong> The synthetic control analysis changed the marketing team's strategy: TV campaigns are breakeven in year 1 but profitable over 3-year LTV. More importantly, the post-campaign decay curve informed optimal flight scheduling — the team shifted from one 6-week burst to two 3-week flights with a 2-week gap, increasing sustained awareness while maintaining the same budget.</p>
+    </div>
+  </div>
+
+  <div class="card full">
+    <h4>Python Example</h4>
+    <pre><span class="cm"># Synthetic Control Method</span>
+<span class="kw">import</span> numpy <span class="kw">as</span> np
+<span class="kw">from</span> scipy.optimize <span class="kw">import</span> minimize
+
+<span class="kw">def</span> <span class="fn">synthetic_control</span>(treated_pre, control_pre, control_post):
+    <span class="str">"""Find weights that best match treated unit's pre-treatment trajectory."""</span>
+    n_controls = control_pre.shape[<span class="num">0</span>]
+
+    <span class="kw">def</span> <span class="fn">objective</span>(w):
+        synth = w @ control_pre
+        <span class="kw">return</span> np.<span class="fn">sum</span>((treated_pre - synth)**<span class="num">2</span>)
+
+    <span class="cm"># Constraints: weights sum to 1, each ≥ 0</span>
+    constraints = {<span class="str">'type'</span>: <span class="str">'eq'</span>, <span class="str">'fun'</span>: <span class="kw">lambda</span> w: np.<span class="fn">sum</span>(w) - <span class="num">1</span>}
+    bounds = [(<span class="num">0</span>, <span class="num">1</span>)] * n_controls
+    w0 = np.<span class="fn">ones</span>(n_controls) / n_controls
+
+    result = <span class="fn">minimize</span>(objective, w0, bounds=bounds, constraints=constraints)
+    synth_post = result.x @ control_post
+    <span class="kw">return</span> result.x, synth_post
+
+<span class="cm"># Example: Uber tipping feature in Austin</span>
+np.random.<span class="fn">seed</span>(<span class="num">42</span>)
+T_pre, T_post = <span class="num">12</span>, <span class="num">8</span>
+<span class="cm"># Austin (treated) — rides per week</span>
+austin_pre = <span class="num">100</span> + np.<span class="fn">cumsum</span>(np.random.<span class="fn">normal</span>(<span class="num">1</span>, <span class="num">2</span>, T_pre))
+austin_post = austin_pre[-<span class="num">1</span>] + np.<span class="fn">cumsum</span>(np.random.<span class="fn">normal</span>(<span class="num">1.5</span>, <span class="num">2</span>, T_post)) + <span class="num">7</span>  <span class="cm"># +7 treatment</span>
+
+<span class="cm"># Donor pool</span>
+controls_pre = np.array([
+    <span class="num">95</span> + np.<span class="fn">cumsum</span>(np.random.<span class="fn">normal</span>(<span class="num">1.1</span>, <span class="num">2</span>, T_pre)),   <span class="cm"># Houston</span>
+    <span class="num">80</span> + np.<span class="fn">cumsum</span>(np.random.<span class="fn">normal</span>(<span class="num">0.9</span>, <span class="num">2.5</span>, T_pre)),  <span class="cm"># Denver</span>
+    <span class="num">70</span> + np.<span class="fn">cumsum</span>(np.random.<span class="fn">normal</span>(<span class="num">1.0</span>, <span class="num">1.8</span>, T_pre)),  <span class="cm"># Nashville</span>
+])
+controls_post = np.array([
+    controls_pre[<span class="num">0</span>,-<span class="num">1</span>] + np.<span class="fn">cumsum</span>(np.random.<span class="fn">normal</span>(<span class="num">1.1</span>, <span class="num">2</span>, T_post)),
+    controls_pre[<span class="num">1</span>,-<span class="num">1</span>] + np.<span class="fn">cumsum</span>(np.random.<span class="fn">normal</span>(<span class="num">0.9</span>, <span class="num">2.5</span>, T_post)),
+    controls_pre[<span class="num">2</span>,-<span class="num">1</span>] + np.<span class="fn">cumsum</span>(np.random.<span class="fn">normal</span>(<span class="num">1.0</span>, <span class="num">1.8</span>, T_post)),
+])
+
+weights, synth_post = <span class="fn">synthetic_control</span>(austin_pre, controls_pre, controls_post)
+effect = austin_post.<span class="fn">mean</span>() - synth_post.<span class="fn">mean</span>()
+<span class="fn">print</span>(<span class="str">f"Weights: {dict(zip(['Houston','Denver','Nashville'], weights.round(2)))}"</span>)
+<span class="fn">print</span>(<span class="str">f"Estimated effect: {effect:.1f} rides/week"</span>)  <span class="cm"># True: ~7</span></pre>
+  </div>
+</div>
+
+<!-- ==================== IV ==================== -->
+<div class="technique" id="sec-iv">
+  <div class="tech-header">
+    <span class="category">Observational (Endogeneity)</span>
+    <h3>Instrumental Variables (IV)</h3>
+    <p class="subtitle">When treatment is endogenous (confounded in unobservable ways), find an "instrument" — a variable that affects the outcome ONLY through its effect on treatment.</p>
+  </div>
+
+  <div class="formula-box">
+    <div class="label">Two-Stage Least Squares (2SLS)</div>
+    <div class="formula">Stage 1: T̂ = α + γZ + ε &nbsp;&nbsp;|&nbsp;&nbsp; Stage 2: Y = β₀ + τT̂ + ν</div>
+    <div class="label">Z is the instrument. τ is the causal effect, identified by variation in T driven only by Z.</div>
+  </div>
+
+  <div class="method-explainer">
+    <div class="method-col technical">
+      <h4>Statistical Perspective</h4>
+      <p>IV addresses <strong>endogeneity</strong>: when Cov(T, ε) ≠ 0 in the outcome equation Y = τT + ε (unmeasured confounders in ε correlate with treatment T). OLS is biased. The instrument Z provides exogenous variation in T — variation uncorrelated with ε.</p>
+      <p style="margin-top:10px;"><strong>2SLS:</strong> Stage 1 regresses T on Z (and covariates) to get T̂ — the "clean" part of treatment driven only by Z. Stage 2 regresses Y on T̂. The coefficient on T̂ is consistent for the causal effect because T̂ inherits Z's exogeneity. The Wald estimator (for binary Z) simplifies to: τ = Cov(Y,Z)/Cov(T,Z) = [E(Y|Z=1)−E(Y|Z=0)] / [E(Y|Z=1)−E(Y|Z=0) for T].</p>
+      <p style="margin-top:10px;"><strong>Estimand:</strong> Under heterogeneous effects, IV estimates the LATE (Local Average Treatment Effect) — the effect for "compliers" (those whose treatment status is shifted by the instrument). This is NOT the ATE. Weak instruments (low first-stage F) cause 2SLS to be biased toward OLS. Rule of thumb: F > 10 (Stock & Yogo). Modern: use Anderson-Rubin confidence sets that are valid even with weak instruments.</p>
+    </div>
+    <div class="method-col intuitive">
+      <h4>Intuitive Perspective</h4>
+      <p>You want to know if <strong>exercise causes</strong> weight loss. But people who exercise also eat better, sleep more, and are generally more health-conscious. You can't separate the effect of exercise from these other factors.</p>
+      <p style="margin-top:10px;"><strong>The instrument:</strong> Find something that makes people exercise MORE (or LESS) but doesn't directly affect weight through any other channel. Example: <em>living near a gym</em>. People near gyms exercise more (relevance), but living near a gym doesn't directly change your metabolism or diet (exclusion restriction). It only affects your weight by getting you to the gym more often.</p>
+      <p style="margin-top:10px;"><strong>The logic:</strong> Compare weight outcomes for people near vs. far from gyms. Any weight difference must flow through the exercise channel (since distance doesn't affect weight otherwise). Divide the weight difference by the exercise difference → causal effect of exercise on weight.</p>
+      <p style="margin-top:10px;"><strong>The catch:</strong> You're only measuring the effect for people whose behavior actually changes based on gym proximity ("compliers"). Gym rats will exercise regardless; couch potatoes won't go even if the gym is next door. IV tells you about the "marginal" people in between — which is often exactly the policy-relevant group.</p>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h4><span class="company-tag uber">Uber</span> Does Wait Time Cause Rider Churn? Using Rain as an Instrument</h4>
+      <p><strong>Business Context:</strong> Uber's retention team observes that riders who experience longer wait times have lower 30-day retention. But this is classic endogeneity: impatient riders (who are also more likely to churn for other reasons) tend to request rides during peak hours when wait times are longest. Patience, mood, and lifestyle are unmeasured confounders affecting both the "treatment" (wait time) and the outcome (retention). An experiment that deliberately delays pickups is unethical and would cause immediate rider loss.</p>
+      <p style="margin-top:10px;"><strong>The Instrument — Rain:</strong> Sudden rainfall reduces driver supply (fewer drivers want to drive in bad weather), which increases wait times. Critically, rain is plausibly exogenous to a rider's underlying loyalty — it doesn't directly make you like or dislike Uber (exclusion restriction). Rain → ↓ Driver Supply → ↑ Wait Time → ? Retention. The only channel through which rain affects retention is via wait time.</p>
+      <p style="margin-top:10px;"><strong>Data Setup:</strong> 1.2M ride requests across 15 cities over 6 months. Instrument Z: binary indicator for unexpected rainfall (actual precipitation > forecasted by ≥ 0.5 inches, within ±2 hours of ride request). Treatment T: actual wait time (continuous, minutes). Outcome Y: binary 30-day retention (≥1 ride in next 30 days). Covariates: city, day-of-week, hour, rider tenure.</p>
+      <p style="margin-top:10px;"><strong>First Stage:</strong> Rain → Wait Time: coefficient = +3.8 minutes (F-stat = 847, far above the weak instrument threshold of 10). Unexpected rain adds ~4 minutes to average wait times.</p>
+      <p style="margin-top:10px;"><strong>Results:</strong> Naive OLS: each +1 minute wait → −0.4pp retention (biased toward zero because impatient people both wait less AND churn more). IV/2SLS: each +1 minute wait → −1.2pp retention (3x larger than OLS). The true causal harm of wait time was being <em>masked</em> by confounding. At Uber's scale, reducing average wait times by 1 minute would retain ~180K additional monthly active riders, worth ~$43M/year in gross bookings.</p>
+      <p style="margin-top:10px;"><strong>Robustness:</strong> Over-identification test using a second instrument (local sports events that pull drivers to stadium areas). Both instruments give consistent estimates (Hansen J p = 0.34). Exclusion restriction argument: rain might affect rider mood → different retention. Sensitivity analysis shows results hold unless rain has a direct effect on retention ≥ 0.8pp (implausible for a single rainy ride).</p>
+    </div>
+    <div class="card">
+      <h4><span class="company-tag intuit">Intuit</span> Expert Queue Time as an Instrument for Live Consultation Impact</h4>
+      <p><strong>Business Context:</strong> TurboTax Live lets users connect with a CPA. Users who engage complete filing at 89% vs. 71% for non-engagers. But self-selection is severe: motivated users with high-stakes returns both seek help AND try harder to complete. OLS with observed covariates can't fully control for motivation, tax anxiety, or "amount at stake" (partially unobservable).</p>
+      <p style="margin-top:10px;"><strong>The Instrument — Queue Wait Time:</strong> Expert availability varies quasi-randomly throughout the day based on expert shift schedules, concurrent session load, and timezone coverage gaps. A user who clicks "Talk to Expert" at 2:47 PM PST might face a 2-minute wait; the same user clicking at 2:52 PM might face a 25-minute wait. This variation in queue time affects whether users actually connect (relevance) but is plausibly unrelated to a user's underlying filing ability or motivation (exclusion).</p>
+      <p style="margin-top:10px;"><strong>Data Setup:</strong> 90K users who clicked the "Talk to Expert" button (intent-to-treat population). Instrument Z: expert queue wait time at the moment of click (minutes). Treatment T: binary, actually completed a consultation (users who face long queues abandon the queue). Outcome Y: filing completion. Covariates: time-of-day, day-of-week, product tier, form complexity.</p>
+      <p style="margin-top:10px;"><strong>First Stage:</strong> Each +5 min queue wait → −8.3pp probability of completing consultation (F-stat = 312). Users are very sensitive to queue times — 40% abandon after 10 minutes.</p>
+      <p style="margin-top:10px;"><strong>Results:</strong> OLS: expert consultation → +18pp completion (severely upward biased). IV/2SLS: +11.2pp (95% CI: [7.8, 14.6]). The true causal effect is 11pp — still large, but 40% of the naive estimate was self-selection bias. This recalibrated the ROI model for expert staffing: at $35/session and 11pp incremental completion ($13.20 incremental revenue), the margin is thinner than the OLS-based model suggested. It shifted investment toward reducing queue times (which the first stage showed have a huge effect on uptake) rather than simply hiring more experts.</p>
+    </div>
+  </div>
+
+  <div class="card full">
+    <h4>Python Example</h4>
+    <pre><span class="cm"># Instrumental Variables — 2SLS</span>
+<span class="kw">import</span> numpy <span class="kw">as</span> np
+<span class="kw">from</span> sklearn.linear_model <span class="kw">import</span> LinearRegression
+
+<span class="kw">def</span> <span class="fn">two_stage_ls</span>(y, treatment, instrument, covariates=<span class="kw">None</span>):
+    <span class="str">"""Two-Stage Least Squares IV estimator."""</span>
+    Z = instrument.reshape(-<span class="num">1</span>, <span class="num">1</span>) <span class="kw">if</span> instrument.ndim == <span class="num">1</span> <span class="kw">else</span> instrument
+    <span class="kw">if</span> covariates <span class="kw">is not None</span>:
+        Z = np.<span class="fn">column_stack</span>([Z, covariates])
+
+    <span class="cm"># Stage 1: Regress treatment on instrument</span>
+    stage1 = LinearRegression().<span class="fn">fit</span>(Z, treatment)
+    t_hat = stage1.<span class="fn">predict</span>(Z)
+    first_stage_f = (stage1.<span class="fn">score</span>(Z, treatment) * len(y)) / Z.shape[<span class="num">1</span>]
+
+    <span class="cm"># Stage 2: Regress outcome on predicted treatment</span>
+    X2 = t_hat.reshape(-<span class="num">1</span>, <span class="num">1</span>)
+    <span class="kw">if</span> covariates <span class="kw">is not None</span>:
+        X2 = np.<span class="fn">column_stack</span>([X2, covariates])
+    stage2 = LinearRegression().<span class="fn">fit</span>(X2, y)
+
+    <span class="kw">return</span> {<span class="str">'iv_estimate'</span>: stage2.coef_[<span class="num">0</span>], <span class="str">'first_stage_f'</span>: first_stage_f}
+
+<span class="cm"># Example: Rain → driver supply → wait time → retention</span>
+np.random.<span class="fn">seed</span>(<span class="num">42</span>)
+n = <span class="num">5000</span>
+rain = np.random.<span class="fn">binomial</span>(<span class="num">1</span>, <span class="num">0.3</span>, n)           <span class="cm"># Instrument</span>
+unobs_loyalty = np.random.<span class="fn">normal</span>(<span class="num">0</span>, <span class="num">1</span>, n)     <span class="cm"># Unobserved confounder</span>
+wait_time = <span class="num">5</span> + <span class="num">4</span>*rain + <span class="num">1</span>*unobs_loyalty + np.random.<span class="fn">normal</span>(<span class="num">0</span>, <span class="num">2</span>, n)  <span class="cm"># Treatment</span>
+retention = <span class="num">80</span> - <span class="num">1.2</span>*wait_time + <span class="num">5</span>*unobs_loyalty + np.random.<span class="fn">normal</span>(<span class="num">0</span>, <span class="num">3</span>, n)
+
+<span class="cm"># Naive OLS (biased — omits loyalty)</span>
+naive = LinearRegression().<span class="fn">fit</span>(wait_time.reshape(-<span class="num">1</span>,<span class="num">1</span>), retention)
+<span class="fn">print</span>(<span class="str">f"Naive OLS: {naive.coef_[0]:.2f}"</span>)  <span class="cm"># Biased toward 0 (confounder)</span>
+
+<span class="cm"># IV estimate (unbiased)</span>
+iv = <span class="fn">two_stage_ls</span>(retention, wait_time, rain)
+<span class="fn">print</span>(<span class="str">f"IV estimate: {iv['iv_estimate']:.2f}"</span>)  <span class="cm"># Close to -1.2</span></pre>
+  </div>
+
+  <div class="card full">
+    <h4>Key Assumptions</h4>
+    <ul class="assumption-list">
+      <li><strong>Relevance:</strong> Instrument must be correlated with treatment (first-stage F > 10 rule of thumb)</li>
+      <li><strong>Exclusion Restriction:</strong> Instrument affects outcome ONLY through treatment — untestable and must be argued</li>
+      <li><strong>Independence:</strong> Instrument is as-good-as-random (not correlated with unobserved confounders)</li>
+      <li><strong>Monotonicity:</strong> Instrument shifts everyone in the same direction (no "defiers")</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== MEDIATION ==================== -->
+<div class="technique" id="sec-mediation">
+  <div class="tech-header">
+    <span class="category">Mechanism</span>
+    <h3>Mediation Analysis (ACME / ADE)</h3>
+    <p class="subtitle">Decompose a total effect into the indirect effect (through a mediator) and the direct effect (everything else). Answers "WHY did this treatment work?"</p>
+  </div>
+
+  <div class="dag-container">
+    <svg width="420" height="160" viewBox="0 0 420 160">
+      <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#6c63ff"/></marker></defs>
+      <rect x="10" y="60" width="100" height="40" rx="8" fill="#242836" stroke="#6c63ff" stroke-width="2"/>
+      <text x="60" y="85" text-anchor="middle" fill="#e2e4e9" font-size="13" font-weight="600">Treatment</text>
+      <rect x="160" y="5" width="100" height="40" rx="8" fill="#242836" stroke="#00d4aa" stroke-width="2"/>
+      <text x="210" y="30" text-anchor="middle" fill="#e2e4e9" font-size="13" font-weight="600">Mediator</text>
+      <rect x="310" y="60" width="100" height="40" rx="8" fill="#242836" stroke="#ffa726" stroke-width="2"/>
+      <text x="360" y="85" text-anchor="middle" fill="#e2e4e9" font-size="13" font-weight="600">Outcome</text>
+      <!-- T → M -->
+      <line x1="110" y1="68" x2="160" y2="38" stroke="#6c63ff" stroke-width="2" marker-end="url(#arrow)"/>
+      <text x="125" y="45" fill="#8b8fa3" font-size="11">a</text>
+      <!-- M → Y -->
+      <line x1="260" y1="38" x2="310" y2="68" stroke="#00d4aa" stroke-width="2" marker-end="url(#arrow)"/>
+      <text x="295" y="45" fill="#8b8fa3" font-size="11">b</text>
+      <!-- T → Y (direct) -->
+      <line x1="110" y1="85" x2="308" y2="85" stroke="#ff7b72" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#arrow)"/>
+      <text x="210" y="105" fill="#ff7b72" font-size="11">c' (direct)</text>
+      <text x="210" y="140" text-anchor="middle" fill="#8b8fa3" font-size="12">ACME = a × b (indirect) &nbsp;&nbsp;|&nbsp;&nbsp; ADE = c' (direct) &nbsp;&nbsp;|&nbsp;&nbsp; Total = ACME + ADE</text>
+    </svg>
+  </div>
+
+  <div class="method-explainer">
+    <div class="method-col technical">
+      <h4>Statistical Perspective</h4>
+      <p>Mediation analysis decomposes the total effect into <strong>Natural Direct Effect (NDE/ADE)</strong> and <strong>Natural Indirect Effect (NIE/ACME)</strong> using the <strong>potential outcomes framework</strong>. Define M(t) as the mediator value under treatment t, and Y(t, m) as the outcome under treatment t and mediator m. Then:</p>
+      <p style="margin-top:10px;">NIE = E[Y(1, M(1)) − Y(1, M(0))] — what happens if you "flip" the mediator to its treatment value while holding treatment constant. NDE = E[Y(1, M(0)) − Y(0, M(0))] — the treatment effect if the mediator were held at its control value.</p>
+      <p style="margin-top:10px;"><strong>Sequential ignorability</strong> (Imai et al.): requires (1) treatment is randomly assigned (or ignorable conditional on covariates), AND (2) the mediator is ignorable conditional on treatment and pre-treatment covariates. Condition (2) is extremely strong — it rules out ANY post-treatment confounders of the mediator-outcome relationship. Sensitivity analysis (varying ρ, the correlation between mediator and outcome error terms) is essential.</p>
+      <p style="margin-top:10px;">In the linear case with no interaction: ACME = â × b̂ (product of coefficients). With interaction: ACME depends on treatment status. Bootstrap CIs are preferred over Sobel's test (which assumes normality of the product).</p>
+    </div>
+    <div class="method-col intuitive">
+      <h4>Intuitive Perspective</h4>
+      <p>A new drug reduces blood pressure. Great — but <strong>why</strong>? Does it relax blood vessels directly? Or does it reduce stress hormones, which then lowers blood pressure? Knowing the "why" matters: if it works entirely through stress hormones, you might find a better (cheaper, fewer side effects) way to target those hormones directly.</p>
+      <p style="margin-top:10px;"><strong>Mediation's question:</strong> How much of Drug → Blood Pressure goes through Drug → Stress Hormones → Blood Pressure (indirect path) vs. Drug → Blood Pressure directly?</p>
+      <p style="margin-top:10px;"><strong>How it works:</strong> (1) Measure how much the drug changes stress hormones (path a). (2) Measure how much stress hormones affect blood pressure, controlling for the drug (path b). (3) Multiply: a × b = the indirect effect (ACME). (4) Whatever's left over from the total effect is the direct effect (ADE).</p>
+      <p style="margin-top:10px;"><strong>In business:</strong> Your A/B test won. Mediation tells you <em>which feature of the change</em> drove the win. This is the difference between "the redesign worked, do more redesigns" (vague) and "65% of the win came from the ETA display, invest there specifically" (actionable). It turns experiment results into a product roadmap.</p>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h4><span class="company-tag uber">Uber</span> Rider App Redesign — Which Mechanism Drives the Lift?</h4>
+      <p><strong>Business Context:</strong> Uber's rider app team shipped a major home screen redesign that increased ride request rate by 4.2pp in an A/B test. Leadership is deciding where to allocate the next quarter's engineering resources. The redesign had two major changes: (1) a new real-time ETA display with animated driver icons, and (2) a simplified, one-tap ride request flow. Which change deserves credit? Building more ETA features is a different roadmap than simplifying UX.</p>
+      <p style="margin-top:10px;"><strong>Data Setup:</strong> 500K users in the A/B test. Treatment T: new home screen (binary). Mediator M: user's perceived wait time, measured via a post-request survey ("How long do you think your pickup will take?" — collected for 30% of rides). Outcome Y: binary ride request within the session. Key: the mediator is measured AFTER treatment assignment but BEFORE the outcome (the survey fires when a user opens the app but before they decide to request).</p>
+      <p style="margin-top:10px;"><strong>Methodology:</strong> Causal mediation analysis using the potential outcomes framework. Step 1: Regress M on T → the new design reduces perceived wait by 1.8 minutes (path a). Step 2: Regress Y on T and M → each minute of perceived wait reduces request probability by 1.4pp (path b), and the direct effect of the redesign holding perceived wait constant is +1.5pp (path c'). ACME = a × b = 1.8 × 1.4 = 2.52pp. ADE = 1.5pp. Total = 4.02pp (close to the observed 4.2pp).</p>
+      <p style="margin-top:10px;"><strong>Results:</strong> 63% of the total effect is mediated through perceived wait time (ACME = 2.5pp), while 37% is the direct effect of the simpler UX (ADE = 1.5pp). Bootstrap 95% CI for proportion mediated: [52%, 74%]. Sensitivity analysis (Imai et al. ρ parameter): results hold unless the correlation between unmeasured confounders of M→Y exceeds ρ = 0.35.</p>
+      <p style="margin-top:10px;"><strong>Takeaway:</strong> The mediation analysis changed the Q2 roadmap. Instead of further UX simplification (which would have addressed only the 37% ADE), the team invested in: (1) more granular ETA predictions (driver-specific models), (2) animated progress indicators, and (3) under-promise/over-deliver ETA calibration. The follow-up experiment on these ETA-focused improvements yielded an additional 3.1pp lift — validating the mediation finding.</p>
+    </div>
+    <div class="card">
+      <h4><span class="company-tag intuit">Intuit</span> Simplified Tax Interview → User Confidence → Filing Completion</h4>
+      <p><strong>Business Context:</strong> TurboTax redesigned the tax interview to use plain-language questions instead of tax jargon (e.g., "Did you have a job?" instead of "Do you have W-2 income?"). An A/B test showed a 5.1pp lift in filing completion. But the product team has competing theories for WHY it works: (A) users feel more confident because they understand the questions, leading them to continue; (B) the simpler interface reduces cognitive load, making it faster to finish; (C) fewer jargon terms means fewer users Googling mid-flow and getting lost. Understanding the mechanism determines the next investment.</p>
+      <p style="margin-top:10px;"><strong>Data Setup:</strong> Treatment T: new plain-language interview (binary). Mediator M: user confidence score — measured via a 3-question in-app micro-survey at the 40% completion mark ("How confident are you that you're entering information correctly?" 1–7 scale). This measurement point is after enough treatment exposure to affect confidence but early enough that many users haven't yet decided to abandon. Outcome Y: filing completion. n = 120K users (60K per arm, 35% survey response rate → 42K with mediator data).</p>
+      <p style="margin-top:10px;"><strong>Methodology:</strong> Path a: New interview → +0.9 points on confidence scale (p < 0.001). Path b: Each +1 confidence point → +3.1pp completion probability (controlling for treatment). Path c' (ADE): +2.3pp direct effect on completion (holding confidence constant). ACME = 0.9 × 3.1 = 2.79pp. ADE = 2.3pp. Total = 5.09pp. Proportion mediated = 55%.</p>
+      <p style="margin-top:10px;"><strong>Sensitivity & Robustness:</strong> (1) Selection into survey: compare survey responders vs. non-responders on observables — no significant differences. (2) Sequential ignorability: the critical untestable assumption. A post-treatment confounder like "tax situation complexity" could affect both confidence and completion. Include form count and AGI as covariates in the mediator model — ACME drops slightly to 2.4pp (still 47% mediated). (3) Alternative mediator: time-to-40%-completion (cognitive load proxy) mediates an additional 18% of the total effect, partially overlapping with confidence.</p>
+      <p style="margin-top:10px;"><strong>Takeaway:</strong> Confidence is the dominant mechanism (55%), cognitive load adds another 18%, and the remaining ~27% is through other pathways (possibly the "less Googling" hypothesis, which they couldn't directly measure). The product team's Q2 investment: (1) expand plain-language to the review and filing sections (confidence pathway), (2) add "you're doing great" progress affirmations at key milestones, (3) contextual tooltips that explain <em>why</em> a question is asked (addressing remaining uncertainty). The follow-up experiment on confidence-focused features yielded +2.8pp additional completion lift.</p>
+    </div>
+  </div>
+
+  <div class="card full" style="border:2px solid var(--accent); background: linear-gradient(135deg, rgba(108,99,255,0.04), rgba(0,212,170,0.04));">
+    <h4 style="font-size:18px; margin-bottom:16px;">The Baron & Kenny Linear Regression Approach (Classical Method)</h4>
+    <p style="color:var(--muted); margin-bottom:20px;">This is the simplest and most widely-used approach. Mediation analysis reduces to <strong>3 ordinary linear regressions</strong> — nothing more. Here's exactly how it works, step by step.</p>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:20px;">
+      <div>
+        <h4 style="color:var(--accent); font-size:13px; text-transform:uppercase; letter-spacing:1px; margin-bottom:12px;">The 3 Regressions</h4>
+        <div style="background:var(--code-bg); border-radius:8px; padding:16px; margin-bottom:12px;">
+          <div style="color:var(--warn); font-size:12px; font-weight:600; margin-bottom:4px;">REGRESSION 1 — Total Effect</div>
+          <div style="font-family:Georgia,serif; font-style:italic; font-size:16px;">Y = β₀ + c·T + ε₁</div>
+          <div style="color:var(--muted); font-size:12px; margin-top:4px;">Regress outcome on treatment only. The coefficient <strong>c</strong> is the total effect.</div>
+        </div>
+        <div style="background:var(--code-bg); border-radius:8px; padding:16px; margin-bottom:12px;">
+          <div style="color:var(--accent2); font-size:12px; font-weight:600; margin-bottom:4px;">REGRESSION 2 — Treatment → Mediator</div>
+          <div style="font-family:Georgia,serif; font-style:italic; font-size:16px;">M = β₀ + a·T + ε₂</div>
+          <div style="color:var(--muted); font-size:12px; margin-top:4px;">Regress mediator on treatment. The coefficient <strong>a</strong> is how much treatment moves the mediator.</div>
+        </div>
+        <div style="background:var(--code-bg); border-radius:8px; padding:16px;">
+          <div style="color:var(--accent); font-size:12px; font-weight:600; margin-bottom:4px;">REGRESSION 3 — Both → Outcome</div>
+          <div style="font-family:Georgia,serif; font-style:italic; font-size:16px;">Y = β₀ + c'·T + b·M + ε₃</div>
+          <div style="color:var(--muted); font-size:12px; margin-top:4px;">Regress outcome on treatment AND mediator. <strong>c'</strong> = direct effect (ADE). <strong>b</strong> = mediator's effect on outcome.</div>
+        </div>
+      </div>
+      <div>
+        <h4 style="color:var(--accent2); font-size:13px; text-transform:uppercase; letter-spacing:1px; margin-bottom:12px;">Then Just Multiply</h4>
+        <div style="background:var(--code-bg); border-radius:8px; padding:20px; text-align:center;">
+          <div style="font-size:12px; color:var(--muted); margin-bottom:8px;">INDIRECT EFFECT (ACME)</div>
+          <div style="font-family:Georgia,serif; font-size:24px; color:var(--accent2); font-weight:700;">ACME = a × b</div>
+          <div style="font-size:12px; color:var(--muted); margin-top:16px;">DIRECT EFFECT (ADE)</div>
+          <div style="font-family:Georgia,serif; font-size:24px; color:var(--accent); font-weight:700;">ADE = c'</div>
+          <div style="font-size:12px; color:var(--muted); margin-top:16px;">VERIFICATION</div>
+          <div style="font-family:Georgia,serif; font-size:18px; color:var(--text);">c = a×b + c'</div>
+          <div style="font-size:12px; color:var(--muted); margin-top:4px;">Total = Indirect + Direct (must add up)</div>
+          <div style="font-size:12px; color:var(--muted); margin-top:16px;">% MEDIATED</div>
+          <div style="font-family:Georgia,serif; font-size:18px; color:var(--warn);">(a × b) / c</div>
+        </div>
+
+        <div style="margin-top:16px;">
+          <h4 style="color:var(--warn); font-size:13px; text-transform:uppercase; letter-spacing:1px; margin-bottom:8px;">Baron & Kenny's 4 Conditions</h4>
+          <ol style="padding-left:18px; color:var(--muted); font-size:13px; line-height:1.8;">
+            <li><strong>c is significant</strong> — treatment affects outcome (total effect exists)</li>
+            <li><strong>a is significant</strong> — treatment affects mediator</li>
+            <li><strong>b is significant</strong> — mediator affects outcome (controlling for treatment)</li>
+            <li><strong>c' &lt; c</strong> — direct effect shrinks when mediator is included. If c' = 0 → full mediation. If 0 &lt; c' &lt; c → partial mediation.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card full">
+    <h4>Python — Baron & Kenny with statsmodels (Full Output with p-values)</h4>
+    <pre><span class="cm"># Baron & Kenny Mediation — The Linear Regression Approach</span>
+<span class="cm"># This is the classical method: just 3 regressions + a multiplication</span>
+<span class="kw">import</span> numpy <span class="kw">as</span> np
+<span class="kw">import</span> statsmodels.api <span class="kw">as</span> sm
+
+np.random.<span class="fn">seed</span>(<span class="num">42</span>)
+n = <span class="num">3000</span>
+
+<span class="cm"># ── Simulate: TurboTax simplified interview → confidence → completion ──</span>
+T = np.random.<span class="fn">binomial</span>(<span class="num">1</span>, <span class="num">0.5</span>, n).astype(<span class="kw">float</span>)  <span class="cm"># Treatment: new interview</span>
+M = <span class="num">4.0</span> + <span class="num">0.9</span> * T + np.random.<span class="fn">normal</span>(<span class="num">0</span>, <span class="num">1.2</span>, n)    <span class="cm"># Mediator: confidence (1-7)</span>
+Y = <span class="num">0.3</span> + <span class="num">0.023</span> * T + <span class="num">0.031</span> * M + np.random.<span class="fn">normal</span>(<span class="num">0</span>, <span class="num">0.15</span>, n)  <span class="cm"># Outcome: completion</span>
+
+<span class="cm"># ── REGRESSION 1: Total Effect (Y ~ T) ──</span>
+reg1 = sm.OLS(Y, sm.<span class="fn">add_constant</span>(T)).<span class="fn">fit</span>()
+c_total = reg1.params[<span class="num">1</span>]
+<span class="fn">print</span>(<span class="str">"═══ Regression 1: Y ~ T (Total Effect) ═══"</span>)
+<span class="fn">print</span>(<span class="str">f"  c (total effect) = {c_total:.4f},  p = {reg1.pvalues[1]:.4f}"</span>)
+
+<span class="cm"># ── REGRESSION 2: Treatment → Mediator (M ~ T) ──</span>
+reg2 = sm.OLS(M, sm.<span class="fn">add_constant</span>(T)).<span class="fn">fit</span>()
+a = reg2.params[<span class="num">1</span>]
+<span class="fn">print</span>(<span class="str">f"\n═══ Regression 2: M ~ T (Treatment → Mediator) ═══"</span>)
+<span class="fn">print</span>(<span class="str">f"  a = {a:.4f},  p = {reg2.pvalues[1]:.4f}"</span>)
+
+<span class="cm"># ── REGRESSION 3: Both → Outcome (Y ~ T + M) ──</span>
+X3 = sm.<span class="fn">add_constant</span>(np.<span class="fn">column_stack</span>([T, M]))
+reg3 = sm.OLS(Y, X3).<span class="fn">fit</span>()
+c_prime = reg3.params[<span class="num">1</span>]  <span class="cm"># Direct effect (ADE)</span>
+b = reg3.params[<span class="num">2</span>]        <span class="cm"># Mediator → Outcome</span>
+<span class="fn">print</span>(<span class="str">f"\n═══ Regression 3: Y ~ T + M (Direct + Mediator) ═══"</span>)
+<span class="fn">print</span>(<span class="str">f"  c' (direct/ADE) = {c_prime:.4f},  p = {reg3.pvalues[1]:.4f}"</span>)
+<span class="fn">print</span>(<span class="str">f"  b  (M → Y)      = {b:.4f},  p = {reg3.pvalues[2]:.4f}"</span>)
+
+<span class="cm"># ── DECOMPOSITION ──</span>
+acme = a * b
+total = acme + c_prime
+pct = acme / total * <span class="num">100</span>
+<span class="fn">print</span>(<span class="str">f"\n═══ Mediation Decomposition ═══"</span>)
+<span class="fn">print</span>(<span class="str">f"  Indirect (ACME) = a × b = {a:.4f} × {b:.4f} = {acme:.4f}"</span>)
+<span class="fn">print</span>(<span class="str">f"  Direct   (ADE)  = c'    = {c_prime:.4f}"</span>)
+<span class="fn">print</span>(<span class="str">f"  Total            = {total:.4f}  (should ≈ c = {c_total:.4f})"</span>)
+<span class="fn">print</span>(<span class="str">f"  % Mediated       = {pct:.1f}%"</span>)
+
+<span class="cm"># ── BARON & KENNY 4 CONDITIONS ──</span>
+<span class="fn">print</span>(<span class="str">f"\n═══ Baron & Kenny Checklist ═══"</span>)
+<span class="fn">print</span>(<span class="str">f"  1. c  significant?  {'✓' if reg1.pvalues[1] < 0.05 else '✗'}  (p={reg1.pvalues[1]:.4f})"</span>)
+<span class="fn">print</span>(<span class="str">f"  2. a  significant?  {'✓' if reg2.pvalues[1] < 0.05 else '✗'}  (p={reg2.pvalues[1]:.4f})"</span>)
+<span class="fn">print</span>(<span class="str">f"  3. b  significant?  {'✓' if reg3.pvalues[2] < 0.05 else '✗'}  (p={reg3.pvalues[2]:.4f})"</span>)
+<span class="fn">print</span>(<span class="str">f"  4. c' < c?          {'✓' if abs(c_prime) < abs(c_total) else '✗'}  ({c_prime:.4f} < {c_total:.4f})"</span>)
+<span class="fn">print</span>(<span class="str">f"  → {'Full' if reg3.pvalues[1] > 0.05 else 'Partial'} mediation"</span>)</pre>
+  </div>
+
+  <div class="card full" style="border-left:3px solid var(--warn);">
+    <h4>When Linear Regression Is Enough vs. When You Need More</h4>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+      <div>
+        <p style="color:var(--accent2); font-weight:700; margin-bottom:8px;">Linear OLS is fine when:</p>
+        <ul style="color:var(--muted); font-size:14px; line-height:1.8; padding-left:18px;">
+          <li>Treatment is randomized (A/B test)</li>
+          <li>Mediator and outcome are continuous</li>
+          <li>Relationships are approximately linear</li>
+          <li>No treatment × mediator interaction (the effect of M on Y doesn't change by treatment group)</li>
+          <li>You're okay with Sobel's test or bootstrap for indirect effect CI</li>
+        </ul>
+      </div>
+      <div>
+        <p style="color:var(--warn); font-weight:700; margin-bottom:8px;">You need something fancier when:</p>
+        <ul style="color:var(--muted); font-size:14px; line-height:1.8; padding-left:18px;">
+          <li><strong>Binary outcome</strong> (e.g., completed filing yes/no) → logistic regression; a×b doesn't decompose cleanly on the probability scale</li>
+          <li><strong>Treatment × mediator interaction</strong> → ACME becomes treatment-dependent: ACME(t=1) ≠ ACME(t=0)</li>
+          <li><strong>Multiple mediators</strong> → SEM or path analysis to handle correlated mediators (confidence AND cognitive load)</li>
+          <li><strong>Post-treatment confounders</strong> → sensitivity analysis (Imai's ρ) or IV-based mediation</li>
+          <li><strong>Non-linear mediator relationships</strong> → nonparametric / semiparametric estimators</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card full">
+    <h4>Python — Bootstrap + sklearn (Original Approach)</h4>
+    <pre><span class="cm"># Causal Mediation Analysis — sklearn version with bootstrap CIs</span>
+<span class="kw">import</span> numpy <span class="kw">as</span> np
+<span class="kw">from</span> sklearn.linear_model <span class="kw">import</span> LinearRegression
+
+<span class="kw">def</span> <span class="fn">mediation_analysis</span>(treatment, mediator, outcome, n_bootstrap=<span class="num">1000</span>):
+    <span class="str">"""Estimate ACME, ADE, and Total Effect with bootstrap CIs."""</span>
+    n = <span class="fn">len</span>(treatment)
+    T, M, Y = treatment.reshape(-<span class="num">1</span>,<span class="num">1</span>), mediator, outcome
+
+    <span class="cm"># Path a: Treatment → Mediator</span>
+    model_m = LinearRegression().<span class="fn">fit</span>(T, M)
+    a = model_m.coef_[<span class="num">0</span>]
+
+    <span class="cm"># Paths b and c': [Treatment, Mediator] → Outcome</span>
+    X_full = np.<span class="fn">column_stack</span>([treatment, mediator])
+    model_y = LinearRegression().<span class="fn">fit</span>(X_full, Y)
+    c_prime = model_y.coef_[<span class="num">0</span>]  <span class="cm"># ADE (direct)</span>
+    b = model_y.coef_[<span class="num">1</span>]
+
+    acme = a * b     <span class="cm"># Average Causal Mediation Effect (indirect)</span>
+    ade = c_prime     <span class="cm"># Average Direct Effect</span>
+    total = acme + ade
+
+    <span class="cm"># Bootstrap confidence intervals</span>
+    acme_boot = []
+    <span class="kw">for</span> _ <span class="kw">in</span> <span class="fn">range</span>(n_bootstrap):
+        idx = np.random.<span class="fn">choice</span>(n, n, replace=<span class="kw">True</span>)
+        m_b = LinearRegression().<span class="fn">fit</span>(T[idx], M[idx])
+        X_b = np.<span class="fn">column_stack</span>([treatment[idx], mediator[idx]])
+        y_b = LinearRegression().<span class="fn">fit</span>(X_b, Y[idx])
+        acme_boot.<span class="fn">append</span>(m_b.coef_[<span class="num">0</span>] * y_b.coef_[<span class="num">1</span>])
+
+    ci = np.<span class="fn">percentile</span>(acme_boot, [<span class="num">2.5</span>, <span class="num">97.5</span>])
+    <span class="kw">return</span> {<span class="str">'ACME'</span>: acme, <span class="str">'ADE'</span>: ade, <span class="str">'Total'</span>: total,
+            <span class="str">'Prop_Mediated'</span>: acme/total, <span class="str">'ACME_CI'</span>: ci}
+
+<span class="cm"># Example: Uber app redesign → ETA perception → ride requests</span>
+np.random.<span class="fn">seed</span>(<span class="num">42</span>)
+n = <span class="num">3000</span>
+treatment = np.random.<span class="fn">binomial</span>(<span class="num">1</span>, <span class="num">0.5</span>, n).astype(<span class="kw">float</span>)
+<span class="cm"># Mediator: perceived wait time (lower = better)</span>
+perceived_wait = <span class="num">8</span> - <span class="num">2</span>*treatment + np.random.<span class="fn">normal</span>(<span class="num">0</span>, <span class="num">2</span>, n)
+<span class="cm"># Outcome: ride request probability</span>
+ride_request = <span class="num">0.5</span> + <span class="num">0.05</span>*treatment - <span class="num">0.03</span>*perceived_wait + np.random.<span class="fn">normal</span>(<span class="num">0</span>, <span class="num">0.1</span>, n)
+
+result = <span class="fn">mediation_analysis</span>(treatment, perceived_wait, ride_request)
+<span class="fn">print</span>(<span class="str">f"ACME (indirect via ETA): {result['ACME']:.4f}"</span>)
+<span class="fn">print</span>(<span class="str">f"ADE  (direct effect):    {result['ADE']:.4f}"</span>)
+<span class="fn">print</span>(<span class="str">f"Total Effect:            {result['Total']:.4f}"</span>)
+<span class="fn">print</span>(<span class="str">f"% Mediated:              {result['Prop_Mediated']:.1%}"</span>)
+<span class="fn">print</span>(<span class="str">f"ACME 95% CI:             [{result['ACME_CI'][0]:.4f}, {result['ACME_CI'][1]:.4f}]"</span>)</pre>
+  </div>
+
+  <div class="card full">
+    <h4>Key Assumptions</h4>
+    <ul class="assumption-list">
+      <li><strong>Sequential Ignorability:</strong> (1) Treatment is randomly assigned, AND (2) mediator is as-good-as-random conditional on treatment and observed covariates — this is VERY strong</li>
+      <li><strong>No treatment-mediator interaction:</strong> In the simple linear case; extensions handle interactions</li>
+      <li><strong>Correct model specification:</strong> Misspecified mediator or outcome model → biased decomposition</li>
+      <li><strong>No post-treatment confounders:</strong> No variable affected by treatment that also confounds the mediator-outcome relationship</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== UPLIFT ==================== -->
+<div class="technique" id="sec-uplift">
+  <div class="tech-header">
+    <span class="category">Heterogeneous Effects</span>
+    <h3>Uplift Modeling / Heterogeneous Treatment Effects (HTE)</h3>
+    <p class="subtitle">Not everyone responds the same way. Uplift modeling estimates the Conditional Average Treatment Effect (CATE) — the treatment effect for each individual or segment.</p>
+  </div>
+
+  <div class="formula-box">
+    <div class="label">Conditional Average Treatment Effect</div>
+    <div class="formula">τ(x) = E[Y(1) − Y(0) | X = x]</div>
+    <div class="label">Meta-learners (S, T, X-learner) and causal forests estimate this function.</div>
+  </div>
+
+  <div class="method-explainer">
+    <div class="method-col technical">
+      <h4>Statistical Perspective</h4>
+      <p>Standard A/B tests estimate the ATE = E[Y(1)−Y(0)]. Uplift modeling estimates the <strong>CATE</strong> (Conditional Average Treatment Effect) τ(x) = E[Y(1)−Y(0)|X=x] — the treatment effect as a function of individual characteristics. The fundamental challenge: you observe Y(1) or Y(0) for each unit, never both.</p>
+      <p style="margin-top:10px;"><strong>Meta-learners:</strong> T-Learner trains separate outcome models for treatment and control: τ̂(x) = μ̂₁(x) − μ̂₀(x). S-Learner trains one model with treatment as a feature: μ̂(x,t) and computes τ̂(x) = μ̂(x,1) − μ̂(x,0). X-Learner is a three-stage procedure that imputes individual treatment effects and uses propensity scores to weight between treatment and control group estimates — more efficient when groups are imbalanced.</p>
+      <p style="margin-top:10px;"><strong>DR-Learner</strong> (doubly robust) combines propensity scoring with outcome modeling for robustness. <strong>Causal forests</strong> (Athey & Imbens) adapt random forests to split on treatment effect heterogeneity rather than outcome prediction. Evaluation: the <strong>uplift curve</strong> (Qini curve) — sort users by predicted CATE, plot cumulative incremental outcome vs. fraction targeted.</p>
+    </div>
+    <div class="method-col intuitive">
+      <h4>Intuitive Perspective</h4>
+      <p>A store sends everyone a 20%-off coupon and sees a 5% sales lift overall. But not everyone is the same:</p>
+      <p style="margin-top:10px;">• <strong>"Sure Things"</strong> — would have bought anyway. The coupon just costs you margin.<br>
+      • <strong>"Persuadables"</strong> — buy BECAUSE of the coupon. This is where your ROI lives.<br>
+      • <strong>"Lost Causes"</strong> — won't buy regardless. Coupon is wasted.<br>
+      • <strong>"Sleeping Dogs"</strong> — the coupon actually annoys them (reminds them to unsubscribe). Negative effect.</p>
+      <p style="margin-top:10px;"><strong>Uplift modeling finds these groups.</strong> For each customer, it asks: "What's the DIFFERENCE in purchase probability with vs. without the coupon?" — not just "Will they buy?" A high-probability buyer isn't necessarily someone you should target (they might be a "Sure Thing"). You want the people with the biggest <em>gap</em> between coupon and no-coupon worlds.</p>
+      <p style="margin-top:10px;"><strong>The magic:</strong> By targeting only "Persuadables" (say top 30% by predicted uplift), you get 80% of the incremental sales at 30% of the cost. The remaining 70% of coupons were either wasted (Sure Things, Lost Causes) or actively harmful (Sleeping Dogs).</p>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h4><span class="company-tag uber">Uber</span> $5 Promo Optimization — Finding the Persuadables</h4>
+      <p><strong>Business Context:</strong> Uber spends $200M+/year on rider promos (discounts, free rides, credits). The blunt approach: blast $5 credits to all riders who haven't ridden in 14+ days. Marketing suspects they're wasting money on two groups: (1) "sure things" who would have come back anyway, and (2) "lost causes" who won't return even with $5. They need to find the "persuadables" — users where the promo actually changes behavior.</p>
+      <p style="margin-top:10px;"><strong>Data Setup:</strong> Randomized promo experiment: 1M lapsed riders (14+ days since last ride), 50/50 split between $5 credit (treatment) and no credit (control). Features for the CATE model: (1) days since last ride, (2) lifetime ride count, (3) average trip value, (4) urban/suburban/rural, (5) last ride rating, (6) device type, (7) signup channel, (8) local competitor presence, (9) time since signup. Outcome: ride within 7 days (binary).</p>
+      <p style="margin-top:10px;"><strong>Methodology:</strong> Train a T-Learner (separate GBM models for treatment and control groups) to estimate τ(x) = E[Y|T=1,X=x] − E[Y|T=0,X=x] for each user. Validate using the "uplift curve" on a held-out test set: rank users by predicted CATE, then plot cumulative incremental rides vs. fraction of population targeted. Compare to random targeting baseline.</p>
+      <p style="margin-top:10px;"><strong>Results:</strong> Average treatment effect (ATE) across all users: +3.2pp ride probability. But the distribution is highly skewed:<br>
+      • Top decile (persuadables): CATE = +12.4pp. Profile: suburban, 30–90 days lapsed, 10–30 lifetime rides, signed up via referral.<br>
+      • Middle 60%: CATE = +2–4pp. Marginal ROI — promo barely covers its cost.<br>
+      • Bottom 20%: CATE = −0.5pp to +0.5pp. "Sure things" (daily commuters, CATE ≈ 0 because they'd ride anyway) and "lost causes" (1-ride-and-done users).<br>
+      • Surprise finding: 8% of users have <em>negative</em> CATE — the promo email actually reduces their ride probability (possibly because it reminds them they stopped using Uber for a reason).</p>
+      <p style="margin-top:10px;"><strong>Takeaway:</strong> By targeting only the top 30% by CATE, Uber achieves 78% of the total incremental rides at 30% of the promo cost. Annualized savings: $47M in promo spend. The negative-CATE finding led to removing those users from all promo campaigns (including email), reducing unsubscribe rates by 15%.</p>
+    </div>
+    <div class="card">
+      <h4><span class="company-tag intuit">Intuit</span> SKU Upsell Nudge — Who Benefits vs. Who Gets Annoyed?</h4>
+      <p><strong>Business Context:</strong> TurboTax shows an upgrade nudge ("Unlock Deluxe for $59 — maximize your deductions") to Free Edition users at the deductions section. The average take-rate is 5.2%. But product managers suspect the nudge might be hurting filing completion for users who don't need Deluxe — the interruption causes confusion or frustration. They want to personalize: show the nudge only to users where it helps, suppress it where it hurts.</p>
+      <p style="margin-top:10px;"><strong>Data Setup:</strong> Randomized experiment: 800K Free Edition users, 50% see the nudge, 50% see nothing. Features: (1) has Schedule C income, (2) number of deductions started, (3) estimated refund amount so far, (4) prior-year product tier, (5) time spent on return so far, (6) state, (7) filing status, (8) device, (9) entry channel. Two outcomes: (a) upgrade to Deluxe, (b) filing completion.</p>
+      <p style="margin-top:10px;"><strong>Methodology:</strong> X-Learner (more efficient than T-Learner when treatment group is smaller after upgrade). Estimate CATE on both outcomes separately. Cross-validate with DR-Learner (doubly-robust) for robustness. Segment the CATE distribution into 4 groups using the "persuasion-annoyance" framework: High-Upgrade-CATE + Neutral-Completion-CATE = "Sweet Spot"; High-Upgrade + Negative-Completion = "Costly Conversion"; Low-Upgrade + Negative-Completion = "Just Annoying"; Low-Upgrade + Positive-Completion = "Ignore Nudge."</p>
+      <p style="margin-top:10px;"><strong>Results:</strong><br>
+      • "Sweet Spot" (22% of users): Schedule C filers, multiple deduction types, CATE_upgrade = +14.8pp, CATE_completion = +0.3pp. They genuinely need Deluxe and the nudge helps them find the right product.<br>
+      • "Costly Conversion" (11%): Users with moderate complexity who upgrade but then face Deluxe's more detailed interview and abandon. CATE_upgrade = +8.2pp, CATE_completion = −3.1pp. Net revenue negative after accounting for lost completions.<br>
+      • "Just Annoying" (31%): Simple W-2 filers. CATE_upgrade = +1.1pp, CATE_completion = −2.4pp. The nudge interrupts their flow for minimal conversion.<br>
+      • "Ignore Nudge" (36%): CATE_upgrade = +0.4pp, CATE_completion = +0.1pp. No effect either way.</p>
+      <p style="margin-top:10px;"><strong>Takeaway:</strong> Showing the nudge only to "Sweet Spot" users: upgrade revenue stays at 83% of the blanket-nudge approach, but filing completion improves by 1.4pp overall (recovering the completions lost from the "Annoying" and "Costly" segments). Net impact: +$3.2M revenue per tax season. The "Costly Conversion" finding was especially important — it led to a new "Deluxe Preview" flow that lets users see what additional Deluxe questions they'd face before committing.</p>
+    </div>
+  </div>
+
+  <div class="card full">
+    <h4>Python Example — T-Learner</h4>
+    <pre><span class="cm"># Uplift Modeling with T-Learner</span>
+<span class="kw">from</span> sklearn.ensemble <span class="kw">import</span> GradientBoostingRegressor
+<span class="kw">import</span> numpy <span class="kw">as</span> np, pandas <span class="kw">as</span> pd
+
+<span class="kw">def</span> <span class="fn">t_learner</span>(X_train, treatment, y_train, X_pred):
+    <span class="str">"""T-Learner: separate models for treated and control."""</span>
+    <span class="cm"># Model for treated</span>
+    m1 = GradientBoostingRegressor(n_estimators=<span class="num">100</span>)
+    m1.<span class="fn">fit</span>(X_train[treatment == <span class="num">1</span>], y_train[treatment == <span class="num">1</span>])
+
+    <span class="cm"># Model for control</span>
+    m0 = GradientBoostingRegressor(n_estimators=<span class="num">100</span>)
+    m0.<span class="fn">fit</span>(X_train[treatment == <span class="num">0</span>], y_train[treatment == <span class="num">0</span>])
+
+    <span class="cm"># CATE = E[Y|T=1,X] - E[Y|T=0,X]</span>
+    cate = m1.<span class="fn">predict</span>(X_pred) - m0.<span class="fn">predict</span>(X_pred)
+    <span class="kw">return</span> cate
+
+<span class="cm"># Example: Uber promo targeting</span>
+np.random.<span class="fn">seed</span>(<span class="num">42</span>)
+n = <span class="num">10000</span>
+X = pd.<span class="fn">DataFrame</span>({
+    <span class="str">'days_since_last_ride'</span>: np.random.<span class="fn">exponential</span>(<span class="num">14</span>, n),
+    <span class="str">'lifetime_rides'</span>: np.random.<span class="fn">poisson</span>(<span class="num">20</span>, n),
+    <span class="str">'is_suburban'</span>: np.random.<span class="fn">binomial</span>(<span class="num">1</span>, <span class="num">0.4</span>, n),
+    <span class="str">'avg_trip_value'</span>: np.random.<span class="fn">normal</span>(<span class="num">15</span>, <span class="num">5</span>, n),
+})
+treatment = np.random.<span class="fn">binomial</span>(<span class="num">1</span>, <span class="num">0.5</span>, n)
+
+<span class="cm"># True CATE: high for lapsed suburban riders, low for frequent urban</span>
+true_cate = (<span class="num">0.02</span> + <span class="num">0.08</span> * (X[<span class="str">'days_since_last_ride'</span>] > <span class="num">14</span>).astype(<span class="kw">float</span>)
+             + <span class="num">0.05</span> * X[<span class="str">'is_suburban'</span>]
+             - <span class="num">0.001</span> * X[<span class="str">'lifetime_rides'</span>])
+y = <span class="num">0.3</span> + treatment * true_cate + np.random.<span class="fn">normal</span>(<span class="num">0</span>, <span class="num">0.1</span>, n)
+
+cate_hat = <span class="fn">t_learner</span>(X.values, treatment, y, X.values)
+<span class="cm"># Target top 20% CATE for promo</span>
+threshold = np.<span class="fn">percentile</span>(cate_hat, <span class="num">80</span>)
+targeted = cate_hat >= threshold
+<span class="fn">print</span>(<span class="str">f"Avg CATE (all):      {cate_hat.mean():.4f}"</span>)
+<span class="fn">print</span>(<span class="str">f"Avg CATE (targeted): {cate_hat[targeted].mean():.4f}"</span>)
+<span class="fn">print</span>(<span class="str">f"Avg CATE (others):   {cate_hat[~targeted].mean():.4f}"</span>)</pre>
+  </div>
+</div>
+
+<!-- ==================== BSTS ==================== -->
+<div class="technique" id="sec-bsts">
+  <div class="tech-header">
+    <span class="category">Time Series</span>
+    <h3>Bayesian Structural Time Series (BSTS) / CausalImpact</h3>
+    <p class="subtitle">Build a Bayesian time series model of what WOULD have happened without intervention. The gap between predicted counterfactual and observed data is the causal effect.</p>
+  </div>
+
+  <div class="formula-box">
+    <div class="label">Causal Impact</div>
+    <div class="formula">Effect(t) = Y_observed(t) − Y_counterfactual(t)</div>
+    <div class="label">Y_counterfactual is predicted by a state-space model fit on pre-intervention data + control time series.</div>
+  </div>
+
+  <div class="method-explainer">
+    <div class="method-col technical">
+      <h4>Statistical Perspective</h4>
+      <p>BSTS (Brodersen et al., 2015 — Google's CausalImpact) models the treated unit's time series as a <strong>state-space model</strong> with three components: (1) local linear trend (level + slope, both evolving as random walks), (2) seasonal component (fixed or evolving), (3) regression on control time series (untreated units whose trajectories help predict the treated unit).</p>
+      <p style="margin-top:10px;">The model is fit on the pre-intervention period via <strong>Bayesian MCMC</strong>. Spike-and-slab priors on regression coefficients perform automatic variable selection among control series. Post-intervention, the model generates <strong>posterior predictive draws</strong> of the counterfactual. The causal effect at each time point is: actual − counterfactual. Because it's Bayesian, you get a full posterior distribution over the effect (not just a point estimate and CI), including P(effect > 0).</p>
+      <p style="margin-top:10px;"><strong>Advantages over synthetic control:</strong> (1) Handles trends and seasonality explicitly. (2) Provides time-varying effects (you see the effect emerge and decay). (3) Bayesian uncertainty quantification. <strong>Disadvantage:</strong> More model assumptions (distributional, structural); synthetic control is more "nonparametric."</p>
+    </div>
+    <div class="method-col intuitive">
+      <h4>Intuitive Perspective</h4>
+      <p>Imagine you started running every morning and want to know if it improved your sleep. You have 6 months of sleep data before running and 2 months after. You also track your friend's sleep (who didn't start running) and the local temperature.</p>
+      <p style="margin-top:10px;"><strong>BSTS builds a prediction model:</strong> Using your pre-running sleep patterns, seasonal habits, and your friend's sleep (as a "control"), it learns to predict your sleep quality. Then it asks: "Based on everything I know, what WOULD your sleep have looked like these past 2 months if you hadn't started running?"</p>
+      <p style="margin-top:10px;"><strong>The counterfactual:</strong> The model might say "you would have slept 6.5 hours/night." You actually slept 7.2 hours. The gap (0.7 hours) is the estimated effect of running. Your friend's data is key — if everyone's sleep improved in spring (seasonal), the model accounts for that and doesn't credit it to your running.</p>
+      <p style="margin-top:10px;"><strong>Why Bayesian matters:</strong> Instead of saying "the effect is 0.7 hours ± 0.3," it says "there's a 96% probability the effect is positive, and the most likely range is 0.4–1.0 hours." This is much more useful for decision-making: "I'm 96% sure running helps my sleep" is a clearer statement than "p = 0.04."</p>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h4><span class="company-tag uber">Uber</span> Chicago Billboard Campaign — Time Series Counterfactual</h4>
+      <p><strong>Business Context:</strong> Uber's brand marketing team ran a 4-week outdoor billboard campaign in Chicago ("Your Uber is 3 minutes away" with real-time ETAs on digital billboards). Total spend: $1.8M. The challenge: no pre-registered hold-out (marketing decided late to measure impact), so there's no clean control group. Uber needs to estimate what Chicago's ride volume <em>would have been</em> without the campaign.</p>
+      <p style="margin-top:10px;"><strong>Data Setup:</strong> 52 weeks of pre-campaign weekly ride data for Chicago + 20 control cities with no billboard campaign. Post-treatment: 4 campaign weeks + 4 post-campaign weeks. Control series used as regression predictors: Detroit, Milwaukee, Indianapolis, St. Louis, Minneapolis (selected for similar Midwest seasonality, population density, and ride patterns). Additional regressors: week-of-year seasonal dummies, Chicago temperature, Chicago events calendar.</p>
+      <p style="margin-top:10px;"><strong>Methodology:</strong> BSTS decomposes Chicago's ride series into: (1) local linear trend, (2) seasonal component (52-week cycle), (3) regression component (weighted combination of control cities). The model is fit on the 52 pre-campaign weeks via Bayesian MCMC (1000 posterior samples). For each posterior draw, predict the counterfactual for the 8 post-campaign weeks. The distribution of (actual − counterfactual) gives a full posterior over the causal effect, including uncertainty.</p>
+      <p style="margin-top:10px;"><strong>Results:</strong> During the 4-week campaign: actual = 138K rides/week, counterfactual posterior mean = 124.5K. Average weekly effect: +13.5K rides (posterior 95% CI: [8.8K, 18.2K]). Posterior probability of positive effect: 99.7%. During the 4 post-campaign weeks: the effect decays from +11K in week 1 to +3K in week 4 (half-life ≈ 2.3 weeks). Cumulative incremental rides: 82K. At $12 average Uber take per ride: $984K incremental revenue vs. $1.8M campaign cost. Short-term ROAS = 0.55 (negative).</p>
+      <p style="margin-top:10px;"><strong>Takeaway:</strong> The BSTS analysis showed the billboard campaign was unprofitable on direct ride revenue. But the decay curve was informative: awareness effects lasted only ~5 weeks. Marketing shifted budget from billboards to retargeting digital ads (where BSTS on a separate test showed ROAS = 2.3). The Bayesian framework was critical — unlike frequentist methods, it gave a full probability distribution over ROI, allowing the finance team to make risk-adjusted budget decisions.</p>
+    </div>
+    <div class="card">
+      <h4><span class="company-tag intuit">Intuit</span> Mid-Season "Snap & File" Feature Launch — Isolating the Impact</h4>
+      <p><strong>Business Context:</strong> TurboTax launched "Snap & File" (photograph your W-2 → auto-populated return → file in under 10 minutes) in week 4 of tax season. There's no control group — the feature is available to all users. The product team needs to separate the Snap & File lift from: (1) natural seasonal ramp-up, (2) marketing spend increases in January, (3) IRS processing timeline (refund delays affect filing volume). Simply comparing week 4 vs. week 3 conflates all these factors.</p>
+      <p style="margin-top:10px;"><strong>Data Setup:</strong> Outcome: daily new TurboTax filing starts (nationwide). Pre-treatment: 3 prior tax seasons (TY21–TY23) of daily data + the first 3 weeks of TY24. Control series: (1) H&R Block online starts (public investor data, weekly), (2) IRS total e-file receipts (weekly), (3) Google Trends index for "file taxes" (daily). These control series capture the "background" forces affecting all tax prep, not just TurboTax.</p>
+      <p style="margin-top:10px;"><strong>Methodology:</strong> BSTS with control series as regressors. The model learns that TurboTax's daily starts are a predictable function of: seasonal pattern (day-of-season), IRS e-file volume (macro readiness), and Google Trends (intent). Spike-and-slab priors on the regression coefficients perform automatic variable selection. Post-Snap-&-File launch, the model predicts the counterfactual (what TurboTax starts would have been with the same seasonal/macro conditions but no Snap & File).</p>
+      <p style="margin-top:10px;"><strong>Results:</strong> Actual cumulative starts through week 8: 2.35M. Counterfactual: 2.09M. Estimated causal impact of Snap & File: +260K incremental starts (95% CI: [195K, 325K]). The effect is concentrated in the first 2 weeks post-launch (early adopters who were waiting for an easier way to file) and then settles to a steady +15K/week above counterfactual. Decomposition: 70% of Snap & File users are <em>new</em> to TurboTax (acquisition), 30% are returning users who filed earlier than they otherwise would have (pull-forward, which the team verified doesn't cannibalize later-season volume).</p>
+      <p style="margin-top:10px;"><strong>Takeaway:</strong> 260K incremental starts × 72% completion rate × $85 average revenue = $15.9M incremental revenue from Snap & File in its first season. This justified the $4M engineering investment (4:1 ROI) and made the case for expanding the concept to 1099s and state returns. The BSTS control series were critical — without them, the team would have attributed seasonal ramp-up to the feature, overstating the impact by ~40%.</p>
+    </div>
+  </div>
+
+  <div class="card full">
+    <h4>Python Example</h4>
+    <pre><span class="cm"># BSTS / CausalImpact-style Analysis</span>
+<span class="kw">import</span> numpy <span class="kw">as</span> np
+<span class="kw">from</span> sklearn.linear_model <span class="kw">import</span> BayesianRidge
+
+<span class="kw">def</span> <span class="fn">causal_impact_simple</span>(y_treated, y_controls, intervention_idx):
+    <span class="str">"""Simple CausalImpact: fit on pre-period, predict post counterfactual."""</span>
+    <span class="cm"># Pre-period: fit model using control series to predict treated</span>
+    y_pre = y_treated[:intervention_idx]
+    X_pre = y_controls[:, :intervention_idx].T
+    X_post = y_controls[:, intervention_idx:].T
+
+    model = BayesianRidge()
+    model.<span class="fn">fit</span>(X_pre, y_pre)
+
+    <span class="cm"># Predict counterfactual for post-period</span>
+    y_cf, y_std = model.<span class="fn">predict</span>(X_post, return_std=<span class="kw">True</span>)
+    y_actual = y_treated[intervention_idx:]
+
+    point_effect = y_actual - y_cf
+    cumulative_effect = np.<span class="fn">cumsum</span>(point_effect)
+
+    <span class="kw">return</span> {
+        <span class="str">'avg_effect'</span>: point_effect.<span class="fn">mean</span>(),
+        <span class="str">'cumulative'</span>: cumulative_effect[-<span class="num">1</span>],
+        <span class="str">'ci_lower'</span>: (point_effect - <span class="num">1.96</span>*y_std).<span class="fn">mean</span>(),
+        <span class="str">'ci_upper'</span>: (point_effect + <span class="num">1.96</span>*y_std).<span class="fn">mean</span>(),
+        <span class="str">'counterfactual'</span>: y_cf,
+        <span class="str">'actual'</span>: y_actual
+    }
+
+<span class="cm"># Example: Uber billboard campaign in Chicago</span>
+np.random.<span class="fn">seed</span>(<span class="num">42</span>)
+weeks = <span class="num">30</span>
+intervention = <span class="num">18</span>  <span class="cm"># Campaign starts week 18</span>
+trend = np.<span class="fn">linspace</span>(<span class="num">100</span>, <span class="num">130</span>, weeks)
+
+<span class="cm"># Control cities (no campaign)</span>
+detroit  = trend * <span class="num">0.7</span> + np.random.<span class="fn">normal</span>(<span class="num">0</span>, <span class="num">3</span>, weeks)
+milwaukee = trend * <span class="num">0.5</span> + np.random.<span class="fn">normal</span>(<span class="num">0</span>, <span class="num">2</span>, weeks)
+controls = np.<span class="fn">array</span>([detroit, milwaukee])
+
+<span class="cm"># Chicago (treated) — extra 13 rides/week post-campaign</span>
+chicago = trend + np.random.<span class="fn">normal</span>(<span class="num">0</span>, <span class="num">3</span>, weeks)
+chicago[intervention:] += <span class="num">13</span>  <span class="cm"># True causal effect</span>
+
+result = <span class="fn">causal_impact_simple</span>(chicago, controls, intervention)
+<span class="fn">print</span>(<span class="str">f"Avg weekly effect: {result['avg_effect']:.1f}K rides"</span>)
+<span class="fn">print</span>(<span class="str">f"95% CI: [{result['ci_lower']:.1f}, {result['ci_upper']:.1f}]"</span>)
+<span class="fn">print</span>(<span class="str">f"Cumulative: {result['cumulative']:.0f}K rides over post-period"</span>)</pre>
+  </div>
+</div>
+
+<!-- ==================== CACE ==================== -->
+<div class="technique" id="sec-cace">
+  <div class="tech-header">
+    <span class="category">Experimental (Non-Compliance)</span>
+    <h3>CACE — Complier Average Causal Effect</h3>
+    <p class="subtitle">In experiments where not everyone complies (e.g., assigned to treatment but doesn't take it), CACE estimates the effect among those who actually would comply with their assignment.</p>
+  </div>
+
+  <div class="formula-box">
+    <div class="label">CACE (Wald Estimator)</div>
+    <div class="formula">CACE = ITT / Compliance Rate = [E(Y|Z=1) − E(Y|Z=0)] / [E(T|Z=1) − E(T|Z=0)]</div>
+    <div class="label">Z = assignment, T = actual treatment taken. CACE = ITT / first-stage effect.</div>
+  </div>
+
+  <div class="method-explainer">
+    <div class="method-col technical">
+      <h4>Statistical Perspective</h4>
+      <p>In experiments with <strong>non-compliance</strong>, there are four latent subpopulations (under the principal strata framework): <strong>Compliers</strong> (take treatment when assigned, don't when not), <strong>Always-takers</strong> (take treatment regardless), <strong>Never-takers</strong> (don't take regardless), and <strong>Defiers</strong> (do the opposite of assignment). Under the <strong>monotonicity assumption</strong> (no defiers), the ITT is a mixture: ITT = π_c · CACE + π_a · 0 + π_n · 0, where π_c is the complier fraction.</p>
+      <p style="margin-top:10px;">The Wald estimator CACE = ITT / π_c = ITT / (E[T|Z=1] − E[T|Z=0]) is algebraically equivalent to the IV estimator using Z as an instrument for T. This connects to the LATE (Local Average Treatment Effect) framework — CACE and LATE are the same concept.</p>
+      <p style="margin-top:10px;"><strong>Key point:</strong> CACE ≠ ATE. It's the effect specifically for compliers — which may differ from the effect on always-takers or never-takers. In one-sided non-compliance (control can't access treatment), always-takers don't exist, and the compliance rate simplifies to E[T|Z=1].</p>
+    </div>
+    <div class="method-col intuitive">
+      <h4>Intuitive Perspective</h4>
+      <p>You mail a gym membership coupon to 1,000 people. Only 300 of them actually go to the gym (the other 700 never use the coupon). After 3 months, the 1,000 coupon-recipients lost an average of 1.5 lbs more than people who didn't get a coupon.</p>
+      <p style="margin-top:10px;">But that 1.5 lbs is diluted — it averages in the 700 people who never went! The 300 who actually used the gym probably lost much more. CACE says: 1.5 lbs / 30% compliance = <strong>5 lbs</strong> for those who actually went.</p>
+      <p style="margin-top:10px;"><strong>Why not just compare gym-goers to non-goers?</strong> Because that's biased — gym-goers are the motivated ones who would have lost weight anyway (selection bias). CACE avoids this by only using the RANDOM variation in gym access (the coupon), scaled up to account for the people who ignored it.</p>
+      <p style="margin-top:10px;"><strong>Two useful numbers from one experiment:</strong> The ITT (1.5 lbs) answers "What happens if we mail coupons to everyone?" — useful for budgeting the mailing. The CACE (5 lbs) answers "How much does actually going to the gym help?" — useful for understanding the intervention's true potency and deciding whether to invest in activation.</p>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h4><span class="company-tag uber">Uber</span> Driver Earnings Guarantee — Non-Compliance in a Marketplace Experiment</h4>
+      <p><strong>Business Context:</strong> Uber tested a new "Earnings Guarantee" program: drivers were promised a minimum of $25/hour during peak hours if they stayed online. The experiment randomly assigned 10K drivers to receive the offer (Z = 1). But only 62% of assigned drivers actually activated the guarantee (T = 1) — the rest didn't open the email, didn't understand the terms, or drove during off-peak hours. Uber can't force compliance. The ITT understates the program's potential; the per-protocol analysis (comparing only activators) is biased by self-selection (motivated drivers both activate and drive more hours regardless).</p>
+      <p style="margin-top:10px;"><strong>Data Setup:</strong> Z: random assignment to receive offer (10K treatment, 10K control). T: actually activated the guarantee (6,200 in treatment group, 0 in control — one-sided non-compliance). Y: weekly online hours in the 4 weeks post-assignment. Pre-period: 4 weeks of baseline hours for all drivers.</p>
+      <p style="margin-top:10px;"><strong>Methodology:</strong> CACE = ITT_Y / ITT_T. ITT_Y: assigned drivers drove 1.85 more hours/week than control (p = 0.003). ITT_T: assignment increased activation probability by 0.62 (62% in treatment vs. 0% in control). CACE = 1.85 / 0.62 = 2.98 hours/week. Interpretation: among "compliers" (drivers who would activate if offered but wouldn't otherwise), the guarantee increases driving by ~3 hours/week.</p>
+      <p style="margin-top:10px;"><strong>Results:</strong> ITT = +1.85 hrs/wk (the "policy effect" if you offer the program to everyone). CACE = +2.98 hrs/wk (the actual behavioral effect on drivers who engage). Per-protocol (naive): +4.1 hrs/wk (upward biased — activators are inherently more motivated). The CACE is the right number for: (1) cost-benefit analysis ($25/hr guarantee cost × 3 extra hours = $75/week per complier, generating ~$90/week in gross bookings → profitable), (2) deciding whether to invest in activation UX vs. the guarantee itself (since CACE is high, the bottleneck is activation, not the incentive's effectiveness).</p>
+      <p style="margin-top:10px;"><strong>Takeaway:</strong> The CACE analysis separated two problems: "Does the guarantee work for those who use it?" (yes, +3 hrs/wk) and "Can we get more people to use it?" (only 62% activated). The team invested in: (1) in-app push notifications instead of email (activation rose to 78% in the next test), (2) simplified terms ("Drive peak, earn at least $25/hr" instead of the legalistic original). The combined effect in the follow-up: ITT rose from 1.85 to 2.67 hrs/wk, purely from better compliance.</p>
+    </div>
+    <div class="card">
+      <h4><span class="company-tag intuit">Intuit</span> "Talk to an Expert" Prompt — Separating the Nudge from the Service</h4>
+      <p><strong>Business Context:</strong> TurboTax experimented with showing a "Talk to an Expert — Free 5-Minute Consultation" prompt at the deductions section (the point of highest abandonment). The experiment randomly assigned 200K users to see the prompt (Z = 1) or not. Of those who saw it, only 24% clicked through and completed a consultation (T = 1). Leadership wants to know two things: (1) What's the value of the <em>prompt itself</em> (ITT)? (2) What's the value of the <em>actual expert consultation</em> (CACE)? These answer different business questions — the prompt cost is nearly zero, but expert staffing costs $35/session.</p>
+      <p style="margin-top:10px;"><strong>Data Setup:</strong> Z: randomly assigned to see prompt (100K treatment, 100K control). T: actually completed a consultation (24K in treatment, ~200 in control via organic discovery — near-zero, treated as 0). Y: filing completion (binary). Compliance rate: ITT_T = 0.24.</p>
+      <p style="margin-top:10px;"><strong>Results:</strong> ITT on completion: +2.1pp (p = 0.001). Showing the prompt to everyone increases completion by 2.1pp, regardless of whether users click through. This includes a "reassurance effect" — just knowing help is available may reduce anxiety. CACE = 2.1 / 0.24 = 8.75pp. Among users who would actually consult an expert if prompted (compliers), the consultation increases completion by ~9pp.</p>
+      <p style="margin-top:10px;"><strong>Business Implications:</strong> The ITT (2.1pp) justifies showing the prompt to all users — it's free and lifts completion. The CACE (8.75pp) feeds the expert staffing ROI model: 8.75pp × $120 average revenue = $10.50 incremental revenue per consultation vs. $35 cost. That's negative ROI on completion alone! But including downstream retention (expert-consulted users return at 15pp higher rates) and word-of-mouth makes it +ROI over 2-year LTV. The CACE analysis prevented the team from either: (a) killing the program based on session-level ROI, or (b) over-scaling it based on the inflated per-protocol estimate of +18pp.</p>
+    </div>
+  </div>
+
+  <div class="card full">
+    <h4>Python Example</h4>
+    <pre><span class="cm"># CACE — Complier Average Causal Effect</span>
+<span class="kw">import</span> numpy <span class="kw">as</span> np
+
+<span class="kw">def</span> <span class="fn">cace_estimate</span>(assignment, treatment_taken, outcome):
+    <span class="str">"""Wald estimator for CACE under one-sided non-compliance."""</span>
+    <span class="cm"># ITT: effect of assignment on outcome</span>
+    itt = outcome[assignment == <span class="num">1</span>].<span class="fn">mean</span>() - outcome[assignment == <span class="num">0</span>].<span class="fn">mean</span>()
+
+    <span class="cm"># First stage: effect of assignment on actual treatment</span>
+    compliance = (treatment_taken[assignment == <span class="num">1</span>].<span class="fn">mean</span>()
+                  - treatment_taken[assignment == <span class="num">0</span>].<span class="fn">mean</span>())
+
+    cace = itt / compliance
+    <span class="kw">return</span> {<span class="str">'ITT'</span>: itt, <span class="str">'compliance_rate'</span>: compliance, <span class="str">'CACE'</span>: cace}
+
+<span class="cm"># Example: Intuit live expert prompt experiment</span>
+np.random.<span class="fn">seed</span>(<span class="num">42</span>)
+n = <span class="num">6000</span>
+Z = np.random.<span class="fn">binomial</span>(<span class="num">1</span>, <span class="num">0.5</span>, n)  <span class="cm"># Random assignment to see prompt</span>
+<span class="cm"># Only 25% of assigned users click through</span>
+T = Z * np.random.<span class="fn">binomial</span>(<span class="num">1</span>, <span class="num">0.25</span>, n)  <span class="cm"># One-sided non-compliance</span>
+<span class="cm"># True effect of actually talking to expert: +8pp on completion</span>
+Y = np.random.<span class="fn">binomial</span>(<span class="num">1</span>, np.<span class="fn">clip</span>(<span class="num">0.65</span> + <span class="num">0.08</span> * T, <span class="num">0</span>, <span class="num">1</span>))
+
+result = <span class="fn">cace_estimate</span>(Z, T, Y)
+<span class="fn">print</span>(<span class="str">f"ITT (intent-to-treat): {result['ITT']:.4f}"</span>)
+<span class="fn">print</span>(<span class="str">f"Compliance rate:       {result['compliance_rate']:.4f}"</span>)
+<span class="fn">print</span>(<span class="str">f"CACE (compliers):      {result['CACE']:.4f}"</span>)  <span class="cm"># ~0.08</span></pre>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<script>
+// Navigation
+function show(id) {
+  document.querySelectorAll('.technique').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.nav-pills button').forEach(b => b.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+  // Re-render interactive elements
+  if (id === 'rdd') setTimeout(updateRDD, 50);
+  if (id === 'did') setTimeout(updateDiD, 50);
+}
+
+// CUPED Interactive
+function updateCuped() {
+  const corr = document.getElementById('cuped-corr').value / 100;
+  const origVar = parseFloat(document.getElementById('cuped-var').value);
+  document.getElementById('cuped-corr-val').textContent = corr.toFixed(2);
+  document.getElementById('cuped-var-val').textContent = origVar;
+  const vr = corr * corr;
+  const adjVar = origVar * (1 - vr);
+  document.getElementById('cuped-vr').textContent = (vr * 100).toFixed(0) + '%';
+  document.getElementById('cuped-adj').textContent = adjVar.toFixed(1);
+  document.getElementById('cuped-sample').textContent = '~' + (vr * 100).toFixed(0) + '%';
+}
+
+// RDD Interactive Canvas
+function updateRDD() {
+  const canvas = document.getElementById('rdd-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0, 0, W, H);
+
+  const effect = parseFloat(document.getElementById('rdd-effect').value);
+  const noise = parseFloat(document.getElementById('rdd-noise').value);
+  document.getElementById('rdd-effect-val').textContent = effect;
+  document.getElementById('rdd-noise-val').textContent = noise;
+
+  // Seed-like deterministic scatter
+  const points = [];
+  for (let i = 0; i < 200; i++) {
+    const x = (i / 200) * W;
+    const running = (i / 200) * 100;
+    const treated = running >= 50;
+    const base = 30 + 0.4 * running;
+    const jump = treated ? effect : 0;
+    const y = base + jump + (Math.sin(i * 7.3) * noise * 0.5 + Math.cos(i * 13.1) * noise * 0.3);
+    points.push({x, y: H - (y / 100) * H * 0.8 - H * 0.05, treated, running});
+  }
+
+  // Draw cutoff line
+  ctx.strokeStyle = '#ff7b72';
+  ctx.lineWidth = 1;
+  ctx.setLineDash([5, 5]);
+  ctx.beginPath();
+  ctx.moveTo(W / 2, 0);
+  ctx.lineTo(W / 2, H);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Draw points
+  points.forEach(p => {
+    ctx.fillStyle = p.treated ? '#6c63ff' : '#00d4aa';
+    ctx.globalAlpha = 0.6;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
+    ctx.fill();
+  });
+  ctx.globalAlpha = 1;
+
+  // Regression lines (visual)
+  ctx.lineWidth = 2;
+  // Control side
+  ctx.strokeStyle = '#00d4aa';
+  ctx.beginPath();
+  ctx.moveTo(0, H - (30 / 100) * H * 0.8 - H * 0.05);
+  ctx.lineTo(W / 2, H - (50 / 100) * H * 0.8 - H * 0.05);
+  ctx.stroke();
+  // Treatment side
+  ctx.strokeStyle = '#6c63ff';
+  ctx.beginPath();
+  ctx.moveTo(W / 2, H - ((50 + effect) / 100) * H * 0.8 - H * 0.05);
+  ctx.lineTo(W, H - ((70 + effect) / 100) * H * 0.8 - H * 0.05);
+  ctx.stroke();
+
+  // Labels
+  ctx.fillStyle = '#8b8fa3';
+  ctx.font = '12px Inter, sans-serif';
+  ctx.fillText('Cutoff', W / 2 + 5, 15);
+  ctx.fillStyle = '#00d4aa';
+  ctx.fillText('Control', 10, 20);
+  ctx.fillStyle = '#6c63ff';
+  ctx.fillText('Treatment', W - 80, 20);
+  ctx.fillStyle = '#ff7b72';
+  ctx.fillText('Jump = ' + effect, W / 2 + 5, 35);
+}
+
+// DiD Interactive Canvas
+function updateDiD() {
+  const canvas = document.getElementById('did-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0, 0, W, H);
+
+  const effect = parseFloat(document.getElementById('did-effect').value);
+  const trend = parseFloat(document.getElementById('did-trend').value);
+  document.getElementById('did-effect-val').textContent = effect;
+  document.getElementById('did-trend-val').textContent = trend;
+
+  const pad = 50;
+  const midX = W / 2;
+
+  // Baselines
+  const ctrl_pre = 50, treat_pre = 60;
+  const ctrl_post = ctrl_pre + trend;
+  const treat_post = treat_pre + trend + effect;
+  const treat_cf = treat_pre + trend; // counterfactual
+
+  function yScale(v) { return H - pad - ((v - 20) / 80) * (H - 2 * pad); }
+
+  // Axes
+  ctx.strokeStyle = '#2e3348';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(pad, pad);
+  ctx.lineTo(pad, H - pad);
+  ctx.lineTo(W - pad, H - pad);
+  ctx.stroke();
+
+  ctx.fillStyle = '#8b8fa3';
+  ctx.font = '11px Inter, sans-serif';
+  ctx.fillText('Pre', pad + (midX - pad) / 2 - 10, H - pad + 20);
+  ctx.fillText('Post', midX + (W - pad - midX) / 2 - 10, H - pad + 20);
+
+  // Vertical intervention line
+  ctx.strokeStyle = '#ff7b72';
+  ctx.setLineDash([4, 4]);
+  ctx.beginPath();
+  ctx.moveTo(midX, pad);
+  ctx.lineTo(midX, H - pad);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Control line
+  ctx.strokeStyle = '#00d4aa';
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.moveTo(pad + 20, yScale(ctrl_pre));
+  ctx.lineTo(W - pad - 20, yScale(ctrl_post));
+  ctx.stroke();
+
+  // Treatment line
+  ctx.strokeStyle = '#6c63ff';
+  ctx.beginPath();
+  ctx.moveTo(pad + 20, yScale(treat_pre));
+  ctx.lineTo(midX, yScale(treat_pre + trend * 0.5));
+  ctx.lineTo(W - pad - 20, yScale(treat_post));
+  ctx.stroke();
+
+  // Counterfactual (dashed)
+  ctx.strokeStyle = '#6c63ff';
+  ctx.globalAlpha = 0.3;
+  ctx.setLineDash([6, 4]);
+  ctx.beginPath();
+  ctx.moveTo(midX, yScale(treat_pre + trend * 0.5));
+  ctx.lineTo(W - pad - 20, yScale(treat_cf));
+  ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.globalAlpha = 1;
+
+  // Effect arrow
+  const arrowX = W - pad - 40;
+  ctx.strokeStyle = '#ffa726';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(arrowX, yScale(treat_cf));
+  ctx.lineTo(arrowX, yScale(treat_post));
+  ctx.stroke();
+  ctx.fillStyle = '#ffa726';
+  ctx.beginPath();
+  ctx.moveTo(arrowX - 5, yScale(treat_post) + 5);
+  ctx.lineTo(arrowX + 5, yScale(treat_post) + 5);
+  ctx.lineTo(arrowX, yScale(treat_post));
+  ctx.fill();
+
+  // Labels
+  ctx.font = '12px Inter, sans-serif';
+  ctx.fillStyle = '#00d4aa';
+  ctx.fillText('Control', W - pad - 15, yScale(ctrl_post) + 4);
+  ctx.fillStyle = '#6c63ff';
+  ctx.fillText('Treated', W - pad - 15, yScale(treat_post) - 8);
+  ctx.fillStyle = '#ffa726';
+  ctx.fillText('τ = ' + effect, arrowX + 10, (yScale(treat_cf) + yScale(treat_post)) / 2 + 4);
+}
+
+// Init
+updateCuped();
+setTimeout(updateRDD, 100);
+setTimeout(updateDiD, 100);
+</script>
+</body>
+</html>

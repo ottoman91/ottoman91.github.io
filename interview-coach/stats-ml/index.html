@@ -1,0 +1,1984 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Statistics & ML Concepts — Interactive Guide</title>
+<style>
+:root {
+  --bg: #0f1117;
+  --surface: #1a1d27;
+  --surface2: #242836;
+  --accent: #6c63ff;
+  --accent2: #00d4aa;
+  --text: #e2e4e9;
+  --muted: #8b8fa3;
+  --border: #2e3348;
+  --code-bg: #1e2130;
+  --success: #00d4aa;
+  --warn: #ffa726;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'Inter', -apple-system, system-ui, sans-serif; background: var(--bg); color: var(--text); line-height:1.6; }
+a { color: var(--accent); text-decoration:none; }
+.topbar { position:fixed; top:0; left:0; right:0; z-index:100; background: rgba(15,17,23,0.92); backdrop-filter: blur(12px); border-bottom:1px solid var(--border); padding:12px 24px; display:flex; align-items:center; gap:16px; }
+.topbar h1 { font-size:16px; font-weight:700; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; white-space:nowrap; }
+.nav-pills { display:flex; gap:6px; overflow-x:auto; flex:1; }
+.nav-pills button { background:var(--surface); border:1px solid var(--border); color:var(--muted); padding:6px 12px; border-radius:6px; font-size:12px; cursor:pointer; white-space:nowrap; transition:all .2s; }
+.nav-pills button:hover { color:var(--text); border-color:var(--accent); }
+.nav-pills button.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+.container { max-width:1100px; margin:0 auto; padding:80px 24px 60px; }
+.hero { text-align:center; padding:40px 0 50px; }
+.hero h2 { font-size:36px; font-weight:800; margin-bottom:12px; background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+.hero p { color:var(--muted); font-size:16px; max-width:700px; margin:0 auto 24px; }
+.tag-row { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
+.tag { background:var(--surface); border:1px solid var(--border); padding:4px 12px; border-radius:20px; font-size:12px; color:var(--muted); }
+.technique { display:none; animation: fadeIn .3s ease; }
+.technique.active { display:block; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+.tech-header { padding:30px 0 20px; border-bottom:1px solid var(--border); margin-bottom:30px; }
+.tech-header h3 { font-size:28px; font-weight:700; margin-bottom:8px; }
+.tech-header .subtitle { color:var(--muted); font-size:15px; }
+.tech-header .category { display:inline-block; background:var(--accent); color:#fff; padding:3px 10px; border-radius:4px; font-size:11px; font-weight:600; text-transform:uppercase; margin-bottom:10px; }
+.card-grid { display:grid; grid-template-columns: 1fr 1fr; gap:20px; margin-bottom:30px; }
+@media(max-width:768px){ .card-grid{grid-template-columns:1fr;} }
+.card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:24px; }
+.card h4 { font-size:15px; font-weight:700; margin-bottom:10px; display:flex; align-items:center; gap:8px; }
+.card p, .card li { font-size:14px; color:var(--muted); line-height:1.7; }
+.card ul { padding-left:18px; }
+.card.full { grid-column: 1 / -1; }
+.company-tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:700; text-transform:uppercase; }
+.company-tag.uber { background:#222; color:#fff; border:1px solid #444; }
+.company-tag.intuit { background:#365ebf; color:#fff; }
+pre { background:var(--code-bg); border:1px solid var(--border); border-radius:8px; padding:16px; overflow-x:auto; font-size:13px; line-height:1.6; margin:12px 0; font-family:'Fira Code','SF Mono',monospace; color:#c9d1d9; }
+.kw { color:#ff7b72; } .fn { color:#d2a8ff; } .str { color:#a5d6ff; } .cm { color:#8b949e; } .num { color:#79c0ff; } .op { color:#ff7b72; }
+.formula-box { background: linear-gradient(135deg, rgba(108,99,255,0.08), rgba(0,212,170,0.08)); border:1px solid var(--border); border-radius:10px; padding:20px; margin:16px 0; text-align:center; }
+.formula-box .formula { font-size:18px; font-family:'Georgia',serif; font-style:italic; color:var(--text); margin:8px 0; }
+.formula-box .label { font-size:12px; color:var(--muted); }
+.interactive-box { background:var(--surface2); border:1px solid var(--border); border-radius:12px; padding:24px; margin:20px 0; }
+.interactive-box h4 { font-size:15px; font-weight:700; margin-bottom:16px; color:var(--accent2); }
+.slider-row { display:flex; align-items:center; gap:12px; margin:10px 0; }
+.slider-row label { font-size:13px; color:var(--muted); min-width:160px; }
+.slider-row input[type=range] { flex:1; accent-color:var(--accent); }
+.slider-row .val { font-size:13px; font-weight:600; min-width:50px; text-align:right; }
+.result-box { background:var(--code-bg); border-radius:8px; padding:16px; margin-top:16px; font-size:14px; }
+.result-box .big { font-size:24px; font-weight:700; color:var(--accent2); }
+.method-explainer { display:grid; grid-template-columns: 1fr 1fr; gap:0; margin:20px 0; border:1px solid var(--border); border-radius:12px; overflow:hidden; }
+@media(max-width:768px){ .method-explainer{grid-template-columns:1fr;} }
+.method-col { padding:24px; }
+.method-col.technical { background: rgba(108,99,255,0.06); border-right:1px solid var(--border); }
+.method-col.intuitive { background: rgba(0,212,170,0.06); }
+.method-col h4 { font-size:13px; text-transform:uppercase; letter-spacing:1px; margin-bottom:14px; }
+.method-col.technical h4 { color:var(--accent); }
+.method-col.intuitive h4 { color:var(--accent2); }
+.method-col p, .method-col li { font-size:14px; color:var(--muted); line-height:1.8; }
+.method-col ol, .method-col ul { padding-left:18px; }
+.method-col strong { color:var(--text); }
+.assumption-list { list-style:none; padding:0; }
+.assumption-list li { padding:8px 0; border-bottom:1px solid var(--border); font-size:14px; color:var(--muted); }
+.assumption-list li:before { content:"⚠ "; color:var(--warn); }
+table { width:100%; border-collapse:collapse; font-size:13px; margin:12px 0; }
+th,td { padding:10px 12px; text-align:left; border-bottom:1px solid var(--border); }
+th { color:var(--accent); font-weight:600; font-size:12px; text-transform:uppercase; }
+td { color:var(--muted); }
+canvas { display:block; margin:10px auto; border-radius:8px; }
+.btn-row { display:flex; gap:8px; margin:10px 0; }
+.btn-row button, .sim-btn { background:var(--accent); color:#fff; border:none; padding:8px 16px; border-radius:6px; font-size:13px; cursor:pointer; transition:all .2s; }
+.btn-row button:hover, .sim-btn:hover { opacity:0.85; }
+.btn-row button.active { background:var(--accent2); }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <h1>Stats & ML Guide</h1>
+  <div class="nav-pills" id="nav">
+    <button class="active" onclick="show('overview')">Overview</button>
+    <button onclick="show('hypothesis')">Hypothesis Testing</button>
+    <button onclick="show('ci')">Confidence Intervals</button>
+    <button onclick="show('power')">Power & Sample Size</button>
+    <button onclick="show('multiple')">Multiple Testing</button>
+    <button onclick="show('sequential')">Sequential Testing</button>
+    <button onclick="show('variance')">Variance Reduction</button>
+    <button onclick="show('bayesian')">Bayesian & Bandits</button>
+    <button onclick="show('distributions')">Distributions</button>
+    <button onclick="show('regression')">Regression & Core ML</button>
+    <button onclick="show('trees')">Trees & Ensembles</button>
+    <button onclick="show('special')">Clustering & Special</button>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ==================== OVERVIEW ==================== -->
+<div class="technique active" id="sec-overview">
+  <div class="hero">
+    <h2>Statistics & ML Concepts Guide</h2>
+    <p>Interactive study guide consolidating interview-level concepts — from hypothesis testing to XGBoost, with case studies at Uber & Intuit.</p>
+    <div class="tag-row">
+      <span class="tag">Hypothesis Testing</span><span class="tag">Confidence Intervals</span><span class="tag">Power Analysis</span><span class="tag">Sequential Testing</span><span class="tag">Bayesian Methods</span><span class="tag">Distributions</span><span class="tag">Regression</span><span class="tag">Tree Models</span><span class="tag">Clustering</span>
+    </div>
+  </div>
+
+  <div class="card full" style="grid-column:1/-1; margin-bottom:20px;">
+    <h4>Topics Covered</h4>
+    <table>
+      <tr><th>Section</th><th>Category</th><th>Key Topics</th></tr>
+      <tr><td>1. Hypothesis Testing</td><td>Foundations</td><td>t-test, z-test, Mann-Whitney, p-values, Type I/II error</td></tr>
+      <tr><td>2. Confidence Intervals</td><td>Foundations</td><td>t-based CI, proportion CI, Wilson score, bootstrap CI</td></tr>
+      <tr><td>3. Power & Sample Size</td><td>Experimental Design</td><td>Power analysis, Cohen's d, MDE, sample size calculation</td></tr>
+      <tr><td>4. Multiple Testing</td><td>Experimental Design</td><td>Bonferroni, Benjamini-Hochberg, ANOVA, chi-squared</td></tr>
+      <tr><td>5. Sequential Testing</td><td>Advanced Experimentation</td><td>mSPRT, always-valid p-values, O'Brien-Fleming, peeking</td></tr>
+      <tr><td>6. Variance Reduction</td><td>Advanced Experimentation</td><td>CUPED, delta method, block bootstrap</td></tr>
+      <tr><td>7. Bayesian & Bandits</td><td>Advanced Experimentation</td><td>Posterior inference, Thompson sampling, UCB, contextual bandits</td></tr>
+      <tr><td>8. Distributions</td><td>Foundations</td><td>Normal, binomial, Poisson, exponential, CLT, MLE</td></tr>
+      <tr><td>9. Regression & Core ML</td><td>Machine Learning</td><td>Linear/logistic regression, Ridge, Lasso, ROC/AUC</td></tr>
+      <tr><td>10. Trees & Ensembles</td><td>Machine Learning</td><td>Decision trees, Random Forest, XGBoost, AdaBoost</td></tr>
+      <tr><td>11. Clustering & Special</td><td>ML & Special Topics</td><td>K-means, PCA, DBSCAN, DAGs, Simpson's paradox, imbalanced data</td></tr>
+    </table>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h4>Statistical Foundations</h4>
+      <p>Hypothesis testing, confidence intervals, power analysis, distributions — the building blocks of statistical inference that every DS interview tests.</p>
+    </div>
+    <div class="card">
+      <h4>Experimental Design</h4>
+      <p>Multiple testing correction, sequential tests, variance reduction — running experiments correctly at scale, the way Uber and Intuit do it.</p>
+    </div>
+    <div class="card">
+      <h4>Advanced Methods</h4>
+      <p>Bayesian inference, multi-armed bandits, causal reasoning — going beyond basic A/B testing into adaptive and observational methods.</p>
+    </div>
+    <div class="card">
+      <h4>Machine Learning</h4>
+      <p>Regression, tree-based models, clustering, dimensionality reduction — predictive modeling from linear models to XGBoost.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SECTION 1: HYPOTHESIS TESTING ==================== -->
+<div class="technique" id="sec-hypothesis">
+  <div class="tech-header">
+    <span class="category">Foundations</span>
+    <h3>Hypothesis Testing Foundations</h3>
+    <p class="subtitle">The bedrock of statistical inference — from null hypotheses to non-parametric alternatives.</p>
+  </div>
+
+  <div class="formula-box">
+    <div class="label">Welch's t-statistic</div>
+    <div class="formula">t = (x̄₁ - x̄₂) / √(s₁²/n₁ + s₂²/n₂)</div>
+    <div class="label">Signal-to-noise ratio for comparing two means. Larger |t| = more confident the effect is real.</div>
+  </div>
+
+  <div class="method-explainer">
+    <div class="method-col technical">
+      <h4>Statistical Perspective</h4>
+      <p>Hypothesis testing is a decision framework. We assume H₀ (no effect) and compute P(data | H₀). The <strong>p-value</strong> is the probability of observing results as extreme as ours if H₀ is true. If p &lt; α (typically 0.05), we reject H₀.</p>
+      <p style="margin-top:10px;">The <strong>t-statistic</strong> measures the signal-to-noise ratio — how many standard errors the observed difference is from zero. <strong>Welch's t-test</strong> (default in scipy) doesn't assume equal variance. For non-normal data or small samples, <strong>Mann-Whitney U</strong> provides a non-parametric alternative that compares rank orderings rather than means.</p>
+      <p style="margin-top:10px;">Always check assumptions: independence (each observation in one group only), approximate normality (Shapiro-Wilk test, Q-Q plots), or sufficient n for CLT (n &gt; 30). The z-test for proportions uses SE = √(p(1-p)/n) where variance is fully determined by p itself — no need to estimate it from the sample.</p>
+    </div>
+    <div class="method-col intuitive">
+      <h4>Intuitive Perspective</h4>
+      <p>Imagine flipping a coin 100 times and getting 60 heads. Is the coin unfair, or did you just get lucky? That's hypothesis testing — we start by assuming nothing special is happening (the <strong>null hypothesis</strong>) and ask "how surprising is this result?"</p>
+      <p style="margin-top:10px;">The p-value answers: <em>"If the coin WERE fair, what's the chance of seeing 60+ heads?"</em> If that chance is tiny (&lt; 5%), we conclude the coin is probably unfair.</p>
+      <p style="margin-top:10px;">The t-test applies this logic to comparing two groups — it asks whether the difference between group averages is too large to be explained by random variation alone. <strong>Key insight:</strong> a significant p-value means "unlikely under the null." It does NOT tell you the effect is large or practically meaningful.</p>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h4><span class="company-tag uber">Uber</span> Dispatch Algorithm A/B Test</h4>
+      <p><strong>Business Context:</strong> Testing whether Smart Match v2 (considering driver-rider compatibility) improves ride completion rate. Two-sample t-test on completion rates between treatment and control.</p>
+      <p style="margin-top:10px;"><strong>Setup:</strong> n=400K riders, 2-week test. Welch's t-test used because variance differs across rider segments (power commuters vs. casual users).</p>
+      <p style="margin-top:10px;"><strong>Results:</strong> Treatment mean 0.31pp higher, t=1.35, p=0.18. Supplemented with Mann-Whitney U (p=0.21) — both tests agree: not significant without variance reduction. This motivated applying CUPED (Section 6), which reduced SE enough to reach significance.</p>
+      <p style="margin-top:10px;"><strong>Takeaway:</strong> When both parametric and non-parametric tests agree, the conclusion is robust. The effect was real but masked by noise — a common scenario in marketplace experiments.</p>
+    </div>
+    <div class="card">
+      <h4><span class="company-tag intuit">Intuit</span> Default Browser Prompt A/B Test</h4>
+      <p><strong>Business Context:</strong> Testing whether a redesigned prompt increases default browser switching rate. Binary outcome (switched / didn't).</p>
+      <p style="margin-top:10px;"><strong>Setup:</strong> Z-test for proportions since outcome is binary. p_treatment=12.3%, p_control=11.8%. Assumptions: np ≥ 5 ✓, random assignment ✓.</p>
+      <p style="margin-top:10px;"><strong>Results:</strong> z=1.89, p=0.059. Not significant at α=0.05 but close. Team runs Mann-Whitney as robustness check, decides to extend test 1 more week rather than ship on a borderline result.</p>
+      <p style="margin-top:10px;"><strong>Takeaway:</strong> Borderline results (0.05 &lt; p &lt; 0.10) warrant extending the test, not making a binary ship/no-ship decision. Always compute effect size alongside the p-value.</p>
+    </div>
+  </div>
+
+  <div class="interactive-box">
+    <h4>Interactive: How Sample Size Affects the t-Test</h4>
+    <div class="slider-row">
+      <label>Effect Size (Cohen's d):</label>
+      <input type="range" min="1" max="100" value="30" id="hyp-d" oninput="updateHypothesis()">
+      <span class="val" id="hyp-d-val">0.30</span>
+    </div>
+    <div class="slider-row">
+      <label>Sample Size (per group):</label>
+      <input type="range" min="10" max="5000" value="100" id="hyp-n" oninput="updateHypothesis()">
+      <span class="val" id="hyp-n-val">100</span>
+    </div>
+    <div class="result-box" id="hyp-result">
+      <div>t-statistic: <span class="big" id="hyp-t">2.12</span></div>
+      <div style="margin-top:8px;color:var(--muted);font-size:13px;">
+        p-value: <span id="hyp-p">0.034</span> &nbsp;|&nbsp;
+        <span id="hyp-sig" style="color:var(--accent2)">Significant at α=0.05</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card full">
+    <h4>Python Example</h4>
+    <pre><span class="cm"># Two-Sample Hypothesis Testing Workflow</span>
+<span class="kw">import</span> numpy <span class="kw">as</span> np
+<span class="kw">from</span> scipy <span class="kw">import</span> stats
+
+<span class="cm"># Step 1: Explore data</span>
+control = df[df[<span class="str">'group'</span>] == <span class="str">'control'</span>][<span class="str">'metric'</span>].values
+treatment = df[df[<span class="str">'group'</span>] == <span class="str">'treatment'</span>][<span class="str">'metric'</span>].values
+<span class="fn">print</span>(<span class="str">f"Control: mean={control.mean():.3f}, std={control.std():.3f}, n={len(control)}"</span>)
+<span class="fn">print</span>(<span class="str">f"Treatment: mean={treatment.mean():.3f}, std={treatment.std():.3f}, n={len(treatment)}"</span>)
+
+<span class="cm"># Step 2: Check normality</span>
+_, p_shapiro = stats.<span class="fn">shapiro</span>(control[:<span class="num">500</span>])  <span class="cm"># Shapiro sensitive at large n</span>
+<span class="fn">print</span>(<span class="str">f"Shapiro-Wilk p={p_shapiro:.4f}"</span>)
+
+<span class="cm"># Step 3: Welch's t-test (default — doesn't assume equal variance)</span>
+t_stat, p_value = stats.<span class="fn">ttest_ind</span>(treatment, control, equal_var=<span class="kw">False</span>)
+<span class="fn">print</span>(<span class="str">f"Welch's t-test: t={t_stat:.3f}, p={p_value:.4f}"</span>)
+
+<span class="cm"># Step 4: Non-parametric alternative</span>
+u_stat, p_mw = stats.<span class="fn">mannwhitneyu</span>(treatment, control, alternative=<span class="str">'two-sided'</span>)
+<span class="fn">print</span>(<span class="str">f"Mann-Whitney U: U={u_stat:.0f}, p={p_mw:.4f}"</span>)
+
+<span class="cm"># Step 5: Effect size (Cohen's d)</span>
+pooled_std = np.<span class="fn">sqrt</span>((control.<span class="fn">std</span>()**<span class="num">2</span> + treatment.<span class="fn">std</span>()**<span class="num">2</span>) / <span class="num">2</span>)
+cohens_d = (treatment.<span class="fn">mean</span>() - control.<span class="fn">mean</span>()) / pooled_std
+<span class="fn">print</span>(<span class="str">f"Cohen's d: {cohens_d:.3f}"</span>)
+
+<span class="cm"># Step 6: Z-test for proportions (binary outcomes)</span>
+<span class="kw">from</span> statsmodels.stats.proportion <span class="kw">import</span> proportions_ztest
+z_stat, p_prop = <span class="fn">proportions_ztest</span>([conv_treat, conv_ctrl], [n_treat, n_ctrl])</pre>
+  </div>
+
+  <div class="card full">
+    <h4>Key Assumptions & Pitfalls</h4>
+    <ul class="assumption-list">
+      <li><strong>Independent samples</strong> — each observation in one group only, no cross-contamination between users</li>
+      <li><strong>Approximately normal</strong> distributions, or n &gt; 30 for CLT to apply</li>
+      <li><strong>Welch's t-test</strong> handles unequal variance; use it by default over Student's t</li>
+      <li><strong>Mann-Whitney</strong> tests for stochastic dominance (ranks), not means — use when normality is violated</li>
+      <li>A significant p-value does NOT mean the effect is large — always report <strong>effect size</strong> (Cohen's d)</li>
+      <li>Default to <strong>two-tailed</strong> tests unless you have a strong directional prior stated before seeing data</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== SECTION 2: CONFIDENCE INTERVALS ==================== -->
+<div class="technique" id="sec-ci">
+  <div class="tech-header">
+    <span class="category">Foundations</span>
+    <h3>Confidence Intervals</h3>
+    <p class="subtitle">Quantifying uncertainty — how precise is your estimate?</p>
+  </div>
+
+  <div class="formula-box">
+    <div class="label">Confidence Interval</div>
+    <div class="formula">CI = x̄ ± z* · SE</div>
+    <div class="label">For means: SE = s/√n. For proportions: SE = √(p(1-p)/n). 95% CI uses z* = 1.96.</div>
+  </div>
+
+  <div class="method-explainer">
+    <div class="method-col technical">
+      <h4>Statistical Perspective</h4>
+      <p>A confidence interval provides a range of plausible values for an unknown parameter. The <strong>frequentist interpretation</strong>: if we repeated the experiment many times, 95% of the constructed intervals would contain the true parameter.</p>
+      <p style="margin-top:10px;">For <strong>means</strong>, SE = s/√n and we use the t-distribution (converges to z for large n). For <strong>proportions</strong>, SE = √(p(1-p)/n) and variance is fully determined by p, so we use z directly.</p>
+      <p style="margin-top:10px;">The <strong>Wilson score interval</strong> improves on the normal approximation for extreme proportions (p &lt; 0.01 or p &gt; 0.99) or small n — it respects the [0,1] boundary and is asymmetric. <strong>Bootstrap CIs</strong> (resample 10K times, take percentiles) require no distributional assumptions and work for any statistic.</p>
+    </div>
+    <div class="method-col intuitive">
+      <h4>Intuitive Perspective</h4>
+      <p>Think of a confidence interval as a <strong>"net" you cast to catch the true value</strong>. A 95% CI means if you went fishing 100 times with the same net, you'd catch the fish 95 times.</p>
+      <p style="margin-top:10px;">The net's width depends on two things: <strong>how noisy your data is</strong> (more noise = wider net) and <strong>how much data you have</strong> (more data = narrower net).</p>
+      <p style="margin-top:10px;">A CI that doesn't include zero for a treatment effect means <em>"we're confident there IS an effect."</em> A wide CI means <em>"there's probably an effect, but we're not sure how big."</em> If the CI is entirely above zero but narrow — that's the best case: confident effect with a precise estimate.</p>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h4><span class="company-tag uber">Uber</span> Surge Pricing Elasticity</h4>
+      <p><strong>Business Context:</strong> Estimating price elasticity of demand for rides. Point estimate: -0.35 (a 10% price increase reduces demand by 3.5%).</p>
+      <p style="margin-top:10px;"><strong>Results:</strong> 95% CI: [-0.42, -0.28]. CI is narrow because n=2M rides. The entire CI is negative, confirming demand falls with price.</p>
+      <p style="margin-top:10px;"><strong>Business Impact:</strong> At the CI lower bound (-0.42), a 20% surge still reduces demand by only 8.4%, justifying current surge levels. The narrow CI gave leadership confidence to maintain the pricing strategy.</p>
+    </div>
+    <div class="card">
+      <h4><span class="company-tag intuit">Intuit</span> Filing Completion Rate CI</h4>
+      <p><strong>Business Context:</strong> Measuring completion rate for a new W-2 import flow.</p>
+      <p style="margin-top:10px;"><strong>Results:</strong> Treatment: 73.2% (95% CI: [72.1%, 74.3%]). Control: 71.4% (95% CI: [70.3%, 72.5%]). CIs overlap slightly, but z-test on the difference shows p=0.008.</p>
+      <p style="margin-top:10px;"><strong>Key Lesson:</strong> Overlapping CIs do NOT mean no significant difference — the CI on the <em>difference</em> is [0.5pp, 3.1pp], entirely above zero. Always test the difference directly.</p>
+    </div>
+  </div>
+
+  <div class="interactive-box">
+    <h4>Interactive: CI Width vs Sample Size</h4>
+    <div class="slider-row">
+      <label>Proportion (p):</label>
+      <input type="range" min="1" max="99" value="50" id="ci-p" oninput="updateCI()">
+      <span class="val" id="ci-p-val">0.50</span>
+    </div>
+    <div class="slider-row">
+      <label>Sample Size (n):</label>
+      <input type="range" min="10" max="10000" value="100" id="ci-n" oninput="updateCI()">
+      <span class="val" id="ci-n-val">100</span>
+    </div>
+    <div class="slider-row">
+      <label>Confidence Level:</label>
+      <div class="btn-row">
+        <button onclick="setCILevel(0.90,this)" id="ci-btn-90">90%</button>
+        <button class="active" onclick="setCILevel(0.95,this)" id="ci-btn-95">95%</button>
+        <button onclick="setCILevel(0.99,this)" id="ci-btn-99">99%</button>
+      </div>
+    </div>
+    <canvas id="ci-canvas" width="500" height="120"></canvas>
+    <div class="result-box" id="ci-result">
+      <div>95% CI: <span class="big" id="ci-range">[0.402, 0.598]</span></div>
+      <div style="margin-top:8px;color:var(--muted);font-size:13px;">
+        SE: <span id="ci-se">0.050</span> &nbsp;|&nbsp;
+        Width: <span id="ci-width" style="color:var(--accent2)">0.196</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card full">
+    <h4>Python Example</h4>
+    <pre><span class="cm"># Confidence Intervals — Means vs Proportions</span>
+<span class="kw">import</span> numpy <span class="kw">as</span> np
+<span class="kw">from</span> scipy <span class="kw">import</span> stats
+<span class="kw">from</span> statsmodels.stats.proportion <span class="kw">import</span> proportion_confint
+
+<span class="cm"># CI for continuous data (t-based)</span>
+mean_diff = treatment.<span class="fn">mean</span>() - control.<span class="fn">mean</span>()
+se_diff = np.<span class="fn">sqrt</span>(treatment.<span class="fn">var</span>()/<span class="fn">len</span>(treatment) + control.<span class="fn">var</span>()/<span class="fn">len</span>(control))
+ci_t = (mean_diff - <span class="num">1.96</span> * se_diff, mean_diff + <span class="num">1.96</span> * se_diff)
+
+<span class="cm"># CI for proportions (normal approximation)</span>
+p1, n1 = <span class="num">0.732</span>, <span class="num">5000</span>
+se1 = np.<span class="fn">sqrt</span>(p1 * (<span class="num">1</span> - p1) / n1)
+ci_normal = (p1 - <span class="num">1.96</span> * se1, p1 + <span class="num">1.96</span> * se1)
+
+<span class="cm"># Wilson score interval (better for small n or extreme p)</span>
+ci_wilson = <span class="fn">proportion_confint</span>(<span class="fn">int</span>(p1 * n1), n1, alpha=<span class="num">0.05</span>, method=<span class="str">'wilson'</span>)
+
+<span class="cm"># Bootstrap CI (works for any statistic)</span>
+boot_means = [np.random.<span class="fn">choice</span>(data, size=<span class="fn">len</span>(data), replace=<span class="kw">True</span>).<span class="fn">mean</span>()
+              <span class="kw">for</span> _ <span class="kw">in</span> <span class="fn">range</span>(<span class="num">10_000</span>)]
+ci_boot = np.<span class="fn">percentile</span>(boot_means, [<span class="num">2.5</span>, <span class="num">97.5</span>])</pre>
+  </div>
+
+  <div class="card full">
+    <h4>Key Assumptions & Pitfalls</h4>
+    <ul class="assumption-list">
+      <li><strong>WRONG</strong>: "95% probability the true value is in this range" — treats CI as random, parameter as fixed (backwards)</li>
+      <li><strong>RIGHT</strong>: "If repeated many times, 95% of intervals would contain the true parameter"</li>
+      <li>Overlapping CIs do NOT mean no significant difference — always test the difference directly</li>
+      <li>Normal approximation breaks for p &lt; 0.01 or p &gt; 0.99, or n &lt; 30 — use Wilson or bootstrap</li>
+      <li>Bootstrap CIs are the universal fallback — no distributional assumptions needed</li>
+      <li>Wider CI = more uncertainty. Narrow CI = precise estimate. Width ∝ 1/√n</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== SECTION 3: POWER & SAMPLE SIZE ==================== -->
+<div class="technique" id="sec-power">
+  <div class="tech-header">
+    <span class="category">Experimental Design</span>
+    <h3>Statistical Power & Sample Size</h3>
+    <p class="subtitle">How big a sample do you need to detect an effect? The most important pre-experiment question.</p>
+  </div>
+
+  <div class="formula-box">
+    <div class="label">Power & Sample Size</div>
+    <div class="formula">Power = 1 - β &nbsp;&nbsp;|&nbsp;&nbsp; n ≈ 2 · ((z_α + z_β) / d)²</div>
+    <div class="label">Where d = Cohen's d (effect/σ), z_α = 1.96 for α=0.05, z_β = 0.84 for 80% power</div>
+  </div>
+
+  <div class="method-explainer">
+    <div class="method-col technical">
+      <h4>Statistical Perspective</h4>
+      <p><strong>Power</strong> = P(reject H₀ | H₁ is true) = 1 - β. It depends on four quantities: <strong>α</strong> (significance level), <strong>n</strong> (sample size), <strong>σ</strong> (noise), and <strong>δ</strong> (true effect size).</p>
+      <p style="margin-top:10px;">Pre-experiment, you fix α (usually 0.05), target power (usually 0.80), estimate σ from historical data, and choose <strong>MDE</strong> (minimum detectable effect) from the business — then solve for n. <strong>Cohen's d</strong> = δ/σ standardizes effect size: 0.2 = small, 0.5 = medium, 0.8 = large.</p>
+      <p style="margin-top:10px;">For proportions, variance is p(1-p), so metrics near 50% need larger samples than those near 5% or 95%. Variance reduction techniques like CUPED effectively increase power without more data.</p>
+    </div>
+    <div class="method-col intuitive">
+      <h4>Intuitive Perspective</h4>
+      <p>Imagine trying to <strong>hear someone whisper in a noisy room</strong>. Power is the chance you'll actually hear them. To increase that chance:</p>
+      <ul style="margin-top:10px;">
+        <li><strong>Make the room quieter</strong> — reduce variance (CUPED)</li>
+        <li><strong>Ask them to speak louder</strong> — larger effect size</li>
+        <li><strong>Move closer</strong> — collect more data</li>
+        <li><strong>Lower your standards</strong> — increase α (accept more false positives)</li>
+      </ul>
+      <p style="margin-top:10px;">Power analysis tells you: <em>"How long do we need to run this test before we can reliably detect the improvement we care about?"</em> An underpowered test is a waste — you run it but can't detect the effect.</p>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h4><span class="company-tag uber">Uber</span> ETA Model Rollout</h4>
+      <p><strong>Business Context:</strong> New ML model expected to reduce ETA error by 3%. Historical σ = 12%, so Cohen's d = 0.25 (small effect).</p>
+      <p style="margin-top:10px;"><strong>Power Analysis:</strong> At α=0.05, power=0.80: need n=252 per group. With city-level clustering (design effect ≈ 1.5), effective n = 378 per group. Test duration: 3 days at current traffic.</p>
+      <p style="margin-top:10px;"><strong>Takeaway:</strong> Small effects require careful planning. The clustering adjustment (design effect) nearly doubled the required sample — ignoring it would have led to an underpowered test.</p>
+    </div>
+    <div class="card">
+      <h4><span class="company-tag intuit">Intuit</span> Tax Filing Nudge Campaign</h4>
+      <p><strong>Business Context:</strong> Testing whether an email nudge increases filing starts by 2pp (from 45% to 47%).</p>
+      <p style="margin-top:10px;"><strong>Power Analysis:</strong> σ = √(0.45×0.55) = 0.497. At α=0.05, power=0.80: n=3,920 per group → 1 week. Team decides MDE=1pp for more sensitivity → n=15,680 per group → 3 weeks.</p>
+      <p style="margin-top:10px;"><strong>Takeaway:</strong> Halving the MDE quadruples the sample size. The team had to trade sensitivity for speed during the 12-week tax season.</p>
+    </div>
+  </div>
+
+  <div class="interactive-box">
+    <h4>Interactive: Power Calculator</h4>
+    <div class="slider-row">
+      <label>Significance Level (α):</label>
+      <input type="range" min="1" max="10" value="5" id="pow-alpha" oninput="updatePower()">
+      <span class="val" id="pow-alpha-val">0.05</span>
+    </div>
+    <div class="slider-row">
+      <label>Power (1-β):</label>
+      <input type="range" min="50" max="99" value="80" id="pow-power" oninput="updatePower()">
+      <span class="val" id="pow-power-val">0.80</span>
+    </div>
+    <div class="slider-row">
+      <label>Effect Size (Cohen's d):</label>
+      <input type="range" min="5" max="100" value="20" id="pow-d" oninput="updatePower()">
+      <span class="val" id="pow-d-val">0.20</span>
+    </div>
+    <div class="result-box">
+      <div>Required n per group: <span class="big" id="pow-n">394</span></div>
+      <div style="margin-top:8px;color:var(--muted);font-size:13px;">
+        Total participants: <span id="pow-total">788</span> &nbsp;|&nbsp;
+        At 10K/day traffic: <span id="pow-days" style="color:var(--accent2)">~1 days</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card full">
+    <h4>Python Example</h4>
+    <pre><span class="cm"># Power Analysis & Sample Size Calculation</span>
+<span class="kw">from</span> scipy <span class="kw">import</span> stats
+<span class="kw">import</span> numpy <span class="kw">as</span> np
+
+<span class="kw">def</span> <span class="fn">required_sample_size</span>(alpha, power, effect_size):
+    <span class="str">"""Calculate required n per group for a two-sample t-test."""</span>
+    z_alpha = stats.norm.<span class="fn">ppf</span>(<span class="num">1</span> - alpha / <span class="num">2</span>)
+    z_beta = stats.norm.<span class="fn">ppf</span>(power)
+    n = <span class="num">2</span> * ((z_alpha + z_beta) / effect_size) ** <span class="num">2</span>
+    <span class="kw">return</span> <span class="fn">int</span>(np.<span class="fn">ceil</span>(n))
+
+<span class="cm"># Example: detect 2pp lift in filing completion</span>
+baseline_rate = <span class="num">0.45</span>
+mde = <span class="num">0.02</span>
+sigma = np.<span class="fn">sqrt</span>(baseline_rate * (<span class="num">1</span> - baseline_rate))
+cohens_d = mde / sigma
+n_required = <span class="fn">required_sample_size</span>(<span class="num">0.05</span>, <span class="num">0.80</span>, cohens_d)
+<span class="fn">print</span>(<span class="str">f"Cohen's d: {cohens_d:.3f}"</span>)
+<span class="fn">print</span>(<span class="str">f"Required n per group: {n_required:,}"</span>)
+
+<span class="cm"># Using statsmodels (more precise)</span>
+<span class="kw">from</span> statsmodels.stats.power <span class="kw">import</span> TTestIndPower
+analysis = <span class="fn">TTestIndPower</span>()
+n_precise = analysis.<span class="fn">solve_power</span>(effect_size=cohens_d, alpha=<span class="num">0.05</span>, power=<span class="num">0.80</span>)
+<span class="fn">print</span>(<span class="str">f"Statsmodels n per group: {int(np.ceil(n_precise)):,}"</span>)</pre>
+  </div>
+
+  <div class="card full">
+    <h4>Key Assumptions & Pitfalls</h4>
+    <ul class="assumption-list">
+      <li>Power analysis must be done <strong>BEFORE</strong> the experiment — doing it after is circular reasoning</li>
+      <li>MDE comes from the <strong>business</strong>, not statistics: "What's the smallest change worth caring about?"</li>
+      <li>Underpowered tests are wasteful — you run the experiment but can't detect the effect</li>
+      <li>Halving the MDE <strong>quadruples</strong> the required sample size (n ∝ 1/d²)</li>
+      <li>Variance reduction (CUPED) effectively increases power without collecting more data</li>
+      <li>Account for clustering (design effect) in marketplace experiments — ignoring it leads to underpowered tests</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== SECTION 4: MULTIPLE TESTING ==================== -->
+<div class="technique" id="sec-multiple">
+  <div class="tech-header">
+    <span class="category">Experimental Design</span>
+    <h3>Multiple Testing & FDR Control</h3>
+    <p class="subtitle">When you test many hypotheses, false positives accumulate — here's how to control them.</p>
+  </div>
+
+  <div class="formula-box">
+    <div class="label">Correction Methods</div>
+    <div class="formula">Bonferroni: α_adj = α/m &nbsp;&nbsp;|&nbsp;&nbsp; BH: reject all p_(i) ≤ (i/m)·α</div>
+    <div class="label">Bonferroni controls FWER (any false positive). BH controls FDR (proportion of false discoveries).</div>
+  </div>
+
+  <div class="method-explainer">
+    <div class="method-col technical">
+      <h4>Statistical Perspective</h4>
+      <p>With m independent tests at α=0.05, P(≥1 false positive) = 1 - (1-α)^m. For m=20, that's <strong>64%</strong>. <strong>Bonferroni</strong> divides α by m — simple but very conservative, especially for large m.</p>
+      <p style="margin-top:10px;"><strong>Benjamini-Hochberg (BH)</strong> controls the False Discovery Rate: the expected proportion of rejected hypotheses that are false. Procedure: rank p-values, compare each p_(i) to (i/m)·α, reject all up to the largest that passes. BH is uniformly more powerful than Bonferroni.</p>
+      <p style="margin-top:10px;">Use <strong>Bonferroni</strong> for few high-stakes tests (2-3 variants). Use <strong>BH</strong> for many tests (feature screening, multi-metric dashboards). Always correct across ALL tests you ran, not just the ones with small p-values.</p>
+    </div>
+    <div class="method-col intuitive">
+      <h4>Intuitive Perspective</h4>
+      <p>Imagine checking 20 different metrics for an A/B test. Even if the treatment does nothing, you'd expect <strong>1 metric to show p &lt; 0.05 by pure chance</strong> (20 × 0.05 = 1). That's the multiple testing problem.</p>
+      <p style="margin-top:10px;"><strong>Bonferroni</strong> is the strict parent: "You can only claim significance if a result would be surprising even accounting for ALL the doors you opened."</p>
+      <p style="margin-top:10px;"><strong>BH</strong> is the pragmatic boss: "I accept that some findings might be false, but I want to keep that <em>proportion</em> low." In practice, BH finds more true effects while keeping the false discovery rate at 5%.</p>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h4><span class="company-tag uber">Uber</span> Multi-Variant Rider App Experiment</h4>
+      <p><strong>Business Context:</strong> Testing 4 new UI variants for the ride request flow, measuring CTR, completion rate, and time-to-book. 4 variants × 3 metrics = 12 tests.</p>
+      <p style="margin-top:10px;"><strong>Results:</strong> Without correction: 3 show p &lt; 0.05. Bonferroni (α = 0.05/12 = 0.0042): only 1 survives. BH (FDR = 0.05): 2 survive.</p>
+      <p style="margin-top:10px;"><strong>Decision:</strong> Team uses BH as primary analysis, confirms surviving results with a focused follow-up test. The test that passed Bonferroni gets immediate rollout.</p>
+    </div>
+    <div class="card">
+      <h4><span class="company-tag intuit">Intuit</span> Tax Season Feature Launch</h4>
+      <p><strong>Business Context:</strong> Launching 3 features simultaneously, each with its own A/B test. Primary metric: filing completion.</p>
+      <p style="margin-top:10px;"><strong>Results:</strong> With Bonferroni threshold 0.05/3 = 0.017: Feature A (p=0.003) ✓, Feature B (p=0.032) ✗, Feature C (p=0.41) ✗.</p>
+      <p style="margin-top:10px;"><strong>Decision:</strong> Ship A confidently. Extend B's test for more power (it would pass BH but not Bonferroni — the risk tolerance decision is the team's). Kill C.</p>
+    </div>
+  </div>
+
+  <div class="interactive-box">
+    <h4>Interactive: Multiple Testing — False Positive Accumulation</h4>
+    <div class="slider-row">
+      <label>Number of tests (m):</label>
+      <input type="range" min="1" max="50" value="10" id="mult-m" oninput="updateMultiple()">
+      <span class="val" id="mult-m-val">10</span>
+    </div>
+    <div class="result-box">
+      <div>P(≥1 false positive): <span class="big" id="mult-fpr">40.1%</span></div>
+      <div style="margin-top:8px;color:var(--muted);font-size:13px;">
+        Bonferroni threshold: <span id="mult-bonf" style="color:var(--accent)">0.0050</span> &nbsp;|&nbsp;
+        Uncorrected: <span style="color:var(--warn)">0.0500</span>
+      </div>
+      <canvas id="mult-canvas" width="500" height="150"></canvas>
+    </div>
+  </div>
+
+  <div class="card full">
+    <h4>Python Example</h4>
+    <pre><span class="cm"># Multiple Testing Correction Workflow</span>
+<span class="kw">from</span> scipy <span class="kw">import</span> stats
+<span class="kw">from</span> statsmodels.stats.multitest <span class="kw">import</span> multipletests
+<span class="kw">import</span> numpy <span class="kw">as</span> np
+
+<span class="cm"># 4 variants × 3 metrics = 12 pairwise tests</span>
+p_values = [<span class="num">0.003</span>, <span class="num">0.012</span>, <span class="num">0.032</span>, <span class="num">0.048</span>, <span class="num">0.051</span>, <span class="num">0.089</span>,
+            <span class="num">0.12</span>, <span class="num">0.23</span>, <span class="num">0.34</span>, <span class="num">0.41</span>, <span class="num">0.67</span>, <span class="num">0.91</span>]
+
+<span class="cm"># Bonferroni correction (FWER control)</span>
+reject_bonf, pvals_bonf, _, _ = <span class="fn">multipletests</span>(p_values, method=<span class="str">'bonferroni'</span>)
+<span class="fn">print</span>(<span class="str">"Bonferroni rejections:"</span>, <span class="fn">sum</span>(reject_bonf))
+
+<span class="cm"># Benjamini-Hochberg (FDR control)</span>
+reject_bh, pvals_bh, _, _ = <span class="fn">multipletests</span>(p_values, method=<span class="str">'fdr_bh'</span>)
+<span class="fn">print</span>(<span class="str">"BH rejections:"</span>, <span class="fn">sum</span>(reject_bh))
+
+<span class="cm"># Chi-squared omnibus → pairwise z-tests</span>
+chi2, p_omnibus, dof, expected = stats.<span class="fn">chi2_contingency</span>(observed_table)
+<span class="kw">if</span> p_omnibus &lt; <span class="num">0.05</span>:
+    <span class="cm"># Pairwise z-tests with BH correction</span>
+    <span class="kw">from</span> statsmodels.stats.proportion <span class="kw">import</span> proportions_ztest
+    pairwise_p = []
+    <span class="kw">for</span> variant <span class="kw">in</span> variants:
+        z, p = <span class="fn">proportions_ztest</span>([variant.conv, ctrl.conv], [variant.n, ctrl.n])
+        pairwise_p.<span class="fn">append</span>(p)
+    reject, adj_p, _, _ = <span class="fn">multipletests</span>(pairwise_p, method=<span class="str">'fdr_bh'</span>)</pre>
+  </div>
+
+  <div class="card full">
+    <h4>Key Assumptions & Pitfalls</h4>
+    <ul class="assumption-list">
+      <li>Always correct across ALL tests you ran, not just the ones with small p-values (this IS p-hacking)</li>
+      <li>Chi-squared is the <strong>omnibus</strong> test for proportions (3+ groups); ANOVA for continuous metrics</li>
+      <li>After omnibus rejection, do pairwise tests with correction — never skip the omnibus step</li>
+      <li>Adjust CIs to match: if Bonferroni at α/3 = 0.017, report <strong>98.3% CIs</strong> for consistency</li>
+      <li>BH controls FDR under independence or positive dependence — safe for most A/B scenarios</li>
+      <li>Bonferroni is over-conservative with many tests — you'll miss real effects</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== SECTION 5: SEQUENTIAL TESTING ==================== -->
+<div class="technique" id="sec-sequential">
+  <div class="tech-header">
+    <span class="category">Advanced Experimentation</span>
+    <h3>Sequential Testing</h3>
+    <p class="subtitle">How to monitor experiments without inflating false positives — peeking done right.</p>
+  </div>
+
+  <div class="formula-box">
+    <div class="label">Sequential Methods</div>
+    <div class="formula">Always-valid p-value: p̃_t = min(1, 1/Λ_t) &nbsp;&nbsp;|&nbsp;&nbsp; O'Brien-Fleming: α_k decreasing at each look</div>
+    <div class="label">Sequential methods control Type I error across ALL possible stopping times, not just one.</div>
+  </div>
+
+  <div class="method-explainer">
+    <div class="method-col technical">
+      <h4>Statistical Perspective</h4>
+      <p>Traditional hypothesis tests assume a <strong>fixed sample size</strong>. If you peek at results during data collection and stop when p &lt; 0.05, the actual false positive rate can be <strong>20-30%</strong> (far above 5%).</p>
+      <p style="margin-top:10px;"><strong>mSPRT</strong> (mixture Sequential Probability Ratio Test) uses a likelihood ratio that remains a valid test statistic regardless of when you look. <strong>Group sequential designs</strong> (O'Brien-Fleming, Pocock) pre-specify a small number of interim analyses with adjusted significance boundaries.</p>
+      <p style="margin-top:10px;"><strong>Always-valid confidence sequences</strong> provide CIs valid at every time point simultaneously. Sequential tests trade power for flexibility — typically needing 20-30% more total samples than fixed-horizon tests.</p>
+    </div>
+    <div class="method-col intuitive">
+      <h4>Intuitive Perspective</h4>
+      <p>Imagine betting on coin flips. If you keep flipping until you happen to be winning and then stop, you'll appear lucky even with a fair coin. That's what <strong>"peeking"</strong> does to A/B tests.</p>
+      <p style="margin-top:10px;">Sequential testing is like agreeing to rules BEFORE you start: <em>"I can check after every 100 flips, but I need stronger evidence early on."</em> Early checks require overwhelming evidence (p &lt; 0.001), while later checks relax the threshold.</p>
+      <p style="margin-top:10px;">This way, even though you're peeking, your overall false positive rate stays at 5%. <strong>O'Brien-Fleming</strong> is the most popular approach — very conservative early, lenient late.</p>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h4><span class="company-tag uber">Uber</span> Surge Pricing Algorithm Monitoring</h4>
+      <p><strong>Business Context:</strong> Uber uses mSPRT for marketplace experiments where wrong decisions cost money in real-time.</p>
+      <p style="margin-top:10px;"><strong>Approach:</strong> New surge algorithm monitored daily with always-valid p-values. mSPRT allows stopping as soon as significance is reached without FPR inflation.</p>
+      <p style="margin-top:10px;"><strong>Results:</strong> Detected 1.2% improvement in driver utilization on day 5 (traditional test would require day 14). Estimated $2M additional revenue captured by shipping 9 days earlier.</p>
+    </div>
+    <div class="card">
+      <h4><span class="company-tag intuit">Intuit</span> Tax Season Feature Gate</h4>
+      <p><strong>Business Context:</strong> During the 12-week filing season, every week of testing = a week the winning variant isn't fully deployed.</p>
+      <p style="margin-top:10px;"><strong>Approach:</strong> Group sequential design with 3 interim looks (weeks 1, 2, 4) using O'Brien-Fleming bounds: α spent 0.0001, 0.005, 0.043.</p>
+      <p style="margin-top:10px;"><strong>Results:</strong> Feature showed strong signal at week 2 (p=0.002 &lt; 0.005 boundary), shipped immediately — gaining 10 extra weeks of improved experience during peak season.</p>
+    </div>
+  </div>
+
+  <div class="interactive-box">
+    <h4>Interactive: Peeking Inflates False Positives</h4>
+    <div class="slider-row">
+      <label>Number of peeks:</label>
+      <input type="range" min="1" max="50" value="1" id="seq-peeks" oninput="updateSequential()">
+      <span class="val" id="seq-peeks-val">1</span>
+    </div>
+    <canvas id="seq-canvas" width="500" height="200"></canvas>
+    <div class="result-box">
+      <div>Actual FPR with <span id="seq-n-peeks">1</span> peeks: <span class="big" id="seq-fpr">5.0%</span></div>
+      <div style="margin-top:8px;color:var(--muted);font-size:13px;">
+        Nominal α = 5.0% &nbsp;|&nbsp;
+        Inflation factor: <span id="seq-inflate" style="color:var(--warn)">1.0×</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card full">
+    <h4>Python Example</h4>
+    <pre><span class="cm"># Sequential Testing: Why Peeking Inflates FPR</span>
+<span class="kw">import</span> numpy <span class="kw">as</span> np
+<span class="kw">from</span> scipy <span class="kw">import</span> stats
+
+<span class="kw">def</span> <span class="fn">simulate_peeking_fpr</span>(n_peeks, n_sims=<span class="num">10000</span>, alpha=<span class="num">0.05</span>):
+    <span class="str">"""Simulate false positive rate when peeking at results."""</span>
+    false_pos = <span class="num">0</span>
+    n_per_peek = <span class="num">100</span>
+    z_crit = stats.norm.<span class="fn">ppf</span>(<span class="num">1</span> - alpha / <span class="num">2</span>)
+    <span class="kw">for</span> _ <span class="kw">in</span> <span class="fn">range</span>(n_sims):
+        a = np.random.<span class="fn">normal</span>(<span class="num">0</span>, <span class="num">1</span>, n_per_peek * n_peeks)
+        b = np.random.<span class="fn">normal</span>(<span class="num">0</span>, <span class="num">1</span>, n_per_peek * n_peeks)
+        <span class="kw">for</span> peek <span class="kw">in</span> <span class="fn">range</span>(<span class="num">1</span>, n_peeks + <span class="num">1</span>):
+            n = peek * n_per_peek
+            z = <span class="fn">abs</span>((a[:n].<span class="fn">mean</span>() - b[:n].<span class="fn">mean</span>()) / np.<span class="fn">sqrt</span>(<span class="num">2</span>/n))
+            <span class="kw">if</span> z > z_crit:
+                false_pos += <span class="num">1</span>
+                <span class="kw">break</span>
+    <span class="kw">return</span> false_pos / n_sims
+
+<span class="kw">for</span> peeks <span class="kw">in</span> [<span class="num">1</span>, <span class="num">2</span>, <span class="num">5</span>, <span class="num">10</span>, <span class="num">20</span>, <span class="num">50</span>]:
+    fpr = <span class="fn">simulate_peeking_fpr</span>(peeks)
+    <span class="fn">print</span>(<span class="str">f"Peeks: {peeks:2d} → Actual FPR: {fpr:.1%}"</span>)
+<span class="cm"># Peeks:  1 → 5.0%   Peeks:  5 → 14.2%</span>
+<span class="cm"># Peeks: 10 → 19.3%  Peeks: 50 → 32.1%</span></pre>
+  </div>
+
+  <div class="card full">
+    <h4>Key Assumptions & Pitfalls</h4>
+    <ul class="assumption-list">
+      <li>Traditional A/B tests with fixed-horizon analysis are <strong>invalid</strong> if you peek and stop early</li>
+      <li>mSPRT / always-valid p-values allow continuous monitoring without FPR inflation</li>
+      <li>O'Brien-Fleming is the most popular group sequential design — conservative early, lenient late</li>
+      <li>Sequential tests trade power for flexibility — typically need 20-30% more total samples</li>
+      <li>Never use a significant interim result as final if you didn't <strong>pre-specify</strong> interim analyses</li>
+      <li>Uber's experimentation platform uses sequential testing by default for marketplace experiments</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== SECTION 6: VARIANCE REDUCTION ==================== -->
+<div class="technique" id="sec-variance">
+  <div class="tech-header">
+    <span class="category">Advanced Experimentation</span>
+    <h3>Variance Reduction — CUPED & Delta Method</h3>
+    <p class="subtitle">Make experiments more sensitive without collecting more data.</p>
+  </div>
+
+  <div class="formula-box">
+    <div class="label">CUPED & Delta Method</div>
+    <div class="formula">CUPED: Ŷ_cv = Y − θ(X − E[X]) &nbsp;&nbsp;|&nbsp;&nbsp; Delta: Var(g(θ̂)) ≈ [g'(θ)]² · Var(θ̂)</div>
+    <div class="label">θ = Cov(Y,X)/Var(X). CUPED reduces variance by ρ². Delta method gives SE for ratio metrics.</div>
+  </div>
+
+  <div class="method-explainer">
+    <div class="method-col technical">
+      <h4>Statistical Perspective</h4>
+      <p><strong>CUPED</strong> is a control variate method. By subtracting the predictable part of the outcome using a pre-experiment covariate X, we reduce variance by ρ²(X,Y). The adjustment is mean-zero (E[X − E[X]] = 0), so it doesn't bias the treatment effect.</p>
+      <p style="margin-top:10px;">The <strong>delta method</strong> approximates the variance of a function of random variables using a first-order Taylor expansion. For ratio metrics like revenue/trip: Var(Ŷ/X̄) ≈ (1/μ_X²)[Var(Y) − 2(μ_Y/μ_X)Cov(Y,X) + (μ_Y/μ_X)²Var(X)]/n.</p>
+      <p style="margin-top:10px;"><strong>Block bootstrap</strong> provides a non-parametric alternative when delta method's normality assumption is questionable. CUPED + delta method can be combined for ratio metrics with pre-period covariates.</p>
+    </div>
+    <div class="method-col intuitive">
+      <h4>Intuitive Perspective</h4>
+      <p><strong>CUPED</strong> is like adjusting for natural ability when grading students. If you know a student always scores 90%, seeing them score 92% in treatment is a 2-point <em>surprise</em> — that's the signal. Without CUPED, "92% vs 91%" is drowned in noise.</p>
+      <p style="margin-top:10px;">The <strong>delta method</strong> solves a different problem: what if your metric is a ratio, like revenue per trip? You can't just average the per-user ratios — users with 1 trip have volatile ratios. The delta method tells you how uncertain the overall ratio is by propagating uncertainty from numerator and denominator.</p>
+      <p style="margin-top:10px;">The better you can predict baseline performance (higher ρ), the more noise CUPED strips away. ρ = 0.7 removes 49% of variance; ρ = 0.9 removes 81%.</p>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h4><span class="company-tag uber">Uber</span> Revenue per Trip — Delta Method</h4>
+      <p><strong>Business Context:</strong> Testing a new pricing algorithm. Primary metric: revenue per completed trip (a ratio). Naive per-user ratio averaging gives volatile estimates.</p>
+      <p style="margin-top:10px;"><strong>Approach:</strong> Delta method: treat as ratio of means (total revenue / total trips). SE reduced by 40% vs. naive averaging. Combined with CUPED (pre-period revenue as covariate, ρ=0.78): total variance reduction = 73%.</p>
+      <p style="margin-top:10px;"><strong>Takeaway:</strong> For ratio metrics, always use delta method. Naive per-user ratios are dominated by low-denominator noise.</p>
+    </div>
+    <div class="card">
+      <h4><span class="company-tag intuit">Intuit</span> CUPED for Filing Completion</h4>
+      <p><strong>Business Context:</strong> Pre-experiment covariate: prior-year filing completion + number of forms (ρ = 0.74).</p>
+      <p style="margin-top:10px;"><strong>Results:</strong> CUPED variance reduction: 55%. Experiment that would need 3 weeks raw now reaches significance in ~1.3 weeks. During peak tax season, this saved ~12 days of suboptimal UX.</p>
+      <p style="margin-top:10px;"><strong>Takeaway:</strong> In tax filing, timing is everything. 12 weeks of filing season × $2M/week of delayed features = CUPED pays for itself immediately.</p>
+    </div>
+  </div>
+
+  <div class="interactive-box">
+    <h4>Interactive: CUPED Variance Reduction</h4>
+    <div class="slider-row">
+      <label>Correlation ρ(X, Y):</label>
+      <input type="range" min="0" max="99" value="70" id="cuped-corr" oninput="updateCuped()">
+      <span class="val" id="cuped-corr-val">0.70</span>
+    </div>
+    <div class="slider-row">
+      <label>Original Variance (σ²):</label>
+      <input type="range" min="1" max="100" value="50" id="cuped-var" oninput="updateCuped()">
+      <span class="val" id="cuped-var-val">50</span>
+    </div>
+    <div class="result-box">
+      <div>Variance Reduction: <span class="big" id="cuped-vr">49.0%</span></div>
+      <div style="margin-top:8px;color:var(--muted);font-size:13px;">
+        Adjusted Variance: <span id="cuped-adj">25.5</span> &nbsp;|&nbsp;
+        Sample size equivalent: <span id="cuped-mult" style="color:var(--accent2)">1.96×</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card full">
+    <h4>Python Example</h4>
+    <pre><span class="cm"># CUPED & Delta Method</span>
+<span class="kw">import</span> numpy <span class="kw">as</span> np
+
+<span class="cm"># --- CUPED ---</span>
+<span class="kw">def</span> <span class="fn">cuped_adjust</span>(y_post, x_pre):
+    <span class="str">"""Adjust outcomes using pre-experiment covariate."""</span>
+    theta = np.<span class="fn">cov</span>(y_post, x_pre)[<span class="num">0</span>,<span class="num">1</span>] / np.<span class="fn">var</span>(x_pre)
+    <span class="kw">return</span> y_post - theta * (x_pre - np.<span class="fn">mean</span>(x_pre))
+
+np.random.<span class="fn">seed</span>(<span class="num">42</span>)
+n = <span class="num">10000</span>
+x_pre = np.random.<span class="fn">normal</span>(<span class="num">65</span>, <span class="num">20</span>, n)
+treatment = np.random.<span class="fn">binomial</span>(<span class="num">1</span>, <span class="num">0.5</span>, n)
+y_post = <span class="num">0.7</span> * x_pre + treatment * <span class="num">2.0</span> + np.random.<span class="fn">normal</span>(<span class="num">0</span>, <span class="num">15</span>, n)
+
+y_adj = <span class="fn">cuped_adjust</span>(y_post, x_pre)
+<span class="fn">print</span>(<span class="str">f"Raw SE:   {y_post.std()/np.sqrt(n/2):.3f}"</span>)
+<span class="fn">print</span>(<span class="str">f"CUPED SE: {y_adj.std()/np.sqrt(n/2):.3f}"</span>)
+<span class="fn">print</span>(<span class="str">f"Variance reduction: {1 - y_adj.var()/y_post.var():.1%}"</span>)
+
+<span class="cm"># --- Delta Method for Ratio Metrics ---</span>
+<span class="kw">def</span> <span class="fn">delta_method_ratio_se</span>(y, x):
+    <span class="str">"""SE of mean(y)/mean(x) via delta method."""</span>
+    n = <span class="fn">len</span>(y)
+    mu_y, mu_x = y.<span class="fn">mean</span>(), x.<span class="fn">mean</span>()
+    var_y, var_x = y.<span class="fn">var</span>(), x.<span class="fn">var</span>()
+    cov_yx = np.<span class="fn">cov</span>(y, x)[<span class="num">0</span>,<span class="num">1</span>]
+    <span class="kw">return</span> np.<span class="fn">sqrt</span>((var_y - <span class="num">2</span>*(mu_y/mu_x)*cov_yx + (mu_y/mu_x)**<span class="num">2</span>*var_x) / (mu_x**<span class="num">2</span>*n))</pre>
+  </div>
+
+  <div class="card full">
+    <h4>Key Assumptions & Pitfalls</h4>
+    <ul class="assumption-list">
+      <li>CUPED requires pre-experiment covariate X measured <strong>BEFORE</strong> randomization</li>
+      <li>Higher ρ(X, Y) = more variance reduction — stale pre-period data may have low ρ</li>
+      <li>Delta method assumes approximate normality of the estimator (CLT for large n)</li>
+      <li>For heavily skewed ratio metrics, block bootstrap may be more reliable than delta method</li>
+      <li>CUPED + delta method can be combined for ratio metrics with pre-period covariates</li>
+      <li>CUPED is equivalent to regression adjustment — the treatment effect estimate is identical</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== SECTION 7: BAYESIAN & BANDITS ==================== -->
+<div class="technique" id="sec-bayesian">
+  <div class="tech-header">
+    <span class="category">Advanced Experimentation</span>
+    <h3>Bayesian Methods & Multi-Armed Bandits</h3>
+    <p class="subtitle">From posterior beliefs to adaptive allocation — when exploration meets exploitation.</p>
+  </div>
+
+  <div class="formula-box">
+    <div class="label">Bayesian Inference & Thompson Sampling</div>
+    <div class="formula">P(θ|data) ∝ P(data|θ) · P(θ) &nbsp;&nbsp;|&nbsp;&nbsp; Thompson: sample θ̃_k ~ Beta(α_k, β_k), pull argmax</div>
+    <div class="label">Bayesian gives P(B > A) directly. Bandits optimize cumulative reward during the test.</div>
+  </div>
+
+  <div class="method-explainer">
+    <div class="method-col technical">
+      <h4>Statistical Perspective</h4>
+      <p>Bayesian A/B testing replaces p-values with <strong>posterior distributions</strong>. For binary outcomes, Beta-Bernoulli conjugacy gives closed-form updates: prior Beta(α₀, β₀) + s successes in n trials → posterior Beta(α₀+s, β₀+n-s).</p>
+      <p style="margin-top:10px;">Compute P(θ_B > θ_A | data) via simulation or closed-form. <strong>Expected loss</strong> = E[max(θ_A - θ_B, 0)] measures the cost of choosing B if A is actually better. Ship when P(best) > threshold AND expected loss is small.</p>
+      <p style="margin-top:10px;"><strong>Thompson Sampling</strong>: sample from each arm's posterior, pull the arm with the highest sample. Naturally balances exploration (uncertain arms get sampled widely) and exploitation (good arms get pulled more). <strong>UCB</strong> picks the arm with the highest upper confidence bound. <strong>Contextual bandits</strong> condition on user features for personalized allocation.</p>
+    </div>
+    <div class="method-col intuitive">
+      <h4>Intuitive Perspective</h4>
+      <p>Frequentist testing asks: <em>"Is B better? Yes or no."</em> Bayesian asks: <em>"HOW MUCH better is B, and how sure am I?"</em> You start with a belief (prior), update with data, and get a posterior that directly says "94% chance B is better by 2-5%."</p>
+      <p style="margin-top:10px;"><strong>Bandits</strong> go further: instead of 50/50 traffic split the whole time, they gradually send more users to the winning variant. Like a restaurant trying new dishes — you taste-test, then shift to mostly serving the better one.</p>
+      <p style="margin-top:10px;"><strong>Key tradeoff:</strong> A/B tests give clean causal inference. Bandits optimize cumulative reward but sacrifice clean inference — you can't compute unbiased treatment effects from bandit data.</p>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h4><span class="company-tag uber">Uber</span> Dynamic Pricing — Contextual Bandits</h4>
+      <p><strong>Business Context:</strong> Uber uses contextual MABs for surge pricing optimization. Context: time of day, location, demand/supply ratio, weather. Arms: different surge multiplier levels.</p>
+      <p style="margin-top:10px;"><strong>Results:</strong> Thompson sampling with logistic regression on context features outperforms fixed pricing rules by 4.3% in driver utilization. Bandits adapt to local conditions — surge that works in Manhattan at 6pm differs from Austin at 2am.</p>
+      <p style="margin-top:10px;"><strong>Tradeoff:</strong> Bandits sacrifice clean causal inference for better cumulative outcomes. For pricing, cumulative reward matters more than a clean ATE estimate.</p>
+    </div>
+    <div class="card">
+      <h4><span class="company-tag intuit">Intuit</span> Onboarding Flow — Bayesian A/B</h4>
+      <p><strong>Business Context:</strong> Testing 3 onboarding variants with Bayesian analysis. Prior: Beta(1,1) = uniform. After 10K users: P(V2 best) = 89%.</p>
+      <p style="margin-top:10px;"><strong>Decision rule:</strong> Ship when P(best) > 95% AND expected loss < 0.5pp. V2 reached both thresholds at 15K users — shipped 1 week earlier than a frequentist test would have allowed.</p>
+      <p style="margin-top:10px;"><strong>Takeaway:</strong> Bayesian analysis naturally answers "how confident are we?" without arbitrary α thresholds. Expected loss gives a direct business-relevant decision criterion.</p>
+    </div>
+  </div>
+
+  <div class="interactive-box">
+    <h4>Interactive: Thompson Sampling Simulation</h4>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">Three arms with hidden true probabilities. Watch Thompson sampling discover the best arm.</p>
+    <canvas id="ts-canvas" width="500" height="200"></canvas>
+    <div class="btn-row" style="margin-top:12px;">
+      <button class="sim-btn" onclick="tsStep(1)">Pull 1</button>
+      <button class="sim-btn" onclick="tsStep(10)">Pull 10</button>
+      <button class="sim-btn" onclick="tsStep(100)">Pull 100</button>
+      <button class="sim-btn" onclick="tsReset()" style="background:var(--surface);border:1px solid var(--border);">Reset</button>
+    </div>
+    <div class="result-box" style="margin-top:12px;">
+      <table id="ts-table">
+        <tr><th>Arm</th><th>True p</th><th>Pulls</th><th>Successes</th><th>Est. Rate</th></tr>
+        <tr><td style="color:#ff7b72">A</td><td>???</td><td id="ts-a-pulls">0</td><td id="ts-a-succ">0</td><td id="ts-a-rate">-</td></tr>
+        <tr><td style="color:#6c63ff">B</td><td>???</td><td id="ts-b-pulls">0</td><td id="ts-b-succ">0</td><td id="ts-b-rate">-</td></tr>
+        <tr><td style="color:#00d4aa">C</td><td>???</td><td id="ts-c-pulls">0</td><td id="ts-c-succ">0</td><td id="ts-c-rate">-</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card full">
+    <h4>Python Example</h4>
+    <pre><span class="cm"># Bayesian A/B Testing & Thompson Sampling</span>
+<span class="kw">import</span> numpy <span class="kw">as</span> np
+
+<span class="cm"># --- Bayesian A/B Test ---</span>
+alpha_A, beta_A = <span class="num">1</span> + <span class="num">450</span>, <span class="num">1</span> + <span class="num">5000</span> - <span class="num">450</span>   <span class="cm"># Control: 9.0%</span>
+alpha_B, beta_B = <span class="num">1</span> + <span class="num">520</span>, <span class="num">1</span> + <span class="num">5000</span> - <span class="num">520</span>   <span class="cm"># Treatment: 10.4%</span>
+
+samples_A = np.random.<span class="fn">beta</span>(alpha_A, beta_A, <span class="num">100000</span>)
+samples_B = np.random.<span class="fn">beta</span>(alpha_B, beta_B, <span class="num">100000</span>)
+p_b_better = (samples_B > samples_A).<span class="fn">mean</span>()
+loss_B = np.<span class="fn">maximum</span>(samples_A - samples_B, <span class="num">0</span>).<span class="fn">mean</span>()
+<span class="fn">print</span>(<span class="str">f"P(B > A) = {p_b_better:.3f}"</span>)
+<span class="fn">print</span>(<span class="str">f"Expected loss of choosing B: {loss_B:.5f}"</span>)
+
+<span class="cm"># --- Thompson Sampling ---</span>
+<span class="kw">class</span> <span class="fn">ThompsonBandit</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(self, n_arms):
+        self.alpha = np.<span class="fn">ones</span>(n_arms)
+        self.beta = np.<span class="fn">ones</span>(n_arms)
+    <span class="kw">def</span> <span class="fn">select_arm</span>(self):
+        samples = [np.random.<span class="fn">beta</span>(a, b) <span class="kw">for</span> a, b <span class="kw">in</span> <span class="fn">zip</span>(self.alpha, self.beta)]
+        <span class="kw">return</span> np.<span class="fn">argmax</span>(samples)
+    <span class="kw">def</span> <span class="fn">update</span>(self, arm, reward):
+        <span class="kw">if</span> reward: self.alpha[arm] += <span class="num">1</span>
+        <span class="kw">else</span>: self.beta[arm] += <span class="num">1</span>
+
+true_probs = [<span class="num">0.05</span>, <span class="num">0.07</span>, <span class="num">0.10</span>]
+bandit = <span class="fn">ThompsonBandit</span>(<span class="num">3</span>)
+<span class="kw">for</span> _ <span class="kw">in</span> <span class="fn">range</span>(<span class="num">10000</span>):
+    arm = bandit.<span class="fn">select_arm</span>()
+    reward = np.random.<span class="fn">binomial</span>(<span class="num">1</span>, true_probs[arm])
+    bandit.<span class="fn">update</span>(arm, reward)</pre>
+  </div>
+
+  <div class="card full">
+    <h4>Key Assumptions & Pitfalls</h4>
+    <ul class="assumption-list">
+      <li>Bayesian results depend on the prior — with enough data, prior washes out. Beta(1,1) is standard.</li>
+      <li>Thompson sampling converges to the optimal arm but initial exploration means some "wasted" traffic</li>
+      <li>Bandits sacrifice clean causal inference — can't compute unbiased ATEs from bandit data</li>
+      <li>Use A/B tests for causal inference; use bandits for optimizing cumulative reward</li>
+      <li>Contextual bandits require well-chosen features — bad features = worse than non-contextual</li>
+      <li>Expected loss is often more useful than P(best) for business decisions</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== SECTION 8: DISTRIBUTIONS ==================== -->
+<div class="technique" id="sec-distributions">
+  <div class="tech-header">
+    <span class="category">Foundations</span>
+    <h3>Distributions & Foundational Statistics</h3>
+    <p class="subtitle">The probability distributions and core concepts that underpin everything else.</p>
+  </div>
+
+  <div class="formula-box">
+    <div class="label">Key Distributions & CLT</div>
+    <div class="formula">Normal: f(x) = (1/σ√2π)e^(-(x-μ)²/2σ²) &nbsp;&nbsp;|&nbsp;&nbsp; CLT: X̄ ~ N(μ, σ²/n)</div>
+    <div class="label">MLE: θ̂ = argmax Π P(xᵢ|θ). Distributions generate data. CLT enables inference. MLE fits distributions.</div>
+  </div>
+
+  <div class="method-explainer">
+    <div class="method-col technical">
+      <h4>Statistical Perspective</h4>
+      <p><strong>Normal</strong>: parameterized by μ, σ. 68-95-99.7 rule. <strong>Binomial</strong>: count of successes in n Bernoulli trials. <strong>Poisson</strong>: rare event counts with rate λ (mean = variance = λ). <strong>Exponential</strong>: time between events, rate λ, memoryless.</p>
+      <p style="margin-top:10px;">The <strong>CLT</strong> states that sample means approach normality regardless of the underlying distribution (given independence and sufficient n). This is why t-tests work even on non-normal data.</p>
+      <p style="margin-top:10px;"><strong>MLE</strong> finds parameters maximizing P(data|θ). For normal: μ̂ = x̄, σ̂² = Σ(xᵢ-x̄)²/n. <strong>Correlation</strong> normalizes covariance to [-1,1]. <strong>R²</strong> = ρ² for simple regression — fraction of variance explained.</p>
+    </div>
+    <div class="method-col intuitive">
+      <h4>Intuitive Perspective</h4>
+      <p>Distributions are <strong>templates for randomness</strong>. Heights → normal (bell curve). Customer calls/hour → Poisson (rare events). Time between bus arrivals → exponential (longer waits less likely).</p>
+      <p style="margin-top:10px;">The <strong>CLT</strong> is the most important theorem in statistics: average enough of ANY data, and the averages look like a bell curve. This is why so many methods assume normality — not because raw data is normal, but because <em>averages</em> are.</p>
+      <p style="margin-top:10px;"><strong>Correlation</strong> measures how much two things move together linearly. R² tells you what percentage of one variable's variation is explained by the other. But correlation ≠ causation, and zero correlation ≠ independence (could have non-linear relationship).</p>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h4><span class="company-tag uber">Uber</span> Trip Duration Modeling</h4>
+      <p><strong>Business Context:</strong> Trip durations follow a log-normal distribution (right-skewed). Mean: 18 min, median: 14 min. Using normal naively would underestimate long trip probability.</p>
+      <p style="margin-top:10px;"><strong>Approach:</strong> MLE fits log-normal parameters for ETA prediction. For A/B test analysis, CLT ensures mean trip duration across thousands of trips is approximately normal, even though individual trips are skewed.</p>
+    </div>
+    <div class="card">
+      <h4><span class="company-tag intuit">Intuit</span> Support Call Volume</h4>
+      <p><strong>Business Context:</strong> TurboTax support calls follow a Poisson process. MLE: λ_weekday ≈ 1,200/hr, λ_peak ≈ 3,400/hr. Used for staffing models.</p>
+      <p style="margin-top:10px;"><strong>Validation:</strong> Poisson assumption checked by verifying mean ≈ variance in each time window. Exponential inter-arrival times: mean = 60/3400 ≈ 1.06 seconds during peak. Deviations from Poisson signal unusual behavior (e.g., system outage creating call bursts).</p>
+    </div>
+  </div>
+
+  <div class="interactive-box">
+    <h4>Interactive: Distribution Explorer</h4>
+    <div class="btn-row" id="dist-btns">
+      <button class="active" onclick="setDist('normal',this)">Normal</button>
+      <button onclick="setDist('binomial',this)">Binomial</button>
+      <button onclick="setDist('poisson',this)">Poisson</button>
+      <button onclick="setDist('exponential',this)">Exponential</button>
+    </div>
+    <div id="dist-sliders">
+      <div class="slider-row" id="dist-s1-row">
+        <label id="dist-s1-label">μ (mean):</label>
+        <input type="range" min="-50" max="50" value="0" id="dist-s1" oninput="updateDist()">
+        <span class="val" id="dist-s1-val">0</span>
+      </div>
+      <div class="slider-row" id="dist-s2-row">
+        <label id="dist-s2-label">σ (std dev):</label>
+        <input type="range" min="5" max="30" value="10" id="dist-s2" oninput="updateDist()">
+        <span class="val" id="dist-s2-val">1.0</span>
+      </div>
+    </div>
+    <canvas id="dist-canvas" width="500" height="220"></canvas>
+    <div class="result-box">
+      <span style="color:var(--muted);font-size:13px;">Mean: <span id="dist-mean">0</span> &nbsp;|&nbsp; Variance: <span id="dist-var">1</span></span>
+    </div>
+  </div>
+
+  <div class="card full">
+    <h4>Python Example</h4>
+    <pre><span class="cm"># Distribution Fundamentals</span>
+<span class="kw">import</span> numpy <span class="kw">as</span> np
+<span class="kw">from</span> scipy <span class="kw">import</span> stats
+
+<span class="cm"># Normal distribution</span>
+x = np.<span class="fn">linspace</span>(-<span class="num">4</span>, <span class="num">4</span>, <span class="num">200</span>)
+pdf = stats.norm.<span class="fn">pdf</span>(x, <span class="num">0</span>, <span class="num">1</span>)  <span class="cm"># 68-95-99.7 rule</span>
+
+<span class="cm"># Binomial: n trials, p success probability</span>
+pmf = stats.binom.<span class="fn">pmf</span>(np.<span class="fn">arange</span>(<span class="num">21</span>), n=<span class="num">20</span>, p=<span class="num">0.3</span>)
+<span class="fn">print</span>(<span class="str">f"Binomial(20,0.3): mean={20*0.3}, var={20*0.3*0.7:.1f}"</span>)
+
+<span class="cm"># Poisson: λ events per unit time</span>
+pmf = stats.poisson.<span class="fn">pmf</span>(np.<span class="fn">arange</span>(<span class="num">20</span>), mu=<span class="num">5</span>)
+<span class="fn">print</span>(<span class="str">f"Poisson(5): mean=5, var=5"</span>)  <span class="cm"># mean = variance!</span>
+
+<span class="cm"># MLE for normal</span>
+data = np.random.<span class="fn">normal</span>(<span class="num">5</span>, <span class="num">2</span>, <span class="num">1000</span>)
+mu_mle, sigma_mle = stats.norm.<span class="fn">fit</span>(data)
+
+<span class="cm"># CLT demonstration</span>
+means = [np.random.<span class="fn">exponential</span>(<span class="num">2</span>, <span class="num">50</span>).<span class="fn">mean</span>() <span class="kw">for</span> _ <span class="kw">in</span> <span class="fn">range</span>(<span class="num">10000</span>)]
+<span class="cm"># means are approximately normal even though exponential is skewed!</span>
+
+<span class="cm"># Correlation and R²</span>
+r = np.<span class="fn">corrcoef</span>(x, y)[<span class="num">0</span>,<span class="num">1</span>]
+<span class="fn">print</span>(<span class="str">f"Correlation: {r:.3f}, R²: {r**2:.3f}"</span>)</pre>
+  </div>
+
+  <div class="card full">
+    <h4>Key Assumptions & Pitfalls</h4>
+    <ul class="assumption-list">
+      <li><strong>Normal</strong>: 68-95-99.7 rule. CLT makes it the default for sample means.</li>
+      <li><strong>Binomial</strong> requires: fixed n, independent trials, constant p. Approximate with normal when np ≥ 5 and n(1-p) ≥ 5.</li>
+      <li><strong>Poisson</strong>: events independent, constant rate. Var = Mean — check this in your data!</li>
+      <li><strong>Exponential</strong>: memoryless — P(T > t+s | T > t) = P(T > s). Only distribution with this property.</li>
+      <li>Correlation measures <strong>LINEAR</strong> relationships only — zero correlation ≠ independence</li>
+      <li>MLE is consistent and efficient, but can overfit with small samples — consider regularization</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== SECTION 9: REGRESSION ==================== -->
+<div class="technique" id="sec-regression">
+  <div class="tech-header">
+    <span class="category">Machine Learning</span>
+    <h3>Regression & Core ML</h3>
+    <p class="subtitle">From linear models to regularization — the workhorses of predictive analytics.</p>
+  </div>
+
+  <div class="formula-box">
+    <div class="label">Regression Models</div>
+    <div class="formula">Linear: ŷ = Xβ, min Σ(y-ŷ)² &nbsp;|&nbsp; Logistic: P(y=1) = σ(Xβ) &nbsp;|&nbsp; Ridge: + λΣβ² &nbsp;|&nbsp; Lasso: + λΣ|β|</div>
+    <div class="label">Linear predicts values. Logistic predicts probabilities. Regularization prevents overfitting.</div>
+  </div>
+
+  <div class="method-explainer">
+    <div class="method-col technical">
+      <h4>Statistical Perspective</h4>
+      <p><strong>Linear regression</strong> minimizes squared residuals. Assumptions: linearity, independence, homoscedasticity, normal residuals. Check via: residual plots, Q-Q plots, VIF (&gt; 10 = multicollinearity), Cook's distance (outliers).</p>
+      <p style="margin-top:10px;"><strong>Logistic regression</strong> models log-odds as linear: log(p/(1-p)) = Xβ. Uses MLE. Output is probability via sigmoid σ(z) = 1/(1+e^{-z}).</p>
+      <p style="margin-top:10px;"><strong>Ridge (L2)</strong> shrinks all coefficients toward zero — good when all features are relevant. <strong>Lasso (L1)</strong> sets some coefficients exactly to zero — performs feature selection. <strong>Elastic Net</strong> combines both. Tune λ via cross-validation.</p>
+      <p style="margin-top:10px;">Evaluate regression with R² (adjusted R²); classification with ROC/AUC, precision, recall, F1. k-fold cross-validation gives honest out-of-sample performance.</p>
+    </div>
+    <div class="method-col intuitive">
+      <h4>Intuitive Perspective</h4>
+      <p><strong>Linear regression</strong> = drawing the best straight line through a scatter plot. "Best" = minimizes total prediction error squared.</p>
+      <p style="margin-top:10px;"><strong>Logistic regression</strong> predicts probabilities using an S-shaped curve (sigmoid) that squishes any number into 0-1. "What's the chance this customer churns?"</p>
+      <p style="margin-top:10px;"><strong>Regularization</strong> = adding a penalty for complexity. <strong>Ridge</strong> says "keep all coefficients small" (budget for each feature). <strong>Lasso</strong> says "some features don't matter — set them to zero." Use Ridge when all features contribute; Lasso when you suspect many are noise.</p>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h4><span class="company-tag uber">Uber</span> Driver Churn Prediction</h4>
+      <p><strong>Model:</strong> Logistic regression with L1 (Lasso) to select top predictors from 50+ candidates. AUC = 0.81.</p>
+      <p style="margin-top:10px;"><strong>Top predictors:</strong> Declining trip frequency (β=-1.2), earnings below city median (β=0.8), account age &lt; 90 days (β=0.6). 12 features retained out of 50+.</p>
+      <p style="margin-top:10px;"><strong>Usage:</strong> Model triggers retention interventions (bonus offers, personalized messages) for high-risk drivers.</p>
+    </div>
+    <div class="card">
+      <h4><span class="company-tag intuit">Intuit</span> Revenue per Return Prediction</h4>
+      <p><strong>Model:</strong> Ridge regression (L2) because all features are meaningful and correlated. R² = 0.73.</p>
+      <p style="margin-top:10px;"><strong>Diagnostics:</strong> Residual analysis revealed heteroscedasticity (variance increases with return complexity) — fixed with log-transform of revenue.</p>
+      <p style="margin-top:10px;"><strong>Usage:</strong> LTV modeling and staffing allocation. Knowing expected revenue per return informs which users to prioritize for expert assistance.</p>
+    </div>
+  </div>
+
+  <div class="interactive-box">
+    <h4>Interactive: Regularization — Ridge vs Lasso</h4>
+    <div class="slider-row">
+      <label>Lambda (λ):</label>
+      <input type="range" min="0" max="100" value="10" id="reg-lambda" oninput="updateReg()">
+      <span class="val" id="reg-lambda-val">1.0</span>
+    </div>
+    <canvas id="reg-canvas" width="500" height="200"></canvas>
+    <div class="result-box">
+      <span style="color:var(--muted);font-size:13px;">Left: Ridge (L2) — coefficients shrink but never reach zero. Right: Lasso (L1) — some hit zero (feature selection).</span>
+    </div>
+  </div>
+
+  <div class="card full">
+    <h4>Python Example</h4>
+    <pre><span class="cm"># Regression Diagnostics Pipeline</span>
+<span class="kw">from</span> sklearn.linear_model <span class="kw">import</span> LinearRegression, LogisticRegression, Ridge, Lasso
+<span class="kw">from</span> sklearn.model_selection <span class="kw">import</span> cross_val_score
+<span class="kw">from</span> sklearn.metrics <span class="kw">import</span> roc_auc_score, classification_report
+<span class="kw">from</span> scipy <span class="kw">import</span> stats
+<span class="kw">import</span> numpy <span class="kw">as</span> np
+
+<span class="cm"># Linear Regression with diagnostics</span>
+model = <span class="fn">LinearRegression</span>().<span class="fn">fit</span>(X_train, y_train)
+residuals = y_test - model.<span class="fn">predict</span>(X_test)
+_, p_normal = stats.<span class="fn">shapiro</span>(residuals[:<span class="num">500</span>])  <span class="cm"># Normality check</span>
+
+<span class="cm"># Multicollinearity (VIF > 10 = problem)</span>
+<span class="kw">from</span> statsmodels.stats.outliers_influence <span class="kw">import</span> variance_inflation_factor
+vif = [<span class="fn">variance_inflation_factor</span>(X_train, i) <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(X_train.shape[<span class="num">1</span>])]
+
+<span class="cm"># Logistic Regression with L1</span>
+log_model = <span class="fn">LogisticRegression</span>(penalty=<span class="str">'l1'</span>, C=<span class="num">1.0</span>, solver=<span class="str">'saga'</span>)
+log_model.<span class="fn">fit</span>(X_train, y_train)
+auc = <span class="fn">roc_auc_score</span>(y_test, log_model.<span class="fn">predict_proba</span>(X_test)[:,<span class="num">1</span>])
+
+<span class="cm"># Regularization comparison</span>
+<span class="kw">for</span> name, m <span class="kw">in</span> [(<span class="str">"Ridge"</span>, <span class="fn">Ridge</span>(<span class="num">1.0</span>)), (<span class="str">"Lasso"</span>, <span class="fn">Lasso</span>(<span class="num">0.1</span>))]:
+    scores = <span class="fn">cross_val_score</span>(m, X_train, y_train, cv=<span class="num">5</span>, scoring=<span class="str">'r2'</span>)
+    m.<span class="fn">fit</span>(X_train, y_train)
+    n_zero = (np.<span class="fn">abs</span>(m.coef_) &lt; <span class="num">1e-6</span>).<span class="fn">sum</span>()
+    <span class="fn">print</span>(<span class="str">f"{name}: R²={scores.mean():.3f}, zero coefs={n_zero}"</span>)</pre>
+  </div>
+
+  <div class="card full">
+    <h4>Key Assumptions & Pitfalls</h4>
+    <ul class="assumption-list">
+      <li><strong>Linear regression</strong>: linearity, independence, homoscedasticity, normal residuals — check all four</li>
+      <li><strong>Logistic regression</strong>: no multicollinearity, linear relationship between features and log-odds</li>
+      <li>Ridge when all features matter; Lasso for feature selection; Elastic Net when unsure</li>
+      <li>Regularization λ must be tuned via cross-validation, not guessed</li>
+      <li>AUC is the primary metric for imbalanced classification; F1 when balancing precision/recall</li>
+      <li>R² can be misleading — always check residual plots for patterns</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== SECTION 10: TREES & ENSEMBLES ==================== -->
+<div class="technique" id="sec-trees">
+  <div class="tech-header">
+    <span class="category">Machine Learning</span>
+    <h3>Tree-Based Models & Ensembles</h3>
+    <p class="subtitle">From single decision trees to XGBoost — the most powerful off-the-shelf predictors.</p>
+  </div>
+
+  <div class="formula-box">
+    <div class="label">Tree Splitting & Boosting</div>
+    <div class="formula">Gini = 1 - Σpᵢ² &nbsp;|&nbsp; Boosting: F_m(x) = F_{m-1}(x) + η·h_m(x)</div>
+    <div class="label">Trees split on Gini/entropy. Random Forest bags them. Boosting learns from residuals sequentially.</div>
+  </div>
+
+  <div class="method-explainer">
+    <div class="method-col technical">
+      <h4>Statistical Perspective</h4>
+      <p><strong>Decision trees</strong> partition features via greedy recursive binary splitting on Gini impurity or information gain. Pruning (cost-complexity) prevents overfitting.</p>
+      <p style="margin-top:10px;"><strong>Random Forest</strong>: bootstrap samples + random feature subsets → many decorrelated trees → average. Reduces variance via bagging. OOB error gives free cross-validation.</p>
+      <p style="margin-top:10px;"><strong>Gradient Boosting</strong>: sequentially fit trees to negative gradient (residuals). Learning rate η controls step size. <strong>XGBoost</strong> adds L1/L2 regularization on leaf weights, second-order gradients, efficient sparse handling. <strong>AdaBoost</strong>: sequential stumps where misclassified samples get upweighted.</p>
+    </div>
+    <div class="method-col intuitive">
+      <h4>Intuitive Perspective</h4>
+      <p>A <strong>decision tree</strong> plays 20 questions: "Income > $50K? → Age > 35? → Predict: will buy." Simple but overfits.</p>
+      <p style="margin-top:10px;"><strong>Random Forest</strong> is "wisdom of crowds" — 500 mediocre trees vote, and their average is excellent because errors cancel out.</p>
+      <p style="margin-top:10px;"><strong>Gradient Boosting</strong> is an iterative coach: first model predicts, second corrects the first's mistakes, third corrects what's still wrong. Each is weak but the team is strong. <strong>XGBoost</strong> = gradient boosting with all the engineering optimizations — the Kaggle king.</p>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h4><span class="company-tag uber">Uber</span> Fraud Detection — XGBoost</h4>
+      <p><strong>Features:</strong> Device fingerprint, GPS jitter, payment method age, trip pattern anomaly score. XGBoost with class weights (fraud ≈ 0.5% of trips).</p>
+      <p style="margin-top:10px;"><strong>Results:</strong> AUC=0.96, precision=0.82 at recall=0.90. Top feature importance: GPS jitter (21%), device mismatch (18%), payment velocity (15%). Beats logistic regression (AUC=0.88) and RF (AUC=0.93).</p>
+    </div>
+    <div class="card">
+      <h4><span class="company-tag intuit">Intuit</span> Product Tier Recommendation — RF</h4>
+      <p><strong>Task:</strong> Predict which TurboTax tier (Free/Deluxe/Premier/SE) each user needs. Random Forest chosen for interpretability.</p>
+      <p style="margin-top:10px;"><strong>Results:</strong> OOB accuracy: 78%. Feature importance: prior year forms (32%), W-2 count (18%), investment income flag (15%). Routes users to the right product during onboarding — reducing downgrades by 12%.</p>
+    </div>
+  </div>
+
+  <div class="card full">
+    <h4>Model Comparison</h4>
+    <table>
+      <tr><th>Model</th><th>Approach</th><th>Strengths</th><th>Weaknesses</th><th>When to Use</th></tr>
+      <tr><td>Decision Tree</td><td>Single recursive split</td><td>Interpretable, fast</td><td>Overfits, high variance</td><td>Explainability needed</td></tr>
+      <tr><td>Random Forest</td><td>Bagging + feature randomness</td><td>Robust, parallel, OOB error</td><td>Less interpretable, memory</td><td>Default first try</td></tr>
+      <tr><td>Gradient Boosting</td><td>Sequential residual fitting</td><td>Most accurate</td><td>Slow, overfits if not tuned</td><td>Accuracy matters most</td></tr>
+      <tr><td>XGBoost</td><td>GB + regularization</td><td>Fast, regularized, sparse</td><td>Many hyperparams</td><td>Production, large data</td></tr>
+      <tr><td>AdaBoost</td><td>Sequential weighted stumps</td><td>Simple, less overfitting</td><td>Sensitive to noise</td><td>Quick baseline</td></tr>
+    </table>
+  </div>
+
+  <div class="interactive-box">
+    <h4>Interactive: Bias-Variance Tradeoff</h4>
+    <div class="slider-row">
+      <label>Max Tree Depth:</label>
+      <input type="range" min="1" max="20" value="3" id="bv-depth" oninput="updateBV()">
+      <span class="val" id="bv-depth-val">3</span>
+    </div>
+    <canvas id="bv-canvas" width="500" height="200"></canvas>
+    <div class="result-box">
+      <span style="color:var(--muted);font-size:13px;">Training error always decreases. Validation error has a U-shape — the sweet spot minimizes generalization error.</span>
+    </div>
+  </div>
+
+  <div class="card full">
+    <h4>Python Example</h4>
+    <pre><span class="cm"># Tree-Based Models Comparison</span>
+<span class="kw">from</span> sklearn.ensemble <span class="kw">import</span> RandomForestClassifier, GradientBoostingClassifier
+<span class="kw">from</span> sklearn.tree <span class="kw">import</span> DecisionTreeClassifier
+<span class="kw">from</span> sklearn.model_selection <span class="kw">import</span> cross_val_score
+<span class="kw">from</span> sklearn.metrics <span class="kw">import</span> roc_auc_score
+
+models = {
+    <span class="str">"Decision Tree"</span>: <span class="fn">DecisionTreeClassifier</span>(max_depth=<span class="num">5</span>),
+    <span class="str">"Random Forest"</span>: <span class="fn">RandomForestClassifier</span>(n_estimators=<span class="num">200</span>, max_depth=<span class="num">10</span>),
+    <span class="str">"Gradient Boosting"</span>: <span class="fn">GradientBoostingClassifier</span>(n_estimators=<span class="num">200</span>, lr=<span class="num">0.1</span>),
+}
+<span class="kw">for</span> name, model <span class="kw">in</span> models.<span class="fn">items</span>():
+    scores = <span class="fn">cross_val_score</span>(model, X_train, y_train, cv=<span class="num">5</span>, scoring=<span class="str">'roc_auc'</span>)
+    <span class="fn">print</span>(<span class="str">f"{name}: AUC={scores.mean():.3f} ± {scores.std():.3f}"</span>)
+
+<span class="cm"># Feature importance</span>
+rf = <span class="fn">RandomForestClassifier</span>(n_estimators=<span class="num">200</span>).<span class="fn">fit</span>(X_train, y_train)
+<span class="kw">for</span> name, imp <span class="kw">in</span> <span class="fn">sorted</span>(<span class="fn">zip</span>(features, rf.feature_importances_), key=<span class="kw">lambda</span> x: -x[<span class="num">1</span>])[:<span class="num">5</span>]:
+    <span class="fn">print</span>(<span class="str">f"  {name}: {imp:.3f}"</span>)</pre>
+  </div>
+
+  <div class="card full">
+    <h4>Key Assumptions & Pitfalls</h4>
+    <ul class="assumption-list">
+      <li>Decision trees are <strong>greedy</strong> (locally optimal) — may miss globally optimal partitions</li>
+      <li>Random Forest reduces <strong>variance</strong> via averaging; does NOT reduce bias of individual trees</li>
+      <li>Gradient Boosting reduces both bias and variance but overfits without regularization</li>
+      <li>XGBoost's scale_pos_weight handles class imbalance — set to (neg count / pos count)</li>
+      <li>Learning rate and n_estimators are inversely related — lower rate + more trees = better generalization</li>
+      <li>Feature importance from trees measures <strong>predictive</strong> contribution, NOT causal effect</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== SECTION 11: CLUSTERING & SPECIAL ==================== -->
+<div class="technique" id="sec-special">
+  <div class="tech-header">
+    <span class="category">ML & Special Topics</span>
+    <h3>Clustering, Dimensionality Reduction & Special Topics</h3>
+    <p class="subtitle">Unsupervised learning, anomaly detection, and common interview gotchas.</p>
+  </div>
+
+  <div class="formula-box">
+    <div class="label">Unsupervised Methods</div>
+    <div class="formula">K-means: min Σ||xᵢ - μⱼ||² &nbsp;|&nbsp; PCA: W = argmax Var(WᵀX), WᵀW = I</div>
+    <div class="label">K-means finds groups. PCA finds directions of maximum variance. Both are unsupervised.</div>
+  </div>
+
+  <div class="method-explainer">
+    <div class="method-col technical">
+      <h4>Statistical Perspective</h4>
+      <p><strong>K-means</strong>: iteratively assign points to nearest centroid, recompute centroids. Sensitive to init (use k-means++) and k (elbow/silhouette). <strong>Hierarchical</strong>: agglomerative merging via linkage criteria (Ward's, complete). <strong>DBSCAN</strong>: density-based, handles arbitrary shapes, no k needed but sensitive to eps/minPts.</p>
+      <p style="margin-top:10px;"><strong>PCA</strong>: eigendecomposition of covariance matrix → orthogonal directions of max variance. First PC captures most, second captures most of remainder, etc. Always standardize first.</p>
+      <p style="margin-top:10px;"><strong>Special topics:</strong> Simpson's paradox (aggregate trend reverses at segment level). DAGs: colliders should NOT be conditioned on (opens backdoor); confounders SHOULD be. KNN: non-parametric, lazy learner. Naive Bayes: assumes feature independence. SVM: kernel trick for non-linear boundaries.</p>
+    </div>
+    <div class="method-col intuitive">
+      <h4>Intuitive Perspective</h4>
+      <p><strong>K-means</strong> = assigning students to study groups: find group centers, assign each to nearest, move centers, repeat. <strong>DBSCAN</strong> = finding crowds in a park: dense areas are clusters, loners are outliers.</p>
+      <p style="margin-top:10px;"><strong>PCA</strong> = rotating your head to find the angle that shows the most variation in a 3D scatter plot, then taking a photo from that angle for a 2D picture with maximum information.</p>
+      <p style="margin-top:10px;"><strong>Simpson's Paradox:</strong> Berkeley admitted more men overall, but within each department women had equal or higher rates — women applied more to competitive departments. Always segment before concluding.</p>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h4><span class="company-tag uber">Uber</span> Rider Segmentation — K-Means + PCA</h4>
+      <p><strong>Approach:</strong> 5M riders. 15 features → PCA to 5 components (82% variance). K-means k=6 via silhouette score.</p>
+      <p style="margin-top:10px;"><strong>Segments:</strong> "Power Commuters" (high freq, short distance), "Weekend Warriors" (low freq, long distance), "Price Sensitives" (cancel at surge &gt; 1.5×), etc. Each gets different marketing.</p>
+    </div>
+    <div class="card">
+      <h4><span class="company-tag intuit">Intuit</span> Anomaly Detection + Simpson's Paradox</h4>
+      <p><strong>Anomaly Detection:</strong> Rolling z-scores on filing speed, deduction amounts, refund-to-income ratios. |z| &gt; 3 flags for review. DBSCAN clusters suspicious returns sharing patterns.</p>
+      <p style="margin-top:10px;"><strong>Simpson's Paradox:</strong> Overall CSAT dropped QoQ, but within each tier it went UP — more users shifted to Free tier (lower baseline CSAT). Segmentation revealed the true story.</p>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <h4>DAGs & Colliders</h4>
+      <p><strong>Confounder</strong> Z → X and Z → Y: <strong>CONTROL</strong> for Z (include in regression).</p>
+      <p style="margin-top:10px;"><strong>Mediator</strong> X → M → Y: Do NOT control for M if you want total effect of X.</p>
+      <p style="margin-top:10px;"><strong>Collider</strong> X → C ← Y: Do NOT condition on C — creates spurious association. Example: "Disease → Hospitalization ← Injury." In hospital data, disease and injury appear correlated — but only because both cause hospitalization.</p>
+    </div>
+    <div class="card">
+      <h4>Special Topics</h4>
+      <p><strong>Painted Door Experiments:</strong> Show a button for a feature that doesn't exist. Measure clicks. If high → demand exists. Intuit: "AI Tax Advisor" button shown to 5%, 23% clicked → validated demand before 3-month build.</p>
+      <p style="margin-top:10px;"><strong>Learning Effects:</strong> Novelty (users try new thing, engagement inflates then fades) vs. change aversion (engagement dips then recovers). Test on new users only to separate effects.</p>
+      <p style="margin-top:10px;"><strong>Imbalanced Datasets:</strong> SMOTE (oversample minority in feature space), Tomek links (undersample majority near boundary), cost-sensitive learning. Never evaluate on resampled data.</p>
+    </div>
+  </div>
+
+  <div class="interactive-box">
+    <h4>Interactive: K-Means Clustering</h4>
+    <canvas id="km-canvas" width="500" height="300"></canvas>
+    <div class="btn-row" style="margin-top:12px;">
+      <button class="sim-btn" onclick="kmStep()">Step</button>
+      <button class="sim-btn" onclick="kmRun()">Run to Convergence</button>
+      <button class="sim-btn" onclick="kmReset()" style="background:var(--surface);border:1px solid var(--border);">Reset</button>
+    </div>
+    <div class="result-box" style="margin-top:12px;">
+      <span style="color:var(--muted);font-size:13px;">Iteration: <span id="km-iter">0</span> &nbsp;|&nbsp; Click "Step" to run one K-means iteration (assign → update centroids)</span>
+    </div>
+  </div>
+
+  <div class="card full">
+    <h4>Python Example</h4>
+    <pre><span class="cm"># Clustering, PCA & Special Topics</span>
+<span class="kw">from</span> sklearn.cluster <span class="kw">import</span> KMeans, DBSCAN
+<span class="kw">from</span> sklearn.decomposition <span class="kw">import</span> PCA
+<span class="kw">from</span> sklearn.preprocessing <span class="kw">import</span> StandardScaler
+<span class="kw">from</span> sklearn.metrics <span class="kw">import</span> silhouette_score
+
+<span class="cm"># PCA</span>
+X_scaled = <span class="fn">StandardScaler</span>().<span class="fn">fit_transform</span>(X)
+pca = <span class="fn">PCA</span>(n_components=<span class="num">0.95</span>)  <span class="cm"># Keep 95% of variance</span>
+X_pca = pca.<span class="fn">fit_transform</span>(X_scaled)
+<span class="fn">print</span>(<span class="str">f"Reduced {X.shape[1]} → {X_pca.shape[1]} components"</span>)
+
+<span class="cm"># K-Means with elbow</span>
+<span class="kw">for</span> k <span class="kw">in</span> <span class="fn">range</span>(<span class="num">2</span>, <span class="num">11</span>):
+    km = <span class="fn">KMeans</span>(n_clusters=k, n_init=<span class="num">10</span>).<span class="fn">fit</span>(X_pca)
+    <span class="fn">print</span>(<span class="str">f"k={k}: silhouette={silhouette_score(X_pca, km.labels_):.3f}"</span>)
+
+<span class="cm"># DBSCAN</span>
+db = <span class="fn">DBSCAN</span>(eps=<span class="num">0.5</span>, min_samples=<span class="num">5</span>).<span class="fn">fit_predict</span>(X_pca)
+<span class="fn">print</span>(<span class="str">f"Clusters: {len(set(db))-1}, Outliers: {(db==-1).sum()}"</span>)
+
+<span class="cm"># Imbalanced dataset handling</span>
+<span class="kw">from</span> imblearn.over_sampling <span class="kw">import</span> SMOTE
+X_res, y_res = <span class="fn">SMOTE</span>().<span class="fn">fit_resample</span>(X_train, y_train)
+<span class="cm"># Never evaluate on resampled data!</span></pre>
+  </div>
+
+  <div class="card full">
+    <h4>Key Assumptions & Pitfalls</h4>
+    <ul class="assumption-list">
+      <li>K-means assumes <strong>spherical clusters</strong> of similar size — use DBSCAN for arbitrary shapes</li>
+      <li>Always <strong>scale features</strong> before PCA or clustering (StandardScaler)</li>
+      <li>DBSCAN eps: use k-distance plot (sort k-NN distances, look for elbow)</li>
+      <li>Simpson's paradox: ALWAYS segment by key confounders before drawing aggregate conclusions</li>
+      <li>DAGs: conditioning on a <strong>collider CREATES bias</strong>; conditioning on a confounder REMOVES bias</li>
+      <li>Never evaluate models on <strong>resampled (SMOTE) data</strong> — only resample the training set</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- end container -->
+
+<script>
+// Navigation
+function show(id) {
+  document.querySelectorAll('.technique').forEach(t => t.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('active');
+  document.querySelectorAll('.nav-pills button').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+// Normal CDF approximation
+function normalCDF(x) {
+  const a1=0.254829592, a2=-0.284496736, a3=1.421413741, a4=-1.453152027, a5=1.061405429, p=0.3275911;
+  const sign = x < 0 ? -1 : 1;
+  x = Math.abs(x) / Math.sqrt(2);
+  const t = 1 / (1 + p * x);
+  const y = 1 - (((((a5*t + a4)*t) + a3)*t + a2)*t + a1) * t * Math.exp(-x*x);
+  return 0.5 * (1 + sign * y);
+}
+function normalPPF(p) {
+  // Rational approximation for inverse normal
+  if (p <= 0) return -Infinity;
+  if (p >= 1) return Infinity;
+  if (p < 0.5) return -normalPPF(1 - p);
+  const t = Math.sqrt(-2 * Math.log(1 - p));
+  const c0=2.515517, c1=0.802853, c2=0.010328;
+  const d1=1.432788, d2=0.189269, d3=0.001308;
+  return t - (c0 + c1*t + c2*t*t) / (1 + d1*t + d2*t*t + d3*t*t*t);
+}
+
+// Section 1: Hypothesis Testing
+function updateHypothesis() {
+  const d = parseInt(document.getElementById('hyp-d').value) / 100;
+  const n = parseInt(document.getElementById('hyp-n').value);
+  document.getElementById('hyp-d-val').textContent = d.toFixed(2);
+  document.getElementById('hyp-n-val').textContent = n;
+  const t = d * Math.sqrt(n / 2);
+  const p = 2 * (1 - normalCDF(Math.abs(t)));
+  document.getElementById('hyp-t').textContent = t.toFixed(2);
+  document.getElementById('hyp-p').textContent = p < 0.0001 ? '< 0.0001' : p.toFixed(4);
+  const sig = p < 0.05;
+  document.getElementById('hyp-sig').textContent = sig ? 'Significant at α=0.05 ✓' : 'Not significant at α=0.05';
+  document.getElementById('hyp-sig').style.color = sig ? 'var(--accent2)' : 'var(--warn)';
+}
+
+// Section 2: Confidence Intervals
+let ciLevel = 0.95;
+function setCILevel(level, btn) {
+  ciLevel = level;
+  document.querySelectorAll('#ci-btn-90,#ci-btn-95,#ci-btn-99').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  updateCI();
+}
+function updateCI() {
+  const p = parseInt(document.getElementById('ci-p').value) / 100;
+  const n = parseInt(document.getElementById('ci-n').value);
+  document.getElementById('ci-p-val').textContent = p.toFixed(2);
+  document.getElementById('ci-n-val').textContent = n;
+  const z = normalPPF(1 - (1 - ciLevel) / 2);
+  const se = Math.sqrt(p * (1 - p) / n);
+  const lo = Math.max(0, p - z * se);
+  const hi = Math.min(1, p + z * se);
+  document.getElementById('ci-se').textContent = se.toFixed(4);
+  document.getElementById('ci-range').textContent = '[' + lo.toFixed(3) + ', ' + hi.toFixed(3) + ']';
+  document.getElementById('ci-width').textContent = (hi - lo).toFixed(3);
+  // Draw canvas
+  const canvas = document.getElementById('ci-canvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0, 0, W, H);
+  const pad = 40;
+  // axis
+  ctx.strokeStyle = '#2e3348'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(pad, H/2); ctx.lineTo(W-pad, H/2); ctx.stroke();
+  // ticks at 0 and 1
+  ctx.fillStyle = '#8b8fa3'; ctx.font = '11px Inter, sans-serif';
+  ctx.fillText('0', pad - 5, H/2 + 20);
+  ctx.fillText('1', W - pad - 5, H/2 + 20);
+  function xPos(v) { return pad + v * (W - 2*pad); }
+  // CI bar
+  ctx.strokeStyle = '#6c63ff'; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(xPos(lo), H/2); ctx.lineTo(xPos(hi), H/2); ctx.stroke();
+  // Caps
+  ctx.beginPath(); ctx.moveTo(xPos(lo), H/2-12); ctx.lineTo(xPos(lo), H/2+12); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(xPos(hi), H/2-12); ctx.lineTo(xPos(hi), H/2+12); ctx.stroke();
+  // Point estimate
+  ctx.fillStyle = '#00d4aa';
+  ctx.beginPath(); ctx.arc(xPos(p), H/2, 6, 0, Math.PI*2); ctx.fill();
+  ctx.fillStyle = '#e2e4e9'; ctx.font = '12px Inter, sans-serif';
+  ctx.fillText('p̂ = ' + p.toFixed(2), xPos(p) - 20, H/2 - 20);
+}
+
+// Section 3: Power
+function updatePower() {
+  const alpha = parseInt(document.getElementById('pow-alpha').value) / 100;
+  const power = parseInt(document.getElementById('pow-power').value) / 100;
+  const d = parseInt(document.getElementById('pow-d').value) / 100;
+  document.getElementById('pow-alpha-val').textContent = alpha.toFixed(2);
+  document.getElementById('pow-power-val').textContent = power.toFixed(2);
+  document.getElementById('pow-d-val').textContent = d.toFixed(2);
+  const za = normalPPF(1 - alpha/2);
+  const zb = normalPPF(power);
+  const n = Math.ceil(2 * Math.pow((za + zb) / d, 2));
+  document.getElementById('pow-n').textContent = n.toLocaleString();
+  document.getElementById('pow-total').textContent = (n * 2).toLocaleString();
+  const days = Math.ceil(n * 2 / 10000);
+  document.getElementById('pow-days').textContent = '~' + days + ' day' + (days > 1 ? 's' : '');
+}
+
+// Section 4: Multiple Testing
+function updateMultiple() {
+  const m = parseInt(document.getElementById('mult-m').value);
+  document.getElementById('mult-m-val').textContent = m;
+  const fpr = 1 - Math.pow(1 - 0.05, m);
+  document.getElementById('mult-fpr').textContent = (fpr * 100).toFixed(1) + '%';
+  document.getElementById('mult-bonf').textContent = (0.05 / m).toFixed(4);
+  // Draw chart
+  const canvas = document.getElementById('mult-canvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0, 0, W, H);
+  const pad = 40;
+  // Axes
+  ctx.strokeStyle = '#2e3348'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(pad, pad); ctx.lineTo(pad, H-pad); ctx.lineTo(W-pad, H-pad); ctx.stroke();
+  ctx.fillStyle = '#8b8fa3'; ctx.font = '10px Inter,sans-serif';
+  ctx.fillText('0', pad-15, H-pad+4);
+  ctx.fillText('50', W/2, H-pad+15);
+  ctx.fillText('# tests', W-pad-30, H-pad+15);
+  ctx.fillText('50%', pad-35, H/2);
+  // Nominal line at 5%
+  const y5 = H - pad - (0.05) * (H - 2*pad);
+  ctx.strokeStyle = '#00d4aa'; ctx.setLineDash([4,4]);
+  ctx.beginPath(); ctx.moveTo(pad, y5); ctx.lineTo(W-pad, y5); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = '#00d4aa'; ctx.fillText('5% nominal', W-pad-55, y5-5);
+  // FPR curve
+  ctx.strokeStyle = '#ff7b72'; ctx.lineWidth = 2;
+  ctx.beginPath();
+  for (let i = 1; i <= 50; i++) {
+    const x = pad + (i/50) * (W - 2*pad);
+    const y = H - pad - (1 - Math.pow(0.95, i)) * (H - 2*pad);
+    if (i === 1) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+  }
+  ctx.stroke();
+  // Current point
+  const cx = pad + (m/50) * (W - 2*pad);
+  const cy = H - pad - fpr * (H - 2*pad);
+  ctx.fillStyle = '#ff7b72';
+  ctx.beginPath(); ctx.arc(cx, cy, 5, 0, Math.PI*2); ctx.fill();
+  ctx.fillStyle = '#e2e4e9'; ctx.font = '11px Inter,sans-serif';
+  ctx.fillText((fpr*100).toFixed(0)+'%', cx+8, cy-5);
+}
+
+// Section 5: Sequential Testing
+function updateSequential() {
+  const peeks = parseInt(document.getElementById('seq-peeks').value);
+  document.getElementById('seq-peeks-val').textContent = peeks;
+  document.getElementById('seq-n-peeks').textContent = peeks;
+  // Approximate FPR from peeking (use analytic approximation)
+  // Based on Brownian motion boundary crossing: P ≈ alpha * (A + B*ln(peeks))
+  // Empirical fit to simulation data
+  const fpr = Math.min(0.5, 0.05 * (1 + 0.55 * Math.log(peeks)));
+  document.getElementById('seq-fpr').textContent = (fpr * 100).toFixed(1) + '%';
+  document.getElementById('seq-inflate').textContent = (fpr / 0.05).toFixed(1) + '×';
+  // Draw
+  const canvas = document.getElementById('seq-canvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0, 0, W, H);
+  const pad = 45;
+  ctx.strokeStyle = '#2e3348'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(pad, pad); ctx.lineTo(pad, H-pad); ctx.lineTo(W-pad, H-pad); ctx.stroke();
+  ctx.fillStyle = '#8b8fa3'; ctx.font = '10px Inter,sans-serif';
+  ctx.fillText('# peeks', W/2-20, H-pad+15);
+  ctx.fillText('FPR', 5, pad+10);
+  // Nominal 5% line
+  const y5 = H - pad - (0.05/0.5) * (H - 2*pad);
+  ctx.strokeStyle = '#00d4aa'; ctx.setLineDash([4,4]);
+  ctx.beginPath(); ctx.moveTo(pad, y5); ctx.lineTo(W-pad, y5); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = '#00d4aa'; ctx.fillText('5% nominal', W-pad-55, y5-5);
+  // FPR curve
+  ctx.strokeStyle = '#ff7b72'; ctx.lineWidth = 2;
+  ctx.beginPath();
+  for (let i = 1; i <= 50; i++) {
+    const x = pad + ((i-1)/49) * (W - 2*pad);
+    const f = Math.min(0.5, 0.05 * (1 + 0.55 * Math.log(i)));
+    const y = H - pad - (f/0.5) * (H - 2*pad);
+    if (i === 1) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+  }
+  ctx.stroke();
+  // Current point
+  const cx = pad + ((peeks-1)/49) * (W - 2*pad);
+  const cy = H - pad - (fpr/0.5) * (H - 2*pad);
+  ctx.fillStyle = '#ff7b72';
+  ctx.beginPath(); ctx.arc(cx, cy, 5, 0, Math.PI*2); ctx.fill();
+  ctx.fillStyle = '#e2e4e9'; ctx.font = '11px Inter,sans-serif';
+  ctx.fillText((fpr*100).toFixed(0)+'%', cx+8, cy-5);
+}
+
+// Section 6: CUPED
+function updateCuped() {
+  const rho = parseInt(document.getElementById('cuped-corr').value) / 100;
+  const origVar = parseInt(document.getElementById('cuped-var').value);
+  document.getElementById('cuped-corr-val').textContent = rho.toFixed(2);
+  document.getElementById('cuped-var-val').textContent = origVar;
+  const vr = rho * rho;
+  const adjVar = origVar * (1 - vr);
+  const mult = 1 / (1 - vr);
+  document.getElementById('cuped-vr').textContent = (vr * 100).toFixed(1) + '%';
+  document.getElementById('cuped-adj').textContent = adjVar.toFixed(1);
+  document.getElementById('cuped-mult').textContent = mult.toFixed(2) + '×';
+}
+
+// Section 7: Thompson Sampling
+const tsTrue = [0.3, 0.5, 0.7];
+const tsColors = ['#ff7b72','#6c63ff','#00d4aa'];
+let tsAlpha = [1,1,1], tsBeta = [1,1,1];
+function tsReset() {
+  tsAlpha = [1,1,1]; tsBeta = [1,1,1];
+  tsDrawAndUpdate();
+}
+function tsStep(n) {
+  for (let i = 0; i < n; i++) {
+    // Sample from each posterior
+    let samples = tsAlpha.map((a,j) => betaSample(a, tsBeta[j]));
+    let arm = samples.indexOf(Math.max(...samples));
+    let reward = Math.random() < tsTrue[arm] ? 1 : 0;
+    if (reward) tsAlpha[arm]++; else tsBeta[arm]++;
+  }
+  tsDrawAndUpdate();
+}
+function betaSample(a, b) {
+  // Simple beta sampling via gamma
+  let x = gammaSample(a), y = gammaSample(b);
+  return x / (x + y);
+}
+function gammaSample(a) {
+  // Marsaglia and Tsang's method for a >= 1
+  if (a < 1) return gammaSample(a + 1) * Math.pow(Math.random(), 1/a);
+  let d = a - 1/3, c = 1/Math.sqrt(9*d);
+  while (true) {
+    let x, v;
+    do { x = randn(); v = 1 + c*x; } while (v <= 0);
+    v = v*v*v;
+    let u = Math.random();
+    if (u < 1 - 0.0331*(x*x)*(x*x)) return d*v;
+    if (Math.log(u) < 0.5*x*x + d*(1 - v + Math.log(v))) return d*v;
+  }
+}
+function randn() { let u=0,v=0; while(u===0)u=Math.random(); while(v===0)v=Math.random(); return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v); }
+function betaPDF(x, a, b) {
+  if (x <= 0 || x >= 1) return 0;
+  let logB = lgamma(a) + lgamma(b) - lgamma(a+b);
+  return Math.exp((a-1)*Math.log(x) + (b-1)*Math.log(1-x) - logB);
+}
+function lgamma(x) {
+  let c=[76.18009172947146,-86.50532032941677,24.01409824083091,-1.231739572450155,0.1208650973866179e-2,-0.5395239384953e-5];
+  let y=x,tmp=x+5.5; tmp-=(x+0.5)*Math.log(tmp); let ser=1.000000000190015;
+  for(let j=0;j<6;j++)ser+=c[j]/++y; return -tmp+Math.log(2.5066282746310005*ser/x);
+}
+function tsDrawAndUpdate() {
+  const canvas = document.getElementById('ts-canvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0, 0, W, H);
+  const pad = 30;
+  // Draw beta PDFs
+  for (let arm = 0; arm < 3; arm++) {
+    ctx.strokeStyle = tsColors[arm]; ctx.lineWidth = 2;
+    ctx.beginPath();
+    let maxY = 0;
+    let pts = [];
+    for (let i = 0; i <= 100; i++) {
+      let x = i / 100;
+      let y = betaPDF(x, tsAlpha[arm], tsBeta[arm]);
+      pts.push({x, y});
+      if (y > maxY) maxY = y;
+    }
+    let scale = (H - 2*pad) / Math.max(maxY, 1);
+    pts.forEach((p, i) => {
+      let px = pad + p.x * (W - 2*pad);
+      let py = H - pad - p.y * scale;
+      if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+    });
+    ctx.stroke();
+  }
+  // Axis
+  ctx.strokeStyle = '#2e3348'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(pad, H-pad); ctx.lineTo(W-pad, H-pad); ctx.stroke();
+  ctx.fillStyle = '#8b8fa3'; ctx.font = '10px Inter,sans-serif';
+  ctx.fillText('0', pad, H-pad+12); ctx.fillText('1', W-pad-5, H-pad+12);
+  ctx.fillText('Probability', W/2-25, H-pad+12);
+  // Legend
+  ['A','B','C'].forEach((l,i) => {
+    ctx.fillStyle = tsColors[i]; ctx.fillText('Arm '+l, W-pad-50, pad+i*15);
+  });
+  // Update table
+  ['a','b','c'].forEach((l,i) => {
+    let pulls = tsAlpha[i] + tsBeta[i] - 2;
+    let succ = tsAlpha[i] - 1;
+    document.getElementById('ts-'+l+'-pulls').textContent = pulls;
+    document.getElementById('ts-'+l+'-succ').textContent = succ;
+    document.getElementById('ts-'+l+'-rate').textContent = pulls > 0 ? (succ/pulls).toFixed(3) : '-';
+  });
+}
+
+// Section 8: Distribution Explorer
+let currentDist = 'normal';
+function setDist(d, btn) {
+  currentDist = d;
+  document.querySelectorAll('#dist-btns button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const s1 = document.getElementById('dist-s1');
+  const s2 = document.getElementById('dist-s2');
+  const s2row = document.getElementById('dist-s2-row');
+  s2row.style.display = '';
+  if (d === 'normal') {
+    document.getElementById('dist-s1-label').textContent = 'μ (mean):';
+    s1.min=-50; s1.max=50; s1.value=0;
+    document.getElementById('dist-s2-label').textContent = 'σ (std dev):';
+    s2.min=5; s2.max=30; s2.value=10;
+  } else if (d === 'binomial') {
+    document.getElementById('dist-s1-label').textContent = 'n (trials):';
+    s1.min=1; s1.max=50; s1.value=20;
+    document.getElementById('dist-s2-label').textContent = 'p (success prob):';
+    s2.min=1; s2.max=99; s2.value=50;
+  } else if (d === 'poisson') {
+    document.getElementById('dist-s1-label').textContent = 'λ (rate):';
+    s1.min=1; s1.max=30; s1.value=5;
+    s2row.style.display = 'none';
+  } else if (d === 'exponential') {
+    document.getElementById('dist-s1-label').textContent = 'λ (rate):';
+    s1.min=1; s1.max=50; s1.value=10;
+    s2row.style.display = 'none';
+  }
+  updateDist();
+}
+function poissonPMF(k, lam) {
+  return Math.exp(k * Math.log(lam) - lam - lgamma(k + 1));
+}
+function binomPMF(k, n, p) {
+  return Math.exp(lgamma(n+1) - lgamma(k+1) - lgamma(n-k+1) + k*Math.log(p) + (n-k)*Math.log(1-p));
+}
+function updateDist() {
+  const s1v = parseInt(document.getElementById('dist-s1').value);
+  const s2v = parseInt(document.getElementById('dist-s2').value);
+  const canvas = document.getElementById('dist-canvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0, 0, W, H);
+  const pad = 40;
+  let vals = [], labels = [], mean, variance;
+  if (currentDist === 'normal') {
+    const mu = s1v / 10, sigma = s2v / 10;
+    document.getElementById('dist-s1-val').textContent = mu.toFixed(1);
+    document.getElementById('dist-s2-val').textContent = sigma.toFixed(1);
+    mean = mu; variance = sigma*sigma;
+    for (let i = 0; i <= 100; i++) {
+      let x = mu - 4*sigma + (8*sigma) * i/100;
+      let y = Math.exp(-0.5*((x-mu)/sigma)**2) / (sigma * Math.sqrt(2*Math.PI));
+      vals.push({x, y});
+    }
+    // Draw as line
+    let maxY = Math.max(...vals.map(v=>v.y));
+    let minX = vals[0].x, maxX = vals[vals.length-1].x;
+    ctx.strokeStyle = '#6c63ff'; ctx.lineWidth = 2;
+    ctx.beginPath();
+    vals.forEach((v,i) => {
+      let px = pad + ((v.x-minX)/(maxX-minX)) * (W-2*pad);
+      let py = H - pad - (v.y/maxY) * (H-2*pad);
+      if (i===0) ctx.moveTo(px,py); else ctx.lineTo(px,py);
+    });
+    ctx.stroke();
+    // Fill
+    ctx.globalAlpha = 0.15; ctx.fillStyle = '#6c63ff';
+    ctx.lineTo(pad+(W-2*pad), H-pad); ctx.lineTo(pad, H-pad); ctx.fill();
+    ctx.globalAlpha = 1;
+  } else if (currentDist === 'binomial') {
+    const n = s1v, p = s2v / 100;
+    document.getElementById('dist-s1-val').textContent = n;
+    document.getElementById('dist-s2-val').textContent = p.toFixed(2);
+    mean = n*p; variance = n*p*(1-p);
+    for (let k = 0; k <= n; k++) {
+      vals.push({k, y: binomPMF(k, n, p)});
+    }
+    let maxY = Math.max(...vals.map(v=>v.y));
+    let barW = Math.min(20, (W-2*pad)/(n+1) * 0.8);
+    ctx.fillStyle = '#6c63ff';
+    vals.forEach(v => {
+      let px = pad + (v.k/(n)) * (W-2*pad);
+      let bh = (v.y/maxY) * (H-2*pad);
+      ctx.fillRect(px - barW/2, H-pad-bh, barW, bh);
+    });
+  } else if (currentDist === 'poisson') {
+    const lam = s1v;
+    document.getElementById('dist-s1-val').textContent = lam;
+    mean = lam; variance = lam;
+    let maxK = Math.max(20, lam * 3);
+    for (let k = 0; k <= maxK; k++) vals.push({k, y: poissonPMF(k, lam)});
+    let maxY = Math.max(...vals.map(v=>v.y));
+    let barW = Math.min(15, (W-2*pad)/(maxK+1)*0.8);
+    ctx.fillStyle = '#00d4aa';
+    vals.forEach(v => {
+      let px = pad + (v.k/maxK)*(W-2*pad);
+      let bh = (v.y/maxY)*(H-2*pad);
+      ctx.fillRect(px-barW/2, H-pad-bh, barW, bh);
+    });
+  } else if (currentDist === 'exponential') {
+    const lam = s1v / 10;
+    document.getElementById('dist-s1-val').textContent = lam.toFixed(1);
+    mean = 1/lam; variance = 1/(lam*lam);
+    for (let i = 0; i <= 100; i++) {
+      let x = 5 * i / 100;
+      let y = lam * Math.exp(-lam * x);
+      vals.push({x, y});
+    }
+    let maxY = vals[0].y;
+    ctx.strokeStyle = '#ffa726'; ctx.lineWidth = 2;
+    ctx.beginPath();
+    vals.forEach((v,i) => {
+      let px = pad + (v.x/5)*(W-2*pad);
+      let py = H - pad - (v.y/maxY)*(H-2*pad);
+      if (i===0) ctx.moveTo(px,py); else ctx.lineTo(px,py);
+    });
+    ctx.stroke();
+    ctx.globalAlpha=0.15; ctx.fillStyle='#ffa726';
+    ctx.lineTo(pad+(W-2*pad),H-pad); ctx.lineTo(pad,H-pad); ctx.fill();
+    ctx.globalAlpha=1;
+  }
+  // Axis
+  ctx.strokeStyle='#2e3348'; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(pad,H-pad); ctx.lineTo(W-pad,H-pad); ctx.stroke();
+  document.getElementById('dist-mean').textContent = mean.toFixed(2);
+  document.getElementById('dist-var').textContent = variance.toFixed(2);
+}
+
+// Section 9: Regularization
+function updateReg() {
+  const lam = parseInt(document.getElementById('reg-lambda').value) / 10;
+  document.getElementById('reg-lambda-val').textContent = lam.toFixed(1);
+  const canvas = document.getElementById('reg-canvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0, 0, W, H);
+  const pad = 40, midX = W/2;
+  // True coefficients
+  const trueCoefs = [3.0, -2.5, 1.8, -0.3, 0.1];
+  const colors = ['#ff7b72','#6c63ff','#00d4aa','#ffa726','#d2a8ff'];
+  // Labels
+  ctx.fillStyle = '#8b8fa3'; ctx.font = '11px Inter,sans-serif';
+  ctx.fillText('Ridge (L2)', pad + 40, pad - 5);
+  ctx.fillText('Lasso (L1)', midX + 40, pad - 5);
+  // Zero line
+  const zeroY = pad + (H-2*pad)/2;
+  ctx.strokeStyle = '#2e3348'; ctx.lineWidth = 1; ctx.setLineDash([3,3]);
+  ctx.beginPath(); ctx.moveTo(pad, zeroY); ctx.lineTo(midX-10, zeroY); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(midX+10, zeroY); ctx.lineTo(W-pad, zeroY); ctx.stroke();
+  ctx.setLineDash([]);
+  // Draw coefficients
+  const maxCoef = 4;
+  trueCoefs.forEach((c, i) => {
+    // Ridge: c / (1 + lambda)
+    const ridgeC = c / (1 + lam);
+    // Lasso: sign(c) * max(|c| - lambda, 0)
+    const lassoC = Math.sign(c) * Math.max(Math.abs(c) - lam, 0);
+    const barW = 15;
+    const x1 = pad + 20 + i * 35;
+    const x2 = midX + 20 + i * 35;
+    // Ridge bar
+    ctx.fillStyle = colors[i];
+    const rh = (ridgeC / maxCoef) * (H-2*pad)/2;
+    ctx.fillRect(x1, zeroY - rh, barW, rh);
+    // Lasso bar
+    const lh = (lassoC / maxCoef) * (H-2*pad)/2;
+    ctx.fillRect(x2, zeroY - lh, barW, lh);
+  });
+  // Separator
+  ctx.strokeStyle = '#2e3348'; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(midX, pad); ctx.lineTo(midX, H-pad); ctx.stroke();
+  // Coef labels
+  ctx.fillStyle = '#8b8fa3'; ctx.font = '9px Inter,sans-serif';
+  trueCoefs.forEach((c,i) => {
+    ctx.fillText('β'+(i+1), pad+20+i*35+2, H-pad+12);
+    ctx.fillText('β'+(i+1), midX+20+i*35+2, H-pad+12);
+  });
+}
+
+// Section 10: Bias-Variance
+function updateBV() {
+  const depth = parseInt(document.getElementById('bv-depth').value);
+  document.getElementById('bv-depth-val').textContent = depth;
+  const canvas = document.getElementById('bv-canvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0, 0, W, H);
+  const pad = 45;
+  // Axes
+  ctx.strokeStyle = '#2e3348'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(pad, pad); ctx.lineTo(pad, H-pad); ctx.lineTo(W-pad, H-pad); ctx.stroke();
+  ctx.fillStyle = '#8b8fa3'; ctx.font = '10px Inter,sans-serif';
+  ctx.fillText('Depth', W/2-15, H-pad+15);
+  ctx.fillText('Error', 5, H/2);
+  // Training error: monotonically decreasing
+  ctx.strokeStyle = '#6c63ff'; ctx.lineWidth = 2;
+  ctx.beginPath();
+  for (let d = 1; d <= 20; d++) {
+    let err = 0.5 * Math.exp(-0.3 * d) + 0.02;
+    let x = pad + ((d-1)/19) * (W - 2*pad);
+    let y = H - pad - err * (H - 2*pad);
+    if (d === 1) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+  }
+  ctx.stroke();
+  // Validation error: U-shaped
+  ctx.strokeStyle = '#00d4aa'; ctx.lineWidth = 2;
+  ctx.beginPath();
+  for (let d = 1; d <= 20; d++) {
+    let err = 0.5 * Math.exp(-0.25 * d) + 0.05 + 0.003 * Math.pow(d - 5, 2) * (d > 5 ? 1 : 0);
+    let x = pad + ((d-1)/19) * (W - 2*pad);
+    let y = H - pad - Math.min(err, 1) * (H - 2*pad);
+    if (d === 1) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+  }
+  ctx.stroke();
+  // Current depth marker
+  let cx = pad + ((depth-1)/19) * (W - 2*pad);
+  ctx.strokeStyle = '#ffa726'; ctx.setLineDash([3,3]);
+  ctx.beginPath(); ctx.moveTo(cx, pad); ctx.lineTo(cx, H-pad); ctx.stroke();
+  ctx.setLineDash([]);
+  // Legend
+  ctx.fillStyle = '#6c63ff'; ctx.fillText('Training error', W-pad-70, pad+10);
+  ctx.fillStyle = '#00d4aa'; ctx.fillText('Validation error', W-pad-80, pad+25);
+  ctx.fillStyle = '#ffa726'; ctx.fillText('depth='+depth, cx-15, pad-5);
+}
+
+// Section 11: K-Means
+let kmPoints = [], kmCentroids = [], kmLabels = [], kmIter = 0;
+function kmGenPoints() {
+  kmPoints = [];
+  const centers = [[120,80],[250,200],[380,100]];
+  const colors = ['#ff7b72','#6c63ff','#00d4aa'];
+  centers.forEach((c, ci) => {
+    for (let i = 0; i < 35; i++) {
+      kmPoints.push({x: c[0] + (Math.random()-0.5)*100, y: c[1] + (Math.random()-0.5)*80, trueC: ci});
+    }
+  });
+}
+function kmReset() {
+  kmGenPoints();
+  kmCentroids = [
+    {x: 100+Math.random()*300, y: 50+Math.random()*200},
+    {x: 100+Math.random()*300, y: 50+Math.random()*200},
+    {x: 100+Math.random()*300, y: 50+Math.random()*200}
+  ];
+  kmLabels = kmPoints.map(() => -1);
+  kmIter = 0;
+  document.getElementById('km-iter').textContent = '0';
+  kmDraw();
+}
+function kmStep() {
+  // Assign
+  kmLabels = kmPoints.map(p => {
+    let minD = Infinity, best = 0;
+    kmCentroids.forEach((c, i) => {
+      let d = Math.sqrt((p.x-c.x)**2 + (p.y-c.y)**2);
+      if (d < minD) { minD = d; best = i; }
+    });
+    return best;
+  });
+  // Update centroids
+  for (let c = 0; c < 3; c++) {
+    let pts = kmPoints.filter((_, i) => kmLabels[i] === c);
+    if (pts.length > 0) {
+      kmCentroids[c] = {x: pts.reduce((s,p)=>s+p.x,0)/pts.length, y: pts.reduce((s,p)=>s+p.y,0)/pts.length};
+    }
+  }
+  kmIter++;
+  document.getElementById('km-iter').textContent = kmIter;
+  kmDraw();
+}
+function kmRun() { for (let i = 0; i < 20; i++) kmStep(); }
+function kmDraw() {
+  const canvas = document.getElementById('km-canvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0, 0, W, H);
+  const cols = ['#ff7b72','#6c63ff','#00d4aa'];
+  // Points
+  kmPoints.forEach((p, i) => {
+    ctx.fillStyle = kmLabels[i] >= 0 ? cols[kmLabels[i]] : '#555';
+    ctx.globalAlpha = 0.7;
+    ctx.beginPath(); ctx.arc(p.x, p.y, 4, 0, Math.PI*2); ctx.fill();
+  });
+  ctx.globalAlpha = 1;
+  // Centroids
+  kmCentroids.forEach((c, i) => {
+    ctx.fillStyle = cols[i]; ctx.strokeStyle = '#fff'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.arc(c.x, c.y, 8, 0, Math.PI*2); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = '#fff'; ctx.font = 'bold 10px Inter,sans-serif';
+    ctx.fillText('C'+(i+1), c.x-7, c.y+4);
+  });
+}
+
+// Init
+updateHypothesis();
+updateCI();
+updatePower();
+updateMultiple();
+updateSequential();
+updateCuped();
+tsDrawAndUpdate();
+updateDist();
+updateReg();
+updateBV();
+kmReset();
+</script>
+</body>
+</html>
