@@ -1,26 +1,23 @@
 # main links links
 main:
 
-  - title: "About"
-    url: /about
-
-  - title: "Work Portfolio"
+  - title: "Work"
     url: /portfolio
 
   - title: "Projects"
     url: /project
 
-  - title: "Blog"
+  - title: "AI Studio"
+    url: /ai-studio
+
+  - title: "Writing"
     url: /designlog
 
-  - title: "Reading Notes"
-    url: /book
+  - title: "About"
+    url: /about
 
 #  - title: "Coding Scratch Pad"
 #    url: /coding
-
-  - title: "CV"
-    url: /pdfs/CV_Usman_Khaliq.pdf
 
 
 

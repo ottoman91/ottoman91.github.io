@@ -9,22 +9,25 @@ layout: compress
   <head>
     {% include head.html %}
     {% include head/custom.html %}
+    {% include world-head.html %}
   </head>
 
-  <body>
+  <body class="world">
+
+    <a class="skip" href="#content">Skip to content</a>
+    <div class="boot-overlay" aria-hidden="true"></div>
 
     {% include browser-upgrade.html %}
-    {% include masthead.html %}
+    {% include world-bar.html %}
 
-    {{ content }}
-
-    <div class="page__footer">
-      <footer>
-        {% include footer/custom.html %}
-        {% include footer.html %}
-      </footer>
+    <div id="content">
+      {{ content }}
     </div>
 
+    {% include footer/custom.html %}
+    {% include world-footer.html %}
+
+    <script src="{{ base_path }}/assets/js/world.js"></script>
     {% include scripts.html %}
 
   </body>

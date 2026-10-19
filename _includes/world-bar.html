@@ -1,0 +1,19 @@
+{% include base_path %}
+
+<header class="bar">
+  <div class="bar__inner">
+    <a class="bar__mark" href="{{ base_path }}/">Usman Khaliq</a>
+    <nav class="bar__rooms" aria-label="Rooms">
+      <ul>
+        {% for link in site.data.navigation.main %}
+          <li><a href="{{ base_path }}{{ link.url }}"{% if page.url == link.url %} aria-current="page"{% endif %}>{{ link.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+    <a class="bar__resume" href="{{ base_path }}/pdfs/CV_Usman_Khaliq.pdf" target="_blank" rel="noopener">Resume</a>
+    <button type="button" class="switch" id="theme-switch" role="switch" aria-checked="false" aria-label="Golden hour mode">
+      <span class="switch__plate" aria-hidden="true"><span class="switch__rocker"></span></span>
+      <span class="switch__label" aria-hidden="true">night</span>
+    </button>
+  </div>
+</header>
