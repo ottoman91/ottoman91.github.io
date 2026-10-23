@@ -1,0 +1,14 @@
+{% include base_path %}
+
+<footer class="foot">
+  <div class="wrap foot__row">
+    <p>&copy; {{ site.time | date: '%Y' }} {{ site.name | default: site.title }}</p>
+    <ul>
+      <li><a href="{{ base_path }}/book">Reading Notes</a></li>
+      {% if site.author.github %}<li><a href="https://github.com/{{ site.author.github }}">GitHub</a></li>{% endif %}
+      {% if site.author.linkedin %}<li><a href="https://www.linkedin.com/in/{{ site.author.linkedin }}">LinkedIn</a></li>{% endif %}
+      {% if site.author.email %}<li><a href="mailto:{{ site.author.email }}">Email</a></li>{% endif %}
+      <li><a href="{{ base_path }}/feed.xml">Feed</a></li>
+    </ul>
+  </div>
+</footer>
