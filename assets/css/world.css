@@ -39,6 +39,111 @@
  *   [x] light mode is dusk-blue plus deep amber, not cream plus terracotta
  */
 
+/*
+ * TYPE RULE (who gets which face)
+ *   --font-display  Space Grotesk 700 : headlines only (h1-h6, titles, the mark)
+ *   --font-body     Lora 400/600      : all reading copy, captions, excerpts,
+ *                                       descriptive lines, lightbox titles
+ *   --font-mono     IBM Plex Mono     : labels, metadata, dates, nav, and
+ *                                       CTA / prompt text ONLY
+ *   Noto Nastaliq Urdu                : pages that set page.urdu, nothing else
+ * Nothing may render in a system sans, Georgia or Times. main.css (the old
+ * theme) is still loaded for layout, icons and the lightbox, so the block
+ * below resets its typography on every element it styles. Icon fonts (.fa)
+ * are deliberately not touched. Weights used: display 700, body 400/600
+ * (strong, th), mono 400/500; world-head.html loads exactly these.
+ */
+
+/* ---------- old-theme typography reset ---------- */
+
+/* Body and display groups use .world (not body.world) and no !important, so
+   the explicit component rules further down (mono labels, .crt, .facts dt,
+   .foot p ...) still win by order. */
+.world p,
+.world li,
+.world dd,
+.world dt,
+.world blockquote,
+.world figcaption,
+.world caption,
+.world td,
+.world th,
+.world address,
+.world .page__content,
+.world .page__lead,
+.world .archive__item-excerpt,
+.world .author__bio,
+.world .notice,
+.world .mfp-title,
+.world .mfp-counter,
+.world .wp-caption-text {
+  font-family: var(--font-body);
+}
+
+.world h1, .world h2, .world h3,
+.world h4, .world h5, .world h6,
+.world .page__title,
+.world .archive__item-title,
+.world .author__name,
+.world .site-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+body.world .masthead,
+body.world .masthead a,
+body.world .greedy-nav,
+body.world .greedy-nav a,
+body.world .greedy-nav button,
+body.world .breadcrumbs,
+body.world .breadcrumbs a,
+body.world .author__urls,
+body.world .author__urls a,
+body.world .author__urls-wrapper button,
+body.world .page__meta,
+body.world .page__meta-title,
+body.world .page__date,
+body.world .page__taxonomy,
+body.world .page__taxonomy a,
+body.world .page__share,
+body.world .pagination,
+body.world .pagination a,
+body.world .btn,
+body.world button,
+body.world input,
+body.world select,
+body.world textarea,
+body.world label,
+body.world code,
+body.world kbd,
+body.world samp,
+body.world pre,
+body.world .highlight,
+body.world .mfp-close {
+  font-family: var(--font-mono) !important;
+}
+
+body.world strong, body.world b, body.world th { font-weight: 600; }
+body.world em, body.world i:not(.fa) { font-style: italic; font-weight: 400; }
+
+body.world .masthead,
+body.world .greedy-nav a,
+body.world .breadcrumbs,
+body.world .author__urls,
+body.world .page__taxonomy,
+body.world .pagination a { font-size: 0.875rem; }
+body.world .btn,
+body.world button,
+body.world input,
+body.world select,
+body.world textarea { font-size: 0.9375rem; line-height: 1.4; }
+body.world figcaption,
+body.world .mfp-title,
+body.world .wp-caption-text { font-size: 0.875rem; line-height: 1.5; }
+body.world table { font-size: 0.9375rem; }
+body.world code, body.world pre, body.world kbd, body.world samp { font-size: 0.875rem; }
+body.world pre code { font-size: inherit; }
+
 :root {
   --bg: #1A1625;
   --panel: #2A2340;
@@ -379,7 +484,7 @@ body.world a.btn-line:hover { background: var(--halo); color: var(--ink); }
   align-self: start;
 }
 .room__head h3 { margin: 0; font-size: 1.45rem; }
-.room__role { margin: 0.2rem 0 0; font-family: var(--font-mono); font-size: 0.8125rem; color: var(--ink-2); }
+.world .room__role { margin: 0.2rem 0 0; font-family: var(--font-mono); font-size: 0.8125rem; color: var(--ink-2); }
 .room__outcome { margin: 0 0 0.75rem; font-size: 1.15rem; max-width: 60ch; }
 
 .facts { display: grid; grid-template-columns: 5.5rem 1fr; gap: 0.25rem 1rem; margin: 0 0 1rem; }
@@ -560,6 +665,7 @@ body.world a.btn-line:hover { background: var(--halo); color: var(--ink); }
 .crt__fields dt { color: #FFB454; }
 .crt__fields dd { margin: 0; }
 .crt p { margin: 0; }
+.crt p, .crt dt, .crt dd, .crt li { font-family: var(--font-mono); }
 .crt .pending { color: #9EE37D; border-color: #9EE37D; }
 .crt__dot {
   display: inline-block;
@@ -631,9 +737,9 @@ body.world .scrap a:hover { color: var(--ink-black); }
   transform: rotate(var(--tilt, 2deg));
 }
 .polaroid img { display: block; width: 100%; height: auto; }
-.polaroid figcaption { margin-top: 0.5rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-black); }
+.polaroid figcaption { margin-top: 0.5rem; font-family: var(--font-body); font-size: 0.8125rem; color: var(--ink-black); }
 
-.urdu-stamp {
+.world .urdu-stamp {
   display: inline-block;
   margin: 0 0 1rem;
   padding: 0 1.25rem;
@@ -646,7 +752,7 @@ body.world .scrap a:hover { color: var(--ink-black); }
   line-height: 2.1;
   transform: rotate(-4deg);
 }
-.urdu-note { margin: 0 0 1rem; font-family: var(--font-mono); font-size: 0.8125rem; color: var(--ink-2); max-width: 44ch; }
+.urdu-note { margin: 0 0 1rem; font-family: var(--font-body); font-size: 0.9375rem; color: var(--ink-2); max-width: 44ch; }
 
 .journey {
   position: relative;
@@ -690,7 +796,7 @@ body.world .scrap a:hover { color: var(--ink-black); }
 .scraps li:nth-child(2) { --r: -2.5deg; }
 .scraps li:nth-child(3) { --r: 1.5deg; }
 .scraps img { display: block; width: 100%; height: auto; }
-.scraps span { display: block; font-family: var(--font-mono); font-size: 0.6875rem; color: var(--ink-black); }
+.scraps span { display: block; font-family: var(--font-body); font-size: 0.75rem; color: var(--ink-black); }
 
 @media (min-width: 56rem) {
   .journey { padding: 0; }
@@ -744,8 +850,8 @@ body.world .page__content h3 { margin-top: 2rem; }
 body.world .page__meta,
 body.world .page__date { color: var(--ink-2); font-family: var(--font-mono); font-size: 0.8125rem; }
 body.world .page__meta-title,
-body.world .page__share,
-body.world .page__related { font-family: var(--font-mono); }
+body.world .page__share { font-family: var(--font-mono); }
+body.world .page__related { font-family: var(--font-body); }
 body.world .page__content img { max-width: 100%; height: auto; }
 body.world blockquote { border-left: 4px solid var(--glow); color: var(--ink-2); }
 body.world hr { border-color: var(--line); }
